@@ -1,0 +1,3 @@
+D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/myc1.dir
+D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
