@@ -3,7 +3,7 @@ file(REMOVE_RECURSE
   "myc1.pdb"
   "myc1.exe"
   "myc1.exe.manifest"
-  "myc1.lib"
+  "libmyc1.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.
