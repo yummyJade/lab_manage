@@ -56,27 +56,28 @@ include CMakeFiles/myc1.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/myc1.dir/flags.make
 
-CMakeFiles/myc1.dir/main.cpp.obj: CMakeFiles/myc1.dir/flags.make
-CMakeFiles/myc1.dir/main.cpp.obj: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\projects\CLionProjects\myc1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/myc1.dir/main.cpp.obj"
-	D:\Install\CodeBlocks\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\myc1.dir\main.cpp.obj -c D:\projects\CLionProjects\myc1\main.cpp
+CMakeFiles/myc1.dir/src/main/main.cpp.obj: CMakeFiles/myc1.dir/flags.make
+CMakeFiles/myc1.dir/src/main/main.cpp.obj: CMakeFiles/myc1.dir/includes_CXX.rsp
+CMakeFiles/myc1.dir/src/main/main.cpp.obj: ../src/main/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\projects\CLionProjects\myc1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/myc1.dir/src/main/main.cpp.obj"
+	D:\Install\CodeBlocks\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\myc1.dir\src\main\main.cpp.obj -c D:\projects\CLionProjects\myc1\src\main\main.cpp
 
-CMakeFiles/myc1.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/myc1.dir/main.cpp.i"
-	D:\Install\CodeBlocks\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\projects\CLionProjects\myc1\main.cpp > CMakeFiles\myc1.dir\main.cpp.i
+CMakeFiles/myc1.dir/src/main/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/myc1.dir/src/main/main.cpp.i"
+	D:\Install\CodeBlocks\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\projects\CLionProjects\myc1\src\main\main.cpp > CMakeFiles\myc1.dir\src\main\main.cpp.i
 
-CMakeFiles/myc1.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/myc1.dir/main.cpp.s"
-	D:\Install\CodeBlocks\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\projects\CLionProjects\myc1\main.cpp -o CMakeFiles\myc1.dir\main.cpp.s
+CMakeFiles/myc1.dir/src/main/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/myc1.dir/src/main/main.cpp.s"
+	D:\Install\CodeBlocks\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\projects\CLionProjects\myc1\src\main\main.cpp -o CMakeFiles\myc1.dir\src\main\main.cpp.s
 
 # Object files for target myc1
 myc1_OBJECTS = \
-"CMakeFiles/myc1.dir/main.cpp.obj"
+"CMakeFiles/myc1.dir/src/main/main.cpp.obj"
 
 # External object files for target myc1
 myc1_EXTERNAL_OBJECTS =
 
-myc1.exe: CMakeFiles/myc1.dir/main.cpp.obj
+myc1.exe: CMakeFiles/myc1.dir/src/main/main.cpp.obj
 myc1.exe: CMakeFiles/myc1.dir/build.make
 myc1.exe: CMakeFiles/myc1.dir/linklibs.rsp
 myc1.exe: CMakeFiles/myc1.dir/objects1.rsp

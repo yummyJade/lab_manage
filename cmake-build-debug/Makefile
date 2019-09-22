@@ -122,32 +122,32 @@ myc1/fast:
 	$(MAKE) -f CMakeFiles\myc1.dir\build.make CMakeFiles/myc1.dir/build
 .PHONY : myc1/fast
 
-main.obj: main.cpp.obj
+src/main/main.obj: src/main/main.cpp.obj
 
-.PHONY : main.obj
+.PHONY : src/main/main.obj
 
 # target to build an object file
-main.cpp.obj:
-	$(MAKE) -f CMakeFiles\myc1.dir\build.make CMakeFiles/myc1.dir/main.cpp.obj
-.PHONY : main.cpp.obj
+src/main/main.cpp.obj:
+	$(MAKE) -f CMakeFiles\myc1.dir\build.make CMakeFiles/myc1.dir/src/main/main.cpp.obj
+.PHONY : src/main/main.cpp.obj
 
-main.i: main.cpp.i
+src/main/main.i: src/main/main.cpp.i
 
-.PHONY : main.i
+.PHONY : src/main/main.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) -f CMakeFiles\myc1.dir\build.make CMakeFiles/myc1.dir/main.cpp.i
-.PHONY : main.cpp.i
+src/main/main.cpp.i:
+	$(MAKE) -f CMakeFiles\myc1.dir\build.make CMakeFiles/myc1.dir/src/main/main.cpp.i
+.PHONY : src/main/main.cpp.i
 
-main.s: main.cpp.s
+src/main/main.s: src/main/main.cpp.s
 
-.PHONY : main.s
+.PHONY : src/main/main.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) -f CMakeFiles\myc1.dir\build.make CMakeFiles/myc1.dir/main.cpp.s
-.PHONY : main.cpp.s
+src/main/main.cpp.s:
+	$(MAKE) -f CMakeFiles\myc1.dir\build.make CMakeFiles/myc1.dir/src/main/main.cpp.s
+.PHONY : src/main/main.cpp.s
 
 # Help Target
 help:
@@ -158,9 +158,9 @@ help:
 	@echo ... myc1
 	@echo ... edit_cache
 	@echo ... rebuild_cache
-	@echo ... main.obj
-	@echo ... main.i
-	@echo ... main.s
+	@echo ... src/main/main.obj
+	@echo ... src/main/main.i
+	@echo ... src/main/main.s
 .PHONY : help
 
 
