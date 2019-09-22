@@ -1,35 +1,33 @@
 #pragma once
 
 #include <string>
-#include "Time.h"
+#include "SimpleTime.h"
 #include <iostream>
 using namespace std;
+
 
 class Book
 {
 
 private:
-	char type;		//ä¹¦æ‰€å±ç±»åˆ«A--Vï¼ŒæœŸåˆŠä¸º0
-	bool isLend = true;		//æ˜¯å¦å¯å€Ÿ
-	int price;		//ä¹¦æœ¬ä»·æ ¼
+	char type;		//ÊéËùÊôÀà±ğA--V£¬ÆÚ¿¯Îª0
+	bool isLend = true;		//ÊÇ·ñ¿É½è
+	int price;		//Êé±¾¼Û¸ñ
 	int id;
-	string name;		//ä¹¦å
-	string author;		//ä½œè€…
+	string name;		//ÊéÃû
+	string author;		//×÷Õß
 	string isbn;		//ISBN
 
-
-
-							
 
 public:
 	Book();
 	~Book();
-	//æ‰“å°ä¹¦æœ¬ç±»å‹
+	//´òÓ¡Êé±¾ÀàĞÍ
 	string printType();
 	string printIsLend();
 
 	void setBookInfo(string namet,string authort,string isbnt,char typet,double pricet);
-	//æ‰“å°ä¹¦æœ¬åŸºæœ¬ä¿¡æ¯
+	//´òÓ¡Êé±¾»ù±¾ĞÅÏ¢
 	void printBookInfo() ;
 	
 };

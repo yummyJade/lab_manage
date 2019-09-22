@@ -1,5 +1,5 @@
 #pragma once
-#include "Time.h"
+#include "SimpleTime.h"
 #include <string>
 
 class Order

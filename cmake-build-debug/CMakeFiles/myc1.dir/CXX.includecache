@@ -6,11 +6,33 @@
 
 #IncludeRegexTransform: 
 
+../src/include/Book.h
+string
+-
+SimpleTime.h
+../src/include/SimpleTime.h
+iostream
+-
+
 ../src/include/Date.h
+
+../src/include/SimpleTime.h
+Date.h
+../src/include/Date.h
+
+E:/Sources/Cpp/repos/Lib_manage/src/main/Book.cpp
+Book.h
+E:/Sources/Cpp/repos/Lib_manage/src/main/Book.h
 
 E:/Sources/Cpp/repos/Lib_manage/src/main/Date.cpp
 Date.h
 E:/Sources/Cpp/repos/Lib_manage/src/main/Date.h
+
+E:/Sources/Cpp/repos/Lib_manage/src/main/SimpleTime.cpp
+SimpleTime.h
+E:/Sources/Cpp/repos/Lib_manage/src/main/SimpleTime.h
+iostream
+-
 
 E:/Sources/Cpp/repos/Lib_manage/src/main/main.cpp
 iostream
@@ -19,4 +41,12 @@ Date.h
 E:/Sources/Cpp/repos/Lib_manage/src/main/Date.h
 Date.cpp
 E:/Sources/Cpp/repos/Lib_manage/src/main/Date.cpp
+SimpleTime.h
+E:/Sources/Cpp/repos/Lib_manage/src/main/SimpleTime.h
+SimpleTime.cpp
+E:/Sources/Cpp/repos/Lib_manage/src/main/SimpleTime.cpp
+Book.h
+E:/Sources/Cpp/repos/Lib_manage/src/main/Book.h
+Book.cpp
+E:/Sources/Cpp/repos/Lib_manage/src/main/Book.cpp
 

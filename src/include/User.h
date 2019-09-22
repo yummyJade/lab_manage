@@ -23,9 +23,6 @@ private:
 
 public:
     User();
-
-    User(int idt, int jobNumt, int maxLendt, int maxTimet, string pwdt, status typet);
-
     ~User();
 
 

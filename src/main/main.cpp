@@ -1,8 +1,8 @@
 #include <iostream>
 #include "Date.h"
 #include "Date.cpp"
-#include "Time.h"
-#include "Time.cpp"
+#include "SimpleTime.h"
+#include "SimpleTime.cpp"
 #include "Book.h"
 #include "Book.cpp"
 
@@ -11,5 +11,6 @@ int main() {
     date->print();
     date->addDay(100);
     date->print();
+    delete date;
     return 0;
 }

@@ -57,6 +57,30 @@ CMAKE_BINARY_DIR = E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target install/local
+install\local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	C:\Users\Tjm\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\192.6603.37\bin\cmake\win\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install\local
+
+# Special rule for the target install/local
+install\local\fast: preinstall\fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	C:\Users\Tjm\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\192.6603.37\bin\cmake\win\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install\local\fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	C:\Users\Tjm\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\192.6603.37\bin\cmake\win\bin\cmake.exe -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install\fast: preinstall\fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	C:\Users\Tjm\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\192.6603.37\bin\cmake\win\bin\cmake.exe -P cmake_install.cmake
+.PHONY : install\fast
+
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -78,6 +102,16 @@ rebuild_cache:
 rebuild_cache\fast: rebuild_cache
 
 .PHONY : rebuild_cache\fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components\fast: list_install_components
+
+.PHONY : list_install_components\fast
 
 # The main all target
 all: cmake_check_build_system
@@ -124,6 +158,84 @@ myc1\fast:
 	$(MAKE) -f CMakeFiles\myc1.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\myc1.dir\build
 .PHONY : myc1\fast
 
+#=============================================================================
+# Target rules for targets named Google_Tests_run
+
+# Build rule for target.
+Google_Tests_run: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) Google_Tests_run
+.PHONY : Google_Tests_run
+
+# fast build rule for target.
+Google_Tests_run\fast:
+	$(MAKE) -f Google_tests\CMakeFiles\Google_Tests_run.dir\build.make /nologo -$(MAKEFLAGS) Google_tests\CMakeFiles\Google_Tests_run.dir\build
+.PHONY : Google_Tests_run\fast
+
+#=============================================================================
+# Target rules for targets named gmock_main
+
+# Build rule for target.
+gmock_main: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) gmock_main
+.PHONY : gmock_main
+
+# fast build rule for target.
+gmock_main\fast:
+	$(MAKE) -f Google_tests\lib\googlemock\CMakeFiles\gmock_main.dir\build.make /nologo -$(MAKEFLAGS) Google_tests\lib\googlemock\CMakeFiles\gmock_main.dir\build
+.PHONY : gmock_main\fast
+
+#=============================================================================
+# Target rules for targets named gmock
+
+# Build rule for target.
+gmock: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) gmock
+.PHONY : gmock
+
+# fast build rule for target.
+gmock\fast:
+	$(MAKE) -f Google_tests\lib\googlemock\CMakeFiles\gmock.dir\build.make /nologo -$(MAKEFLAGS) Google_tests\lib\googlemock\CMakeFiles\gmock.dir\build
+.PHONY : gmock\fast
+
+#=============================================================================
+# Target rules for targets named gtest
+
+# Build rule for target.
+gtest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) gtest
+.PHONY : gtest
+
+# fast build rule for target.
+gtest\fast:
+	$(MAKE) -f Google_tests\lib\googletest\CMakeFiles\gtest.dir\build.make /nologo -$(MAKEFLAGS) Google_tests\lib\googletest\CMakeFiles\gtest.dir\build
+.PHONY : gtest\fast
+
+#=============================================================================
+# Target rules for targets named gtest_main
+
+# Build rule for target.
+gtest_main: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) gtest_main
+.PHONY : gtest_main
+
+# fast build rule for target.
+gtest_main\fast:
+	$(MAKE) -f Google_tests\lib\googletest\CMakeFiles\gtest_main.dir\build.make /nologo -$(MAKEFLAGS) Google_tests\lib\googletest\CMakeFiles\gtest_main.dir\build
+.PHONY : gtest_main\fast
+
+#=============================================================================
+# Target rules for targets named DateConverter_lib
+
+# Build rule for target.
+DateConverter_lib: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) DateConverter_lib
+.PHONY : DateConverter_lib
+
+# fast build rule for target.
+DateConverter_lib\fast:
+	$(MAKE) -f src\include\CMakeFiles\DateConverter_lib.dir\build.make /nologo -$(MAKEFLAGS) src\include\CMakeFiles\DateConverter_lib.dir\build
+.PHONY : DateConverter_lib\fast
+
 src\main\main.obj: src\main\main.cpp.obj
 
 .PHONY : src\main\main.obj
@@ -158,8 +270,17 @@ help:
 	@echo ... clean
 	@echo ... depend
 	@echo ... myc1
+	@echo ... install/local
+	@echo ... install
 	@echo ... edit_cache
 	@echo ... rebuild_cache
+	@echo ... list_install_components
+	@echo ... Google_Tests_run
+	@echo ... gmock_main
+	@echo ... gmock
+	@echo ... gtest
+	@echo ... gtest_main
+	@echo ... DateConverter_lib
 	@echo ... src/main/main.obj
 	@echo ... src/main/main.i
 	@echo ... src/main/main.s

@@ -1,6 +1,6 @@
 #pragma once
 #include "Date.h"
-class Time :
+class SimpleTime :
         public Date
 {
 public:
@@ -8,9 +8,9 @@ public:
     short minute;
     short second;
 
-    Time();
-    Time::~Time();
-    Time(int y, int m, int d, short hour, short minute, short second);
+    SimpleTime();
+    ~SimpleTime();
+    SimpleTime(int y, int m, int d, short hour, short minute, short second);
 
     void print();
 };
