@@ -1,12 +1,19 @@
 #pragma once
-class Date
-{
-private:
-	int year;
-	int month;
-	int day;
+
+class Date {
 public:
-	Date();
-	~Date();
+    int year;
+    int month;
+    int day;
+
+    Date();
+
+    Date(int y, int m, int d);
+
+    bool isLeapYear(int year);
+
+    void print();
+
+    void addDay(int num);
 };
 

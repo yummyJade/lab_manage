@@ -1,52 +1,43 @@
-#include <string>
 #pragma once
-using namespace std;
-enum status { Teacher, Graduate,Undergraduate, Senior, Middle, Primary, Kindergarten};		//特权思想枚举
 
-class User
-{
+#include <string>
+
+enum status {
+    Teacher, Graduate, Undergraduate, Senior, Middle, Primary, Kindergarten
+};        //特权思想枚举
+
+class User {
+    static const int[]
+    lendDays = {30, 60, 90}; // 最多可同时借书的时长,单位天
+    static const int[]
+    lendNums = {30, 60, 90}; // 最多可同时借书的本数
 private:
-	int id;
-	int jobNum;		//工号
-	int maxLend;		//可借书的数量
-	int maxTime;		//可借阅时间
-	status type;
-	string pwd;		//password
+    int id;
+    int jobNum;        //工号
+    int borrowNum;  // 当前借阅的图书数量
+//	int maxLend;		//可借书的数量  这个不要了,用上面的静态常量省空间
+//	int maxTime;		//可借阅时间  这个不要了,用上面的静态常量省空间
+    status type;
+    string pwd;        //password
 
 
 public:
-	User();
-	~User();
-	User(int idt, int jobNumt, int maxLendt, int maxTimet, string pwdt, status typet) {
-		id = idt;
-		jobNum = jobNumt;
-		maxLend = maxLendt;
-		maxTime = maxTimet;
-		pwd = pwdt;
+    User();
 
-		switch (typet)
-		{
-		default:
-			break;
-		}
-	}
+    User(int idt, int jobNumt, int maxLendt, int maxTimet, string pwdt, status typet);
 
-	//打印用户信息
-	void printUserInfo() {
+    ~User();
 
-	}
-	
-	bool canLendBook() {
 
-	}
-	void setId(int value) {
-		id = value;
-	}
-	int getId() {
-		return id;
-	}
-	void setJobNum(int jobNum) {
+    //打印用户信息
+    void printUserInfo();
 
-	}
+    bool canLendBook();
+
+    void setId(int value);
+
+    int getId();
+
+    void setJobNum(int jobNum);
 };
 

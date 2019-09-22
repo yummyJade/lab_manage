@@ -1,19 +1,17 @@
 #pragma once
-#include<string>
 #include "Date.h"
-using namespace std;
-
-
 class Time :
-	public Date
+        public Date
 {
-private:
-	int hour;
-	int min;
-	int sec;
-
 public:
-	Time();
-	~Time();
+    short hour;
+    short minute;
+    short second;
+
+    Time();
+    Time::~Time();
+    Time(int y, int m, int d, short hour, short minute, short second);
+
+    void print();
 };
 

@@ -6,7 +6,17 @@
 
 #IncludeRegexTransform: 
 
+../src/include/Date.h
+
+E:/Sources/Cpp/repos/Lib_manage/src/main/Date.cpp
+Date.h
+E:/Sources/Cpp/repos/Lib_manage/src/main/Date.h
+
 E:/Sources/Cpp/repos/Lib_manage/src/main/main.cpp
 iostream
 -
+Date.h
+E:/Sources/Cpp/repos/Lib_manage/src/main/Date.h
+Date.cpp
+E:/Sources/Cpp/repos/Lib_manage/src/main/Date.cpp
 
