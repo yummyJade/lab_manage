@@ -9,12 +9,12 @@ class Book
 {
 
 private:
-	char type;		//ÊéËùÊôÀà±ğA--V£¬ÆÚ¿¯Îª0
-	bool isLend = true;		//ÊÇ·ñ¿É½è
-	int price;		//Êé±¾¼Û¸ñ
+	char type;		//ä¹¦æ‰€å±ç±»åˆ«A--Vï¼ŒæœŸåˆŠä¸º0
+	bool isLend = true;		//æ˜¯å¦å¯å€Ÿ
+	int price;		//ä¹¦æœ¬ä»·æ ¼
 	int id;
-	string name;		//ÊéÃû
-	string author;		//×÷Õß
+	string name;		//ä¹¦å
+	string author;		//ä½œè€…
 	string isbn;		//ISBN
 
 
@@ -24,45 +24,45 @@ private:
 public:
 	Book();
 	~Book();
-	//´òÓ¡Êé±¾ÀàĞÍ
+	//æ‰“å°ä¹¦æœ¬ç±»å‹
 	string printType() {
 		string temp;
 		switch (type)
 		{
-		case 'A':temp = "Âí¿ËË¼Ö÷Òå¡¢ÁĞÄşÖ÷Òå¡¢Ã«Ôó¶«Ë¼Ïë¡¢µËĞ¡Æ½ÀíÂÛ"; break;
-		case 'B':temp = "ÕÜÑ§¡¢×Ú½Ì"; break;
-		case 'C':temp = "Éç»á¿ÆÑ§×ÜÂÛ"; break;
-		case 'D':temp = "ÕşÖÎ¡¢·¨ÂÉ"; break;
-		case 'E':temp = "¾üÊÂ"; break;
-		case 'F':temp = "¾­¼Ã"; break;
-		case 'G':temp = "ÎÄ»¯¡¢¿ÆÑ§¡¢½ÌÓı¡¢ÌåÓı"; break;
-		case 'H':temp = "ÓïÑÔ¡¢ÎÄ×Ö"; break;
-		case 'I':temp = "ÎÄÑ§"; break;
-		case 'J':temp = "ÒÕÊõ"; break;
-		case 'K':temp = "ÀúÊ·¡¢µØÀí"; break;
-		case 'N':temp = "×ÔÈ»¿ÆÑ§×ÜÂÛ"; break;
-		case 'O':temp = "ÊıÀí¿ÆÑ§ºÍ»¯Ñ§"; break;
-		case 'P':temp = "ÌìÎÄÑ§¡¢µØÇò¿ÆÑ§"; break;
-		case 'Q':temp = "ÉúÎï¿ÆÑ§"; break;
-		case 'R':temp = "Ò½Ò©¡¢ÎÀÉú"; break;
-		case 'S':temp = "Å©Òµ¿ÆÑ§"; break;
-		case 'T':temp = "¹¤Òµ¼¼Êõ"; break;
-		case 'U':temp = "½»Í¨ÔËÊä"; break;
-		case 'V':temp = "º½¿Õ¡¢º½Ìì"; break;
-		case 'X':temp = "»·¾³¿ÆÑ§¡¢°²È«¿ÆÑ§"; break;
-		case 'Z':temp = "×ÛºÏĞÔÍ¼Êé"; break;
+		case 'A':temp = "é©¬å…‹æ€ä¸»ä¹‰ã€åˆ—å®ä¸»ä¹‰ã€æ¯›æ³½ä¸œæ€æƒ³ã€é‚“å°å¹³ç†è®º"; break;
+		case 'B':temp = "å“²å­¦ã€å®—æ•™"; break;
+		case 'C':temp = "ç¤¾ä¼šç§‘å­¦æ€»è®º"; break;
+		case 'D':temp = "æ”¿æ²»ã€æ³•å¾‹"; break;
+		case 'E':temp = "å†›äº‹"; break;
+		case 'F':temp = "ç»æµ"; break;
+		case 'G':temp = "æ–‡åŒ–ã€ç§‘å­¦ã€æ•™è‚²ã€ä½“è‚²"; break;
+		case 'H':temp = "è¯­è¨€ã€æ–‡å­—"; break;
+		case 'I':temp = "æ–‡å­¦"; break;
+		case 'J':temp = "è‰ºæœ¯"; break;
+		case 'K':temp = "å†å²ã€åœ°ç†"; break;
+		case 'N':temp = "è‡ªç„¶ç§‘å­¦æ€»è®º"; break;
+		case 'O':temp = "æ•°ç†ç§‘å­¦å’ŒåŒ–å­¦"; break;
+		case 'P':temp = "å¤©æ–‡å­¦ã€åœ°çƒç§‘å­¦"; break;
+		case 'Q':temp = "ç”Ÿç‰©ç§‘å­¦"; break;
+		case 'R':temp = "åŒ»è¯ã€å«ç”Ÿ"; break;
+		case 'S':temp = "å†œä¸šç§‘å­¦"; break;
+		case 'T':temp = "å·¥ä¸šæŠ€æœ¯"; break;
+		case 'U':temp = "äº¤é€šè¿è¾“"; break;
+		case 'V':temp = "èˆªç©ºã€èˆªå¤©"; break;
+		case 'X':temp = "ç¯å¢ƒç§‘å­¦ã€å®‰å…¨ç§‘å­¦"; break;
+		case 'Z':temp = "ç»¼åˆæ€§å›¾ä¹¦"; break;
 
-		default:temp = "ÆÚ¿¯ÔÓÖ¾";
+		default:temp = "æœŸåˆŠæ‚å¿—";
 			break;
 		}
 		return temp;
 	}
 	string printIsLend() {
 		if (isLend) {
-			return "¿É½è";
+			return "å¯å€Ÿ";
 		}
 		else if (!isLend) {
-			return "²»¿É½è";
+			return "ä¸å¯å€Ÿ";
 		}
 	}
 
@@ -73,7 +73,7 @@ public:
 		type = typet;
 		price = pricet;
 	}
-	//´òÓ¡Êé±¾»ù±¾ĞÅÏ¢
+	//æ‰“å°ä¹¦æœ¬åŸºæœ¬ä¿¡æ¯
 	void printBookInfo() {
 		cout << id << name << author << isbn << type;
 	}

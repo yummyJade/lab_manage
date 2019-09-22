@@ -1,15 +1,15 @@
 #include <string>
 #pragma once
 using namespace std;
-enum status { Teacher, Graduate,Undergraduate, Senior, Middle, Primary, Kindergarten};		//ÌØÈ¨Ë¼ÏëÃ¶¾Ù
+enum status { Teacher, Graduate,Undergraduate, Senior, Middle, Primary, Kindergarten};		//ç‰¹æƒæ€æƒ³æšä¸¾
 
 class User
 {
 private:
 	int id;
-	int jobNum;		//¹¤ºÅ
-	int maxLend;		//¿É½èÊéµÄÊıÁ¿
-	int maxTime;		//¿É½èÔÄÊ±¼ä
+	int jobNum;		//å·¥å·
+	int maxLend;		//å¯å€Ÿä¹¦çš„æ•°é‡
+	int maxTime;		//å¯å€Ÿé˜…æ—¶é—´
 	status type;
 	string pwd;		//password
 
@@ -31,7 +31,7 @@ public:
 		}
 	}
 
-	//´òÓ¡ÓÃ»§ĞÅÏ¢
+	//æ‰“å°ç”¨æˆ·ä¿¡æ¯
 	void printUserInfo() {
 
 	}

@@ -5,7 +5,7 @@ class Admin
 {
 private:
 	int id;
-	int jobNum;		//¹¤ºÅ
+	int jobNum;		//å·¥å·
 	string pwd;
 public:
 	Admin();
