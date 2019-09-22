@@ -4,86 +4,92 @@
 	<Project>
 		<Option title="myc1"/>
 		<Option makefile_is_custom="1"/>
-		<Option compiler="gcc"/>
+		<Option compiler="msvc8"/>
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="D:/projects/CLionProjects/myc1/cmake-build-debug"/>
+				<Option working_dir="E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="nmake /NOLOGO /f E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\Makefile VERBOSE=1 all"/>
+					<CompileFile command="nmake /NOLOGO /f E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="myc1">
-				<Option output="D:/projects/CLionProjects/myc1/cmake-build-debug/myc1.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="D:/projects/CLionProjects/myc1/cmake-build-debug"/>
+				<Option output="E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/myc1.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
-				<Option compiler="gcc"/>
+				<Option compiler="msvc8"/>
 				<Compiler>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++/mingw32"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++/backward"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../include"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include-fixed"/>
+					<Add directory="E:/Sources/Cpp/repos/Lib_manage/src/include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Preview\VC\Tools\MSVC\14.23.28105\ATLMFC\include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Preview\VC\Tools\MSVC\14.23.28105\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\winrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\cppwinrt"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/Makefile&quot;  VERBOSE=1 myc1"/>
-					<CompileFile command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="nmake /NOLOGO /f E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\Makefile VERBOSE=1 myc1"/>
+					<CompileFile command="nmake /NOLOGO /f E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="myc1/fast">
-				<Option output="D:/projects/CLionProjects/myc1/cmake-build-debug/myc1.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="D:/projects/CLionProjects/myc1/cmake-build-debug"/>
+				<Option output="E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/myc1.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
-				<Option compiler="gcc"/>
+				<Option compiler="msvc8"/>
 				<Compiler>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++/mingw32"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++/backward"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../include"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include-fixed"/>
+					<Add directory="E:/Sources/Cpp/repos/Lib_manage/src/include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Preview\VC\Tools\MSVC\14.23.28105\ATLMFC\include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Preview\VC\Tools\MSVC\14.23.28105\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\winrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\cppwinrt"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/Makefile&quot;  VERBOSE=1 myc1/fast"/>
-					<CompileFile command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="nmake /NOLOGO /f E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\Makefile VERBOSE=1 myc1/fast"/>
+					<CompileFile command="nmake /NOLOGO /f E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="D:/projects/CLionProjects/myc1/cmake-build-debug"/>
+				<Option working_dir="E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="nmake /NOLOGO /f E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\Makefile VERBOSE=1 edit_cache"/>
+					<CompileFile command="nmake /NOLOGO /f E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="D:/projects/CLionProjects/myc1/cmake-build-debug"/>
+				<Option working_dir="E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="nmake /NOLOGO /f E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\Makefile VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="nmake /NOLOGO /f E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="D:/projects/CLionProjects/myc1/main.cpp">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/src/main/main.cpp">
 			<Option target="myc1"/>
 		</Unit>
-		<Unit filename="D:/projects/CLionProjects/myc1/CMakeLists.txt">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

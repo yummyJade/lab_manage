@@ -8,11 +8,11 @@ using namespace std;
 class Order
 {
 private:
-	bool IsRenew = true;		//ÊÇ·ñ¿ÉĞø½è
-	int debt = 0;		//Ç·¿î(cent)
-	int id;		//¶©µ¥±àºÅ
-	Time borrowTime;		//½èÊéÊ±¼ä
-	Time returnTime;		//»¹ÊéÊ±¼ä
+	bool IsRenew = true;		//æ˜¯å¦å¯ç»­å€Ÿ
+	int debt = 0;		//æ¬ æ¬¾(cent)
+	int id;		//è®¢å•ç¼–å·
+	Time borrowTime;		//å€Ÿä¹¦æ—¶é—´
+	Time returnTime;		//è¿˜ä¹¦æ—¶é—´
 	
 
 	
