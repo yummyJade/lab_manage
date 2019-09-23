@@ -9,4 +9,5 @@ aux_source_directory(src dir_srcs)
 
 # sources to be compiled
 set(MYC1 ${dir_srcs})
-add_executable(myc1 test/main.cpp )
+add_executable(myc1 test/menuTest.cpp)
+#test/main.cpp

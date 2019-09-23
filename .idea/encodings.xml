@@ -6,5 +6,6 @@
     <file url="file://$PROJECT_DIR$/include/model/Order.h" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/include/model/User.h" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/core/Date.cpp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/test/menuTest.cpp" charset="GBK" />
   </component>
 </project>

@@ -13,6 +13,7 @@ private:
 	bool isLend = true;		//是否可借
 	int price;		//书本价格
 	int id;
+	int sum;        //书本数量
 	string name;		//书名
 	string author;		//作者
 	string isbn;		//ISBN
