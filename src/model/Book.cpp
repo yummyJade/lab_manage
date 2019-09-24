@@ -120,3 +120,23 @@ Book *Book::searchBooksByAssignInfo(string assignInfo, int type) {
     return books;
 }
 
+std::vector<std::string> Book::serialize() {
+    vector<string> info;
+//    info.push_back(to_string(this->id));
+    info.push_back(to_string(this->type));
+    info.push_back(to_string(this->isLend));
+    info.push_back(to_string(this->isValid));
+    info.push_back(to_string(this->price));
+    info.push_back(this->name);
+    info.push_back(this->author);
+    info.push_back(this->isbn);
+    info.push_back(this->press);
+
+    return info;
+}
+
+bool Book::deSerialize(std::vector<std::string> info) {
+    bool isLend = info[1].data() == "true" ? true : false;
+    return true;
+}
+

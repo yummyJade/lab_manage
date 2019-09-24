@@ -9,6 +9,7 @@ class Book
 private:
     char type;        //书所属类别A--V，期刊为0
     bool isLend = true;        //是否可借
+    bool isValid = true;       // 是否有效, 有被删除时置为false
     int price;        //书本价格,单位分
 	int id;
     std::string name;        //书名
@@ -39,6 +40,12 @@ public:
     Book *searchBooksByAssignInfo(std::string assignInfo, int type);
 
 
-	
+    // 序列化函数
+    std::vector<std::string> serialize();
+
+    // 反序列化函数
+    bool deSerialize(std::vector<std::string>);
+
+
 };
 
