@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/src/include/Admin.h" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/include/Book.h" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/include/Order.h" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/include/User.h" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/Book.cpp" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/Date.cpp" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/SimpleTime.cpp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/dev-Tan/main.cpp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/include/model/Admin.h" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/model/Book.h" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/model/Order.h" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/model/User.h" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/core/Date.cpp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/core/SimpleTime.cpp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/model/Book.cpp" charset="GBK" />
   </component>
 </project>

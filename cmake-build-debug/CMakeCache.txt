@@ -273,27 +273,15 @@ Google_tests_BINARY_DIR:STATIC=E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug
 //Value Computed by CMake
 Google_tests_SOURCE_DIR:STATIC=E:/Sources/Cpp/repos/Lib_manage/Google_tests
 
-//Value Computed by CMake
-Header_BINARY_DIR:STATIC=E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/src/include
-
-//Value Computed by CMake
-Header_SOURCE_DIR:STATIC=E:/Sources/Cpp/repos/Lib_manage/src/include
-
 //Enable installation of googletest. (Projects embedding googletest
 // may want to turn this OFF.)
 INSTALL_GTEST:BOOL=ON
 
 //Value Computed by CMake
-Lib__BINARY_DIR:STATIC=E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug
+Include_BINARY_DIR:STATIC=E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/include
 
 //Value Computed by CMake
-Lib__SOURCE_DIR:STATIC=E:/Sources/Cpp/repos/Lib_manage
-
-//Value Computed by CMake
-Lib_manage_BINARY_DIR:STATIC=E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug
-
-//Value Computed by CMake
-Lib_manage_SOURCE_DIR:STATIC=E:/Sources/Cpp/repos/Lib_manage
+Include_SOURCE_DIR:STATIC=E:/Sources/Cpp/repos/Lib_manage/include
 
 //Path to a program.
 PYTHON_EXECUTABLE:FILEPATH=C:/Program Files (x86)/Microsoft Visual Studio/Shared/Python37_64/python.exe
@@ -337,6 +325,12 @@ gtest_hide_internal_symbols:BOOL=OFF
 
 //Dependencies for the target
 gtest_main_LIB_DEPENDS:STATIC=general;gtest;
+
+//Value Computed by CMake
+include_BINARY_DIR:STATIC=E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/include
+
+//Value Computed by CMake
+include_SOURCE_DIR:STATIC=E:/Sources/Cpp/repos/Lib_manage/include
 
 //Value Computed by CMake
 myc1_BINARY_DIR:STATIC=E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug

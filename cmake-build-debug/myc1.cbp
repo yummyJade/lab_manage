@@ -5,7 +5,7 @@
 		<Option title="myc1"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="msvc8"/>
-		<Option virtualFolders="CMake Files\;CMake Files\Google_tests\;CMake Files\Google_tests\lib\;CMake Files\Google_tests\lib\googlemock\;CMake Files\Google_tests\lib\googlemock\cmake\;CMake Files\Google_tests\lib\googletest\;CMake Files\Google_tests\lib\googletest\cmake\;CMake Files\src\;CMake Files\src\include\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\Google_tests\;CMake Files\Google_tests\lib\;CMake Files\Google_tests\lib\googlemock\;CMake Files\Google_tests\lib\googlemock\cmake\;CMake Files\Google_tests\lib\googletest\;CMake Files\Google_tests\lib\googletest\cmake\;CMake Files\include\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug"/>
@@ -24,8 +24,7 @@
 				<Option type="1"/>
 				<Option compiler="msvc8"/>
 				<Compiler>
-					<Add directory="E:/Sources/Cpp/repos/Lib_manage/src/include"/>
-					<Add directory="E:/Sources/Cpp/repos/Lib_manage/src/main"/>
+					<Add directory="E:/Sources/Cpp/repos/Lib_manage/include"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Preview\VC\Tools\MSVC\14.23.28105\ATLMFC\include"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Preview\VC\Tools\MSVC\14.23.28105\include"/>
 					<Add directory="C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um"/>
@@ -49,8 +48,7 @@
 				<Option type="1"/>
 				<Option compiler="msvc8"/>
 				<Compiler>
-					<Add directory="E:/Sources/Cpp/repos/Lib_manage/src/include"/>
-					<Add directory="E:/Sources/Cpp/repos/Lib_manage/src/main"/>
+					<Add directory="E:/Sources/Cpp/repos/Lib_manage/include"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Preview\VC\Tools\MSVC\14.23.28105\ATLMFC\include"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Preview\VC\Tools\MSVC\14.23.28105\include"/>
 					<Add directory="C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um"/>
@@ -117,6 +115,54 @@
 					<DistClean command="nmake /NOLOGO /f E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
+			<Target title="Include">
+				<Option output="E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/include/Include.lib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/include"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="msvc8"/>
+				<Compiler>
+					<Add directory="E:/Sources/Cpp/repos/Lib_manage/include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Preview\VC\Tools\MSVC\14.23.28105\ATLMFC\include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Preview\VC\Tools\MSVC\14.23.28105\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\winrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\cppwinrt"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\include\Makefile VERBOSE=1 Include"/>
+					<CompileFile command="nmake /NOLOGO /f E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\include\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\include\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\include\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Include/fast">
+				<Option output="E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/include/Include.lib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/include"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="msvc8"/>
+				<Compiler>
+					<Add directory="E:/Sources/Cpp/repos/Lib_manage/include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Preview\VC\Tools\MSVC\14.23.28105\ATLMFC\include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Preview\VC\Tools\MSVC\14.23.28105\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\winrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\cppwinrt"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\include\Makefile VERBOSE=1 Include/fast"/>
+					<CompileFile command="nmake /NOLOGO /f E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\include\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\include\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\include\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
 			<Target title="Google_Tests_run">
 				<Option output="E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/Google_tests/Google_Tests_run.exe" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/Google_tests"/>
@@ -124,8 +170,7 @@
 				<Option type="1"/>
 				<Option compiler="msvc8"/>
 				<Compiler>
-					<Add directory="E:/Sources/Cpp/repos/Lib_manage/src/include"/>
-					<Add directory="E:/Sources/Cpp/repos/Lib_manage/src/main"/>
+					<Add directory="E:/Sources/Cpp/repos/Lib_manage/include"/>
 					<Add directory="E:/Sources/Cpp/repos/Lib_manage/Google_tests/lib/googletest/include"/>
 					<Add directory="E:/Sources/Cpp/repos/Lib_manage/Google_tests/lib/googletest"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Preview\VC\Tools\MSVC\14.23.28105\ATLMFC\include"/>
@@ -151,8 +196,7 @@
 				<Option type="1"/>
 				<Option compiler="msvc8"/>
 				<Compiler>
-					<Add directory="E:/Sources/Cpp/repos/Lib_manage/src/include"/>
-					<Add directory="E:/Sources/Cpp/repos/Lib_manage/src/main"/>
+					<Add directory="E:/Sources/Cpp/repos/Lib_manage/include"/>
 					<Add directory="E:/Sources/Cpp/repos/Lib_manage/Google_tests/lib/googletest/include"/>
 					<Add directory="E:/Sources/Cpp/repos/Lib_manage/Google_tests/lib/googletest"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Preview\VC\Tools\MSVC\14.23.28105\ATLMFC\include"/>
@@ -178,8 +222,7 @@
 				<Option type="2"/>
 				<Option compiler="msvc8"/>
 				<Compiler>
-					<Add directory="E:/Sources/Cpp/repos/Lib_manage/src/include"/>
-					<Add directory="E:/Sources/Cpp/repos/Lib_manage/src/main"/>
+					<Add directory="E:/Sources/Cpp/repos/Lib_manage/include"/>
 					<Add directory="E:/Sources/Cpp/repos/Lib_manage/Google_tests/lib/googlemock/include"/>
 					<Add directory="E:/Sources/Cpp/repos/Lib_manage/Google_tests/lib/googlemock"/>
 					<Add directory="E:/Sources/Cpp/repos/Lib_manage/Google_tests/lib/googletest/include"/>
@@ -207,8 +250,7 @@
 				<Option type="2"/>
 				<Option compiler="msvc8"/>
 				<Compiler>
-					<Add directory="E:/Sources/Cpp/repos/Lib_manage/src/include"/>
-					<Add directory="E:/Sources/Cpp/repos/Lib_manage/src/main"/>
+					<Add directory="E:/Sources/Cpp/repos/Lib_manage/include"/>
 					<Add directory="E:/Sources/Cpp/repos/Lib_manage/Google_tests/lib/googlemock/include"/>
 					<Add directory="E:/Sources/Cpp/repos/Lib_manage/Google_tests/lib/googlemock"/>
 					<Add directory="E:/Sources/Cpp/repos/Lib_manage/Google_tests/lib/googletest/include"/>
@@ -236,8 +278,7 @@
 				<Option type="2"/>
 				<Option compiler="msvc8"/>
 				<Compiler>
-					<Add directory="E:/Sources/Cpp/repos/Lib_manage/src/include"/>
-					<Add directory="E:/Sources/Cpp/repos/Lib_manage/src/main"/>
+					<Add directory="E:/Sources/Cpp/repos/Lib_manage/include"/>
 					<Add directory="E:/Sources/Cpp/repos/Lib_manage/Google_tests/lib/googlemock/include"/>
 					<Add directory="E:/Sources/Cpp/repos/Lib_manage/Google_tests/lib/googlemock"/>
 					<Add directory="E:/Sources/Cpp/repos/Lib_manage/Google_tests/lib/googletest/include"/>
@@ -265,8 +306,7 @@
 				<Option type="2"/>
 				<Option compiler="msvc8"/>
 				<Compiler>
-					<Add directory="E:/Sources/Cpp/repos/Lib_manage/src/include"/>
-					<Add directory="E:/Sources/Cpp/repos/Lib_manage/src/main"/>
+					<Add directory="E:/Sources/Cpp/repos/Lib_manage/include"/>
 					<Add directory="E:/Sources/Cpp/repos/Lib_manage/Google_tests/lib/googlemock/include"/>
 					<Add directory="E:/Sources/Cpp/repos/Lib_manage/Google_tests/lib/googlemock"/>
 					<Add directory="E:/Sources/Cpp/repos/Lib_manage/Google_tests/lib/googletest/include"/>
@@ -294,8 +334,7 @@
 				<Option type="2"/>
 				<Option compiler="msvc8"/>
 				<Compiler>
-					<Add directory="E:/Sources/Cpp/repos/Lib_manage/src/include"/>
-					<Add directory="E:/Sources/Cpp/repos/Lib_manage/src/main"/>
+					<Add directory="E:/Sources/Cpp/repos/Lib_manage/include"/>
 					<Add directory="E:/Sources/Cpp/repos/Lib_manage/Google_tests/lib/googletest/include"/>
 					<Add directory="E:/Sources/Cpp/repos/Lib_manage/Google_tests/lib/googletest"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Preview\VC\Tools\MSVC\14.23.28105\ATLMFC\include"/>
@@ -321,8 +360,7 @@
 				<Option type="2"/>
 				<Option compiler="msvc8"/>
 				<Compiler>
-					<Add directory="E:/Sources/Cpp/repos/Lib_manage/src/include"/>
-					<Add directory="E:/Sources/Cpp/repos/Lib_manage/src/main"/>
+					<Add directory="E:/Sources/Cpp/repos/Lib_manage/include"/>
 					<Add directory="E:/Sources/Cpp/repos/Lib_manage/Google_tests/lib/googletest/include"/>
 					<Add directory="E:/Sources/Cpp/repos/Lib_manage/Google_tests/lib/googletest"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Preview\VC\Tools\MSVC\14.23.28105\ATLMFC\include"/>
@@ -348,8 +386,7 @@
 				<Option type="2"/>
 				<Option compiler="msvc8"/>
 				<Compiler>
-					<Add directory="E:/Sources/Cpp/repos/Lib_manage/src/include"/>
-					<Add directory="E:/Sources/Cpp/repos/Lib_manage/src/main"/>
+					<Add directory="E:/Sources/Cpp/repos/Lib_manage/include"/>
 					<Add directory="E:/Sources/Cpp/repos/Lib_manage/Google_tests/lib/googletest/include"/>
 					<Add directory="E:/Sources/Cpp/repos/Lib_manage/Google_tests/lib/googletest"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Preview\VC\Tools\MSVC\14.23.28105\ATLMFC\include"/>
@@ -375,8 +412,7 @@
 				<Option type="2"/>
 				<Option compiler="msvc8"/>
 				<Compiler>
-					<Add directory="E:/Sources/Cpp/repos/Lib_manage/src/include"/>
-					<Add directory="E:/Sources/Cpp/repos/Lib_manage/src/main"/>
+					<Add directory="E:/Sources/Cpp/repos/Lib_manage/include"/>
 					<Add directory="E:/Sources/Cpp/repos/Lib_manage/Google_tests/lib/googletest/include"/>
 					<Add directory="E:/Sources/Cpp/repos/Lib_manage/Google_tests/lib/googletest"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Preview\VC\Tools\MSVC\14.23.28105\ATLMFC\include"/>
@@ -393,56 +429,6 @@
 					<CompileFile command="nmake /NOLOGO /f E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\Google_tests\lib\googletest\Makefile VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="nmake /NOLOGO /f E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\Google_tests\lib\googletest\Makefile VERBOSE=1 clean"/>
 					<DistClean command="nmake /NOLOGO /f E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\Google_tests\lib\googletest\Makefile VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="DateConverter_lib">
-				<Option output="E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/src/include/DateConverter_lib.lib" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/src/include"/>
-				<Option object_output="./"/>
-				<Option type="2"/>
-				<Option compiler="msvc8"/>
-				<Compiler>
-					<Add directory="E:/Sources/Cpp/repos/Lib_manage/src/include"/>
-					<Add directory="E:/Sources/Cpp/repos/Lib_manage/src/main"/>
-					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Preview\VC\Tools\MSVC\14.23.28105\ATLMFC\include"/>
-					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Preview\VC\Tools\MSVC\14.23.28105\include"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\ucrt"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\shared"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\um"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\winrt"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\cppwinrt"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="nmake /NOLOGO /f E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\src\include\Makefile VERBOSE=1 DateConverter_lib"/>
-					<CompileFile command="nmake /NOLOGO /f E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\src\include\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\src\include\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\src\include\Makefile VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="DateConverter_lib/fast">
-				<Option output="E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/src/include/DateConverter_lib.lib" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/src/include"/>
-				<Option object_output="./"/>
-				<Option type="2"/>
-				<Option compiler="msvc8"/>
-				<Compiler>
-					<Add directory="E:/Sources/Cpp/repos/Lib_manage/src/include"/>
-					<Add directory="E:/Sources/Cpp/repos/Lib_manage/src/main"/>
-					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Preview\VC\Tools\MSVC\14.23.28105\ATLMFC\include"/>
-					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Preview\VC\Tools\MSVC\14.23.28105\include"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\ucrt"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\shared"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\um"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\winrt"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\cppwinrt"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="nmake /NOLOGO /f E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\src\include\Makefile VERBOSE=1 DateConverter_lib/fast"/>
-					<CompileFile command="nmake /NOLOGO /f E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\src\include\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\src\include\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\src\include\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
@@ -464,13 +450,31 @@
 		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/Google_tests/lib/googletest/src/gtest_main.cc">
 			<Option target="gtest_main"/>
 		</Unit>
-		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/src/include/Date.h">
-			<Option target="DateConverter_lib"/>
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/dev-Tan/main.cpp">
+			<Option target="myc1"/>
 		</Unit>
-		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/src/include/SimpleTime.h">
-			<Option target="DateConverter_lib"/>
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/core/Date.h">
+			<Option target="Include"/>
 		</Unit>
-		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/src/main/main.cpp">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/core/SimpleString.h">
+			<Option target="Include"/>
+		</Unit>
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/core/SimpleTime.h">
+			<Option target="Include"/>
+		</Unit>
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/src/core/Date.cpp">
+			<Option target="Include"/>
+		</Unit>
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/src/core/SimpleString.cpp">
+			<Option target="Include"/>
+		</Unit>
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/src/core/SimpleTime.cpp">
+			<Option target="Include"/>
+		</Unit>
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/thirdParty/sqlite3/sqlite3.c">
+			<Option target="myc1"/>
+		</Unit>
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/thirdParty/sqlite3/sqlite3.h">
 			<Option target="myc1"/>
 		</Unit>
 		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/CMakeLists.txt">
@@ -506,8 +510,8 @@
 		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/Google_tests/lib/googletest/cmake/internal_utils.cmake">
 			<Option virtualFolder="CMake Files\Google_tests\lib\googletest\cmake\"/>
 		</Unit>
-		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/src/include/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\src\include\"/>
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\include\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>

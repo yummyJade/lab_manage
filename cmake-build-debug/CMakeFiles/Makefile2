@@ -72,7 +72,7 @@ CMAKE_BINARY_DIR = E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug
 CMakeFiles\myc1.dir\all:
 	$(MAKE) -f CMakeFiles\myc1.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\myc1.dir\depend
 	$(MAKE) -f CMakeFiles\myc1.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\myc1.dir\build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles --progress-num=14,15 "Built target myc1"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles --progress-num=18,19,20 "Built target myc1"
 .PHONY : CMakeFiles\myc1.dir\all
 
 # Include target in all.
@@ -82,7 +82,7 @@ all: CMakeFiles\myc1.dir\all
 
 # Build rule for subdir invocation for target.
 CMakeFiles\myc1.dir\rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles 3
 	$(MAKE) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) CMakeFiles\myc1.dir\all
 	$(CMAKE_COMMAND) -E cmake_progress_start E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles 0
 .PHONY : CMakeFiles\myc1.dir\rule
@@ -99,6 +99,61 @@ CMakeFiles\myc1.dir\clean:
 
 # clean rule for target.
 clean: CMakeFiles\myc1.dir\clean
+
+.PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory include
+
+# Convenience name for "all" pass in the directory.
+include\all: include\CMakeFiles\Include.dir\all
+
+.PHONY : include\all
+
+# Convenience name for "clean" pass in the directory.
+include\clean: include\CMakeFiles\Include.dir\clean
+
+.PHONY : include\clean
+
+# Convenience name for "preinstall" pass in the directory.
+include\preinstall:
+
+.PHONY : include\preinstall
+
+#=============================================================================
+# Target rules for target include/CMakeFiles/Include.dir
+
+# All Build rule for target.
+include\CMakeFiles\Include.dir\all:
+	$(MAKE) -f include\CMakeFiles\Include.dir\build.make /nologo -$(MAKEFLAGS) include\CMakeFiles\Include.dir\depend
+	$(MAKE) -f include\CMakeFiles\Include.dir\build.make /nologo -$(MAKEFLAGS) include\CMakeFiles\Include.dir\build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles --progress-num=3,4,5,6 "Built target Include"
+.PHONY : include\CMakeFiles\Include.dir\all
+
+# Include target in all.
+all: include\CMakeFiles\Include.dir\all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+include\CMakeFiles\Include.dir\rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles 4
+	$(MAKE) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) include\CMakeFiles\Include.dir\all
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles 0
+.PHONY : include\CMakeFiles\Include.dir\rule
+
+# Convenience name for target.
+Include: include\CMakeFiles\Include.dir\rule
+
+.PHONY : Include
+
+# clean rule for target.
+include\CMakeFiles\Include.dir\clean:
+	$(MAKE) -f include\CMakeFiles\Include.dir\build.make /nologo -$(MAKEFLAGS) include\CMakeFiles\Include.dir\clean
+.PHONY : include\CMakeFiles\Include.dir\clean
+
+# clean rule for target.
+clean: include\CMakeFiles\Include.dir\clean
 
 .PHONY : clean
 
@@ -126,8 +181,9 @@ Google_tests\preinstall: Google_tests\lib\preinstall
 # Target rules for target Google_tests/CMakeFiles/Google_Tests_run.dir
 
 # All Build rule for target.
-Google_tests\CMakeFiles\Google_Tests_run.dir\all: Google_tests\lib\googletest\CMakeFiles\gtest.dir\all
+Google_tests\CMakeFiles\Google_Tests_run.dir\all: include\CMakeFiles\Include.dir\all
 Google_tests\CMakeFiles\Google_Tests_run.dir\all: Google_tests\lib\googletest\CMakeFiles\gtest_main.dir\all
+Google_tests\CMakeFiles\Google_Tests_run.dir\all: Google_tests\lib\googletest\CMakeFiles\gtest.dir\all
 	$(MAKE) -f Google_tests\CMakeFiles\Google_Tests_run.dir\build.make /nologo -$(MAKEFLAGS) Google_tests\CMakeFiles\Google_Tests_run.dir\depend
 	$(MAKE) -f Google_tests\CMakeFiles\Google_Tests_run.dir\build.make /nologo -$(MAKEFLAGS) Google_tests\CMakeFiles\Google_Tests_run.dir\build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles --progress-num=1,2 "Built target Google_Tests_run"
@@ -140,7 +196,7 @@ all: Google_tests\CMakeFiles\Google_Tests_run.dir\all
 
 # Build rule for subdir invocation for target.
 Google_tests\CMakeFiles\Google_Tests_run.dir\rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles 10
 	$(MAKE) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) Google_tests\CMakeFiles\Google_Tests_run.dir\all
 	$(CMAKE_COMMAND) -E cmake_progress_start E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles 0
 .PHONY : Google_tests\CMakeFiles\Google_Tests_run.dir\rule
@@ -207,7 +263,7 @@ Google_tests\lib\googlemock\preinstall: Google_tests\lib\googletest\preinstall
 Google_tests\lib\googlemock\CMakeFiles\gmock_main.dir\all:
 	$(MAKE) -f Google_tests\lib\googlemock\CMakeFiles\gmock_main.dir\build.make /nologo -$(MAKEFLAGS) Google_tests\lib\googlemock\CMakeFiles\gmock_main.dir\depend
 	$(MAKE) -f Google_tests\lib\googlemock\CMakeFiles\gmock_main.dir\build.make /nologo -$(MAKEFLAGS) Google_tests\lib\googlemock\CMakeFiles\gmock_main.dir\build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles --progress-num=6,7,8,9 "Built target gmock_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles --progress-num=10,11,12,13 "Built target gmock_main"
 .PHONY : Google_tests\lib\googlemock\CMakeFiles\gmock_main.dir\all
 
 # Include target in all.
@@ -244,7 +300,7 @@ clean: Google_tests\lib\googlemock\CMakeFiles\gmock_main.dir\clean
 Google_tests\lib\googlemock\CMakeFiles\gmock.dir\all:
 	$(MAKE) -f Google_tests\lib\googlemock\CMakeFiles\gmock.dir\build.make /nologo -$(MAKEFLAGS) Google_tests\lib\googlemock\CMakeFiles\gmock.dir\depend
 	$(MAKE) -f Google_tests\lib\googlemock\CMakeFiles\gmock.dir\build.make /nologo -$(MAKEFLAGS) Google_tests\lib\googlemock\CMakeFiles\gmock.dir\build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles --progress-num=3,4,5 "Built target gmock"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles --progress-num=7,8,9 "Built target gmock"
 .PHONY : Google_tests\lib\googlemock\CMakeFiles\gmock.dir\all
 
 # Include target in all.
@@ -301,7 +357,7 @@ Google_tests\lib\googletest\preinstall:
 Google_tests\lib\googletest\CMakeFiles\gtest.dir\all:
 	$(MAKE) -f Google_tests\lib\googletest\CMakeFiles\gtest.dir\build.make /nologo -$(MAKEFLAGS) Google_tests\lib\googletest\CMakeFiles\gtest.dir\depend
 	$(MAKE) -f Google_tests\lib\googletest\CMakeFiles\gtest.dir\build.make /nologo -$(MAKEFLAGS) Google_tests\lib\googletest\CMakeFiles\gtest.dir\build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles --progress-num=10,11 "Built target gtest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles --progress-num=14,15 "Built target gtest"
 .PHONY : Google_tests\lib\googletest\CMakeFiles\gtest.dir\all
 
 # Include target in all.
@@ -338,7 +394,7 @@ clean: Google_tests\lib\googletest\CMakeFiles\gtest.dir\clean
 Google_tests\lib\googletest\CMakeFiles\gtest_main.dir\all: Google_tests\lib\googletest\CMakeFiles\gtest.dir\all
 	$(MAKE) -f Google_tests\lib\googletest\CMakeFiles\gtest_main.dir\build.make /nologo -$(MAKEFLAGS) Google_tests\lib\googletest\CMakeFiles\gtest_main.dir\depend
 	$(MAKE) -f Google_tests\lib\googletest\CMakeFiles\gtest_main.dir\build.make /nologo -$(MAKEFLAGS) Google_tests\lib\googletest\CMakeFiles\gtest_main.dir\build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles --progress-num=12,13 "Built target gtest_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles --progress-num=16,17 "Built target gtest_main"
 .PHONY : Google_tests\lib\googletest\CMakeFiles\gtest_main.dir\all
 
 # Include target in all.
@@ -365,61 +421,6 @@ Google_tests\lib\googletest\CMakeFiles\gtest_main.dir\clean:
 
 # clean rule for target.
 clean: Google_tests\lib\googletest\CMakeFiles\gtest_main.dir\clean
-
-.PHONY : clean
-
-#=============================================================================
-# Directory level rules for directory src\include
-
-# Convenience name for "all" pass in the directory.
-src\include\all: src\include\CMakeFiles\DateConverter_lib.dir\all
-
-.PHONY : src\include\all
-
-# Convenience name for "clean" pass in the directory.
-src\include\clean: src\include\CMakeFiles\DateConverter_lib.dir\clean
-
-.PHONY : src\include\clean
-
-# Convenience name for "preinstall" pass in the directory.
-src\include\preinstall:
-
-.PHONY : src\include\preinstall
-
-#=============================================================================
-# Target rules for target src/include/CMakeFiles/DateConverter_lib.dir
-
-# All Build rule for target.
-src\include\CMakeFiles\DateConverter_lib.dir\all:
-	$(MAKE) -f src\include\CMakeFiles\DateConverter_lib.dir\build.make /nologo -$(MAKEFLAGS) src\include\CMakeFiles\DateConverter_lib.dir\depend
-	$(MAKE) -f src\include\CMakeFiles\DateConverter_lib.dir\build.make /nologo -$(MAKEFLAGS) src\include\CMakeFiles\DateConverter_lib.dir\build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles --progress-num= "Built target DateConverter_lib"
-.PHONY : src\include\CMakeFiles\DateConverter_lib.dir\all
-
-# Include target in all.
-all: src\include\CMakeFiles\DateConverter_lib.dir\all
-
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-src\include\CMakeFiles\DateConverter_lib.dir\rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles 0
-	$(MAKE) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) src\include\CMakeFiles\DateConverter_lib.dir\all
-	$(CMAKE_COMMAND) -E cmake_progress_start E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles 0
-.PHONY : src\include\CMakeFiles\DateConverter_lib.dir\rule
-
-# Convenience name for target.
-DateConverter_lib: src\include\CMakeFiles\DateConverter_lib.dir\rule
-
-.PHONY : DateConverter_lib
-
-# clean rule for target.
-src\include\CMakeFiles\DateConverter_lib.dir\clean:
-	$(MAKE) -f src\include\CMakeFiles\DateConverter_lib.dir\build.make /nologo -$(MAKEFLAGS) src\include\CMakeFiles\DateConverter_lib.dir\clean
-.PHONY : src\include\CMakeFiles\DateConverter_lib.dir\clean
-
-# clean rule for target.
-clean: src\include\CMakeFiles\DateConverter_lib.dir\clean
 
 .PHONY : clean
 

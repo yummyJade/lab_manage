@@ -58,36 +58,57 @@ include CMakeFiles\myc1.dir\progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles\myc1.dir\flags.make
 
-CMakeFiles\myc1.dir\src\main\main.cpp.obj: CMakeFiles\myc1.dir\flags.make
-CMakeFiles\myc1.dir\src\main\main.cpp.obj: ..\src\main\main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/myc1.dir/src/main/main.cpp.obj"
+CMakeFiles\myc1.dir\dev-Tan\main.cpp.obj: CMakeFiles\myc1.dir\flags.make
+CMakeFiles\myc1.dir\dev-Tan\main.cpp.obj: ..\dev-Tan\main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/myc1.dir/dev-Tan/main.cpp.obj"
 	C:\PROGRA~2\MICROS~1\2019\Preview\VC\Tools\MSVC\1423~1.281\bin\Hostx86\x86\cl.exe @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\myc1.dir\src\main\main.cpp.obj /FdCMakeFiles\myc1.dir\ /FS -c E:\Sources\Cpp\repos\Lib_manage\src\main\main.cpp
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\myc1.dir\dev-Tan\main.cpp.obj /FdCMakeFiles\myc1.dir\ /FS -c E:\Sources\Cpp\repos\Lib_manage\dev-Tan\main.cpp
 <<
 
-CMakeFiles\myc1.dir\src\main\main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/myc1.dir/src/main/main.cpp.i"
-	C:\PROGRA~2\MICROS~1\2019\Preview\VC\Tools\MSVC\1423~1.281\bin\Hostx86\x86\cl.exe > CMakeFiles\myc1.dir\src\main\main.cpp.i @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\Sources\Cpp\repos\Lib_manage\src\main\main.cpp
+CMakeFiles\myc1.dir\dev-Tan\main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/myc1.dir/dev-Tan/main.cpp.i"
+	C:\PROGRA~2\MICROS~1\2019\Preview\VC\Tools\MSVC\1423~1.281\bin\Hostx86\x86\cl.exe > CMakeFiles\myc1.dir\dev-Tan\main.cpp.i @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\Sources\Cpp\repos\Lib_manage\dev-Tan\main.cpp
 <<
 
-CMakeFiles\myc1.dir\src\main\main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/myc1.dir/src/main/main.cpp.s"
+CMakeFiles\myc1.dir\dev-Tan\main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/myc1.dir/dev-Tan/main.cpp.s"
 	C:\PROGRA~2\MICROS~1\2019\Preview\VC\Tools\MSVC\1423~1.281\bin\Hostx86\x86\cl.exe @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\myc1.dir\src\main\main.cpp.s /c E:\Sources\Cpp\repos\Lib_manage\src\main\main.cpp
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\myc1.dir\dev-Tan\main.cpp.s /c E:\Sources\Cpp\repos\Lib_manage\dev-Tan\main.cpp
+<<
+
+CMakeFiles\myc1.dir\thirdParty\sqlite3\sqlite3.c.obj: CMakeFiles\myc1.dir\flags.make
+CMakeFiles\myc1.dir\thirdParty\sqlite3\sqlite3.c.obj: ..\thirdParty\sqlite3\sqlite3.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/myc1.dir/thirdParty/sqlite3/sqlite3.c.obj"
+	C:\PROGRA~2\MICROS~1\2019\Preview\VC\Tools\MSVC\1423~1.281\bin\Hostx86\x86\cl.exe @<<
+ /nologo $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) /FoCMakeFiles\myc1.dir\thirdParty\sqlite3\sqlite3.c.obj /FdCMakeFiles\myc1.dir\ /FS -c E:\Sources\Cpp\repos\Lib_manage\thirdParty\sqlite3\sqlite3.c
+<<
+
+CMakeFiles\myc1.dir\thirdParty\sqlite3\sqlite3.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/myc1.dir/thirdParty/sqlite3/sqlite3.c.i"
+	C:\PROGRA~2\MICROS~1\2019\Preview\VC\Tools\MSVC\1423~1.281\bin\Hostx86\x86\cl.exe > CMakeFiles\myc1.dir\thirdParty\sqlite3\sqlite3.c.i @<<
+ /nologo $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E E:\Sources\Cpp\repos\Lib_manage\thirdParty\sqlite3\sqlite3.c
+<<
+
+CMakeFiles\myc1.dir\thirdParty\sqlite3\sqlite3.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/myc1.dir/thirdParty/sqlite3/sqlite3.c.s"
+	C:\PROGRA~2\MICROS~1\2019\Preview\VC\Tools\MSVC\1423~1.281\bin\Hostx86\x86\cl.exe @<<
+ /nologo $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) /FoNUL /FAs /FaCMakeFiles\myc1.dir\thirdParty\sqlite3\sqlite3.c.s /c E:\Sources\Cpp\repos\Lib_manage\thirdParty\sqlite3\sqlite3.c
 <<
 
 # Object files for target myc1
 myc1_OBJECTS = \
-"CMakeFiles\myc1.dir\src\main\main.cpp.obj"
+"CMakeFiles\myc1.dir\dev-Tan\main.cpp.obj" \
+"CMakeFiles\myc1.dir\thirdParty\sqlite3\sqlite3.c.obj"
 
 # External object files for target myc1
 myc1_EXTERNAL_OBJECTS =
 
-myc1.exe: CMakeFiles\myc1.dir\src\main\main.cpp.obj
+myc1.exe: CMakeFiles\myc1.dir\dev-Tan\main.cpp.obj
+myc1.exe: CMakeFiles\myc1.dir\thirdParty\sqlite3\sqlite3.c.obj
 myc1.exe: CMakeFiles\myc1.dir\build.make
 myc1.exe: CMakeFiles\myc1.dir\objects1.rsp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable myc1.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable myc1.exe"
 	C:\Users\Tjm\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\192.6603.37\bin\cmake\win\bin\cmake.exe -E vs_link_exe --intdir=CMakeFiles\myc1.dir --rc=C:\PROGRA~2\WI3CF2~1\10\bin\100183~1.0\x86\rc.exe --mt=C:\PROGRA~2\WI3CF2~1\10\bin\100183~1.0\x86\mt.exe --manifests  -- C:\PROGRA~2\MICROS~1\2019\Preview\VC\Tools\MSVC\1423~1.281\bin\Hostx86\x86\link.exe /nologo @CMakeFiles\myc1.dir\objects1.rsp @<<
  /out:myc1.exe /implib:myc1.lib /pdb:E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\myc1.pdb /version:0.0  /machine:X86 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib 
 <<

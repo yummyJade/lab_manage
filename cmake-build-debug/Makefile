@@ -159,6 +159,19 @@ myc1\fast:
 .PHONY : myc1\fast
 
 #=============================================================================
+# Target rules for targets named Include
+
+# Build rule for target.
+Include: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) Include
+.PHONY : Include
+
+# fast build rule for target.
+Include\fast:
+	$(MAKE) -f include\CMakeFiles\Include.dir\build.make /nologo -$(MAKEFLAGS) include\CMakeFiles\Include.dir\build
+.PHONY : Include\fast
+
+#=============================================================================
 # Target rules for targets named Google_Tests_run
 
 # Build rule for target.
@@ -223,45 +236,59 @@ gtest_main\fast:
 	$(MAKE) -f Google_tests\lib\googletest\CMakeFiles\gtest_main.dir\build.make /nologo -$(MAKEFLAGS) Google_tests\lib\googletest\CMakeFiles\gtest_main.dir\build
 .PHONY : gtest_main\fast
 
-#=============================================================================
-# Target rules for targets named DateConverter_lib
+dev-Tan\main.obj: dev-Tan\main.cpp.obj
 
-# Build rule for target.
-DateConverter_lib: cmake_check_build_system
-	$(MAKE) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) DateConverter_lib
-.PHONY : DateConverter_lib
-
-# fast build rule for target.
-DateConverter_lib\fast:
-	$(MAKE) -f src\include\CMakeFiles\DateConverter_lib.dir\build.make /nologo -$(MAKEFLAGS) src\include\CMakeFiles\DateConverter_lib.dir\build
-.PHONY : DateConverter_lib\fast
-
-src\main\main.obj: src\main\main.cpp.obj
-
-.PHONY : src\main\main.obj
+.PHONY : dev-Tan\main.obj
 
 # target to build an object file
-src\main\main.cpp.obj:
-	$(MAKE) -f CMakeFiles\myc1.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\myc1.dir\src\main\main.cpp.obj
-.PHONY : src\main\main.cpp.obj
+dev-Tan\main.cpp.obj:
+	$(MAKE) -f CMakeFiles\myc1.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\myc1.dir\dev-Tan\main.cpp.obj
+.PHONY : dev-Tan\main.cpp.obj
 
-src\main\main.i: src\main\main.cpp.i
+dev-Tan\main.i: dev-Tan\main.cpp.i
 
-.PHONY : src\main\main.i
+.PHONY : dev-Tan\main.i
 
 # target to preprocess a source file
-src\main\main.cpp.i:
-	$(MAKE) -f CMakeFiles\myc1.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\myc1.dir\src\main\main.cpp.i
-.PHONY : src\main\main.cpp.i
+dev-Tan\main.cpp.i:
+	$(MAKE) -f CMakeFiles\myc1.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\myc1.dir\dev-Tan\main.cpp.i
+.PHONY : dev-Tan\main.cpp.i
 
-src\main\main.s: src\main\main.cpp.s
+dev-Tan\main.s: dev-Tan\main.cpp.s
 
-.PHONY : src\main\main.s
+.PHONY : dev-Tan\main.s
 
 # target to generate assembly for a file
-src\main\main.cpp.s:
-	$(MAKE) -f CMakeFiles\myc1.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\myc1.dir\src\main\main.cpp.s
-.PHONY : src\main\main.cpp.s
+dev-Tan\main.cpp.s:
+	$(MAKE) -f CMakeFiles\myc1.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\myc1.dir\dev-Tan\main.cpp.s
+.PHONY : dev-Tan\main.cpp.s
+
+thirdParty\sqlite3\sqlite3.obj: thirdParty\sqlite3\sqlite3.c.obj
+
+.PHONY : thirdParty\sqlite3\sqlite3.obj
+
+# target to build an object file
+thirdParty\sqlite3\sqlite3.c.obj:
+	$(MAKE) -f CMakeFiles\myc1.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\myc1.dir\thirdParty\sqlite3\sqlite3.c.obj
+.PHONY : thirdParty\sqlite3\sqlite3.c.obj
+
+thirdParty\sqlite3\sqlite3.i: thirdParty\sqlite3\sqlite3.c.i
+
+.PHONY : thirdParty\sqlite3\sqlite3.i
+
+# target to preprocess a source file
+thirdParty\sqlite3\sqlite3.c.i:
+	$(MAKE) -f CMakeFiles\myc1.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\myc1.dir\thirdParty\sqlite3\sqlite3.c.i
+.PHONY : thirdParty\sqlite3\sqlite3.c.i
+
+thirdParty\sqlite3\sqlite3.s: thirdParty\sqlite3\sqlite3.c.s
+
+.PHONY : thirdParty\sqlite3\sqlite3.s
+
+# target to generate assembly for a file
+thirdParty\sqlite3\sqlite3.c.s:
+	$(MAKE) -f CMakeFiles\myc1.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\myc1.dir\thirdParty\sqlite3\sqlite3.c.s
+.PHONY : thirdParty\sqlite3\sqlite3.c.s
 
 # Help Target
 help:
@@ -275,15 +302,18 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... list_install_components
+	@echo ... Include
 	@echo ... Google_Tests_run
 	@echo ... gmock_main
 	@echo ... gmock
 	@echo ... gtest
 	@echo ... gtest_main
-	@echo ... DateConverter_lib
-	@echo ... src/main/main.obj
-	@echo ... src/main/main.i
-	@echo ... src/main/main.s
+	@echo ... dev-Tan/main.obj
+	@echo ... dev-Tan/main.i
+	@echo ... dev-Tan/main.s
+	@echo ... thirdParty/sqlite3/sqlite3.obj
+	@echo ... thirdParty/sqlite3/sqlite3.i
+	@echo ... thirdParty/sqlite3/sqlite3.s
 .PHONY : help
 
 

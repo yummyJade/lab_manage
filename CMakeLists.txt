@@ -1,13 +1,19 @@
 cmake_minimum_required(VERSION 3.14)
 project(myc1)
-
-include_directories(src/include)
-include_directories(src/main)
-
-aux_source_directory(src/main dir_srcs)
+#c++14 required
 set(CMAKE_CXX_STANDARD 14)
-set(MYC1 ${dir_srcs})
-add_executable(myc1 src/main/main.cpp)
 
+include_directories(include)
+
+aux_source_directory(src dir_srcs)
+
+# sources to be compiled
+set(MYC1 ${dir_srcs})
+#add_executable(myc1 test/main.cpp)
+
+set(SOURCE_FILES dev-Tan/main.cpp thirdParty/sqlite3/sqlite3.c)
+add_executable(myc1 ${SOURCE_FILES})
+
+#add_executable(myc1 dev-Tan/main.cpp)
+add_subdirectory(include)
 add_subdirectory(Google_tests)
-add_subdirectory(src/include)

@@ -1,12 +1,4 @@
 C:\Users\Tjm\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\192.6603.37\bin\cmake\win\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - NMake Makefiles" E:\Sources\Cpp\repos\Lib_manage
-CMake Error at CMakeLists.txt:13 (add_subdirectory):
-  The source directory
-
-    E:/Sources/Cpp/repos/Lib_manage/src/include
-
-  does not contain a CMakeLists.txt file.
-
-
--- Configuring incomplete, errors occurred!
-See also "E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/CMakeFiles/CMakeOutput.log".
-See also "E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/CMakeFiles/CMakeError.log".
+-- Configuring done
+-- Generating done
+-- Build files have been written to: E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug
