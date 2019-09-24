@@ -3,6 +3,10 @@
 
 #include <string>
 
+/**
+ * 一个字符串处理的类
+ *
+ */
 class SimpleString {
 public:
     /**

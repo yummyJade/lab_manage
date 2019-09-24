@@ -1,7 +1,5 @@
 #pragma once
 
-#include <string>
-#include <vector>
 enum status {
     Teacher, Graduate, Undergraduate, Senior, Middle, Primary, Kindergarten, Admin
 };        //特权思想枚举
@@ -14,19 +12,19 @@ private:
     int jobNum;        //工号
     int borrowNum;  // 当前借阅的图书数量
     status type;
-    string password;        //password
+    std::string password;        //password
 
 public:
     User();
     ~User();
 
-    User(int id, int jobNum, int borrowNum, status type, const string &password);
+    User(int id, int jobNum, int borrowNum, status type, const std::string &password);
 
     // 序列化函数
-    vector<string> serialize();
+    std::vector<std::string> serialize();
 
     // 反序列化函数
-    bool deSerialize(vector<string>);
+    bool deSerialize(std::vector<std::string>);
 
 
 

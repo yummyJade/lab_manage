@@ -27,9 +27,9 @@ public:
     int calcDebt();
 
     // 序列化函数
-    vector<string> serialize();
+    std::vector<std::string> serialize();
 
     // 反序列化函数
-    bool deSerialize(vector<string>);
+    bool deSerialize(std::vector<std::string>);
 };
 

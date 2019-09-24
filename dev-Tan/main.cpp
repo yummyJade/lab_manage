@@ -89,8 +89,14 @@ int regexTest() {
     return 0;
 }
 
+
+int test(){
+    cout<<"he"<<endl;
+    return 1;
+}
 int main() {
-    readBooksInfo();
+    test();
+//    readBooksInfo();
 
 
 }

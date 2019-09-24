@@ -9,6 +9,7 @@ using namespace std;
 
 
 bool SimpleString::isDigital(std::string str) {
+    //todo:重要级别9,有时间测测哪个实现快
     stringstream sin(str);
     int num;
     char p;
@@ -25,5 +26,9 @@ string SimpleString::fixPath(std::string str){
 
 
 bool SimpleString::isLegalPath(std::string str) {
-    return true;
+    string suffix=str.substr(str.find_last_of("."),str.size()); // 获取后缀
+    if (suffix==".txt"||suffix==".csv"){
+        return true;
+    }
+    return false;
 }
