@@ -9,7 +9,6 @@ CMakeFiles/myc1.dir/dev-Tan/main.cpp.obj
  E:/Sources/Cpp/repos/Lib_manage/include/core/SimpleString.h
  E:/Sources/Cpp/repos/Lib_manage/include/core/SimpleTime.h
  E:/Sources/Cpp/repos/Lib_manage/include/libm.h
- E:/Sources/Cpp/repos/Lib_manage/include/model/Admin.h
  E:/Sources/Cpp/repos/Lib_manage/include/model/Book.h
  E:/Sources/Cpp/repos/Lib_manage/include/model/Order.h
  E:/Sources/Cpp/repos/Lib_manage/include/model/User.h
@@ -17,7 +16,7 @@ CMakeFiles/myc1.dir/dev-Tan/main.cpp.obj
  E:/Sources/Cpp/repos/Lib_manage/src/core/SimpleString.cpp
  E:/Sources/Cpp/repos/Lib_manage/src/core/SimpleTime.cpp
  E:/Sources/Cpp/repos/Lib_manage/src/libcpp.h
- E:/Sources/Cpp/repos/Lib_manage/src/model/Admin.cpp
  E:/Sources/Cpp/repos/Lib_manage/src/model/Book.cpp
  E:/Sources/Cpp/repos/Lib_manage/src/model/Order.cpp
  E:/Sources/Cpp/repos/Lib_manage/src/model/User.cpp
+ E:/Sources/Cpp/repos/Lib_manage/thirdParty/sqlite3/sqlite3.h

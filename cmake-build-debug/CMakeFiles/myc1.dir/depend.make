@@ -8,7 +8,6 @@ CMakeFiles\myc1.dir\dev-Tan\main.cpp.obj: ..\include\core\Date.h
 CMakeFiles\myc1.dir\dev-Tan\main.cpp.obj: ..\include\core\SimpleString.h
 CMakeFiles\myc1.dir\dev-Tan\main.cpp.obj: ..\include\core\SimpleTime.h
 CMakeFiles\myc1.dir\dev-Tan\main.cpp.obj: ..\include\libm.h
-CMakeFiles\myc1.dir\dev-Tan\main.cpp.obj: ..\include\model\Admin.h
 CMakeFiles\myc1.dir\dev-Tan\main.cpp.obj: ..\include\model\Book.h
 CMakeFiles\myc1.dir\dev-Tan\main.cpp.obj: ..\include\model\Order.h
 CMakeFiles\myc1.dir\dev-Tan\main.cpp.obj: ..\include\model\User.h
@@ -16,8 +15,8 @@ CMakeFiles\myc1.dir\dev-Tan\main.cpp.obj: ..\src\core\Date.cpp
 CMakeFiles\myc1.dir\dev-Tan\main.cpp.obj: ..\src\core\SimpleString.cpp
 CMakeFiles\myc1.dir\dev-Tan\main.cpp.obj: ..\src\core\SimpleTime.cpp
 CMakeFiles\myc1.dir\dev-Tan\main.cpp.obj: ..\src\libcpp.h
-CMakeFiles\myc1.dir\dev-Tan\main.cpp.obj: ..\src\model\Admin.cpp
 CMakeFiles\myc1.dir\dev-Tan\main.cpp.obj: ..\src\model\Book.cpp
 CMakeFiles\myc1.dir\dev-Tan\main.cpp.obj: ..\src\model\Order.cpp
 CMakeFiles\myc1.dir\dev-Tan\main.cpp.obj: ..\src\model\User.cpp
+CMakeFiles\myc1.dir\dev-Tan\main.cpp.obj: ..\thirdParty\sqlite3\sqlite3.h
 
