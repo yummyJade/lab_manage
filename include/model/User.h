@@ -1,8 +1,12 @@
 #pragma once
 
+
 enum status {
-    Teacher, Graduate, Undergraduate, Senior, Middle, Primary, Kindergarten, Admin
+    Admin,Teacher, Graduate, Undergraduate
 };        //特权思想枚举
+const string STATUS[4] = {
+        "ADMIN","TEACHER","GRADUATE","UNDERGRADUATE"
+};
 
 class User {
     constexpr static const int lendDays[3] = {30, 60, 90}; // 最多可同时借书的时长,单位天
