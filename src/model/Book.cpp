@@ -125,7 +125,17 @@ std::vector<std::string> Book::serialize() {
 }
 
 bool Book::deSerialize(std::vector<std::string> info) {
-    bool isLend = info[1].data() == "true" ? true : false;
+    char type = info[0].data()[0];
+    bool isLend = info[1].data() == "true";
+    bool isValid = info[2].data() == "true";
+    int price = (int) (info[3].data());
+    string name = info[4].data();
+    string author = info[5].data();
+    string isbn = info[6].data();
+    string press = info[7].data();
+    long long id = (long long) info[8].data();
+
+    Book();
     return true;
 }
 
