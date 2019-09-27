@@ -41,3 +41,21 @@ bool Order::deSerialize(vector<string> info) {
 //    Order(id,jobNum,borrowNum,type,password);
     return true;
 }
+
+std::string Order::statuEnumToString(Status statu) {
+    string strs[] = {"BORROWING", "RETURNED"};
+    return strs[statu];
+}
+
+Status Order::stringEnumToStatu(std::string str) {
+    for (int i = 0; i < str.size(); ++i) { // 转化为大写
+        str[i] = toupper(str[i]);
+    }
+    string strs[] = {"BORROWING", "RETURNED"};
+    for (int i = 0; i < sizeof(strs) / sizeof(strs[0]); i++) {
+        if (str == strs[i]) {
+            return Status(i);
+        }
+    }
+    return BORROWING;//没找到默认返回的,//todo:或许不该这么写
+}

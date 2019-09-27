@@ -88,11 +88,12 @@ string Book::printType() {
 }
 
 string Book::printIsLend() {
-    if (isLend) {
-        return "可借";
-    } else if (!isLend) {
-        return "不可借";
-    }
+    return isLend ? "可借" : "不可借";
+//    if (isLend) {
+//        return "可借";
+//    } else if (!isLend) {
+//        return "不可借";
+//    }
 }
 
 void Book::printBookInfo() {
@@ -107,18 +108,6 @@ void Book::setBookInfo(string namet, string authort, string isbnt, char typet, d
     price = pricet;
 }
 
-
-Book *Book::searchBooksByAssignInfo(string assignInfo, int type) {
-    Book *books = new Book[10];
-    // todo: 谭坚铭-连接数据库查找书
-    switch (type) {
-        case 1:
-            break;
-        default:
-            break;
-    }
-    return books;
-}
 
 std::vector<std::string> Book::serialize() {
     vector<string> info;
@@ -139,4 +128,42 @@ bool Book::deSerialize(std::vector<std::string> info) {
     bool isLend = info[1].data() == "true" ? true : false;
     return true;
 }
+
+std::vector<std::vector<std::string>> Book::searchBooksBySingleField(std::string field, std::string value) {
+    DbAdapter dbAdapter("书");
+    vector<vector<string> > queryData = dbAdapter.searchBySingleField(field, value);
+    return queryData;
+}
+
+
+void Book::printBookList(std::vector<std::vector<std::string>> queryData) {
+    for (ll i = 0; i < queryData.size(); i++) {
+//        printf("2");
+        for (ll j = 0; j < queryData[0].size(); j++) {
+            printf("%s\t", queryData[i][j].data());
+        }
+        printf("\n");
+    }
+}
+
+bool
+Book::updateBooks(std::string assignField, std::string assignValue, std::string changeField, std::string changeValue) {
+    DbAdapter dbAdapter("书");
+    dbAdapter.updateBySingleField(assignField, assignValue, changeField, changeValue);
+    return true;
+}
+
+bool Book::deleteBooksByBookIds(std::vector<std::string> bookIds) {
+    for (int i = 0; i < bookIds.size(); ++i) {
+        Book::updateBooks("Id", bookIds[i].data(), "isValid", "false");
+    }
+    return true;
+}
+
+std::vector<std::vector<std::string>> Book::searchAll() {
+    DbAdapter dbAdapter("书");
+    return dbAdapter.searchAll();
+}
+
+
 

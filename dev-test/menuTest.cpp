@@ -7,6 +7,7 @@
 #include <iomanip>
 
 using namespace std;
+
 //函数声明
 void printUserMenu();
 void printMainMenu();
@@ -16,6 +17,7 @@ void printUserManageMenu();
 void printSearchResult();
 
 bool offFlag = false;
+
 //打印主菜单
 void printMainMenu() {
     system("cls");
@@ -56,18 +58,19 @@ void printMainMenu() {
 
     }
 }
+
 //用户菜单
 void printUserMenu(){
     while (1){
 
 
-        cout <<"------------用户操作--------------"<<endl
+        cout << "------------用户操作--------------" << endl
              << "1.图书搜索" << endl
              << "2.个人订单" << endl
              << "3.修改密码" << endl
              << "0.返回上一级" << endl
-             << "---------------------------------"<<endl
-             << "请输入您的选择:" ;
+             << "---------------------------------" << endl
+             << "请输入您的选择:";
         int choose;
         cin >> choose;
         cout << "您的选择是:" << choose << endl;
@@ -77,7 +80,7 @@ void printUserMenu(){
             case 2:
                 cout << "您的订单查询结果如下：" << endl;
                 void printSearchResult();
-                cout << setiosflags(ios::left) << setw(10) << "1"  << setw(20) << "乌合之众" << setw(20) << "庞乐"
+                cout << setiosflags(ios::left) << setw(10) << "1" << setw(20) << "乌合之众" << setw(20) << "庞乐"
                      << setw(20) << "123456678" << setw(20) << "心理学" << endl;
                 break;  //调用用户查询订单的函数
             case 3:
@@ -85,7 +88,8 @@ void printUserMenu(){
             case 0:
                 break;
             default:
-                cout << "该选项不存在，请重新输入!" <<endl;break;
+                cout << "该选项不存在，请重新输入!" << endl;
+                break;
         }
         if (choose == 0) {
 
@@ -97,19 +101,20 @@ void printUserMenu(){
 
 
 }
+
 //管理员菜单
 void printAdminMenu(){
     while (1){
 
 
-        cout <<"------------管理员操作--------------"<<endl
+        cout << "------------管理员操作--------------" << endl
              << "1.图书搜索" << endl
              << "2.添加书目" << endl
              << "3.减少书目" << endl
              << "4.用户管理" << endl
              << "0.返回上一级" << endl
-             << "-----------------------------------"<<endl
-             << "请输入您的选择:" ;
+             << "-----------------------------------" << endl
+             << "请输入您的选择:";
         int choose;
         cin >> choose;
         cout << "您的选择是:" << choose << endl;
@@ -117,9 +122,11 @@ void printAdminMenu(){
             case 1:
                 printSearchMenu();break;
             case 2:
-                cout << "增加书啦" << endl;break;
+                cout << "增加书啦" << endl;
+                break;
             case 3:
-                cout << "减少书啦" << endl; break;
+                cout << "减少书啦" << endl;
+                break;
             case 4:
 
                 while (1){
@@ -142,7 +149,7 @@ void printAdminMenu(){
             case 0:
                 break;
             default:
-                cout << "该选项不存在，请重新输入!" <<endl;
+                cout << "该选项不存在，请重新输入!" << endl;
         }
         if(choose == 0){
             break;
@@ -153,13 +160,14 @@ void printAdminMenu(){
 
 
 }
+
 //查询条目头
 void printSearchResult(){
    cout
-         << "-------------------------------------------------------------------------------------------" << endl
-         << setiosflags(ios::left) << setw(10) << "序号"   << setw(20) << "书名" << setw(20) << "作者"
-         << setw(20) << "ISBN" << setw(20) << "分类" << endl
-         << "--------------------------------------------------------------------------------------------" << endl;
+           << "-------------------------------------------------------------------------------------------" << endl
+           << setiosflags(ios::left) << setw(10) << "序号" << setw(20) << "书名" << setw(20) << "作者"
+           << setw(20) << "ISBN" << setw(20) << "分类" << endl
+           << "--------------------------------------------------------------------------------------------" << endl;
 }
 
 //搜索方式
@@ -178,7 +186,7 @@ void printSearchMenu(){
         cin >> choose;
         cout << "您的选择是:" << choose << endl;
         int keyWord;
-        cout << "请输入搜索词:" ;
+        cout << "请输入搜索词:";
         cin >> keyWord;
         switch (choose){
             case 1:
@@ -186,7 +194,7 @@ void printSearchMenu(){
             case 0:
                 break;
             default:
-                cout << "该选项不存在，请重新输入!" <<endl;
+                cout << "该选项不存在，请重新输入!" << endl;
         }
         if(choose == 0){
             break;
@@ -227,7 +235,7 @@ void printUserManageMenu(){
             case 5:
                 while (1){
                     char yn;
-                    cout << "您确定要注销么？(Y/N):" ;
+                    cout << "您确定要注销么？(Y/N):";
                     cin >> yn;
                     if(yn == 'Y' || yn == 'y'){
                         offFlag = true;
@@ -244,7 +252,7 @@ void printUserManageMenu(){
             case 0:
                 break;
             default:
-                cout << "该选项不存在，请重新输入!" <<endl;
+                cout << "该选项不存在，请重新输入!" << endl;
         }
         if(choose == 0){
             break;

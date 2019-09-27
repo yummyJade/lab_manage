@@ -4,6 +4,7 @@ set(HEADER_FILES
         core/Date.h
         core/SimpleString.h
         core/SimpleTime.h
+        util/DbAdapter.h
         )
 
 set(SOURCE_FILES

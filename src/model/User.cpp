@@ -8,14 +8,10 @@ User::User()
 {
 }
 
-User::User(int id, int jobNum, int borrowNum, status type, const string &password) : id(id), jobNum(jobNum),
-                                                                                     borrowNum(borrowNum), type(type),
-                                                                                     password(password) {
-//    this->id=id;
-//    this->jobNum=jobNum;
-//    this->borrowNum=borrowNum;
-//    this->type=type;
-//    this->password=password;
+User::User(int jobNum, int borrowNum, status type, const string &password) : jobNum(jobNum),
+                                                                             borrowNum(borrowNum), type(type),
+                                                                             password(password) {
+    this->id = -1;
 
 }
 
@@ -106,3 +102,25 @@ bool User::deSerialize(vector<string> info) {
     User(id, jobNum, borrowNum, type, password);
     return true;
 }
+
+std::string User::statuEnumToString(status statu) {
+    string strs[4] = {"ADMIN", "TEACHER", "GRADUATE", "UNDERGRADUATE"};
+    return strs[statu];
+}
+
+status User::stringEnumToStatu(std::string str) {
+    for (int i = 0; i < str.size(); ++i) { // 转化为大写
+        str[i] = toupper(str[i]);
+    }
+    string strs[4] = {"ADMIN", "TEACHER", "GRADUATE", "UNDERGRADUATE"};
+    for (int i = 0; i < sizeof(strs) / sizeof(strs[0]); i++) {
+        if (str == strs[i]) {
+            return status(i);
+        }
+    }
+    return Undergraduate;//没找到默认返回的,//todo:或许不该这么写
+}
+
+User::User(int id, int jobNum, int borrowNum, status type, const string &password) : id(id), jobNum(jobNum),
+                                                                                     borrowNum(borrowNum), type(type),
+                                                                                     password(password) {}
