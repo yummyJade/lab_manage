@@ -9,9 +9,7 @@ DbAdapter::DbAdapter() {
 }
 
 DbAdapter::DbAdapter(const string &dbName) : dbName(dbName) {
-    DbAdapter();
     this->dbName = dbName;
-
     this->connect();
 }
 
@@ -20,20 +18,26 @@ bool DbAdapter::connect() {
     if (this->db == NULL) {
         db = DataBase::getInstance();
 //        db->getInstance();
-        this->db->chooseTable(this->dbName);
-        printf("db connect succeed");
+        if (this->db->chooseTable(this->dbName) != "Î´½øÈë") {
+            printf("Êı¾İ¿âÁ¬½Ó³É¹¦ by-Ì·\n");
+            return true;
+        }
+        printf("Î´ÕÒµ½±í by-Ì·\n");
+        return false;
+
     } else {
-        printf("db connect fail");
+        printf("Êı¾İ¿âÁ¬½ÓÊ§°Ü by-Ì·\n");
     }
+    return false;
 }
 
 bool DbAdapter::disconnect() {
     if (this->db == NULL) {
-        printf("æ•°æ®åº“å°šæœªè¿æ¥");
+        printf("Êı¾İ¿âÉĞÎ´Á¬½Ó");
         return false;
     } else {
         delete this->db;
-        printf("æ•°æ®åº“æ–­å¼€è¿æ¥æˆåŠŸ");
+        printf("Êı¾İ¿â¶Ï¿ªÁ¬½Ó³É¹¦");
         return true;
     }
 }
@@ -44,7 +48,7 @@ vector<vector<string>> DbAdapter::searchBySingleField(string field, string value
     vector<ll> id(0);
     this->db->query(field, value, id, results);
 
-    for (int i = 0; i < results.size(); ++i) { // æŠŠidè£…è¿›æœ€åä¸€ä¸ªä½ç½®
+    for (int i = 0; i < results.size(); ++i) { // °Ñid×°½ø×îºóÒ»¸öÎ»ÖÃ
         results[i].push_back(to_string(id[i]));
     }
     return results;
@@ -72,6 +76,7 @@ DbAdapter::~DbAdapter() {
 }
 
 vector<vector<string>> DbAdapter::searchAll() {
+    this->db->showDatas();
     return vector<vector<string>>();
 //    return this->db->showDatas();
 }

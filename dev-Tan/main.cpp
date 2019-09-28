@@ -137,13 +137,10 @@ int regexTest() {
 
 
 int main() {
-
     DbAdapter *dbHelper = new DbAdapter("书");
-////    dbHelper->connect();
     vector<vector<string> > queryData = dbHelper->searchBySingleField("作者", "谢立");
-//    printf("\n");
-//    vector < vector<string> > queryData=Book::searchBooksBySingleField("作者","谢立");
-//    Book::printBookList(Book::searchBooksBySingleField("作者", "谢立"));
+
+
     for (ll i = 0; i < queryData.size(); i++) {
 //        printf("2");
         for (ll j = 0; j < queryData[0].size(); j++) {
