@@ -7,6 +7,12 @@ Book::Book() {
 }
 
 
+Book::Book(char type, bool isLend, bool isValid, int price, int id, const string &name, const string &author,
+           const string &isbn, const string &press, const string &position) : type(type), isLend(isLend),
+                                                                              isValid(isValid), price(price), id(id),
+                                                                              name(name), author(author), isbn(isbn),
+                                                                              press(press), position(position) {}
+
 Book::~Book() {
 }
 
@@ -100,13 +106,13 @@ void Book::printBookInfo() {
     cout << id << name << author << isbn << type;
 }
 
-void Book::setBookInfo(string namet, string authort, string isbnt, char typet, double pricet) {
-    name = namet;
-    author = authort;
-    isbn = isbnt;
-    type = typet;
-    price = pricet;
-}
+//void Book::setBookInfo(string namet, string authort, string isbnt, char typet, double pricet) {
+//    name = namet;
+//    author = authort;
+//    isbn = isbnt;
+//    type = typet;
+//    price = pricet;
+//}
 
 
 std::vector<std::string> Book::serialize() {
@@ -120,7 +126,7 @@ std::vector<std::string> Book::serialize() {
     info.push_back(this->author);
     info.push_back(this->isbn);
     info.push_back(this->press);
-
+    info.push_back(this->position);
     return info;
 }
 
@@ -133,9 +139,10 @@ bool Book::deSerialize(std::vector<std::string> info) {
     string author = info[5].data();
     string isbn = info[6].data();
     string press = info[7].data();
+    string postion = info[8].data();
     long long id = (long long) info[8].data();
 
-    Book();
+    Book(type,isLend,isValid,price,id,name,author,isbn,press,position);
     return true;
 }
 
@@ -174,6 +181,5 @@ std::vector<std::vector<std::string>> Book::searchAll() {
     DbAdapter dbAdapter(" È");
     return dbAdapter.searchAll();
 }
-
 
 
