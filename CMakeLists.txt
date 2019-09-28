@@ -21,13 +21,13 @@ set(MYC1 ${dir_srcs})
 #add_executable(myc1 ${SOURCE_FILES})
 
 ## yu的执行函数
-#set(SOURCE_FILES yu/Usertest.cpp)
+#set(SOURCE_FILES dev-test/menuTest.cpp)
 #add_executable(myc1 ${SOURCE_FILES})
 
 # Dev-Tan的执行函数
 set(SOURCE_FILES dev-Tan/main.cpp)
 add_executable(myc1 ${SOURCE_FILES})
-add_subdirectory(include)
-add_subdirectory(test)
+#add_subdirectory(include)
+#add_subdirectory(test)
 
 

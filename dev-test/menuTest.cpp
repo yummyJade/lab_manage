@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <iomanip>
+#include "libm.h"
 
 using namespace std;
 
@@ -32,7 +33,7 @@ void printMainMenu() {
             case 1:
                 printUserMenu();
                 break;
-            case 2:
+            case 2: //todo:还要增加登录的验证
                 printAdminMenu();
                 break;
             case 3:
@@ -118,6 +119,7 @@ void printAdminMenu(){
             case 1:
                 printSearchMenu();break;
             case 2:
+
                 cout << "增加书啦" << endl;
                 break;
             case 3:
@@ -159,11 +161,11 @@ void printAdminMenu(){
 
 //查询条目头
 void printSearchResult(){
-   cout
-           << "-------------------------------------------------------------------------------------------" << endl
-           << setiosflags(ios::left) << setw(10) << "序号" << setw(20) << "书名" << setw(20) << "作者"
-           << setw(20) << "ISBN" << setw(20) << "分类" << endl
-           << "--------------------------------------------------------------------------------------------" << endl;
+    cout
+            << "-------------------------------------------------------------------------------------------" << endl
+            << setiosflags(ios::left) << setw(10) << "序号" << setw(20) << "书名" << setw(20) << "作者"
+            << setw(20) << "ISBN" << setw(20) << "分类" << endl
+            << "--------------------------------------------------------------------------------------------" << endl;
 }
 
 //搜索方式

@@ -27,7 +27,7 @@ public:
 
     std::string printIsLend();
 
-    void setBookInfo(std::string namet, std::string authort, std::string isbnt, char typet, double pricet);
+//    void setBookInfo(std::string namet, std::string authort, std::string isbnt, char typet, double pricet);
 
     //打印书本基本信息
     void printBookInfo();
@@ -60,6 +60,9 @@ public:
 
     // 静态函数, 借书 todo:原子操作,借书一瞬间炸了
     static void returnAssignOrderId(long long orderId);
+
+    Book(char type, bool isLend, bool isValid, int price, int id, const std::string &name, const std::string &author,
+         const std::string &isbn, const std::string &press, const std::string &position);
 
     // 序列化函数
     std::vector<std::string> serialize();
