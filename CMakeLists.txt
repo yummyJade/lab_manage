@@ -24,7 +24,7 @@ set(MYC1 ${dir_srcs})
 #set(SOURCE_FILES dev-test/menuTest.cpp)
 #add_executable(myc1 ${SOURCE_FILES})
 
-# Dev-Tan的执行函数
+# Dev-Tan的执行函数 dev-Tan/main.cpp
 set(SOURCE_FILES dev-Tan/main.cpp)
 add_executable(myc1 ${SOURCE_FILES})
 #add_subdirectory(include)

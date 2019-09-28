@@ -59,10 +59,11 @@ private:
 public:
     /*数据库本身操作*/
     static DataBase *getInstance() {
-        if (DBinstance == NULL) {
-            DBinstance = new DataBase();
-        }
-        return DBinstance;
+        return new DataBase;
+//        if (DBinstance == NULL) {
+//            DBinstance = new DataBase();
+//        }
+//        return DBinstance;
     }
 
     void closeDataBase() {
@@ -213,7 +214,7 @@ public:
                 string ss(&s[0]);
                 //判断是否是相同名字
                 if (ss == name) {
-                    printf("找到相关数据表\n");
+//                    printf("找到相关数据表\n");
                     this->table_name = name;
                     //读取列数
                     fread(&num, sizeof(ll), 1, fp);
@@ -263,9 +264,11 @@ public:
         }
         fclose(fp);
         if (getFlag) {
-            printf("%s", this->table_name.data());
+//            cout<<"到了这"<<endl;
+//            printf("%s", this->table_name.data());
             return name;
         } else {
+//            cout<<"到了这"<<endl;
             return "未进入";
         }
     }
