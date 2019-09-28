@@ -5,18 +5,18 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "E:/Sources/Cpp/repos/Lib_manage/thirdParty/sqlite3/sqlite3.c" "E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/CMakeFiles/myc1.dir/thirdParty/sqlite3/sqlite3.c.obj"
+  "D:/projects/CLionProjects/myc1/thirdParty/sqlite3/sqlite3.c" "D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/myc1.dir/thirdParty/sqlite3/sqlite3.c.obj"
   )
-set(CMAKE_C_COMPILER_ID "MSVC")
+set(CMAKE_C_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_C_TARGET_INCLUDE_PATH
   "../include"
   )
 set(CMAKE_DEPENDS_CHECK_CXX
-  "E:/Sources/Cpp/repos/Lib_manage/dev-Tan/main.cpp" "E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/CMakeFiles/myc1.dir/dev-Tan/main.cpp.obj"
+  "D:/projects/CLionProjects/myc1/dev-Tan/main.cpp" "D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/myc1.dir/dev-Tan/main.cpp.obj"
   )
-set(CMAKE_CXX_COMPILER_ID "MSVC")
+set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
