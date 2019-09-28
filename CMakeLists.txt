@@ -28,6 +28,6 @@ set(MYC1 ${dir_srcs})
 set(SOURCE_FILES dev-Tan/main.cpp)
 add_executable(myc1 ${SOURCE_FILES})
 add_subdirectory(include)
-#add_subdirectory(test)
+add_subdirectory(test)
 
 

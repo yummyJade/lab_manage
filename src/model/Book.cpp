@@ -148,7 +148,7 @@ std::vector<std::vector<std::string>> Book::searchBooksBySingleField(std::string
 
 void Book::printBookList(std::vector<std::vector<std::string>> queryData) {
     for (ll i = 0; i < queryData.size(); i++) {
-//        printf("2");
+//        printf("2\n");
         for (ll j = 0; j < queryData[0].size(); j++) {
             printf("%s\t", queryData[i][j].data());
         }
