@@ -11,5 +11,6 @@
 #include "model/Book.h"
 #include "model/Order.h"
 #include "model/User.h"
+#include "util/DbAdapter.h"
 
 #endif //MYC1_LIBM_H

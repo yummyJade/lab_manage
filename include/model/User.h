@@ -1,10 +1,10 @@
 #pragma once
 
-
+#include <vector>
 enum status {
     Admin,Teacher, Graduate, Undergraduate
 };        //特权思想枚举
-const string STATUS[4] = {
+const std::string STATUS[4] = {
         "ADMIN","TEACHER","GRADUATE","UNDERGRADUATE"
 };
 
@@ -18,9 +18,25 @@ private:
     status type;
     std::string password;        //password
 
+    /**
+     * 将枚举类型的statu转化成对应的字符串
+     * @param statu
+     * @return
+     */
+    static std::string statuEnumToString(status statu);
+
+    /**
+     * 将字符串转换为对应的枚举
+     * @param str
+     * @return
+     */
+    static status stringEnumToStatu(std::string str);
+
 public:
     User();
     ~User();
+
+    User(int jobNum, int borrowNum, status type, const std::string &password);
 
     User(int id, int jobNum, int borrowNum, status type, const std::string &password);
 
@@ -44,9 +60,22 @@ public:
     void setJobNum(int jobNum);
 
     //------------------------------------------------------
-    //----下面这些是用户共有的操作---------------------------
+    //----下面这些是静态操作---------------------------
     /**
-     * 打印当前用户借阅的书
+     * 用户登陆-待完成
+     * @param name
+     * @param password
+     * @return
+     */
+    User login(std::string name, std::string password);
+
+    //------------------------------------------------------
+    //----下面这些是用户共有的操作---------------------------
+
+
+
+    /**
+     * 打印当前用户借阅的书-待完成
      */
     void printBorrowBooks();
 

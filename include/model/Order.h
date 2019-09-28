@@ -4,7 +4,7 @@
 
 
 enum Status {
-    Borrowing, Returned
+    BORROWING, RETURNED
 };        //订单状态
 class Order {
 private:
@@ -14,6 +14,20 @@ private:
     SimpleTime borrowTime;        // 借书时间
     SimpleTime returnTime;        // 还书时间
     Status statu;               // 订单状态
+
+    /**
+     * 将枚举类型的statu转化成对应的字符串
+     * @param statu
+     * @return
+     */
+    static std::string statuEnumToString(Status statu);
+
+    /**
+     * 将字符串转换为对应的枚举
+     * @param str
+     * @return
+     */
+    static Status stringEnumToStatu(std::string str);
 
 public:
     Order();

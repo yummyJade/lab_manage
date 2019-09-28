@@ -11,5 +11,6 @@
 #include "model/Book.cpp"
 #include "model/Order.cpp"
 #include "model/User.cpp"
+#include "util/DbAdapter.cpp"
 
 #endif //MYC1_LIBCPP_H
