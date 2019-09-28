@@ -1,7 +1,3 @@
-//
-// Created by THINKPAD on 2019/9/22.
-//
-
 #include <iostream>
 #include <stdlib.h>
 #include <iomanip>
@@ -262,9 +258,6 @@ void printUserManageMenu(){
 
 int main(){
 
-
-        printMainMenu();
-
-
+    printMainMenu();
 
 }
