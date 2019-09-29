@@ -7,15 +7,14 @@ class Book {
 
 private:
     char type;        //书所属类别A--V，期刊为0
-    bool isLend = true;        //是否可借
-    bool isValid = true;       // 是否有效, 有被删除时置为false
+    int count;      //计数
     int price;        //书本价格,单位分
     int id;
     std::string name;        //书名
     std::string author;        //作者
     std::string isbn;        //ISBN
     std::string press;       // 出版社
-    std::string position;       // 位置
+
 
 public:
     Book();
@@ -61,8 +60,8 @@ public:
     // 静态函数, 借书 todo:原子操作,借书一瞬间炸了
     static void returnAssignOrderId(long long orderId);
 
-    Book(char type, bool isLend, bool isValid, int price, int id, const std::string &name, const std::string &author,
-         const std::string &isbn, const std::string &press, const std::string &position);
+    Book(char type, int price, int id, const std::string &name, const std::string &author,
+         const std::string &isbn, const std::string &press);
 
     // 序列化函数
     std::vector<std::string> serialize();

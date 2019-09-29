@@ -1,29 +1,46 @@
 #include <iostream>
-#include "../include/libm.h"
-#include "../src/libcpp.h"
+#include <stdlib.h>
+#include <iomanip>
+#include <vector>
+#include "libm.h"
+#include "../src/util/DbAdapter.cpp"
 
 using namespace std;
 
+//º¯ÊıÉùÃ÷
+void printUserMenu();
+void printMainMenu();
+void printAdminMenu();
+void printSearchMenu();
+void printUserManageMenu();
+void printSearchResult();
 
-//æ‰“å°ä¸»èœå•
+bool offFlag = false;
+//Ò»Ğ©ĞèÒªÏÈ³õÊ¼»¯µÄ¶«Î÷
+void init(){
+//    DbAdapter *dbHelper = new DbAdapter("Êé");
+
+}
+//´òÓ¡Ö÷²Ëµ¥
 void printMainMenu() {
-    system("cls");
+
     while (1) {
-        cout << "------------å›¾ä¹¦é¦†ç®¡ç†ç³»ç»Ÿ--------------" << endl
-             << "1.ç”¨æˆ·ç™»å½•" << endl
-             << "2.ç®¡ç†å‘˜ç™»å½•" << endl
-             << "3.å›¾ä¹¦æœç´¢" << endl
-             << "0.é€€å‡ºç³»ç»Ÿ" << endl
+        system("cls");
+        cout << "------------Í¼Êé¹İ¹ÜÀíÏµÍ³--------------" << endl
+             << "1.ÓÃ»§µÇÂ¼" << endl
+             << "2.¹ÜÀíÔ±µÇÂ¼" << endl
+             << "3.Í¼ÊéËÑË÷" << endl
+             << "0.ÍË³öÏµÍ³" << endl
              << "--------------------------------------" << endl
-             << "è¯·è¾“å…¥æ‚¨çš„é€‰æ‹©:";
+             << "ÇëÊäÈëÄúµÄÑ¡Ôñ:";
         int choose;
         cin >> choose;
-        cout << "æ‚¨çš„é€‰æ‹©æ˜¯:" << choose << endl;
+        cout << "ÄúµÄÑ¡ÔñÊÇ:" << choose << endl;
         switch (choose) {
             case 1:
                 printUserMenu();
                 break;
-            case 2:
+            case 2: //todo:»¹ÒªÔö¼ÓµÇÂ¼µÄÑéÖ¤
                 printAdminMenu();
                 break;
             case 3:
@@ -33,21 +50,260 @@ void printMainMenu() {
                 break;
 
             default:
-                cout << "è¯¥é€‰é¡¹ä¸å­˜åœ¨ï¼Œè¯·é‡æ–°è¾“å…¥!" << endl;
+                cout << "¸ÃÑ¡Ïî²»´æÔÚ£¬ÇëÖØĞÂÊäÈë!" << endl;
                 break;
 
         }
         if (choose == 0) {
-            cout << "æ¬¢è¿æ‚¨çš„ä¸‹æ¬¡è®¿é—®" << endl;
+            cout << "»¶Ó­ÄúµÄÏÂ´Î·ÃÎÊ" << endl;
             break;
-
         }
 
     }
 }
 
+//ÓÃ»§²Ëµ¥
+void printUserMenu(){
+    while (1){
 
-int main() {
+
+        cout << "------------ÓÃ»§²Ù×÷--------------" << endl
+             << "1.Í¼ÊéËÑË÷" << endl
+             << "2.¸öÈË¶©µ¥" << endl
+             << "3.ĞŞ¸ÄÃÜÂë" << endl
+             << "0.·µ»ØÉÏÒ»¼¶" << endl
+             << "---------------------------------" << endl
+             << "ÇëÊäÈëÄúµÄÑ¡Ôñ:";
+        int choose;
+        cin >> choose;
+        cout << "ÄúµÄÑ¡ÔñÊÇ:" << choose << endl;
+        switch (choose){
+            case 1:
+                printSearchMenu();break;
+            case 2:
+                cout << "ÄúµÄ¶©µ¥²éÑ¯½á¹ûÈçÏÂ£º" << endl;
+                void printSearchResult();
+                cout << std::left << setw(10) << "1" << setw(20) << "ÎÚºÏÖ®ÖÚ" << setw(20) << "ÅÓÀÖ"
+                     << setw(20) << "123456678" << setw(20) << "ĞÄÀíÑ§" << endl;
+                break;  //µ÷ÓÃÓÃ»§²éÑ¯¶©µ¥µÄº¯Êı
+            case 3:
+                break;
+            case 0:
+                break;
+            default:
+                cout << "¸ÃÑ¡Ïî²»´æÔÚ£¬ÇëÖØĞÂÊäÈë!" << endl;
+                break;
+        }
+        if (choose == 0) {
+
+            break;
+
+        }
+
+    }
+
+
+}
+
+//¹ÜÀíÔ±²Ëµ¥
+void printAdminMenu(){
+    while (1){
+
+
+        cout << "------------¹ÜÀíÔ±²Ù×÷--------------" << endl
+             << "1.Í¼ÊéËÑË÷" << endl
+             << "2.Ìí¼ÓÊéÄ¿" << endl
+             << "3.¼õÉÙÊéÄ¿" << endl
+             << "4.ÓÃ»§¹ÜÀí" << endl
+             << "0.·µ»ØÉÏÒ»¼¶" << endl
+             << "-----------------------------------" << endl
+             << "ÇëÊäÈëÄúµÄÑ¡Ôñ:";
+        int choose;
+        cin >> choose;
+        cout << "ÄúµÄÑ¡ÔñÊÇ:" << choose << endl;
+        switch (choose){
+            case 1:
+                printSearchMenu();break;
+            case 2:
+
+                cout << "Ôö¼ÓÊéÀ²" << endl;
+                break;
+            case 3:
+                cout << "¼õÉÙÊéÀ²" << endl;
+                break;
+            case 4:
+
+                while (1){
+                    cout << "ÇëÊäÈëÓÃ»§¹¤ºÅ:";
+                    int userNum;
+                    cin >> userNum;
+                    if(userNum == 170200){
+                        cout << "ÄúÒÑ½øÈë" << userNum << "ÓÃ»§¹ÜÀíÖĞĞÄ£¡" << endl;
+                        printUserManageMenu();
+                        break;
+                    } else{
+                        cout << "ÓÃ»§²»´æÔÚ£¬ÇëÖØĞÂÊäÈë£¡" << endl;
+                    }
+                }
+
+
+                break;
+            case 5:
+
+            case 0:
+                break;
+            default:
+                cout << "¸ÃÑ¡Ïî²»´æÔÚ£¬ÇëÖØĞÂÊäÈë!" << endl;
+        }
+        if(choose == 0){
+            break;
+        }
+    }
+
+
+
+
+}
+
+//²éÑ¯ÌõÄ¿Í·
+void printSearchResult(){
+    cout
+            << "----------------------------------------------------------------------------------------------------------------------------------" << endl
+            << setiosflags(ios::left) << setw(10) << "ĞòºÅ" << setw(20) << "ÊéÃû" << setw(20) << "³ö°æÉç" << setw(10) << "×÷Õß"
+            << setw(10) << "ÀàĞÍ" << setw(20) << "ISBN" << setw(10) << "¼Û¸ñ" << setw(10) << "ÊıÁ¿" << setw(10) << "ÊÇ·ñ¿É½è" << endl
+            << "----------------------------------------------------------------------------------------------------------------------------------" << endl;
+}
+
+void printQueryData(vector<vector<string> > queryData){
+    for (ll i = 0; i < queryData.size(); i++) {
+        printf("%-10d",i+1);
+        for (ll j = 0; j < queryData[0].size(); j++) {
+
+            printf("%s\t", queryData[i][j].data());
+        }
+        printf("\n");
+    }
+};
+//ËÑË÷·½Ê½
+void printSearchMenu(){
+
+    while (1) {
+        DbAdapter *dbHelper = new DbAdapter("Êé");
+        system("cls");
+        cout << "------------Í¼ÊéËÑË÷--------------" << endl
+             << "1.ËùÓĞ" << endl
+             << "2.ÊéÃû" << endl
+             << "3.×÷Õß" << endl
+             << "4.ISBN" << endl
+             << "5.ÀàĞÍ" << endl
+             << "0.·µ»ØÉÏÒ»¼¶" << endl
+             << "---------------------------------" << endl
+             << "ÇëÊäÈëÄúµÄÑ¡Ôñ:";
+        int choose;
+        cin >> choose;
+        cout << "ÄúµÄÑ¡ÔñÊÇ:" << choose << endl;
+        string keyWord;
+        if(choose != 0){
+            cout << "ÇëÊäÈëÄúµÄËÑË÷´Ê:";
+            cin >> keyWord;
+        }
+
+        vector<vector<string> > queryData;
+        printSearchResult();
+        switch (choose){
+            case 1:
+                cout<< "xxxxxx" << endl;break;
+            case 2:
+                queryData = dbHelper->searchBySingleField("ÊéÃû", keyWord);
+                break;
+            case 3:
+                queryData = dbHelper->searchBySingleField("×÷Õß", keyWord);
+                printQueryData(queryData);
+                break;
+            case 4:
+                queryData = dbHelper->searchBySingleField("isbn", keyWord);
+                printQueryData(queryData);
+                break;
+            case 5:
+                queryData = dbHelper->searchBySingleField("ÀàĞÍ",keyWord);
+                printQueryData(queryData);
+                break;
+            case 0:
+                break;
+            default:
+                cout << "¸ÃÑ¡Ïî²»´æÔÚ£¬ÇëÖØĞÂÊäÈë!" << endl;
+        }
+        if(choose == 0){
+            break;
+        }
+        getchar();
+        getchar();
+
+    }
+}
+
+//ÓÃ»§¹ÜÀí
+void printUserManageMenu(){
+    while (1) {
+        if(offFlag){
+            offFlag = false;
+            break;
+        }
+        cout << "------------ÓÃ»§¹ÜÀí--------------" << endl
+             << "1.¸öÈË¶©µ¥" << endl
+             << "2.½èÊé" << endl
+             << "3.»¹Êé" << endl
+             << "4.ÃÜÂëÖØÖÃ" << endl
+             << "5.×¢Ïú" << endl
+             << "0.·µ»ØÉÏÒ»¼¶" << endl
+             << "---------------------------------" << endl
+             << "ÇëÊäÈëÄúµÄÑ¡Ôñ:";
+        int choose;
+        cin >> choose;
+        cout << "ÄúµÄÑ¡ÔñÊÇ:" << choose << endl;
+        switch (choose){
+            case 1:
+                cout << "¸ÃÓÃ»§µÄ¶©µ¥Çé¿öÈçÏÂ:" << endl;
+                printSearchResult();
+                cout<< "xxxxxx" << endl;break;
+            case 2:
+                printSearchMenu();
+            case 3:
+                break;
+            case 4:
+                cout << "ÃÜÂëÖØÖÃ³É¹¦£¬Çë¾¡¿ìÍ¨Öª¸ÄÓÃ»§ĞŞ¸ÄÃÜÂë!" << endl;
+            case 5:
+                while (1){
+                    char yn;
+                    cout << "ÄúÈ·¶¨Òª×¢ÏúÃ´£¿(Y/N):";
+                    cin >> yn;
+                    if(yn == 'Y' || yn == 'y'){
+                        offFlag = true;
+                        cout << "×¢Ïú³É¹¦£¡" << endl;
+                        break;
+
+
+                    } else{
+                        break;
+                    }
+                }
+
+
+            case 0:
+                break;
+            default:
+                cout << "¸ÃÑ¡Ïî²»´æÔÚ£¬ÇëÖØĞÂÊäÈë!" << endl;
+        }
+        if(choose == 0){
+            break;
+        }
+    }
+}
+
+int main(){
+    system("mode con cols=140 lines=40");
+    init();
     printMainMenu();
+    return 0;
 
 }

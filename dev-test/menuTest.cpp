@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <iomanip>
+#include <vector>
 #include "libm.h"
 
 using namespace std;
@@ -14,7 +15,11 @@ void printUserManageMenu();
 void printSearchResult();
 
 bool offFlag = false;
+//一些需要先初始化的东西
+void init(){
+    DbAdapter *dbHelper = new DbAdapter("书");
 
+}
 //打印主菜单
 void printMainMenu() {
     system("cls");
@@ -170,25 +175,43 @@ void printSearchResult(){
 
 //搜索方式
 void printSearchMenu(){
+    system("cls");
     while (1) {
+        DbAdapter *dbHelper = new DbAdapter("书");
         cout << "------------图书搜索--------------" << endl
              << "1.所有" << endl
              << "2.书名" << endl
              << "3.作者" << endl
              << "4.ISBN" << endl
-             << "5.主题" << endl
+             << "5.类型" << endl
              << "0.返回上一级" << endl
              << "---------------------------------" << endl
              << "请输入您的选择:";
         int choose;
         cin >> choose;
         cout << "您的选择是:" << choose << endl;
-        int keyWord;
-        cout << "请输入搜索词:";
+        string keyWord;
+        cout << "请输入您的搜索词:";
         cin >> keyWord;
+        vector<vector<string> > queryData;
         switch (choose){
             case 1:
                 cout<< "xxxxxx" << endl;break;
+            case 2:
+                queryData = dbHelper->searchBySingleField("书名", keyWord);
+                for (ll i = 0; i < queryData.size(); i++) {
+                    for (ll j = 0; j < queryData[0].size(); j++) {
+                        printf("%s\t", queryData[i][j].data());
+                    }
+                    printf("\n");
+                }
+                break;
+            case 3:
+                queryData = dbHelper->searchBySingleField("作者", keyWord);
+            case 4:
+                queryData = dbHelper->searchBySingleField("isbn", keyWord);
+            case 5:
+                queryData = dbHelper->searchBySingleField("类型",keyWord);
             case 0:
                 break;
             default:
@@ -259,7 +282,7 @@ void printUserManageMenu(){
 }
 
 int main(){
-
+init();
     printMainMenu();
 
 }
