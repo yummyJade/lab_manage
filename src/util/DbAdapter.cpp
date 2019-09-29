@@ -55,9 +55,8 @@ vector<vector<string>> DbAdapter::searchBySingleField(string field, string value
 }
 
 
-bool DbAdapter::insert(vector<vector<string>> values) {
-
-    this->db->insert(values);
+bool DbAdapter::insert(vector<vector<string>> values, vector<long long> ids) {
+    this->db->insert(values, ids);
     return true;
 }
 

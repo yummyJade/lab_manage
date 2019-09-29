@@ -27,7 +27,7 @@ public:
     bool disconnect();
 
     // 插入数据
-    bool insert(vector<vector<string>> values);
+    bool insert(vector<vector<string>> values, vector<long long> ids);
 
     // 根据单个字段的值删除
     bool deleteBySingleField(string field, string value);

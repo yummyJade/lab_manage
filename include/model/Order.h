@@ -8,8 +8,9 @@ enum Status {
 };        //订单状态
 class Order {
 private:
-    int userId;        //借书的人的id
-    int bookId;     // 借的书的id
+    long long id;
+    long long userId;        //借书的人的id
+    long long bookId;     // 借的书的id
     SimpleTime borrowTime;        // 借书时间
     SimpleTime returnTime;        // 还书时间
     Status statu;               // 订单状态
@@ -31,7 +32,7 @@ private:
 public:
     Order();
 
-    Order(int userId, int bookId, const SimpleTime &borrowTime, const SimpleTime &returnTime, Status statu);
+    Order(long long userId, long long bookId, const SimpleTime &borrowTime, const SimpleTime &returnTime, Status statu);
 
     ~Order();
 

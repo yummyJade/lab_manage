@@ -56,5 +56,6 @@ Status Order::stringEnumToStatu(std::string str) {
     return BORROWING;//没找到默认返回的,//todo:或许不该这么写
 }
 
-Order::Order(int userId, int bookId, const SimpleTime &borrowTime, const SimpleTime &returnTime, Status statu) : userId(
+Order::Order(long long userId, long long bookId, const SimpleTime &borrowTime, const SimpleTime &returnTime,
+             Status statu) : userId(
         userId), bookId(bookId), borrowTime(borrowTime), returnTime(returnTime), statu(statu) {}

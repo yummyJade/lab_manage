@@ -321,20 +321,25 @@ public:
     }
 
     //增
-    int insert(vector<vector<string> > s, string name = "") {
+    int insert(vector<vector<string> > s, vector<ll> &id, string name = "") {
         //判断是否选表
         if (name == "" && (this->table_name == "未选择" || this->table_name == ""))
             return -2;
         //todo：多存一个行数
         printf("start insert\n");
 
-
+        //初始化参数
+        id.clear();
 
         //用到变量定义
         ll cnum = this->table_col_num; //项数
         char valid = 'T';
         vector<ll> &csize = this->table_col_size;
         vector<ll> &cpsize = this->table_col_pre_size;
+        ll totalSeek = this->table_col_pre_size[this->table_col_num] * sizeof(char);  //数据总长
+        ll lineSeek = sizeof(char) + sizeof(ll) + totalSeek; //每行数据长度
+
+        //打开文件
         FILE *fp = fopen(this->table_name.data(), "rb+");
         rewind(fp);
 
@@ -390,6 +395,10 @@ public:
                     fwrite(s[i][j].data(), sizeof(char), csize[j], fp);
                 }
             }
+
+            //插入结束，根据fp位置计算id
+            ll fpLocation = ftell(fp);
+            id.push_back((fpLocation - sizeof(ll)) / lineSeek);
         }
         //返回文件头
         rewind(fp);
@@ -804,7 +813,8 @@ int main2() {
                     }
                     insertData.push_back(line);
                 }
-                d->insert(insertData);
+                vector<ll> ids;
+                d->insert(insertData, ids);
                 break;
             case 7:
                 if (d->getTableName() == "") {
