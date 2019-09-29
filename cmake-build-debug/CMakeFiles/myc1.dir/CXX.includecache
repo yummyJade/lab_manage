@@ -6,6 +6,20 @@
 
 #IncludeRegexTransform: 
 
+E:/Sources/Cpp/repos/Lib_manage/database_v1.0/database.cpp
+cstdio
+-
+iostream
+-
+vector
+-
+string
+-
+stdlib.h
+-
+memory.h
+-
+
 E:/Sources/Cpp/repos/Lib_manage/dev-Tan/main.cpp
 iostream
 -
@@ -21,8 +35,6 @@ E:/Sources/Cpp/repos/Lib_manage/include/libm.h
 E:/Sources/Cpp/repos/Lib_manage/src/libcpp.h
 regex
 -
-../thirdParty/sqlite3/sqlite3.h
-E:/Sources/Cpp/repos/Lib_manage/thirdParty/sqlite3/sqlite3.h
 
 E:/Sources/Cpp/repos/Lib_manage/include/core/Date.h
 string
@@ -45,20 +57,32 @@ core/SimpleString.h
 E:/Sources/Cpp/repos/Lib_manage/include/core/SimpleString.h
 model/Book.h
 E:/Sources/Cpp/repos/Lib_manage/include/model/Book.h
+model/BookInstance.h
+E:/Sources/Cpp/repos/Lib_manage/include/model/BookInstance.h
 model/Order.h
 E:/Sources/Cpp/repos/Lib_manage/include/model/Order.h
 model/User.h
 E:/Sources/Cpp/repos/Lib_manage/include/model/User.h
+util/DbAdapter.h
+E:/Sources/Cpp/repos/Lib_manage/include/util/DbAdapter.h
 
 E:/Sources/Cpp/repos/Lib_manage/include/model/Book.h
 core/SimpleTime.h
 E:/Sources/Cpp/repos/Lib_manage/include/model/core/SimpleTime.h
 
+E:/Sources/Cpp/repos/Lib_manage/include/model/BookInstance.h
+
 E:/Sources/Cpp/repos/Lib_manage/include/model/Order.h
 core/SimpleTime.h
 E:/Sources/Cpp/repos/Lib_manage/include/model/core/SimpleTime.h
 
 E:/Sources/Cpp/repos/Lib_manage/include/model/User.h
+vector
+-
+
+E:/Sources/Cpp/repos/Lib_manage/include/util/DbAdapter.h
+../../database_v1.0/database.cpp
+E:/Sources/Cpp/repos/Lib_manage/database_v1.0/database.cpp
 
 E:/Sources/Cpp/repos/Lib_manage/src/core/Date.cpp
 ../../include/core/Date.h
@@ -99,14 +123,24 @@ core/SimpleString.cpp
 E:/Sources/Cpp/repos/Lib_manage/src/core/SimpleString.cpp
 model/Book.cpp
 E:/Sources/Cpp/repos/Lib_manage/src/model/Book.cpp
+model/BookInstance.cpp
+E:/Sources/Cpp/repos/Lib_manage/src/model/BookInstance.cpp
 model/Order.cpp
 E:/Sources/Cpp/repos/Lib_manage/src/model/Order.cpp
 model/User.cpp
 E:/Sources/Cpp/repos/Lib_manage/src/model/User.cpp
+util/DbAdapter.cpp
+E:/Sources/Cpp/repos/Lib_manage/src/util/DbAdapter.cpp
 
 E:/Sources/Cpp/repos/Lib_manage/src/model/Book.cpp
 ../../include/model/Book.h
 E:/Sources/Cpp/repos/Lib_manage/include/model/Book.h
+iostream
+-
+
+E:/Sources/Cpp/repos/Lib_manage/src/model/BookInstance.cpp
+../../include/model/BookInstance.h
+E:/Sources/Cpp/repos/Lib_manage/include/model/BookInstance.h
 iostream
 -
 
@@ -122,7 +156,7 @@ iostream
 vector
 -
 
-E:/Sources/Cpp/repos/Lib_manage/thirdParty/sqlite3/sqlite3.h
-stdarg.h
--
+E:/Sources/Cpp/repos/Lib_manage/src/util/DbAdapter.cpp
+util/DbAdapter.h
+E:/Sources/Cpp/repos/Lib_manage/src/util/util/DbAdapter.h
 

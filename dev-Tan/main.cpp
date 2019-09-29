@@ -185,9 +185,9 @@ int regexTest() {
 
 int main() {
 
-    readBooksInfo();
+//    readBooksInfo();
 
-//    Book::printBookList(Book::searchAll());
+    Book::printBookList(Book::searchAll());
 
 //    DbAdapter *dbHelper = new DbAdapter("书");
 //    vector<vector<string> > queryData = dbHelper->searchBySingleField("作者", "谢立");
