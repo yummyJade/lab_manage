@@ -9,6 +9,7 @@
 #include "core/SimpleTime.h"
 #include "core/SimpleString.h"
 #include "model/Book.h"
+#include "model/BookInstance.h"
 #include "model/Order.h"
 #include "model/User.h"
 #include "util/DbAdapter.h"

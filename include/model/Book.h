@@ -19,6 +19,9 @@ private:
 public:
     Book();
 
+    Book(char type, int count, int price, const std::string &name, const std::string &author, const std::string &isbn,
+         const std::string &press);
+
     ~Book();
 
     //打印书本类型
@@ -60,8 +63,6 @@ public:
     // 静态函数, 借书 todo:原子操作,借书一瞬间炸了
     static void returnAssignOrderId(long long orderId);
 
-    Book(char type, int price, int id, const std::string &name, const std::string &author,
-         const std::string &isbn, const std::string &press);
 
     // 序列化函数
     std::vector<std::string> serialize();

@@ -7,11 +7,6 @@ Book::Book() {
 }
 
 
-Book::Book(char type, int price, int id, const string &name, const string &author,
-           const string &isbn, const string &press) : type(type), price(price), id(id),
-                                                                              name(name), author(author), isbn(isbn),
-                                                                              press(press) {}
-
 Book::~Book() {
 }
 
@@ -133,5 +128,9 @@ std::vector<std::vector<std::string>> Book::searchAll() {
     DbAdapter dbAdapter(" È");
     return dbAdapter.searchAll();
 }
+
+Book::Book(char type, int count, int price, const string &name, const string &author, const string &isbn,
+           const string &press) : type(type), count(count), price(price), name(name), author(author), isbn(isbn),
+                                  press(press) {}
 
 

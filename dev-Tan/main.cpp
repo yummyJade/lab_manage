@@ -42,6 +42,7 @@ int readBooksInfo() {
     string line;
     int num = 0;
     getline(fin, line); // 吃掉首行
+    vector<vector<string>> result;
     while (getline(fin, line)) //整行读取，换行符“\n”区分，遇到文件尾标志eof终止读取
     {
         if (num++ > 10) // 打印10行做测试
@@ -61,9 +62,15 @@ int readBooksInfo() {
         string isbn = fields[4];
         int price = stof(fields[5]) * 100;
         string position = fields[6];
-        int num = stoi(fields[7]);
+        int count = stoi(fields[7]);
 
+        Book book(type, count, price, name, author, isbn, press); // 插入书种的表
+        result.push_back(book.serialize());
 
+        ll bookId = 1;//从上面获取到bookid
+        for (int i = 0; i < count; ++i) {
+            BookInstance(bookId, position);
+        }
         cout << "处理之后的字符串：" << name << "\t" << press << "\t" << author << endl;
     }
     return 0;
@@ -183,7 +190,7 @@ int main() {
 
     readBooksInfo();
 
-
+//    Book::printBookList(Book::searchAll());
 
 //    DbAdapter *dbHelper = new DbAdapter("书");
 //    vector<vector<string> > queryData = dbHelper->searchBySingleField("作者", "谢立");

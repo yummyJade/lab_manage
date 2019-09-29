@@ -12,10 +12,9 @@ class User {
     constexpr static const int lendDays[3] = {30, 60, 90}; // 最多可同时借书的时长,单位天
     constexpr static const int lendNums[3] = {30, 60, 90}; // 最多可同时借书的本数
 private:
-    int id;
-    int jobNum;        //工号
-    int borrowNum;  // 当前借阅的图书数量
+    int jobNum;        //工号即id
     status type;
+    std::string name;        //姓名
     std::string password;        //password
 
     /**
@@ -36,9 +35,7 @@ public:
     User();
     ~User();
 
-    User(int jobNum, int borrowNum, status type, const std::string &password);
-
-    User(int id, int jobNum, int borrowNum, status type, const std::string &password);
+    User(int jobNum, status type, const std::string &name, const std::string &password);
 
     // 序列化函数
     std::vector<std::string> serialize();
