@@ -32,3 +32,23 @@ bool SimpleString::isLegalPath(std::string str) {
     }
     return false;
 }
+
+std::string SimpleString::readPathFromCmd() {
+    string path;
+
+    while (true) {
+        printf("请输入文件路径:");
+        cin >> path;
+        if (path != SimpleString::fixPath(path)) {
+            cout << "文件路径修复为:" << SimpleString::fixPath(path) << endl;
+            path = SimpleString::fixPath(path);
+        }
+        if (SimpleString::isLegalPath(path)) {
+            break;
+        }
+        printf("文件路径不合法,必须输入一个txt或csv文件的路径\n");
+    }
+
+
+    return path;
+}

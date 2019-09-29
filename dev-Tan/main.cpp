@@ -37,13 +37,12 @@ int readBooksInfo() {
             cout << "文件不存在,请检查路径后重新输入" << endl;
             continue;
         }
-
     }
-
 
     string line;
     int num = 0;
-    while (getline(fin, line))   //整行读取，换行符“\n”区分，遇到文件尾标志eof终止读取
+    getline(fin, line); // 吃掉首行
+    while (getline(fin, line)) //整行读取，换行符“\n”区分，遇到文件尾标志eof终止读取
     {
         if (num++ > 10) // 打印10行做测试
             break;
@@ -56,15 +55,59 @@ int readBooksInfo() {
             fields.push_back(field);
         }
         string name = fields[0];
-        string press = fields[1];
-        string author = fields[2];
+        string author = fields[1];
+        string press = fields[2];
         char type = fields[3][0];
         string isbn = fields[4];
-//        int price=stof(fields[5])*100;
-//        int num = stoi(fields[6]);
-//        bool isLend = fields[7][0] == 'Y' || fields[7][0] == 'y';
+        int price = stof(fields[5]) * 100;
+        string position = fields[6];
+        int num = stoi(fields[7]);
+
 
         cout << "处理之后的字符串：" << name << "\t" << press << "\t" << author << endl;
+    }
+    return 0;
+}
+
+
+int readUsersInfo() {
+    string path;
+    ifstream fin;
+    while (true) {
+        path = SimpleString::readPathFromCmd();
+        // "E:\\Sources\\Cpp\\repos\\Lib_manage\\dev-Tan\\books.csv"
+        fin = ifstream(path);//打开文件流操作
+        if (fin.good()) {
+            cout << "已找到文件,正在读取" << endl;
+            break;
+        }
+
+        cout << "文件不存在,请检查路径后重新输入" << endl;
+    }
+
+    string line;
+    int num = 0;
+    getline(fin, line); // 吃掉首行
+    while (getline(fin, line)) //整行读取，换行符“\n”区分，遇到文件尾标志eof终止读取
+    {
+        if (num++ > 10) // 打印10行做测试
+            break;
+        cout << "原始字符串：" << line << endl;
+        istringstream sin(line);
+
+        vector<string> fields;
+        string field;
+        while (getline(sin, field, ',')) {
+            fields.push_back(field);
+        }
+
+        long long workNum = stoll(fields[0]);
+        string name = fields[1];
+        string password = fields[2];
+        int statu = stoi(fields[3]);
+
+//        User();
+//        cout << "处理之后的字符串：" << name << "\t" << press << "\t" << author << endl;
     }
     return 0;
 }
@@ -137,18 +180,23 @@ int regexTest() {
 
 
 int main() {
-    DbAdapter *dbHelper = new DbAdapter("书");
-    vector<vector<string> > queryData = dbHelper->searchBySingleField("作者", "谢立");
+
+    readBooksInfo();
 
 
-    for (ll i = 0; i < queryData.size(); i++) {
-//        printf("2");
-        for (ll j = 0; j < queryData[0].size(); j++) {
-            printf("%s\t", queryData[i][j].data());
-        }
-        printf("\n");
-    }
-    return 1;
+
+//    DbAdapter *dbHelper = new DbAdapter("书");
+//    vector<vector<string> > queryData = dbHelper->searchBySingleField("作者", "谢立");
+//
+//
+//    for (ll i = 0; i < queryData.size(); i++) {
+////        printf("2");
+//        for (ll j = 0; j < queryData[0].size(); j++) {
+//            printf("%s\t", queryData[i][j].data());
+//        }
+//        printf("\n");
+//    }
+//    return 1;
 
 
 

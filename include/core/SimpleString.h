@@ -34,6 +34,13 @@ public:
      * @return
      */
     static bool isLegalPath(std::string str);
+
+
+    /**
+     * 从控制台读取一个路径并以字符串形式返回,要求该路径必须以csv或txt结尾
+     * @return
+     */
+    static std::string readPathFromCmd();
 };
 
 

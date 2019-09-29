@@ -15,7 +15,7 @@ private:
     std::string author;        //作者
     std::string isbn;        //ISBN
     std::string press;       // 出版社
-    std::string position;       // 出版社
+    std::string position;       // 位置
 
 public:
     Book();
