@@ -28,35 +28,35 @@ The CXX compiler identification is GNU, found in "D:/projects/CLionProjects/myc1
 Determining if the C compiler works passed with the following output:
 Change Dir: D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command(s):D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe cmTC_b732c/fast 
-D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f CMakeFiles\cmTC_b732c.dir\build.make CMakeFiles/cmTC_b732c.dir/build
+Run Build Command(s):D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe cmTC_e34ae/fast 
+D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f CMakeFiles\cmTC_e34ae.dir\build.make CMakeFiles/cmTC_e34ae.dir/build
 mingw32-make.exe[1]: Entering directory 'D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_b732c.dir/testCCompiler.c.obj
-D:\Install\CodeBlocks\MinGW\bin\gcc.exe    -o CMakeFiles\cmTC_b732c.dir\testCCompiler.c.obj   -c D:\projects\CLionProjects\myc1\cmake-build-debug\CMakeFiles\CMakeTmp\testCCompiler.c
-Linking C executable cmTC_b732c.exe
-"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E cmake_link_script CMakeFiles\cmTC_b732c.dir\link.txt --verbose=1
-"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\cmTC_b732c.dir/objects.a
-D:\Install\CodeBlocks\MinGW\bin\ar.exe cr CMakeFiles\cmTC_b732c.dir/objects.a @CMakeFiles\cmTC_b732c.dir\objects1.rsp
-D:\Install\CodeBlocks\MinGW\bin\gcc.exe      -Wl,--whole-archive CMakeFiles\cmTC_b732c.dir/objects.a -Wl,--no-whole-archive  -o cmTC_b732c.exe -Wl,--out-implib,libcmTC_b732c.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\cmTC_b732c.dir\linklibs.rsp
+Building C object CMakeFiles/cmTC_e34ae.dir/testCCompiler.c.obj
+D:\Install\CodeBlocks\MinGW\bin\gcc.exe    -o CMakeFiles\cmTC_e34ae.dir\testCCompiler.c.obj   -c D:\projects\CLionProjects\myc1\cmake-build-debug\CMakeFiles\CMakeTmp\testCCompiler.c
+Linking C executable cmTC_e34ae.exe
+"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E cmake_link_script CMakeFiles\cmTC_e34ae.dir\link.txt --verbose=1
+"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\cmTC_e34ae.dir/objects.a
+D:\Install\CodeBlocks\MinGW\bin\ar.exe cr CMakeFiles\cmTC_e34ae.dir/objects.a @CMakeFiles\cmTC_e34ae.dir\objects1.rsp
+D:\Install\CodeBlocks\MinGW\bin\gcc.exe      -Wl,--whole-archive CMakeFiles\cmTC_e34ae.dir/objects.a -Wl,--no-whole-archive  -o cmTC_e34ae.exe -Wl,--out-implib,libcmTC_e34ae.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\cmTC_e34ae.dir\linklibs.rsp
 mingw32-make.exe[1]: Leaving directory 'D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/CMakeTmp'
 
 
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command(s):D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe cmTC_82aec/fast 
-D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f CMakeFiles\cmTC_82aec.dir\build.make CMakeFiles/cmTC_82aec.dir/build
+Run Build Command(s):D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe cmTC_9cacd/fast 
+D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f CMakeFiles\cmTC_9cacd.dir\build.make CMakeFiles/cmTC_9cacd.dir/build
 mingw32-make.exe[1]: Entering directory 'D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_82aec.dir/CMakeCCompilerABI.c.obj
-D:\Install\CodeBlocks\MinGW\bin\gcc.exe   -v -o CMakeFiles\cmTC_82aec.dir\CMakeCCompilerABI.c.obj   -c "D:\Install\CLion 2019.2.2\bin\cmake\win\share\cmake-3.14\Modules\CMakeCCompilerABI.c"
+Building C object CMakeFiles/cmTC_9cacd.dir/CMakeCCompilerABI.c.obj
+D:\Install\CodeBlocks\MinGW\bin\gcc.exe   -v -o CMakeFiles\cmTC_9cacd.dir\CMakeCCompilerABI.c.obj   -c "D:\Install\CLion 2019.2.2\bin\cmake\win\share\cmake-3.14\Modules\CMakeCCompilerABI.c"
 Using built-in specs.
 COLLECT_GCC=D:\Install\CodeBlocks\MinGW\bin\gcc.exe
 Target: mingw32
 Configured with: ../../../src/gcc-5.1.0/configure --build=mingw32 --enable-languages=ada,c,c++,fortran,lto,objc,obj-c++ --enable-libgomp --enable-lto --enable-graphite --enable-libstdcxx-debug --enable-threads=posix --enable-version-specific-runtime-libs --enable-fully-dynamic-string --enable-libstdcxx-threads --enable-libstdcxx-time --with-gnu-ld --disable-werror --disable-nls --disable-win32-registry --disable-symvers --enable-cxx-flags='-fno-function-sections -fno-data-sections -DWINPTHREAD_STATIC' --prefix=/mingw32tdm --with-local-prefix=/mingw32tdm --with-pkgversion=tdm-1 --enable-sjlj-exceptions --with-bugurl=http://tdm-gcc.tdragon.net/bugs
 Thread model: posix
 gcc version 5.1.0 (tdm-1) 
-COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\cmTC_82aec.dir\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=pentiumpro'
- D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/cc1.exe -quiet -v -iprefix D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/ -D_REENTRANT D:\Install\CLion 2019.2.2\bin\cmake\win\share\cmake-3.14\Modules\CMakeCCompilerABI.c -quiet -dumpbase CMakeCCompilerABI.c -mtune=generic -march=pentiumpro -auxbase-strip CMakeFiles\cmTC_82aec.dir\CMakeCCompilerABI.c.obj -version -o C:\Users\THINKPAD\AppData\Local\Temp\ccgD5B8d.s
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\cmTC_9cacd.dir\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=pentiumpro'
+ D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/cc1.exe -quiet -v -iprefix D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/ -D_REENTRANT D:\Install\CLion 2019.2.2\bin\cmake\win\share\cmake-3.14\Modules\CMakeCCompilerABI.c -quiet -dumpbase CMakeCCompilerABI.c -mtune=generic -march=pentiumpro -auxbase-strip CMakeFiles\cmTC_9cacd.dir\CMakeCCompilerABI.c.obj -version -o C:\Users\THINKPAD\AppData\Local\Temp\ccl7wU3N.s
 GNU C11 (tdm-1) version 5.1.0 (mingw32)
 	compiled by GNU C version 5.1.0, GMP version 4.3.2, MPFR version 2.4.2, MPC version 0.8.2
 GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
@@ -75,17 +75,17 @@ GNU C11 (tdm-1) version 5.1.0 (mingw32)
 	compiled by GNU C version 5.1.0, GMP version 4.3.2, MPFR version 2.4.2, MPC version 0.8.2
 GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
 Compiler executable checksum: 2682432a7094ac8df846b6a707cdc762
-COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\cmTC_82aec.dir\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=pentiumpro'
- D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../mingw32/bin/as.exe -v -o CMakeFiles\cmTC_82aec.dir\CMakeCCompilerABI.c.obj C:\Users\THINKPAD\AppData\Local\Temp\ccgD5B8d.s
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\cmTC_9cacd.dir\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=pentiumpro'
+ D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../mingw32/bin/as.exe -v -o CMakeFiles\cmTC_9cacd.dir\CMakeCCompilerABI.c.obj C:\Users\THINKPAD\AppData\Local\Temp\ccl7wU3N.s
 GNU assembler version 2.24 (mingw32) using BFD version (GNU Binutils) 2.24
 COMPILER_PATH=D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/;D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/;D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../mingw32/bin/
 LIBRARY_PATH=D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/;D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/;D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../mingw32/lib/;D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../
-COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\cmTC_82aec.dir\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=pentiumpro'
-Linking C executable cmTC_82aec.exe
-"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E cmake_link_script CMakeFiles\cmTC_82aec.dir\link.txt --verbose=1
-"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\cmTC_82aec.dir/objects.a
-D:\Install\CodeBlocks\MinGW\bin\ar.exe cr CMakeFiles\cmTC_82aec.dir/objects.a @CMakeFiles\cmTC_82aec.dir\objects1.rsp
-D:\Install\CodeBlocks\MinGW\bin\gcc.exe     -v -Wl,--whole-archive CMakeFiles\cmTC_82aec.dir/objects.a -Wl,--no-whole-archive  -o cmTC_82aec.exe -Wl,--out-implib,libcmTC_82aec.dll.a -Wl,--major-image-version,0,--minor-image-version,0 
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\cmTC_9cacd.dir\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=pentiumpro'
+Linking C executable cmTC_9cacd.exe
+"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E cmake_link_script CMakeFiles\cmTC_9cacd.dir\link.txt --verbose=1
+"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\cmTC_9cacd.dir/objects.a
+D:\Install\CodeBlocks\MinGW\bin\ar.exe cr CMakeFiles\cmTC_9cacd.dir/objects.a @CMakeFiles\cmTC_9cacd.dir\objects1.rsp
+D:\Install\CodeBlocks\MinGW\bin\gcc.exe     -v -Wl,--whole-archive CMakeFiles\cmTC_9cacd.dir/objects.a -Wl,--no-whole-archive  -o cmTC_9cacd.exe -Wl,--out-implib,libcmTC_9cacd.dll.a -Wl,--major-image-version,0,--minor-image-version,0 
 Using built-in specs.
 COLLECT_GCC=D:\Install\CodeBlocks\MinGW\bin\gcc.exe
 COLLECT_LTO_WRAPPER=D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/lto-wrapper.exe
@@ -95,8 +95,8 @@ Thread model: posix
 gcc version 5.1.0 (tdm-1) 
 COMPILER_PATH=D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/;D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/;D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../mingw32/bin/
 LIBRARY_PATH=D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/;D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/;D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../mingw32/lib/;D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_82aec.exe' '-mtune=generic' '-march=pentiumpro'
- D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/collect2.exe -plugin D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/liblto_plugin-0.dll -plugin-opt=D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\Users\THINKPAD\AppData\Local\Temp\cc7hN9Xi.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt --exclude-libs=libpthread.a -Bdynamic -o cmTC_82aec.exe D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../crt2.o D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/crtbegin.o -LD:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0 -LD:/Install/CodeBlocks/MinGW/bin/../lib/gcc -LD:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../mingw32/lib -LD:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../.. --whole-archive CMakeFiles\cmTC_82aec.dir/objects.a --no-whole-archive --out-implib libcmTC_82aec.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/crtend.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_9cacd.exe' '-mtune=generic' '-march=pentiumpro'
+ D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/collect2.exe -plugin D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/liblto_plugin-0.dll -plugin-opt=D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\Users\THINKPAD\AppData\Local\Temp\ccldWvw8.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt --exclude-libs=libpthread.a -Bdynamic -o cmTC_9cacd.exe D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../crt2.o D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/crtbegin.o -LD:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0 -LD:/Install/CodeBlocks/MinGW/bin/../lib/gcc -LD:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../mingw32/lib -LD:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../.. --whole-archive CMakeFiles\cmTC_9cacd.dir/objects.a --no-whole-archive --out-implib libcmTC_9cacd.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/crtend.o
 mingw32-make.exe[1]: Leaving directory 'D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/CMakeTmp'
 
 
@@ -117,19 +117,19 @@ Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld\.exe|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command(s):D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe cmTC_82aec/fast ]
-  ignore line: [D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f CMakeFiles\cmTC_82aec.dir\build.make CMakeFiles/cmTC_82aec.dir/build]
+  ignore line: [Run Build Command(s):D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe cmTC_9cacd/fast ]
+  ignore line: [D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f CMakeFiles\cmTC_9cacd.dir\build.make CMakeFiles/cmTC_9cacd.dir/build]
   ignore line: [mingw32-make.exe[1]: Entering directory 'D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/CMakeTmp']
-  ignore line: [Building C object CMakeFiles/cmTC_82aec.dir/CMakeCCompilerABI.c.obj]
-  ignore line: [D:\Install\CodeBlocks\MinGW\bin\gcc.exe   -v -o CMakeFiles\cmTC_82aec.dir\CMakeCCompilerABI.c.obj   -c "D:\Install\CLion 2019.2.2\bin\cmake\win\share\cmake-3.14\Modules\CMakeCCompilerABI.c"]
+  ignore line: [Building C object CMakeFiles/cmTC_9cacd.dir/CMakeCCompilerABI.c.obj]
+  ignore line: [D:\Install\CodeBlocks\MinGW\bin\gcc.exe   -v -o CMakeFiles\cmTC_9cacd.dir\CMakeCCompilerABI.c.obj   -c "D:\Install\CLion 2019.2.2\bin\cmake\win\share\cmake-3.14\Modules\CMakeCCompilerABI.c"]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=D:\Install\CodeBlocks\MinGW\bin\gcc.exe]
   ignore line: [Target: mingw32]
   ignore line: [Configured with: ../../../src/gcc-5.1.0/configure --build=mingw32 --enable-languages=ada,c,c++,fortran,lto,objc,obj-c++ --enable-libgomp --enable-lto --enable-graphite --enable-libstdcxx-debug --enable-threads=posix --enable-version-specific-runtime-libs --enable-fully-dynamic-string --enable-libstdcxx-threads --enable-libstdcxx-time --with-gnu-ld --disable-werror --disable-nls --disable-win32-registry --disable-symvers --enable-cxx-flags='-fno-function-sections -fno-data-sections -DWINPTHREAD_STATIC' --prefix=/mingw32tdm --with-local-prefix=/mingw32tdm --with-pkgversion=tdm-1 --enable-sjlj-exceptions --with-bugurl=http://tdm-gcc.tdragon.net/bugs]
   ignore line: [Thread model: posix]
   ignore line: [gcc version 5.1.0 (tdm-1) ]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\cmTC_82aec.dir\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=pentiumpro']
-  ignore line: [ D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/cc1.exe -quiet -v -iprefix D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/ -D_REENTRANT D:\Install\CLion 2019.2.2\bin\cmake\win\share\cmake-3.14\Modules\CMakeCCompilerABI.c -quiet -dumpbase CMakeCCompilerABI.c -mtune=generic -march=pentiumpro -auxbase-strip CMakeFiles\cmTC_82aec.dir\CMakeCCompilerABI.c.obj -version -o C:\Users\THINKPAD\AppData\Local\Temp\ccgD5B8d.s]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\cmTC_9cacd.dir\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=pentiumpro']
+  ignore line: [ D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/cc1.exe -quiet -v -iprefix D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/ -D_REENTRANT D:\Install\CLion 2019.2.2\bin\cmake\win\share\cmake-3.14\Modules\CMakeCCompilerABI.c -quiet -dumpbase CMakeCCompilerABI.c -mtune=generic -march=pentiumpro -auxbase-strip CMakeFiles\cmTC_9cacd.dir\CMakeCCompilerABI.c.obj -version -o C:\Users\THINKPAD\AppData\Local\Temp\ccl7wU3N.s]
   ignore line: [GNU C11 (tdm-1) version 5.1.0 (mingw32)]
   ignore line: [	compiled by GNU C version 5.1.0, GMP version 4.3.2, MPFR version 2.4.2, MPC version 0.8.2]
   ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
@@ -148,8 +148,8 @@ Parsed C implicit link information from above output:
   ignore line: [	compiled by GNU C version 5.1.0, GMP version 4.3.2, MPFR version 2.4.2, MPC version 0.8.2]
   ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
   ignore line: [Compiler executable checksum: 2682432a7094ac8df846b6a707cdc762]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\cmTC_82aec.dir\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=pentiumpro']
-  ignore line: [ D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../mingw32/bin/as.exe -v -o CMakeFiles\cmTC_82aec.dir\CMakeCCompilerABI.c.obj C:\Users\THINKPAD\AppData\Local\Temp\ccgD5B8d.s]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\cmTC_9cacd.dir\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=pentiumpro']
+  ignore line: [ D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../mingw32/bin/as.exe -v -o CMakeFiles\cmTC_9cacd.dir\CMakeCCompilerABI.c.obj C:\Users\THINKPAD\AppData\Local\Temp\ccl7wU3N.s]
   ignore line: [GNU assembler version 2.24 (mingw32) using BFD version (GNU Binutils) 2.24]
   ignore line: [COMPILER_PATH=D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/]
   ignore line: [D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/]
@@ -158,12 +158,12 @@ Parsed C implicit link information from above output:
   ignore line: [D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/]
   ignore line: [D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../mingw32/lib/]
   ignore line: [D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\cmTC_82aec.dir\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=pentiumpro']
-  ignore line: [Linking C executable cmTC_82aec.exe]
-  ignore line: ["D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E cmake_link_script CMakeFiles\cmTC_82aec.dir\link.txt --verbose=1]
-  ignore line: ["D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\cmTC_82aec.dir/objects.a]
-  ignore line: [D:\Install\CodeBlocks\MinGW\bin\ar.exe cr CMakeFiles\cmTC_82aec.dir/objects.a @CMakeFiles\cmTC_82aec.dir\objects1.rsp]
-  ignore line: [D:\Install\CodeBlocks\MinGW\bin\gcc.exe     -v -Wl,--whole-archive CMakeFiles\cmTC_82aec.dir/objects.a -Wl,--no-whole-archive  -o cmTC_82aec.exe -Wl,--out-implib,libcmTC_82aec.dll.a -Wl,--major-image-version,0,--minor-image-version,0 ]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\cmTC_9cacd.dir\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=pentiumpro']
+  ignore line: [Linking C executable cmTC_9cacd.exe]
+  ignore line: ["D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E cmake_link_script CMakeFiles\cmTC_9cacd.dir\link.txt --verbose=1]
+  ignore line: ["D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\cmTC_9cacd.dir/objects.a]
+  ignore line: [D:\Install\CodeBlocks\MinGW\bin\ar.exe cr CMakeFiles\cmTC_9cacd.dir/objects.a @CMakeFiles\cmTC_9cacd.dir\objects1.rsp]
+  ignore line: [D:\Install\CodeBlocks\MinGW\bin\gcc.exe     -v -Wl,--whole-archive CMakeFiles\cmTC_9cacd.dir/objects.a -Wl,--no-whole-archive  -o cmTC_9cacd.exe -Wl,--out-implib,libcmTC_9cacd.dll.a -Wl,--major-image-version,0,--minor-image-version,0 ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=D:\Install\CodeBlocks\MinGW\bin\gcc.exe]
   ignore line: [COLLECT_LTO_WRAPPER=D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/lto-wrapper.exe]
@@ -178,13 +178,13 @@ Parsed C implicit link information from above output:
   ignore line: [D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/]
   ignore line: [D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../mingw32/lib/]
   ignore line: [D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_82aec.exe' '-mtune=generic' '-march=pentiumpro']
-  link line: [ D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/collect2.exe -plugin D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/liblto_plugin-0.dll -plugin-opt=D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\Users\THINKPAD\AppData\Local\Temp\cc7hN9Xi.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt --exclude-libs=libpthread.a -Bdynamic -o cmTC_82aec.exe D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../crt2.o D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/crtbegin.o -LD:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0 -LD:/Install/CodeBlocks/MinGW/bin/../lib/gcc -LD:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../mingw32/lib -LD:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../.. --whole-archive CMakeFiles\cmTC_82aec.dir/objects.a --no-whole-archive --out-implib libcmTC_82aec.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/crtend.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_9cacd.exe' '-mtune=generic' '-march=pentiumpro']
+  link line: [ D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/collect2.exe -plugin D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/liblto_plugin-0.dll -plugin-opt=D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\Users\THINKPAD\AppData\Local\Temp\ccldWvw8.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt --exclude-libs=libpthread.a -Bdynamic -o cmTC_9cacd.exe D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../crt2.o D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/crtbegin.o -LD:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0 -LD:/Install/CodeBlocks/MinGW/bin/../lib/gcc -LD:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../mingw32/lib -LD:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../.. --whole-archive CMakeFiles\cmTC_9cacd.dir/objects.a --no-whole-archive --out-implib libcmTC_9cacd.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/crtend.o]
     arg [D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/collect2.exe] ==> ignore
     arg [-plugin] ==> ignore
     arg [D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/liblto_plugin-0.dll] ==> ignore
     arg [-plugin-opt=D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/lto-wrapper.exe] ==> ignore
-    arg [-plugin-opt=-fresolution=C:\Users\THINKPAD\AppData\Local\Temp\cc7hN9Xi.res] ==> ignore
+    arg [-plugin-opt=-fresolution=C:\Users\THINKPAD\AppData\Local\Temp\ccldWvw8.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lmingw32] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lmoldname] ==> ignore
@@ -203,7 +203,7 @@ Parsed C implicit link information from above output:
     arg [--exclude-libs=libpthread.a] ==> ignore
     arg [-Bdynamic] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_82aec.exe] ==> ignore
+    arg [cmTC_9cacd.exe] ==> ignore
     arg [D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../crt2.o] ==> ignore
     arg [D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/crtbegin.o] ==> ignore
     arg [-LD:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0] ==> dir [D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0]
@@ -211,10 +211,10 @@ Parsed C implicit link information from above output:
     arg [-LD:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../mingw32/lib] ==> dir [D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../mingw32/lib]
     arg [-LD:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../..] ==> dir [D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../..]
     arg [--whole-archive] ==> ignore
-    arg [CMakeFiles\cmTC_82aec.dir/objects.a] ==> ignore
+    arg [CMakeFiles\cmTC_9cacd.dir/objects.a] ==> ignore
     arg [--no-whole-archive] ==> ignore
     arg [--out-implib] ==> ignore
-    arg [libcmTC_82aec.dll.a] ==> ignore
+    arg [libcmTC_9cacd.dll.a] ==> ignore
     arg [--major-image-version] ==> ignore
     arg [0] ==> ignore
     arg [--minor-image-version] ==> ignore
@@ -251,16 +251,16 @@ Parsed C implicit link information from above output:
 Detecting C [-std=c11] compiler features compiled with the following output:
 Change Dir: D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command(s):D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe cmTC_d9e65/fast 
-D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f CMakeFiles\cmTC_d9e65.dir\build.make CMakeFiles/cmTC_d9e65.dir/build
+Run Build Command(s):D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe cmTC_f3d42/fast 
+D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f CMakeFiles\cmTC_f3d42.dir\build.make CMakeFiles/cmTC_f3d42.dir/build
 mingw32-make.exe[1]: Entering directory 'D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_d9e65.dir/feature_tests.c.obj
-D:\Install\CodeBlocks\MinGW\bin\gcc.exe   -std=c11 -o CMakeFiles\cmTC_d9e65.dir\feature_tests.c.obj   -c D:\projects\CLionProjects\myc1\cmake-build-debug\CMakeFiles\feature_tests.c
-Linking C executable cmTC_d9e65.exe
-"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E cmake_link_script CMakeFiles\cmTC_d9e65.dir\link.txt --verbose=1
-"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\cmTC_d9e65.dir/objects.a
-D:\Install\CodeBlocks\MinGW\bin\ar.exe cr CMakeFiles\cmTC_d9e65.dir/objects.a @CMakeFiles\cmTC_d9e65.dir\objects1.rsp
-D:\Install\CodeBlocks\MinGW\bin\gcc.exe      -Wl,--whole-archive CMakeFiles\cmTC_d9e65.dir/objects.a -Wl,--no-whole-archive  -o cmTC_d9e65.exe -Wl,--out-implib,libcmTC_d9e65.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\cmTC_d9e65.dir\linklibs.rsp
+Building C object CMakeFiles/cmTC_f3d42.dir/feature_tests.c.obj
+D:\Install\CodeBlocks\MinGW\bin\gcc.exe   -std=c11 -o CMakeFiles\cmTC_f3d42.dir\feature_tests.c.obj   -c D:\projects\CLionProjects\myc1\cmake-build-debug\CMakeFiles\feature_tests.c
+Linking C executable cmTC_f3d42.exe
+"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E cmake_link_script CMakeFiles\cmTC_f3d42.dir\link.txt --verbose=1
+"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\cmTC_f3d42.dir/objects.a
+D:\Install\CodeBlocks\MinGW\bin\ar.exe cr CMakeFiles\cmTC_f3d42.dir/objects.a @CMakeFiles\cmTC_f3d42.dir\objects1.rsp
+D:\Install\CodeBlocks\MinGW\bin\gcc.exe      -Wl,--whole-archive CMakeFiles\cmTC_f3d42.dir/objects.a -Wl,--no-whole-archive  -o cmTC_f3d42.exe -Wl,--out-implib,libcmTC_f3d42.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\cmTC_f3d42.dir\linklibs.rsp
 mingw32-make.exe[1]: Leaving directory 'D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/CMakeTmp'
 
 
@@ -273,16 +273,16 @@ mingw32-make.exe[1]: Leaving directory 'D:/projects/CLionProjects/myc1/cmake-bui
 Detecting C [-std=c99] compiler features compiled with the following output:
 Change Dir: D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command(s):D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe cmTC_e5f47/fast 
-D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f CMakeFiles\cmTC_e5f47.dir\build.make CMakeFiles/cmTC_e5f47.dir/build
+Run Build Command(s):D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe cmTC_09c39/fast 
+D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f CMakeFiles\cmTC_09c39.dir\build.make CMakeFiles/cmTC_09c39.dir/build
 mingw32-make.exe[1]: Entering directory 'D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_e5f47.dir/feature_tests.c.obj
-D:\Install\CodeBlocks\MinGW\bin\gcc.exe   -std=c99 -o CMakeFiles\cmTC_e5f47.dir\feature_tests.c.obj   -c D:\projects\CLionProjects\myc1\cmake-build-debug\CMakeFiles\feature_tests.c
-Linking C executable cmTC_e5f47.exe
-"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E cmake_link_script CMakeFiles\cmTC_e5f47.dir\link.txt --verbose=1
-"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\cmTC_e5f47.dir/objects.a
-D:\Install\CodeBlocks\MinGW\bin\ar.exe cr CMakeFiles\cmTC_e5f47.dir/objects.a @CMakeFiles\cmTC_e5f47.dir\objects1.rsp
-D:\Install\CodeBlocks\MinGW\bin\gcc.exe      -Wl,--whole-archive CMakeFiles\cmTC_e5f47.dir/objects.a -Wl,--no-whole-archive  -o cmTC_e5f47.exe -Wl,--out-implib,libcmTC_e5f47.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\cmTC_e5f47.dir\linklibs.rsp
+Building C object CMakeFiles/cmTC_09c39.dir/feature_tests.c.obj
+D:\Install\CodeBlocks\MinGW\bin\gcc.exe   -std=c99 -o CMakeFiles\cmTC_09c39.dir\feature_tests.c.obj   -c D:\projects\CLionProjects\myc1\cmake-build-debug\CMakeFiles\feature_tests.c
+Linking C executable cmTC_09c39.exe
+"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E cmake_link_script CMakeFiles\cmTC_09c39.dir\link.txt --verbose=1
+"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\cmTC_09c39.dir/objects.a
+D:\Install\CodeBlocks\MinGW\bin\ar.exe cr CMakeFiles\cmTC_09c39.dir/objects.a @CMakeFiles\cmTC_09c39.dir\objects1.rsp
+D:\Install\CodeBlocks\MinGW\bin\gcc.exe      -Wl,--whole-archive CMakeFiles\cmTC_09c39.dir/objects.a -Wl,--no-whole-archive  -o cmTC_09c39.exe -Wl,--out-implib,libcmTC_09c39.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\cmTC_09c39.dir\linklibs.rsp
 mingw32-make.exe[1]: Leaving directory 'D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/CMakeTmp'
 
 
@@ -295,16 +295,16 @@ mingw32-make.exe[1]: Leaving directory 'D:/projects/CLionProjects/myc1/cmake-bui
 Detecting C [-std=c90] compiler features compiled with the following output:
 Change Dir: D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command(s):D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe cmTC_7f5c7/fast 
-D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f CMakeFiles\cmTC_7f5c7.dir\build.make CMakeFiles/cmTC_7f5c7.dir/build
+Run Build Command(s):D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe cmTC_6e9cc/fast 
+D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f CMakeFiles\cmTC_6e9cc.dir\build.make CMakeFiles/cmTC_6e9cc.dir/build
 mingw32-make.exe[1]: Entering directory 'D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_7f5c7.dir/feature_tests.c.obj
-D:\Install\CodeBlocks\MinGW\bin\gcc.exe   -std=c90 -o CMakeFiles\cmTC_7f5c7.dir\feature_tests.c.obj   -c D:\projects\CLionProjects\myc1\cmake-build-debug\CMakeFiles\feature_tests.c
-Linking C executable cmTC_7f5c7.exe
-"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E cmake_link_script CMakeFiles\cmTC_7f5c7.dir\link.txt --verbose=1
-"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\cmTC_7f5c7.dir/objects.a
-D:\Install\CodeBlocks\MinGW\bin\ar.exe cr CMakeFiles\cmTC_7f5c7.dir/objects.a @CMakeFiles\cmTC_7f5c7.dir\objects1.rsp
-D:\Install\CodeBlocks\MinGW\bin\gcc.exe      -Wl,--whole-archive CMakeFiles\cmTC_7f5c7.dir/objects.a -Wl,--no-whole-archive  -o cmTC_7f5c7.exe -Wl,--out-implib,libcmTC_7f5c7.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\cmTC_7f5c7.dir\linklibs.rsp
+Building C object CMakeFiles/cmTC_6e9cc.dir/feature_tests.c.obj
+D:\Install\CodeBlocks\MinGW\bin\gcc.exe   -std=c90 -o CMakeFiles\cmTC_6e9cc.dir\feature_tests.c.obj   -c D:\projects\CLionProjects\myc1\cmake-build-debug\CMakeFiles\feature_tests.c
+Linking C executable cmTC_6e9cc.exe
+"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E cmake_link_script CMakeFiles\cmTC_6e9cc.dir\link.txt --verbose=1
+"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\cmTC_6e9cc.dir/objects.a
+D:\Install\CodeBlocks\MinGW\bin\ar.exe cr CMakeFiles\cmTC_6e9cc.dir/objects.a @CMakeFiles\cmTC_6e9cc.dir\objects1.rsp
+D:\Install\CodeBlocks\MinGW\bin\gcc.exe      -Wl,--whole-archive CMakeFiles\cmTC_6e9cc.dir/objects.a -Wl,--no-whole-archive  -o cmTC_6e9cc.exe -Wl,--out-implib,libcmTC_6e9cc.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\cmTC_6e9cc.dir\linklibs.rsp
 mingw32-make.exe[1]: Leaving directory 'D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/CMakeTmp'
 
 
@@ -315,35 +315,35 @@ mingw32-make.exe[1]: Leaving directory 'D:/projects/CLionProjects/myc1/cmake-bui
 Determining if the CXX compiler works passed with the following output:
 Change Dir: D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command(s):D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe cmTC_4541f/fast 
-D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f CMakeFiles\cmTC_4541f.dir\build.make CMakeFiles/cmTC_4541f.dir/build
+Run Build Command(s):D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe cmTC_bc470/fast 
+D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f CMakeFiles\cmTC_bc470.dir\build.make CMakeFiles/cmTC_bc470.dir/build
 mingw32-make.exe[1]: Entering directory 'D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_4541f.dir/testCXXCompiler.cxx.obj
-D:\Install\CodeBlocks\MinGW\bin\g++.exe     -o CMakeFiles\cmTC_4541f.dir\testCXXCompiler.cxx.obj -c D:\projects\CLionProjects\myc1\cmake-build-debug\CMakeFiles\CMakeTmp\testCXXCompiler.cxx
-Linking CXX executable cmTC_4541f.exe
-"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E cmake_link_script CMakeFiles\cmTC_4541f.dir\link.txt --verbose=1
-"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\cmTC_4541f.dir/objects.a
-D:\Install\CodeBlocks\MinGW\bin\ar.exe cr CMakeFiles\cmTC_4541f.dir/objects.a @CMakeFiles\cmTC_4541f.dir\objects1.rsp
-D:\Install\CodeBlocks\MinGW\bin\g++.exe      -Wl,--whole-archive CMakeFiles\cmTC_4541f.dir/objects.a -Wl,--no-whole-archive  -o cmTC_4541f.exe -Wl,--out-implib,libcmTC_4541f.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\cmTC_4541f.dir\linklibs.rsp
+Building CXX object CMakeFiles/cmTC_bc470.dir/testCXXCompiler.cxx.obj
+D:\Install\CodeBlocks\MinGW\bin\g++.exe     -o CMakeFiles\cmTC_bc470.dir\testCXXCompiler.cxx.obj -c D:\projects\CLionProjects\myc1\cmake-build-debug\CMakeFiles\CMakeTmp\testCXXCompiler.cxx
+Linking CXX executable cmTC_bc470.exe
+"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E cmake_link_script CMakeFiles\cmTC_bc470.dir\link.txt --verbose=1
+"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\cmTC_bc470.dir/objects.a
+D:\Install\CodeBlocks\MinGW\bin\ar.exe cr CMakeFiles\cmTC_bc470.dir/objects.a @CMakeFiles\cmTC_bc470.dir\objects1.rsp
+D:\Install\CodeBlocks\MinGW\bin\g++.exe      -Wl,--whole-archive CMakeFiles\cmTC_bc470.dir/objects.a -Wl,--no-whole-archive  -o cmTC_bc470.exe -Wl,--out-implib,libcmTC_bc470.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\cmTC_bc470.dir\linklibs.rsp
 mingw32-make.exe[1]: Leaving directory 'D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/CMakeTmp'
 
 
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command(s):D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe cmTC_cfc53/fast 
-D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f CMakeFiles\cmTC_cfc53.dir\build.make CMakeFiles/cmTC_cfc53.dir/build
+Run Build Command(s):D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe cmTC_2a3ce/fast 
+D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f CMakeFiles\cmTC_2a3ce.dir\build.make CMakeFiles/cmTC_2a3ce.dir/build
 mingw32-make.exe[1]: Entering directory 'D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_cfc53.dir/CMakeCXXCompilerABI.cpp.obj
-D:\Install\CodeBlocks\MinGW\bin\g++.exe    -v -o CMakeFiles\cmTC_cfc53.dir\CMakeCXXCompilerABI.cpp.obj -c "D:\Install\CLion 2019.2.2\bin\cmake\win\share\cmake-3.14\Modules\CMakeCXXCompilerABI.cpp"
+Building CXX object CMakeFiles/cmTC_2a3ce.dir/CMakeCXXCompilerABI.cpp.obj
+D:\Install\CodeBlocks\MinGW\bin\g++.exe    -v -o CMakeFiles\cmTC_2a3ce.dir\CMakeCXXCompilerABI.cpp.obj -c "D:\Install\CLion 2019.2.2\bin\cmake\win\share\cmake-3.14\Modules\CMakeCXXCompilerABI.cpp"
 Using built-in specs.
 COLLECT_GCC=D:\Install\CodeBlocks\MinGW\bin\g++.exe
 Target: mingw32
 Configured with: ../../../src/gcc-5.1.0/configure --build=mingw32 --enable-languages=ada,c,c++,fortran,lto,objc,obj-c++ --enable-libgomp --enable-lto --enable-graphite --enable-libstdcxx-debug --enable-threads=posix --enable-version-specific-runtime-libs --enable-fully-dynamic-string --enable-libstdcxx-threads --enable-libstdcxx-time --with-gnu-ld --disable-werror --disable-nls --disable-win32-registry --disable-symvers --enable-cxx-flags='-fno-function-sections -fno-data-sections -DWINPTHREAD_STATIC' --prefix=/mingw32tdm --with-local-prefix=/mingw32tdm --with-pkgversion=tdm-1 --enable-sjlj-exceptions --with-bugurl=http://tdm-gcc.tdragon.net/bugs
 Thread model: posix
 gcc version 5.1.0 (tdm-1) 
-COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\cmTC_cfc53.dir\CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=pentiumpro'
- D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/cc1plus.exe -quiet -v -iprefix D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/ -D_REENTRANT D:\Install\CLion 2019.2.2\bin\cmake\win\share\cmake-3.14\Modules\CMakeCXXCompilerABI.cpp -quiet -dumpbase CMakeCXXCompilerABI.cpp -mtune=generic -march=pentiumpro -auxbase-strip CMakeFiles\cmTC_cfc53.dir\CMakeCXXCompilerABI.cpp.obj -version -o C:\Users\THINKPAD\AppData\Local\Temp\ccKpokBd.s
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\cmTC_2a3ce.dir\CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=pentiumpro'
+ D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/cc1plus.exe -quiet -v -iprefix D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/ -D_REENTRANT D:\Install\CLion 2019.2.2\bin\cmake\win\share\cmake-3.14\Modules\CMakeCXXCompilerABI.cpp -quiet -dumpbase CMakeCXXCompilerABI.cpp -mtune=generic -march=pentiumpro -auxbase-strip CMakeFiles\cmTC_2a3ce.dir\CMakeCXXCompilerABI.cpp.obj -version -o C:\Users\THINKPAD\AppData\Local\Temp\ccpfb5Bc.s
 GNU C++ (tdm-1) version 5.1.0 (mingw32)
 	compiled by GNU C version 5.1.0, GMP version 4.3.2, MPFR version 2.4.2, MPC version 0.8.2
 GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
@@ -368,17 +368,17 @@ GNU C++ (tdm-1) version 5.1.0 (mingw32)
 	compiled by GNU C version 5.1.0, GMP version 4.3.2, MPFR version 2.4.2, MPC version 0.8.2
 GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
 Compiler executable checksum: 2e47d181020f054da881eda9fc3e9f75
-COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\cmTC_cfc53.dir\CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=pentiumpro'
- D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../mingw32/bin/as.exe -v -o CMakeFiles\cmTC_cfc53.dir\CMakeCXXCompilerABI.cpp.obj C:\Users\THINKPAD\AppData\Local\Temp\ccKpokBd.s
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\cmTC_2a3ce.dir\CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=pentiumpro'
+ D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../mingw32/bin/as.exe -v -o CMakeFiles\cmTC_2a3ce.dir\CMakeCXXCompilerABI.cpp.obj C:\Users\THINKPAD\AppData\Local\Temp\ccpfb5Bc.s
 GNU assembler version 2.24 (mingw32) using BFD version (GNU Binutils) 2.24
 COMPILER_PATH=D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/;D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/;D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../mingw32/bin/
 LIBRARY_PATH=D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/;D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/;D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../mingw32/lib/;D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../
-COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\cmTC_cfc53.dir\CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=pentiumpro'
-Linking CXX executable cmTC_cfc53.exe
-"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E cmake_link_script CMakeFiles\cmTC_cfc53.dir\link.txt --verbose=1
-"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\cmTC_cfc53.dir/objects.a
-D:\Install\CodeBlocks\MinGW\bin\ar.exe cr CMakeFiles\cmTC_cfc53.dir/objects.a @CMakeFiles\cmTC_cfc53.dir\objects1.rsp
-D:\Install\CodeBlocks\MinGW\bin\g++.exe     -v -Wl,--whole-archive CMakeFiles\cmTC_cfc53.dir/objects.a -Wl,--no-whole-archive  -o cmTC_cfc53.exe -Wl,--out-implib,libcmTC_cfc53.dll.a -Wl,--major-image-version,0,--minor-image-version,0 
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\cmTC_2a3ce.dir\CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=pentiumpro'
+Linking CXX executable cmTC_2a3ce.exe
+"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E cmake_link_script CMakeFiles\cmTC_2a3ce.dir\link.txt --verbose=1
+"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\cmTC_2a3ce.dir/objects.a
+D:\Install\CodeBlocks\MinGW\bin\ar.exe cr CMakeFiles\cmTC_2a3ce.dir/objects.a @CMakeFiles\cmTC_2a3ce.dir\objects1.rsp
+D:\Install\CodeBlocks\MinGW\bin\g++.exe     -v -Wl,--whole-archive CMakeFiles\cmTC_2a3ce.dir/objects.a -Wl,--no-whole-archive  -o cmTC_2a3ce.exe -Wl,--out-implib,libcmTC_2a3ce.dll.a -Wl,--major-image-version,0,--minor-image-version,0 
 Using built-in specs.
 COLLECT_GCC=D:\Install\CodeBlocks\MinGW\bin\g++.exe
 COLLECT_LTO_WRAPPER=D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/lto-wrapper.exe
@@ -388,8 +388,8 @@ Thread model: posix
 gcc version 5.1.0 (tdm-1) 
 COMPILER_PATH=D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/;D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/;D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../mingw32/bin/
 LIBRARY_PATH=D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/;D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/;D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../mingw32/lib/;D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_cfc53.exe' '-mtune=generic' '-march=pentiumpro'
- D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/collect2.exe -plugin D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/liblto_plugin-0.dll -plugin-opt=D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\Users\THINKPAD\AppData\Local\Temp\cc9RHnUe.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt --exclude-libs=libpthread.a -Bdynamic -o cmTC_cfc53.exe D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../crt2.o D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/crtbegin.o -LD:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0 -LD:/Install/CodeBlocks/MinGW/bin/../lib/gcc -LD:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../mingw32/lib -LD:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../.. --whole-archive CMakeFiles\cmTC_cfc53.dir/objects.a --no-whole-archive --out-implib libcmTC_cfc53.dll.a --major-image-version 0 --minor-image-version 0 -Bstatic -lstdc++ -Bdynamic -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/crtend.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_2a3ce.exe' '-mtune=generic' '-march=pentiumpro'
+ D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/collect2.exe -plugin D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/liblto_plugin-0.dll -plugin-opt=D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\Users\THINKPAD\AppData\Local\Temp\ccZBSHax.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt --exclude-libs=libpthread.a -Bdynamic -o cmTC_2a3ce.exe D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../crt2.o D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/crtbegin.o -LD:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0 -LD:/Install/CodeBlocks/MinGW/bin/../lib/gcc -LD:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../mingw32/lib -LD:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../.. --whole-archive CMakeFiles\cmTC_2a3ce.dir/objects.a --no-whole-archive --out-implib libcmTC_2a3ce.dll.a --major-image-version 0 --minor-image-version 0 -Bstatic -lstdc++ -Bdynamic -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/crtend.o
 mingw32-make.exe[1]: Leaving directory 'D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/CMakeTmp'
 
 
@@ -416,19 +416,19 @@ Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld\.exe|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command(s):D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe cmTC_cfc53/fast ]
-  ignore line: [D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f CMakeFiles\cmTC_cfc53.dir\build.make CMakeFiles/cmTC_cfc53.dir/build]
+  ignore line: [Run Build Command(s):D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe cmTC_2a3ce/fast ]
+  ignore line: [D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f CMakeFiles\cmTC_2a3ce.dir\build.make CMakeFiles/cmTC_2a3ce.dir/build]
   ignore line: [mingw32-make.exe[1]: Entering directory 'D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/CMakeTmp']
-  ignore line: [Building CXX object CMakeFiles/cmTC_cfc53.dir/CMakeCXXCompilerABI.cpp.obj]
-  ignore line: [D:\Install\CodeBlocks\MinGW\bin\g++.exe    -v -o CMakeFiles\cmTC_cfc53.dir\CMakeCXXCompilerABI.cpp.obj -c "D:\Install\CLion 2019.2.2\bin\cmake\win\share\cmake-3.14\Modules\CMakeCXXCompilerABI.cpp"]
+  ignore line: [Building CXX object CMakeFiles/cmTC_2a3ce.dir/CMakeCXXCompilerABI.cpp.obj]
+  ignore line: [D:\Install\CodeBlocks\MinGW\bin\g++.exe    -v -o CMakeFiles\cmTC_2a3ce.dir\CMakeCXXCompilerABI.cpp.obj -c "D:\Install\CLion 2019.2.2\bin\cmake\win\share\cmake-3.14\Modules\CMakeCXXCompilerABI.cpp"]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=D:\Install\CodeBlocks\MinGW\bin\g++.exe]
   ignore line: [Target: mingw32]
   ignore line: [Configured with: ../../../src/gcc-5.1.0/configure --build=mingw32 --enable-languages=ada,c,c++,fortran,lto,objc,obj-c++ --enable-libgomp --enable-lto --enable-graphite --enable-libstdcxx-debug --enable-threads=posix --enable-version-specific-runtime-libs --enable-fully-dynamic-string --enable-libstdcxx-threads --enable-libstdcxx-time --with-gnu-ld --disable-werror --disable-nls --disable-win32-registry --disable-symvers --enable-cxx-flags='-fno-function-sections -fno-data-sections -DWINPTHREAD_STATIC' --prefix=/mingw32tdm --with-local-prefix=/mingw32tdm --with-pkgversion=tdm-1 --enable-sjlj-exceptions --with-bugurl=http://tdm-gcc.tdragon.net/bugs]
   ignore line: [Thread model: posix]
   ignore line: [gcc version 5.1.0 (tdm-1) ]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\cmTC_cfc53.dir\CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=pentiumpro']
-  ignore line: [ D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/cc1plus.exe -quiet -v -iprefix D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/ -D_REENTRANT D:\Install\CLion 2019.2.2\bin\cmake\win\share\cmake-3.14\Modules\CMakeCXXCompilerABI.cpp -quiet -dumpbase CMakeCXXCompilerABI.cpp -mtune=generic -march=pentiumpro -auxbase-strip CMakeFiles\cmTC_cfc53.dir\CMakeCXXCompilerABI.cpp.obj -version -o C:\Users\THINKPAD\AppData\Local\Temp\ccKpokBd.s]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\cmTC_2a3ce.dir\CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=pentiumpro']
+  ignore line: [ D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/cc1plus.exe -quiet -v -iprefix D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/ -D_REENTRANT D:\Install\CLion 2019.2.2\bin\cmake\win\share\cmake-3.14\Modules\CMakeCXXCompilerABI.cpp -quiet -dumpbase CMakeCXXCompilerABI.cpp -mtune=generic -march=pentiumpro -auxbase-strip CMakeFiles\cmTC_2a3ce.dir\CMakeCXXCompilerABI.cpp.obj -version -o C:\Users\THINKPAD\AppData\Local\Temp\ccpfb5Bc.s]
   ignore line: [GNU C++ (tdm-1) version 5.1.0 (mingw32)]
   ignore line: [	compiled by GNU C version 5.1.0, GMP version 4.3.2, MPFR version 2.4.2, MPC version 0.8.2]
   ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
@@ -453,8 +453,8 @@ Parsed CXX implicit link information from above output:
   ignore line: [	compiled by GNU C version 5.1.0, GMP version 4.3.2, MPFR version 2.4.2, MPC version 0.8.2]
   ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
   ignore line: [Compiler executable checksum: 2e47d181020f054da881eda9fc3e9f75]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\cmTC_cfc53.dir\CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=pentiumpro']
-  ignore line: [ D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../mingw32/bin/as.exe -v -o CMakeFiles\cmTC_cfc53.dir\CMakeCXXCompilerABI.cpp.obj C:\Users\THINKPAD\AppData\Local\Temp\ccKpokBd.s]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\cmTC_2a3ce.dir\CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=pentiumpro']
+  ignore line: [ D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../mingw32/bin/as.exe -v -o CMakeFiles\cmTC_2a3ce.dir\CMakeCXXCompilerABI.cpp.obj C:\Users\THINKPAD\AppData\Local\Temp\ccpfb5Bc.s]
   ignore line: [GNU assembler version 2.24 (mingw32) using BFD version (GNU Binutils) 2.24]
   ignore line: [COMPILER_PATH=D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/]
   ignore line: [D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/]
@@ -463,12 +463,12 @@ Parsed CXX implicit link information from above output:
   ignore line: [D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/]
   ignore line: [D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../mingw32/lib/]
   ignore line: [D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\cmTC_cfc53.dir\CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=pentiumpro']
-  ignore line: [Linking CXX executable cmTC_cfc53.exe]
-  ignore line: ["D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E cmake_link_script CMakeFiles\cmTC_cfc53.dir\link.txt --verbose=1]
-  ignore line: ["D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\cmTC_cfc53.dir/objects.a]
-  ignore line: [D:\Install\CodeBlocks\MinGW\bin\ar.exe cr CMakeFiles\cmTC_cfc53.dir/objects.a @CMakeFiles\cmTC_cfc53.dir\objects1.rsp]
-  ignore line: [D:\Install\CodeBlocks\MinGW\bin\g++.exe     -v -Wl,--whole-archive CMakeFiles\cmTC_cfc53.dir/objects.a -Wl,--no-whole-archive  -o cmTC_cfc53.exe -Wl,--out-implib,libcmTC_cfc53.dll.a -Wl,--major-image-version,0,--minor-image-version,0 ]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\cmTC_2a3ce.dir\CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=pentiumpro']
+  ignore line: [Linking CXX executable cmTC_2a3ce.exe]
+  ignore line: ["D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E cmake_link_script CMakeFiles\cmTC_2a3ce.dir\link.txt --verbose=1]
+  ignore line: ["D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\cmTC_2a3ce.dir/objects.a]
+  ignore line: [D:\Install\CodeBlocks\MinGW\bin\ar.exe cr CMakeFiles\cmTC_2a3ce.dir/objects.a @CMakeFiles\cmTC_2a3ce.dir\objects1.rsp]
+  ignore line: [D:\Install\CodeBlocks\MinGW\bin\g++.exe     -v -Wl,--whole-archive CMakeFiles\cmTC_2a3ce.dir/objects.a -Wl,--no-whole-archive  -o cmTC_2a3ce.exe -Wl,--out-implib,libcmTC_2a3ce.dll.a -Wl,--major-image-version,0,--minor-image-version,0 ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=D:\Install\CodeBlocks\MinGW\bin\g++.exe]
   ignore line: [COLLECT_LTO_WRAPPER=D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/lto-wrapper.exe]
@@ -483,13 +483,13 @@ Parsed CXX implicit link information from above output:
   ignore line: [D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/]
   ignore line: [D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../mingw32/lib/]
   ignore line: [D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_cfc53.exe' '-mtune=generic' '-march=pentiumpro']
-  link line: [ D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/collect2.exe -plugin D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/liblto_plugin-0.dll -plugin-opt=D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\Users\THINKPAD\AppData\Local\Temp\cc9RHnUe.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt --exclude-libs=libpthread.a -Bdynamic -o cmTC_cfc53.exe D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../crt2.o D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/crtbegin.o -LD:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0 -LD:/Install/CodeBlocks/MinGW/bin/../lib/gcc -LD:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../mingw32/lib -LD:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../.. --whole-archive CMakeFiles\cmTC_cfc53.dir/objects.a --no-whole-archive --out-implib libcmTC_cfc53.dll.a --major-image-version 0 --minor-image-version 0 -Bstatic -lstdc++ -Bdynamic -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/crtend.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_2a3ce.exe' '-mtune=generic' '-march=pentiumpro']
+  link line: [ D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/collect2.exe -plugin D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/liblto_plugin-0.dll -plugin-opt=D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\Users\THINKPAD\AppData\Local\Temp\ccZBSHax.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt --exclude-libs=libpthread.a -Bdynamic -o cmTC_2a3ce.exe D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../crt2.o D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/crtbegin.o -LD:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0 -LD:/Install/CodeBlocks/MinGW/bin/../lib/gcc -LD:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../mingw32/lib -LD:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../.. --whole-archive CMakeFiles\cmTC_2a3ce.dir/objects.a --no-whole-archive --out-implib libcmTC_2a3ce.dll.a --major-image-version 0 --minor-image-version 0 -Bstatic -lstdc++ -Bdynamic -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/crtend.o]
     arg [D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/collect2.exe] ==> ignore
     arg [-plugin] ==> ignore
     arg [D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/liblto_plugin-0.dll] ==> ignore
     arg [-plugin-opt=D:/Install/CodeBlocks/MinGW/bin/../libexec/gcc/mingw32/5.1.0/lto-wrapper.exe] ==> ignore
-    arg [-plugin-opt=-fresolution=C:\Users\THINKPAD\AppData\Local\Temp\cc9RHnUe.res] ==> ignore
+    arg [-plugin-opt=-fresolution=C:\Users\THINKPAD\AppData\Local\Temp\ccZBSHax.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lmingw32] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lmoldname] ==> ignore
@@ -508,7 +508,7 @@ Parsed CXX implicit link information from above output:
     arg [--exclude-libs=libpthread.a] ==> ignore
     arg [-Bdynamic] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_cfc53.exe] ==> ignore
+    arg [cmTC_2a3ce.exe] ==> ignore
     arg [D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../crt2.o] ==> ignore
     arg [D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/crtbegin.o] ==> ignore
     arg [-LD:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0] ==> dir [D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0]
@@ -516,10 +516,10 @@ Parsed CXX implicit link information from above output:
     arg [-LD:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../mingw32/lib] ==> dir [D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../mingw32/lib]
     arg [-LD:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../..] ==> dir [D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../..]
     arg [--whole-archive] ==> ignore
-    arg [CMakeFiles\cmTC_cfc53.dir/objects.a] ==> ignore
+    arg [CMakeFiles\cmTC_2a3ce.dir/objects.a] ==> ignore
     arg [--no-whole-archive] ==> ignore
     arg [--out-implib] ==> ignore
-    arg [libcmTC_cfc53.dll.a] ==> ignore
+    arg [libcmTC_2a3ce.dll.a] ==> ignore
     arg [--major-image-version] ==> ignore
     arg [0] ==> ignore
     arg [--minor-image-version] ==> ignore
@@ -559,16 +559,16 @@ Parsed CXX implicit link information from above output:
 Detecting CXX [-std=c++1z] compiler features compiled with the following output:
 Change Dir: D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command(s):D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe cmTC_fe49e/fast 
-D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f CMakeFiles\cmTC_fe49e.dir\build.make CMakeFiles/cmTC_fe49e.dir/build
+Run Build Command(s):D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe cmTC_1341e/fast 
+D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f CMakeFiles\cmTC_1341e.dir\build.make CMakeFiles/cmTC_1341e.dir/build
 mingw32-make.exe[1]: Entering directory 'D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_fe49e.dir/feature_tests.cxx.obj
-D:\Install\CodeBlocks\MinGW\bin\g++.exe    -std=c++1z -o CMakeFiles\cmTC_fe49e.dir\feature_tests.cxx.obj -c D:\projects\CLionProjects\myc1\cmake-build-debug\CMakeFiles\feature_tests.cxx
-Linking CXX executable cmTC_fe49e.exe
-"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E cmake_link_script CMakeFiles\cmTC_fe49e.dir\link.txt --verbose=1
-"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\cmTC_fe49e.dir/objects.a
-D:\Install\CodeBlocks\MinGW\bin\ar.exe cr CMakeFiles\cmTC_fe49e.dir/objects.a @CMakeFiles\cmTC_fe49e.dir\objects1.rsp
-D:\Install\CodeBlocks\MinGW\bin\g++.exe      -Wl,--whole-archive CMakeFiles\cmTC_fe49e.dir/objects.a -Wl,--no-whole-archive  -o cmTC_fe49e.exe -Wl,--out-implib,libcmTC_fe49e.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\cmTC_fe49e.dir\linklibs.rsp
+Building CXX object CMakeFiles/cmTC_1341e.dir/feature_tests.cxx.obj
+D:\Install\CodeBlocks\MinGW\bin\g++.exe    -std=c++1z -o CMakeFiles\cmTC_1341e.dir\feature_tests.cxx.obj -c D:\projects\CLionProjects\myc1\cmake-build-debug\CMakeFiles\feature_tests.cxx
+Linking CXX executable cmTC_1341e.exe
+"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E cmake_link_script CMakeFiles\cmTC_1341e.dir\link.txt --verbose=1
+"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\cmTC_1341e.dir/objects.a
+D:\Install\CodeBlocks\MinGW\bin\ar.exe cr CMakeFiles\cmTC_1341e.dir/objects.a @CMakeFiles\cmTC_1341e.dir\objects1.rsp
+D:\Install\CodeBlocks\MinGW\bin\g++.exe      -Wl,--whole-archive CMakeFiles\cmTC_1341e.dir/objects.a -Wl,--no-whole-archive  -o cmTC_1341e.exe -Wl,--out-implib,libcmTC_1341e.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\cmTC_1341e.dir\linklibs.rsp
 mingw32-make.exe[1]: Leaving directory 'D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/CMakeTmp'
 
 
@@ -634,16 +634,16 @@ mingw32-make.exe[1]: Leaving directory 'D:/projects/CLionProjects/myc1/cmake-bui
 Detecting CXX [-std=c++14] compiler features compiled with the following output:
 Change Dir: D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command(s):D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe cmTC_deeb3/fast 
-D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f CMakeFiles\cmTC_deeb3.dir\build.make CMakeFiles/cmTC_deeb3.dir/build
+Run Build Command(s):D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe cmTC_8c2cb/fast 
+D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f CMakeFiles\cmTC_8c2cb.dir\build.make CMakeFiles/cmTC_8c2cb.dir/build
 mingw32-make.exe[1]: Entering directory 'D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_deeb3.dir/feature_tests.cxx.obj
-D:\Install\CodeBlocks\MinGW\bin\g++.exe    -std=c++14 -o CMakeFiles\cmTC_deeb3.dir\feature_tests.cxx.obj -c D:\projects\CLionProjects\myc1\cmake-build-debug\CMakeFiles\feature_tests.cxx
-Linking CXX executable cmTC_deeb3.exe
-"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E cmake_link_script CMakeFiles\cmTC_deeb3.dir\link.txt --verbose=1
-"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\cmTC_deeb3.dir/objects.a
-D:\Install\CodeBlocks\MinGW\bin\ar.exe cr CMakeFiles\cmTC_deeb3.dir/objects.a @CMakeFiles\cmTC_deeb3.dir\objects1.rsp
-D:\Install\CodeBlocks\MinGW\bin\g++.exe      -Wl,--whole-archive CMakeFiles\cmTC_deeb3.dir/objects.a -Wl,--no-whole-archive  -o cmTC_deeb3.exe -Wl,--out-implib,libcmTC_deeb3.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\cmTC_deeb3.dir\linklibs.rsp
+Building CXX object CMakeFiles/cmTC_8c2cb.dir/feature_tests.cxx.obj
+D:\Install\CodeBlocks\MinGW\bin\g++.exe    -std=c++14 -o CMakeFiles\cmTC_8c2cb.dir\feature_tests.cxx.obj -c D:\projects\CLionProjects\myc1\cmake-build-debug\CMakeFiles\feature_tests.cxx
+Linking CXX executable cmTC_8c2cb.exe
+"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E cmake_link_script CMakeFiles\cmTC_8c2cb.dir\link.txt --verbose=1
+"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\cmTC_8c2cb.dir/objects.a
+D:\Install\CodeBlocks\MinGW\bin\ar.exe cr CMakeFiles\cmTC_8c2cb.dir/objects.a @CMakeFiles\cmTC_8c2cb.dir\objects1.rsp
+D:\Install\CodeBlocks\MinGW\bin\g++.exe      -Wl,--whole-archive CMakeFiles\cmTC_8c2cb.dir/objects.a -Wl,--no-whole-archive  -o cmTC_8c2cb.exe -Wl,--out-implib,libcmTC_8c2cb.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\cmTC_8c2cb.dir\linklibs.rsp
 mingw32-make.exe[1]: Leaving directory 'D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/CMakeTmp'
 
 
@@ -709,16 +709,16 @@ mingw32-make.exe[1]: Leaving directory 'D:/projects/CLionProjects/myc1/cmake-bui
 Detecting CXX [-std=c++11] compiler features compiled with the following output:
 Change Dir: D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command(s):D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe cmTC_3c6f3/fast 
-D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f CMakeFiles\cmTC_3c6f3.dir\build.make CMakeFiles/cmTC_3c6f3.dir/build
+Run Build Command(s):D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe cmTC_f0a29/fast 
+D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f CMakeFiles\cmTC_f0a29.dir\build.make CMakeFiles/cmTC_f0a29.dir/build
 mingw32-make.exe[1]: Entering directory 'D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_3c6f3.dir/feature_tests.cxx.obj
-D:\Install\CodeBlocks\MinGW\bin\g++.exe    -std=c++11 -o CMakeFiles\cmTC_3c6f3.dir\feature_tests.cxx.obj -c D:\projects\CLionProjects\myc1\cmake-build-debug\CMakeFiles\feature_tests.cxx
-Linking CXX executable cmTC_3c6f3.exe
-"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E cmake_link_script CMakeFiles\cmTC_3c6f3.dir\link.txt --verbose=1
-"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\cmTC_3c6f3.dir/objects.a
-D:\Install\CodeBlocks\MinGW\bin\ar.exe cr CMakeFiles\cmTC_3c6f3.dir/objects.a @CMakeFiles\cmTC_3c6f3.dir\objects1.rsp
-D:\Install\CodeBlocks\MinGW\bin\g++.exe      -Wl,--whole-archive CMakeFiles\cmTC_3c6f3.dir/objects.a -Wl,--no-whole-archive  -o cmTC_3c6f3.exe -Wl,--out-implib,libcmTC_3c6f3.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\cmTC_3c6f3.dir\linklibs.rsp
+Building CXX object CMakeFiles/cmTC_f0a29.dir/feature_tests.cxx.obj
+D:\Install\CodeBlocks\MinGW\bin\g++.exe    -std=c++11 -o CMakeFiles\cmTC_f0a29.dir\feature_tests.cxx.obj -c D:\projects\CLionProjects\myc1\cmake-build-debug\CMakeFiles\feature_tests.cxx
+Linking CXX executable cmTC_f0a29.exe
+"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E cmake_link_script CMakeFiles\cmTC_f0a29.dir\link.txt --verbose=1
+"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\cmTC_f0a29.dir/objects.a
+D:\Install\CodeBlocks\MinGW\bin\ar.exe cr CMakeFiles\cmTC_f0a29.dir/objects.a @CMakeFiles\cmTC_f0a29.dir\objects1.rsp
+D:\Install\CodeBlocks\MinGW\bin\g++.exe      -Wl,--whole-archive CMakeFiles\cmTC_f0a29.dir/objects.a -Wl,--no-whole-archive  -o cmTC_f0a29.exe -Wl,--out-implib,libcmTC_f0a29.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\cmTC_f0a29.dir\linklibs.rsp
 mingw32-make.exe[1]: Leaving directory 'D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/CMakeTmp'
 
 
@@ -784,16 +784,16 @@ mingw32-make.exe[1]: Leaving directory 'D:/projects/CLionProjects/myc1/cmake-bui
 Detecting CXX [-std=c++98] compiler features compiled with the following output:
 Change Dir: D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command(s):D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe cmTC_6623b/fast 
-D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f CMakeFiles\cmTC_6623b.dir\build.make CMakeFiles/cmTC_6623b.dir/build
+Run Build Command(s):D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe cmTC_fe174/fast 
+D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f CMakeFiles\cmTC_fe174.dir\build.make CMakeFiles/cmTC_fe174.dir/build
 mingw32-make.exe[1]: Entering directory 'D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_6623b.dir/feature_tests.cxx.obj
-D:\Install\CodeBlocks\MinGW\bin\g++.exe    -std=c++98 -o CMakeFiles\cmTC_6623b.dir\feature_tests.cxx.obj -c D:\projects\CLionProjects\myc1\cmake-build-debug\CMakeFiles\feature_tests.cxx
-Linking CXX executable cmTC_6623b.exe
-"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E cmake_link_script CMakeFiles\cmTC_6623b.dir\link.txt --verbose=1
-"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\cmTC_6623b.dir/objects.a
-D:\Install\CodeBlocks\MinGW\bin\ar.exe cr CMakeFiles\cmTC_6623b.dir/objects.a @CMakeFiles\cmTC_6623b.dir\objects1.rsp
-D:\Install\CodeBlocks\MinGW\bin\g++.exe      -Wl,--whole-archive CMakeFiles\cmTC_6623b.dir/objects.a -Wl,--no-whole-archive  -o cmTC_6623b.exe -Wl,--out-implib,libcmTC_6623b.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\cmTC_6623b.dir\linklibs.rsp
+Building CXX object CMakeFiles/cmTC_fe174.dir/feature_tests.cxx.obj
+D:\Install\CodeBlocks\MinGW\bin\g++.exe    -std=c++98 -o CMakeFiles\cmTC_fe174.dir\feature_tests.cxx.obj -c D:\projects\CLionProjects\myc1\cmake-build-debug\CMakeFiles\feature_tests.cxx
+Linking CXX executable cmTC_fe174.exe
+"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E cmake_link_script CMakeFiles\cmTC_fe174.dir\link.txt --verbose=1
+"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\cmTC_fe174.dir/objects.a
+D:\Install\CodeBlocks\MinGW\bin\ar.exe cr CMakeFiles\cmTC_fe174.dir/objects.a @CMakeFiles\cmTC_fe174.dir\objects1.rsp
+D:\Install\CodeBlocks\MinGW\bin\g++.exe      -Wl,--whole-archive CMakeFiles\cmTC_fe174.dir/objects.a -Wl,--no-whole-archive  -o cmTC_fe174.exe -Wl,--out-implib,libcmTC_fe174.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\cmTC_fe174.dir\linklibs.rsp
 mingw32-make.exe[1]: Leaving directory 'D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/CMakeTmp'
 
 
