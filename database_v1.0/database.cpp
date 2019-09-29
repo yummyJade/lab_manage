@@ -4,25 +4,28 @@
 #include <string>
 #include <stdlib.h>
 #include <memory.h>
-#include <algorithm>
-
 #define ll long long
 using namespace std;
 
 namespace settings {
     string settings_name = "settings.ini";
     string table_settings_name = "table_settings_name.ini";
+    string point_bucket_name = "point_bucket_name";
 }
+
+
 class DataBase {
 /*
 编写规范：
-1. 任何size变量 指的是多少个char， sizec 代表多少个 size* sizeof(char) 
+1. 任何size变量 指的是多少个char， sizec 代表多少个 size* sizeof(char)
 2. 所有传入的参数不应该考虑问题 1， 即避免使用者计算
 3. 行号从1开始计数
 
 //返回码含义：
 0.成功
 -1. 未知错误失败
+-2. 未选择表
+-3. 未找到数据
 */
 
 private:
@@ -36,8 +39,27 @@ private:
     vector<string> table_col_name; //列名
     vector<ll> table_col_size; // 当前表每列长度
     vector<ll> table_col_pre_size; //每列表长前缀和
+    ll table_id;
     //todo：做一个表长度前缀和数组
     //todo：做一个内存池，栈式，用磁盘-缓存形式
+
+    //指针哈希木桶
+    //第一维：每个表 第二维：每个字段 第三维：每个桶
+    vector<vector<vector<ll> > > pointBucket;
+
+    //是否开启hash，标志位
+    vector<vector<bool> > isHash();
+
+    ll hash(string value, ll mod = 10000) {
+        ll len = value.length();
+        ll ans = 0;
+        for (int i = 0; i < len; i++) {
+            ans += (value[i] * 31) % mod;
+        }
+        return ans;
+    }
+
+    //全局设置
     DataBase() {
         //全局设置
         this->table_name_max_len = 50;
@@ -55,15 +77,33 @@ private:
         fp = fopen(settings::table_settings_name.data(), "a");
         fclose(fp);
     }
-
 public:
+    /*索引代码*/
+    void savePointBucket() {
+        vector<vector<vector<ll> > > &a = this->pointBucket;
+        FILE *fp = fopen(settings::point_bucket_name.data(), "w");
+
+        ll n = a.size();
+        fwrite(&n, sizeof(ll), 1, fp);
+        for (ll i = 0; i < n; i++) {
+            ll m = a[i].size();
+            fwrite(&m, sizeof(ll), 1, fp);
+            for (ll j = 0; j < m; j++) {
+                ll nm = a[i][j].size();
+                fwrite(&nm, sizeof(ll), 1, fp);
+                for (ll k = 0; k < nm; k++) {
+
+                }
+            }
+        }
+    }
+
     /*数据库本身操作*/
     static DataBase *getInstance() {
-        return new DataBase;
-//        if (DBinstance == NULL) {
-//            DBinstance = new DataBase();
-//        }
-//        return DBinstance;
+        if (DBinstance == NULL) {
+            DBinstance = new DataBase();
+        }
+        return DBinstance;
     }
 
     void closeDataBase() {
@@ -102,6 +142,10 @@ public:
             fwrite(&col_size[i], sizeof(ll), 1, fp);
         }
         fclose(fp);
+
+        //生成索引位置
+        vector<vector<ll> > tableBucket(0);
+        this->pointBucket.push_back(tableBucket);
 
         //创建该数据库文件
         fp = fopen(name.data(), "w");
@@ -196,25 +240,30 @@ public:
     }
 
     //单表操作
-    //选择表 
+    //选择表
     string chooseTable(string name) {
         bool getFlag = false; //是否读取到标志
         FILE *fp = fopen(settings::table_settings_name.data(), "rb");
         fseek(fp, 0, SEEK_SET);
         //获取全局变量
         ll clen = this->col_name_max_len;
+        //设定临时变量
         char valid;
         vector<char> s(this->table_name_max_len);
         ll num;
+        ll lineNum = 0; //当前表所在行号
         while ((valid = fgetc(fp)) != EOF) {
             // printf("choose:%d\n", ftell(fp));
+            //无论有效都应该计算行号
+            lineNum++;
             // 判断该行是否有效
             if (valid == 'T') {
                 fread(&s[0], sizeof(char), this->table_name_max_len, fp);
                 string ss(&s[0]);
                 //判断是否是相同名字
                 if (ss == name) {
-//                    printf("找到相关数据表\n");
+                    printf("找到相关数据表\n");
+                    this->table_id = lineNum;
                     this->table_name = name;
                     //读取列数
                     fread(&num, sizeof(ll), 1, fp);
@@ -264,17 +313,18 @@ public:
         }
         fclose(fp);
         if (getFlag) {
-//            cout<<"到了这"<<endl;
-//            printf("%s", this->table_name.data());
+            printf("%s", this->table_name.data());
             return name;
         } else {
-//            cout<<"到了这"<<endl;
             return "未进入";
         }
     }
 
     //增
-    int insert(vector<vector<string> > s) {
+    int insert(vector<vector<string> > s, string name = "") {
+        //判断是否选表
+        if (name == "" && (this->table_name == "未选择" || this->table_name == ""))
+            return -2;
         //todo：多存一个行数
         printf("start insert\n");
 
@@ -346,7 +396,6 @@ public:
         //将最后一次获得的next值写入头部
         fwrite(&nextLocation, sizeof(ll), 1, fp);
         fclose(fp);
-        printf("insert end\n");
 
         // ll cnum = this->table_col_num;
         // vector <ll> &csize = this->table_col_size;
@@ -421,7 +470,10 @@ public:
     }
 
     //删
-    void deleteData(string key, string value, string name = "") {
+    int deleteData(string key, string value, string name = "") {
+        //判断是否选表
+        if (name == "" && (this->table_name == "未选择" || this->table_name == ""))
+            return -2;
         //查出id
         vector<ll> id(0);
         vector<vector<string> > ans;
@@ -451,7 +503,10 @@ public:
     }
 
     // 查
-    bool query(string key, string value, vector<ll> &id, vector<vector<string> > &ans, string name = "") {
+    int query(string key, string value, vector<ll> &id, vector<vector<string> > &ans, string name = "") {
+        //判断是否选表
+        if (name == "" && (this->table_name == "未选择" || this->table_name == ""))
+            return -2;
         if (name != "")
             this->chooseTable(name);
         name = this->table_name;
@@ -516,8 +571,62 @@ public:
         return true;
     }
 
+    int queryById(vector<ll> &id, vector<vector<string> > &ans, ll id1 = 1, ll id2 = -1, string name = "") {
+        //判断是否选表
+        if (name == "" && (this->table_name == "未选择" || this->table_name == ""))
+            return -2;
+        //参数处理
+        ans.clear();
+        id.clear();
+        if (id2 == -1) {
+            id2 = 0x3f3f3f3f3f3f3f3f;
+        }
+        //变量定义
+        char valid; //有效位
+        ll nextLocation; //空闲链表位
+        ll idx = 0; //id记录器
+        ll totalSeek = this->table_col_pre_size[this->table_col_num] * sizeof(char);  //数据总长
+        ll lineSeek = sizeof(char) + sizeof(ll) + totalSeek; //每行数据长度
+        //确定最长字段长度
+        // todo: 判断是否解决id超过当前行数,以及id合法性
+        ll maxLen = 0;
+        for (ll i = 0; i < this->table_col_num; i++) {
+            maxLen = max(maxLen, this->table_col_size[i]);
+        }
+        vector<char> s(maxLen);
+        string str;
+
+        FILE *fp = fopen(this->table_name.data(), "rb+");
+        //跳过表头
+        fseek(fp, sizeof(ll), SEEK_SET);
+        //跳过前面几行
+        fseek(fp, (id1 - 1) * lineSeek, SEEK_CUR);
+        idx = id1;
+        //读取并显示每一行
+        while (((valid = fgetc(fp)) != EOF) && idx <= id2) {
+            if (valid == 'T') {
+                //跳过表头
+                fseek(fp, sizeof(ll), SEEK_CUR);
+                id.push_back(idx);
+                vector<string> tempStr(this->table_col_num);
+                for (ll i = 0; i < this->table_col_num; i++) {
+                    fread(&s[0], sizeof(char), this->table_col_size[i], fp);
+                    tempStr[i] = &s[0];
+                }
+                ans.push_back(tempStr);
+            } else {
+                fseek(fp, lineSeek - sizeof(char), SEEK_CUR);
+            }
+            idx++;
+        }
+        fclose(fp);
+    }
+
     //改
     int update(string key, string value, string key2, string value2, string name = "") {
+        //判断是否选表
+        if (name == "" && (this->table_name == "未选择" || this->table_name == ""))
+            return -2;
         vector<ll> id(0);
         vector<vector<string> > ans;
         this->query(key, value, id, ans);
@@ -584,7 +693,6 @@ public:
 
 
 };
-
 //莫名其妙的静态私有变量初始化
 DataBase *DataBase::DBinstance = NULL;
 
@@ -592,6 +700,7 @@ int main2() {
     //todo：做一个交互界面
     //windows 下中文输出需要切换字符集
     //system("chcp 65001"); //切换字符集
+    system("cls");
     DataBase *d = DataBase::getInstance();
     ll opt = 1;
     string chooseTableName = "未选择";
@@ -613,6 +722,7 @@ int main2() {
 9.删除\n\
 10.清空当前表\n\
 11.更新数据\n\
+12.根据id范围选择数据\n\
 ----------其他额外操作-------\n\
 100.测试\n", chooseTableName.data());
         scanf("%d", &opt);
@@ -772,6 +882,27 @@ int main2() {
                 scanf("%s", s);
                 str2 = s;
                 d->update(name, name2, str, str2);
+                break;
+            case 12:  //查id
+                printf("请输入起始id\n");
+                scanf("%lld", &num);
+                printf("请输入终止id, 若输入-1则为默认值\n");
+                scanf("%lld", &num2);
+                //获取列名
+                col_name = d->getColName();
+                printf("id\t");
+                for (ll i = 0; i < col_name.size(); i++) {
+                    printf("%s\t", col_name[i].data());
+                }
+                printf("\n");
+                d->queryById(id, queryData, num, num2);
+                for (ll i = 0; i < queryData.size(); i++) {
+                    printf("%lld\t", id[i]);
+                    for (ll j = 0; j < queryData[0].size(); j++) {
+                        printf("%s\t", queryData[i][j].data());
+                    }
+                    printf("\n");
+                }
                 break;
             case 100:
                 memset(s, 0, sizeof(s));

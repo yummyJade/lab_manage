@@ -76,8 +76,13 @@ DbAdapter::~DbAdapter() {
 }
 
 vector<vector<string>> DbAdapter::searchAll() {
-    this->db->showDatas();
-    return vector<vector<string>>();
-//    return this->db->showDatas();
+    vector<vector<string>> results;
+    vector<ll> id(0);
+    this->db->queryById(id, results);
+
+    for (int i = 0; i < results.size(); ++i) { // 把id装进最后一个位置
+        results[i].push_back(to_string(id[i]));
+    }
+    return results;
 }
 

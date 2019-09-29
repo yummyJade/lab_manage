@@ -38,7 +38,7 @@ public:
     // 修改某个属性值x为x_v的对象的某个属性y的值为y_v
     bool updateBySingleField(string assignField, string assignValue, string changeField, string changeValue);
 
-    // 根据单个字段搜索
+    // 返回该表的所有内容哟
     vector<vector<string>> searchAll();
 
 
