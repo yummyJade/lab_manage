@@ -8,8 +8,7 @@ enum Status {
 };        //订单状态
 class Order {
 private:
-    bool IsRenew = true;        // 是否可续借
-    int id;        //订单编号
+    int userId;        //借书的人的id
     int bookId;     // 借的书的id
     SimpleTime borrowTime;        // 借书时间
     SimpleTime returnTime;        // 还书时间
@@ -32,8 +31,7 @@ private:
 public:
     Order();
 
-    Order(bool isRenew, int id, int bookId, const SimpleTime &borrowTime, const SimpleTime &returnTime, Status statu);
-
+    Order(int userId, int bookId, const SimpleTime &borrowTime, const SimpleTime &returnTime, Status statu);
 
     ~Order();
 

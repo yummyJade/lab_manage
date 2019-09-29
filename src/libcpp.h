@@ -9,6 +9,7 @@
 #include "core/SimpleTime.cpp"
 #include "core/SimpleString.cpp"
 #include "model/Book.cpp"
+#include "model/BookInstance.cpp"
 #include "model/Order.cpp"
 #include "model/User.cpp"
 #include "util/DbAdapter.cpp"

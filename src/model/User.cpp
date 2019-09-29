@@ -8,12 +8,6 @@ User::User()
 {
 }
 
-User::User(int jobNum, int borrowNum, status type, const string &password) : jobNum(jobNum),
-                                                                             borrowNum(borrowNum), type(type),
-                                                                             password(password) {
-    this->id = -1;
-
-}
 
 User::~User() {
 }
@@ -82,24 +76,25 @@ void User::addBooksOperate() {
 
 
 vector<string> User::serialize() {
+    // todo: 这里等他们的函数声明给我们
     vector<string> info;
-//    info.push_back(to_string(this->id));
-    info.push_back(to_string(this->jobNum));
-    info.push_back(to_string(this->borrowNum));
-    info.push_back(to_string(this->type));
-    info.push_back(password);
+////    info.push_back(to_string(this->id));
+//    info.push_back(to_string(this->jobNum));
+//
+//    info.push_back(to_string(this->type));
+//    info.push_back(password);
     return info;
 }
 
 bool User::deSerialize(vector<string> info) {
-    //todo: 这里要加上异常处理
-    int id = stoi(info[0]);
-    int jobNum = stoi(info[1]);
-    int borrowNum = stoi(info[2]);
-    status type;
-    type = Teacher;// todo:这个枚举要怎么操作
-    string password = info[4];
-    User(id, jobNum, borrowNum, type, password);
+    //todo: 这里等他们的函数声明给我们
+//    int id = stoi(info[0]);
+//    int jobNum = stoi(info[1]);
+//    int borrowNum = stoi(info[2]);
+//    status type;
+//    type = Teacher;// todo:这个枚举要怎么操作
+//    string password = info[4];
+//    User(id, jobNum, borrowNum, type, password);
     return true;
 }
 
@@ -121,6 +116,6 @@ status User::stringEnumToStatu(std::string str) {
     return Undergraduate;//没找到默认返回的,//todo:或许不该这么写
 }
 
-User::User(int id, int jobNum, int borrowNum, status type, const string &password) : id(id), jobNum(jobNum),
-                                                                                     borrowNum(borrowNum), type(type),
-                                                                                     password(password) {}
+User::User(int jobNum, status type, const string &name, const string &password) : jobNum(jobNum), type(type),
+                                                                                  name(name), password(password) {}
+

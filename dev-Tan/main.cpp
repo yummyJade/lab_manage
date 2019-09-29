@@ -61,9 +61,13 @@ int readBooksInfo() {
         string isbn = fields[4];
         int price = stof(fields[5]) * 100;
         string position = fields[6];
-        int num = stoi(fields[7]);
+        int count = stoi(fields[7]);
 
-
+        Book book(type, count, price, name, author, isbn, press); // 插入书种的表
+        ll bookId = 1;//从上面获取到bookid
+        for (int i = 0; i < count; ++i) {
+            BookInstance(bookId, position);
+        }
         cout << "处理之后的字符串：" << name << "\t" << press << "\t" << author << endl;
     }
     return 0;
@@ -181,9 +185,9 @@ int regexTest() {
 
 int main() {
 
-//    readBooksInfo();
+    readBooksInfo();
 
-    Book::printBookList(Book::searchAll());
+//    Book::printBookList(Book::searchAll());
 
 //    DbAdapter *dbHelper = new DbAdapter("书");
 //    vector<vector<string> > queryData = dbHelper->searchBySingleField("作者", "谢立");

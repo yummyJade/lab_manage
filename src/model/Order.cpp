@@ -11,13 +11,9 @@ Order::~Order()
 {
 }
 
-Order::Order(bool isRenew, int id, int bookId, const SimpleTime &borrowTime, const SimpleTime &returnTime, Status statu)
-        : IsRenew(isRenew), id(id), bookId(bookId), borrowTime(borrowTime), returnTime(returnTime), statu(statu) {}
-
 vector<string> Order::serialize() {
     vector<string> info;
 //    info.push_back(to_string(this->id));
-    info.push_back(to_string(this->IsRenew));
     info.push_back(to_string(this->bookId));
     info.push_back(this->borrowTime.serialize());
     info.push_back(this->returnTime.serialize());
@@ -59,3 +55,6 @@ Status Order::stringEnumToStatu(std::string str) {
     }
     return BORROWING;//没找到默认返回的,//todo:或许不该这么写
 }
+
+Order::Order(int userId, int bookId, const SimpleTime &borrowTime, const SimpleTime &returnTime, Status statu) : userId(
+        userId), bookId(bookId), borrowTime(borrowTime), returnTime(returnTime), statu(statu) {}
