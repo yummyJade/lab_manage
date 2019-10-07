@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include "../model/Order.h"
 enum status {
     Admin,Teacher, Graduate, Undergraduate
 };        //特权思想枚举
@@ -56,28 +57,69 @@ public:
 
     void setJobNum(int jobNum);
 
-    //------------------------------------------------------
-    //----下面这些是静态操作---------------------------
+
+private:
     /**
-     * 用户登陆-待完成
+     * 修改密码
+     * @param password
+     * @return
+     */
+    bool setPassword(const std::string &password);
+
+    /**
+     * 判断密码是否正确
+     * @param password
+     * @return
+     */
+    bool isLegalPassword(const std::string &password);
+
+
+private:
+    //------------------------------------------------------
+    //----下面这些是与数据库交互的接口,由private调用------------
+    /** 待完成
+     * 判断该工号的用户是否存在,若存在则返回该用户
+     * @param jobNum
+     * @return
+     */
+    static User checkUserExist(int jobNum);
+
+    /** 待完成
+     * 用户登陆
      * @param name
      * @param password
      * @return
      */
-    User login(std::string name, std::string password);
+    static User login(std::string name, std::string password);
+
+
+
 
     //------------------------------------------------------
-    //----下面这些是用户共有的操作---------------------------
-
-
-
-    /**
-     * 打印当前用户借阅的书-待完成
+    //----下面这些是用户共有的操作(需要登陆后操作)---------------
+    /** 已完成
+     * 修改当前登陆的用户的密码
+     * @param password
+     * @return
      */
-    void printBorrowBooks();
+    bool changePwd(const std::string &password);
 
-    //------------------------------------------------------
-    //----下面这些是管理员用户的操作---------------------------
+    /** 未完成
+     * 获取当前登陆用户的借阅历史记录,通过调用Order类的静态函数实现
+     * @return
+     */
+    std::vector<Order> getBorrowedHistory();
+
+
+    /** 未完成
+     * 获取当前登陆用户正在借阅的书的记录,通过调用Order类的静态函数实现
+     */
+    std::vector<Order> getBorrowingList();
+
+
+    //------------------------------------------------------------------------------
+    //----下面这些是管理员用户的操作,且与图书相关----------------------------------------
+    //------------------------------------------------------------------------------
 
     // 待完成,书籍导入
     void addBooksOperate();
@@ -87,6 +129,21 @@ public:
 
     // 待完成,打印某一种书的情况(由isbn?..指定),包括是否被借阅,啥时候还
     void printAssignBookInfo();
+
+
+    //------------------------------------------------------------------------------
+    //----下面这些是管理员用户的操作,且与User相关---------------------------------------
+    //------------------------------------------------------------------------------
+
+    // 待完成,重置用户密码
+    bool resetUserPassword();
+
+public:
+    //------------------------------------------------------
+    //----下面这些是静态操作---------------------------
+    // 静态函数, 批量导入用户
+    static bool addUsers(std::vector<std::vector<std::string>> queryData, std::vector<long long> &ids);
+
 };
 
 //const int User::lendDays[3]={30,60,90};

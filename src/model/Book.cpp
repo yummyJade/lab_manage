@@ -1,6 +1,6 @@
 #include "../../include/model/Book.h"
 #include <iostream>
-
+#include "../../include/util/DbAdapter.h"
 using namespace std;
 
 Book::Book() {
@@ -66,7 +66,7 @@ std::vector<std::string> Book::serialize() {
     vector<string> info;
 //    info.push_back(to_string(this->id));
     info.push_back(to_string(this->type));
-//    info.push_back(to_string(this->isLend));
+    info.push_back(to_string(this->count));
 //    info.push_back(to_string(this->isValid));
     info.push_back(to_string(this->price));
     info.push_back(this->name);
@@ -94,7 +94,7 @@ bool Book::deSerialize(std::vector<std::string> info) {
 }
 
 std::vector<std::vector<std::string>> Book::searchBooksBySingleField(std::string field, std::string value) {
-    DbAdapter dbAdapter("书");
+    DbAdapter dbAdapter("Book");
     vector<vector<string> > queryData = dbAdapter.searchBySingleField(field, value);
     return queryData;
 }
@@ -125,12 +125,30 @@ bool Book::deleteBooksByBookIds(std::vector<std::string> bookIds) {
 }
 
 std::vector<std::vector<std::string>> Book::searchAll() {
-    DbAdapter dbAdapter("书");
+    DbAdapter dbAdapter("Book");
     return dbAdapter.searchAll();
 }
 
 Book::Book(char type, int count, int price, const string &name, const string &author, const string &isbn,
            const string &press) : type(type), count(count), price(price), name(name), author(author), isbn(isbn),
                                   press(press) {}
+
+bool Book::addBooks(std::vector<std::vector<std::string>> queryData, vector<long long> &ids) {
+    DbAdapter dbAdapter("Book");
+
+    dbAdapter.insert(queryData, ids);
+    return true;
+
+}
+
+int Book::checkAssignISBNExist(std::string isbn) {
+    DbAdapter dbAdapter("Book");
+    vector<vector<string>> result = dbAdapter.searchBySingleField("ISBN", isbn);
+    if (result.size() > 0) {
+        cout << "末尾元素是" << result[0].back();
+    }
+
+    return -1;
+}
 
 

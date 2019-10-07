@@ -1,8 +1,8 @@
 #pragma once
 
 #include "core/SimpleTime.h"
-
-
+#include <iostream>
+#include <vector>
 class Book {
 
 private:
@@ -15,6 +15,12 @@ private:
     std::string isbn;        //ISBN
     std::string press;       // 出版社
 
+private:
+    //打印书本类型
+    std::string printType();
+
+    std::string printIsLend();
+
 
 public:
     Book();
@@ -24,21 +30,15 @@ public:
 
     ~Book();
 
-    //打印书本类型
-    std::string printType();
-
-    std::string printIsLend();
-
-//    void setBookInfo(std::string namet, std::string authort, std::string isbnt, char typet, double pricet);
-
     //打印书本基本信息
     void printBookInfo();
+
 
     // ----------------------------------------------------------------
     // ------下面这些是静态函数------------------------------------------
 
     // 静态函数, 增加书籍
-    static bool addBooks(std::vector<std::vector<std::string>> queryData);
+    static bool addBooks(std::vector<std::vector<std::string>> queryData, std::vector<long long> &ids);
 
     // 静态函数, 删除书籍
     static bool deleteBooksByBookIds(std::vector<std::string> bookIds);
@@ -70,6 +70,15 @@ public:
     // 反序列化函数
     bool deSerialize(std::vector<std::string>);
 
+private:
+    //------------------------------------------------------
+    //----下面这些是与数据库交互的接口,由private调用------------
+    /**
+     * 判断给定的isbn号的书籍是否存在,若存在,则返回其id,否则返回-1
+     * @param isbn
+     * @return
+     */
+    static int checkAssignISBNExist(std::string isbn);
 
 };
 

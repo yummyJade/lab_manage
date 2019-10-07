@@ -5,24 +5,29 @@
 #ifndef MYC1_BOOKINSTANCE_H
 #define MYC1_BOOKINSTANCE_H
 
+#include <iostream>
+#include "../core/Date.h"
 class BookInstance {
 private:
     long long id;
-    long long bookId;     //å›¾ä¹¦æ‰€å±ç§ç±»çš„id
-    int status;     //çŠ¶æ€
-    std::string position;       // å›¾ä¹¦ä½ç½®
-    Date planReturnDate; // é¢„è®¡å½’è¿˜æ—¥æœŸ
+    std::string isbn;     //Í¼ÊéËùÊôÖÖÀàµÄisbn
+    int status;     //×´Ì¬
+    std::string position;       // Í¼ÊéÎ»ÖÃ
+    Date planReturnDate; // Ô¤¼Æ¹é»¹ÈÕÆÚ
 
 public:
-    BookInstance(long long int bookId, const std::string &position) : bookId(bookId), position(position) {}
 
-    BookInstance(long long bookId, int status, const std::string &position, const Date &planReturnDate) : bookId(
-            bookId),
-                                                                                                          status(status),
-                                                                                                          position(
-                                                                                                                  position),
-                                                                                                          planReturnDate(
-                                                                                                                  planReturnDate) {}
+    BookInstance(const std::string &isbn, const std::string &position);
+
+    BookInstance(const std::string &isbn, int status, const std::string &position);
+
+    BookInstance(const std::string &isbn, int status, const std::string &position, const Date &planReturnDate);
+
+private:
+    //------------------------------------------------------
+    //----ÏÂÃæÕâĞ©ÊÇÓëÊı¾İ¿â½»»¥µÄ½Ó¿Ú,ÓÉprivateµ÷ÓÃ------------
+
+
 };
 
 #endif //MYC1_BOOKINSTANCE_H

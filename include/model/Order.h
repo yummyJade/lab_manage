@@ -1,7 +1,8 @@
 #pragma once
 
 #include "core/SimpleTime.h"
-
+#include <iostream>
+#include <vector>
 
 enum Status {
     BORROWING, RETURNED
@@ -44,5 +45,23 @@ public:
 
     // 反序列化函数
     bool deSerialize(std::vector<std::string>);
+
+public:
+    //------------------------------------------------------
+    //----下面这些是与数据库交互的接口,由 public 调用------------
+
+    /**
+     * 获取指定用户的历史借书记录
+     * @param jobNum
+     * @return
+     */
+    static std::vector<Order> getAssignUserBorrowedHistory(int jobNum);
+
+    /**
+     * 获取指定用户的正在借阅的记录
+     * @param jobNum
+     * @return
+     */
+    static std::vector<Order> getAssignUserBorrowingList(int jobNum);
 };
 

@@ -17,7 +17,7 @@ namespace settings {
 class DataBase {
 /*
 编写规范：
-1. 任何size变量 指的是多少个char， sizec 代表多少个 size* sizeof(char)
+1. 任何size变量 指的是多少个char， sizec 代表多少个 size* sizeof(char) 
 2. 所有传入的参数不应该考虑问题 1， 即避免使用者计算
 3. 行号从1开始计数
 
@@ -26,8 +26,8 @@ class DataBase {
 -1. 未知错误失败
 -2. 未选择表
 -3. 未找到数据
-*/
-
+*/ 
+	
 private:
     ll table_name_max_len;
     ll col_name_max_len;
@@ -100,9 +100,10 @@ public:
 
     /*数据库本身操作*/
     static DataBase *getInstance() {
-        if (DBinstance == NULL) {
-            DBinstance = new DataBase();
-        }
+//		if(DBinstance == NULL){
+//			DBinstance = new DataBase();
+//		}
+        DBinstance = new DataBase();
         return DBinstance;
     }
 
@@ -149,7 +150,7 @@ public:
 
         //创建该数据库文件
         fp = fopen(name.data(), "w");
-
+		
         rewind(fp);
         //写入表头
         ll nextLocation = -1;
@@ -240,7 +241,7 @@ public:
     }
 
     //单表操作
-    //选择表
+    //选择表 
     string chooseTable(string name) {
         bool getFlag = false; //是否读取到标志
         FILE *fp = fopen(settings::table_settings_name.data(), "rb");
@@ -393,7 +394,7 @@ public:
                 ll m = this->table_col_num;
                 for (ll j = 0; j < m; j++) {
                     fwrite(s[i][j].data(), sizeof(char), csize[j], fp);
-                }
+                }  
             }
 
             //插入结束，根据fp位置计算id
@@ -631,6 +632,52 @@ public:
         fclose(fp);
     }
 
+    int predictId(ll num, vector<ll> &id, string name = "") {
+        //判断是否选表
+        if (name == "" && (this->table_name == "未选择" || this->table_name == ""))
+            return -2;
+        if (name != "")
+            this->chooseTable(name);
+        name = this->table_name;
+
+        //获取参数长度
+        ll totalSeek = this->table_col_pre_size[this->table_col_num] * sizeof(char);  //数据总长
+        ll lineSeek = sizeof(char) + sizeof(ll) + totalSeek; //每行数据长度
+        //初始化参数
+        id.clear(); //返回id参数
+        ll lineNum = 0; //记录当前行号，用作id
+        ll nextLocation; //表头
+        vector<ll> &csize = this->table_col_size;
+        //打开文件查询
+        FILE *fp = fopen(name.data(), "rb");
+        //读取头部
+        fread(&nextLocation, sizeof(ll), 1, fp);
+        ll location;
+        while (num > 0) {
+            num--;
+            if (nextLocation == -1) {
+                fseek(fp, 0, SEEK_END);
+                location = ftell(fp);
+                ll idx = (location - sizeof(ll)) / lineSeek + 1;
+                id.push_back(idx);
+                break;
+            } else {
+                //跳过表头和标志位
+                fseek(fp, nextLocation + sizeof(ll) + sizeof(char), SEEK_SET);
+                ll idx = (nextLocation) / lineSeek + 1;
+                id.push_back(idx);
+                fread(&nextLocation, sizeof(ll), 1, fp);
+            }
+        }
+        ll n = id.size() - 1;
+        while (num > 0) {
+            num--;
+            id.push_back(id[n] + 1);
+            n++;
+        }
+        return true;
+    }
+
     //改
     int update(string key, string value, string key2, string value2, string name = "") {
         //判断是否选表
@@ -702,6 +749,7 @@ public:
 
 
 };
+
 //莫名其妙的静态私有变量初始化
 DataBase *DataBase::DBinstance = NULL;
 
@@ -732,6 +780,7 @@ int main2() {
 10.清空当前表\n\
 11.更新数据\n\
 12.根据id范围选择数据\n\
+13.获取预测id\n\
 ----------其他额外操作-------\n\
 100.测试\n", chooseTableName.data());
         scanf("%d", &opt);
@@ -813,8 +862,11 @@ int main2() {
                     }
                     insertData.push_back(line);
                 }
-                vector<ll> ids;
-                d->insert(insertData, ids);
+                d->insert(insertData, id);
+                printf("插入元素id如下\n");
+                for (ll i = 0; i < id.size(); i++) {
+                    printf("%lld\n", id[i]);
+                }
                 break;
             case 7:
                 if (d->getTableName() == "") {
@@ -894,6 +946,10 @@ int main2() {
                 d->update(name, name2, str, str2);
                 break;
             case 12:  //查id
+                if (d->getTableName() == "") {
+                    printf("请选中一张表\n");
+                    break;
+                }
                 printf("请输入起始id\n");
                 scanf("%lld", &num);
                 printf("请输入终止id, 若输入-1则为默认值\n");
@@ -912,6 +968,19 @@ int main2() {
                         printf("%s\t", queryData[i][j].data());
                     }
                     printf("\n");
+                }
+                break;
+            case 13: //预测
+                if (d->getTableName() == "") {
+                    printf("请选中一张表\n");
+                    break;
+                }
+                printf("输入数量\n");
+                scanf("%lld", &num);
+                d->predictId(num, id);
+                num = id.size();
+                for (int i = 0; i < num; i++) {
+                    printf("%lld\n", id[i]);
                 }
                 break;
             case 100:
@@ -950,13 +1019,13 @@ int main2() {
 //	d->createTable("testTable2", s, t);
 //	d->deleteTable("testTable2");
 //	d->showColumLine("testTable");
-//	d->closeDataBase();
+//	d->closeDataBase(); 
 //	d->chooseTable("tantan");
-//	d->showTables();
+//	d->showTables(); 
 //	vector<vector<string> > s(1);
 //	vector<string> t(2);
 //	t[0] = "1";
 //	t[1] = "2";
 //	s[0] = t;
 //	d->insert(s);
-}
+} 

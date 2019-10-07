@@ -1,0 +1,8 @@
+//
+// Created by Tjm on 2019/10/7.
+//
+
+#ifndef MYC1_ORDERDBADAPTER_H
+#define MYC1_ORDERDBADAPTER_H
+
+#endif //MYC1_ORDERDBADAPTER_H
