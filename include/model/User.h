@@ -17,7 +17,7 @@ private:
     status type;
     std::string name;        //姓名
     std::string password;        //password
-
+    long long firstOrderId;  // 该学生借的第一本书的订单在Order表的id,-1表示未借
     /**
      * 将枚举类型的statu转化成对应的字符串
      * @param statu
@@ -43,8 +43,6 @@ public:
 
     // 反序列化函数
     bool deSerialize(std::vector<std::string>);
-
-
 
     //打印用户信息
     void printUserInfo();

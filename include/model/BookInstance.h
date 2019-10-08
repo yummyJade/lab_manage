@@ -23,10 +23,18 @@ public:
 
     BookInstance(const std::string &isbn, int status, const std::string &position, const Date &planReturnDate);
 
+public:
+    /**
+     * 批量导入同一本书的实例,返回其首个id
+     * @param instances
+     * @return
+     */
+    static int importBookInstances(std::vector<BookInstance> instances, int firstId = -1);
 private:
     //------------------------------------------------------
     //----下面这些是与数据库交互的接口,由private调用------------
-
+    // 添加一个实例到数据库,返回其id
+    static int addBookInstance(BookInstance instance, int firstId = -1);
 
 };
 

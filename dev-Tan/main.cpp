@@ -4,13 +4,8 @@
 #include "../include/libm.h"
 #include "../src/libcpp.h"
 
-//#include <iostream>
 #include <fstream>
-//#include <sstream>
-//#include <vector>
-//
 #include <regex>
-//#include "../thirdParty/sqlite3/sqlite3.h"
 
 using namespace std;
 
@@ -210,6 +205,7 @@ int regexTest() {
 
 int main() {
     Book::printBookList(Book::searchAll());
+    Book::importBooks();// 导入书籍的函数
     readBooksInfo();
     Book::printBookList(Book::searchAll());
 
