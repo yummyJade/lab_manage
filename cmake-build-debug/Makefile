@@ -122,6 +122,19 @@ myc1/fast:
 	$(MAKE) -f CMakeFiles\myc1.dir\build.make CMakeFiles/myc1.dir/build
 .PHONY : myc1/fast
 
+#=============================================================================
+# Target rules for targets named Include
+
+# Build rule for target.
+Include: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 Include
+.PHONY : Include
+
+# fast build rule for target.
+Include/fast:
+	$(MAKE) -f include\CMakeFiles\Include.dir\build.make include/CMakeFiles/Include.dir/build
+.PHONY : Include/fast
+
 dev-Tan/main.obj: dev-Tan/main.cpp.obj
 
 .PHONY : dev-Tan/main.obj
@@ -158,6 +171,7 @@ help:
 	@echo ... myc1
 	@echo ... edit_cache
 	@echo ... rebuild_cache
+	@echo ... Include
 	@echo ... dev-Tan/main.obj
 	@echo ... dev-Tan/main.i
 	@echo ... dev-Tan/main.s

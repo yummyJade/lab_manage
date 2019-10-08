@@ -13,6 +13,7 @@ CMakeFiles/myc1.dir/dev-Tan/main.cpp.obj
  E:/Sources/Cpp/repos/Lib_manage/include/model/Order.h
  E:/Sources/Cpp/repos/Lib_manage/include/model/User.h
  E:/Sources/Cpp/repos/Lib_manage/include/util/DbAdapter.h
+ E:/Sources/Cpp/repos/Lib_manage/include/util/Record.h
  E:/Sources/Cpp/repos/Lib_manage/src/core/Date.cpp
  E:/Sources/Cpp/repos/Lib_manage/src/core/SimpleString.cpp
  E:/Sources/Cpp/repos/Lib_manage/src/core/SimpleTime.cpp
@@ -22,3 +23,4 @@ CMakeFiles/myc1.dir/dev-Tan/main.cpp.obj
  E:/Sources/Cpp/repos/Lib_manage/src/model/Order.cpp
  E:/Sources/Cpp/repos/Lib_manage/src/model/User.cpp
  E:/Sources/Cpp/repos/Lib_manage/src/util/DbAdapter.cpp
+ E:/Sources/Cpp/repos/Lib_manage/src/util/Record.cpp

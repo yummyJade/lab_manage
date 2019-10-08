@@ -92,6 +92,7 @@ bool Book::deSerialize(std::vector<std::string> info) {
 
     cout << "取出的count 是" << count << endl;
     Book(type, count, price, id, name, author, isbn, press);// todo:这个不是id
+
     cout << "序列化3" << endl;
     return true;
 }

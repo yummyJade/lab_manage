@@ -21,18 +21,12 @@ memory.h
 -
 
 E:/Sources/Cpp/repos/Lib_manage/dev-Tan/main.cpp
-iostream
--
-fstream
--
-sstream
--
-vector
--
 ../include/libm.h
 E:/Sources/Cpp/repos/Lib_manage/include/libm.h
 ../src/libcpp.h
 E:/Sources/Cpp/repos/Lib_manage/src/libcpp.h
+fstream
+-
 regex
 -
 
@@ -49,6 +43,12 @@ Date.h
 E:/Sources/Cpp/repos/Lib_manage/include/core/Date.h
 
 E:/Sources/Cpp/repos/Lib_manage/include/libm.h
+iostream
+-
+stdio.h
+-
+string
+-
 core/Date.h
 E:/Sources/Cpp/repos/Lib_manage/include/core/Date.h
 core/SimpleTime.h
@@ -65,24 +65,44 @@ model/User.h
 E:/Sources/Cpp/repos/Lib_manage/include/model/User.h
 util/DbAdapter.h
 E:/Sources/Cpp/repos/Lib_manage/include/util/DbAdapter.h
+util/Record.h
+E:/Sources/Cpp/repos/Lib_manage/include/util/Record.h
 
 E:/Sources/Cpp/repos/Lib_manage/include/model/Book.h
 core/SimpleTime.h
 E:/Sources/Cpp/repos/Lib_manage/include/model/core/SimpleTime.h
+iostream
+-
+vector
+-
 
 E:/Sources/Cpp/repos/Lib_manage/include/model/BookInstance.h
+iostream
+-
+vector
+-
+../core/Date.h
+E:/Sources/Cpp/repos/Lib_manage/include/core/Date.h
 
 E:/Sources/Cpp/repos/Lib_manage/include/model/Order.h
 core/SimpleTime.h
 E:/Sources/Cpp/repos/Lib_manage/include/model/core/SimpleTime.h
+iostream
+-
+vector
+-
 
 E:/Sources/Cpp/repos/Lib_manage/include/model/User.h
 vector
 -
+../model/Order.h
+E:/Sources/Cpp/repos/Lib_manage/include/model/Order.h
 
 E:/Sources/Cpp/repos/Lib_manage/include/util/DbAdapter.h
 ../../database_v1.0/database.cpp
 E:/Sources/Cpp/repos/Lib_manage/database_v1.0/database.cpp
+
+E:/Sources/Cpp/repos/Lib_manage/include/util/Record.h
 
 E:/Sources/Cpp/repos/Lib_manage/src/core/Date.cpp
 ../../include/core/Date.h
@@ -131,32 +151,62 @@ model/User.cpp
 E:/Sources/Cpp/repos/Lib_manage/src/model/User.cpp
 util/DbAdapter.cpp
 E:/Sources/Cpp/repos/Lib_manage/src/util/DbAdapter.cpp
+util/Record.cpp
+E:/Sources/Cpp/repos/Lib_manage/src/util/Record.cpp
 
 E:/Sources/Cpp/repos/Lib_manage/src/model/Book.cpp
 ../../include/model/Book.h
 E:/Sources/Cpp/repos/Lib_manage/include/model/Book.h
 iostream
 -
+core/SimpleString.h
+-
+fstream
+-
+sstream
+-
+model/BookInstance.h
+-
+../../include/util/DbAdapter.h
+E:/Sources/Cpp/repos/Lib_manage/include/util/DbAdapter.h
 
 E:/Sources/Cpp/repos/Lib_manage/src/model/BookInstance.cpp
 ../../include/model/BookInstance.h
 E:/Sources/Cpp/repos/Lib_manage/include/model/BookInstance.h
 iostream
 -
+vector
+-
+string
+-
 
 E:/Sources/Cpp/repos/Lib_manage/src/model/Order.cpp
 ../../include/model/Order.h
 E:/Sources/Cpp/repos/Lib_manage/include/model/Order.h
+vector
+-
+iostream
+-
+string
+-
 
 E:/Sources/Cpp/repos/Lib_manage/src/model/User.cpp
 ../../include/model/User.h
 E:/Sources/Cpp/repos/Lib_manage/include/model/User.h
-iostream
+../../include/core/SimpleString.h
+E:/Sources/Cpp/repos/Lib_manage/include/core/SimpleString.h
+fstream
 -
-vector
+sstream
+-
+util/DbAdapter.h
 -
 
 E:/Sources/Cpp/repos/Lib_manage/src/util/DbAdapter.cpp
 util/DbAdapter.h
 E:/Sources/Cpp/repos/Lib_manage/src/util/util/DbAdapter.h
+
+E:/Sources/Cpp/repos/Lib_manage/src/util/Record.cpp
+util/Record.h
+E:/Sources/Cpp/repos/Lib_manage/src/util/util/Record.h
 

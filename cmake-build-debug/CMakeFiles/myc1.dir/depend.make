@@ -12,6 +12,7 @@ CMakeFiles/myc1.dir/dev-Tan/main.cpp.obj: ../include/model/BookInstance.h
 CMakeFiles/myc1.dir/dev-Tan/main.cpp.obj: ../include/model/Order.h
 CMakeFiles/myc1.dir/dev-Tan/main.cpp.obj: ../include/model/User.h
 CMakeFiles/myc1.dir/dev-Tan/main.cpp.obj: ../include/util/DbAdapter.h
+CMakeFiles/myc1.dir/dev-Tan/main.cpp.obj: ../include/util/Record.h
 CMakeFiles/myc1.dir/dev-Tan/main.cpp.obj: ../src/core/Date.cpp
 CMakeFiles/myc1.dir/dev-Tan/main.cpp.obj: ../src/core/SimpleString.cpp
 CMakeFiles/myc1.dir/dev-Tan/main.cpp.obj: ../src/core/SimpleTime.cpp
@@ -21,4 +22,5 @@ CMakeFiles/myc1.dir/dev-Tan/main.cpp.obj: ../src/model/BookInstance.cpp
 CMakeFiles/myc1.dir/dev-Tan/main.cpp.obj: ../src/model/Order.cpp
 CMakeFiles/myc1.dir/dev-Tan/main.cpp.obj: ../src/model/User.cpp
 CMakeFiles/myc1.dir/dev-Tan/main.cpp.obj: ../src/util/DbAdapter.cpp
+CMakeFiles/myc1.dir/dev-Tan/main.cpp.obj: ../src/util/Record.cpp
 
