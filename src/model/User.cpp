@@ -1,6 +1,8 @@
 #include "../../include/model/User.h"
-#include <iostream>
-#include <vector>
+#include "../../include/core/SimpleString.h"
+#include <fstream>
+#include <sstream>
+#include <util/DbAdapter.h>
 
 using namespace std;
 
@@ -17,21 +19,21 @@ void User::addBooksOperate() {
     string path = "";
     ifstream fin;
     while (true) {
-        printf("è¯·è¾“å…¥æ–‡ä»¶è·¯å¾„:");
+        printf("ÇëÊäÈëÎÄ¼şÂ·¾¶:");
         cin >> path;
         if (path != SimpleString::fixPath(path)) {
-            cout << "æ–‡ä»¶è·¯å¾„ä¿®å¤ä¸º:" << SimpleString::fixPath(path) << endl;
+            cout << "ÎÄ¼şÂ·¾¶ĞŞ¸´Îª:" << SimpleString::fixPath(path) << endl;
             path = SimpleString::fixPath(path);
         }
 
-        cout << "æ­£åœ¨å¯»æ‰¾æ–‡ä»¶" << path << endl;
+        cout << "ÕıÔÚÑ°ÕÒÎÄ¼ş" << path << endl;
         // "E:\\Sources\\Cpp\\repos\\Lib_manage\\dev-Tan\\books.csv"
-        fin = ifstream(path);//æ‰“å¼€æ–‡ä»¶æµæ“ä½œ
+        fin = ifstream(path);//´ò¿ªÎÄ¼şÁ÷²Ù×÷
         if (fin.good()) {
-            cout << "å·²æ‰¾åˆ°æ–‡ä»¶,æ­£åœ¨è¯»å–" << endl;
+            cout << "ÒÑÕÒµ½ÎÄ¼ş,ÕıÔÚ¶ÁÈ¡" << endl;
             break;
         } else {
-            cout << "æ–‡ä»¶ä¸å­˜åœ¨,è¯·æ£€æŸ¥è·¯å¾„åé‡æ–°è¾“å…¥" << endl;
+            cout << "ÎÄ¼ş²»´æÔÚ,Çë¼ì²éÂ·¾¶ºóÖØĞÂÊäÈë" << endl;
             continue;
         }
 
@@ -42,12 +44,12 @@ void User::addBooksOperate() {
     int num = 0;
     vector<vector<string>> books;
 
-    while (getline(fin, line))   //æ•´è¡Œè¯»å–ï¼Œæ¢è¡Œç¬¦â€œ\nâ€åŒºåˆ†ï¼Œé‡åˆ°æ–‡ä»¶å°¾æ ‡å¿—eofç»ˆæ­¢è¯»å–
+    while (getline(fin, line))   //ÕûĞĞ¶ÁÈ¡£¬»»ĞĞ·û¡°\n¡±Çø·Ö£¬Óöµ½ÎÄ¼şÎ²±êÖ¾eofÖÕÖ¹¶ÁÈ¡
     {
 
-        if (num++ > 10) // æ‰“å°10è¡Œåšæµ‹è¯•
+        if (num++ > 10) // ´òÓ¡10ĞĞ×ö²âÊÔ
             break;
-        cout << "åŸå§‹å­—ç¬¦ä¸²ï¼š" << line << endl;
+        cout << "Ô­Ê¼×Ö·û´®£º" << line << endl;
         istringstream sin(line);
 
         vector<string> fields;
@@ -67,16 +69,16 @@ void User::addBooksOperate() {
 //        bool isLend = fields[7][0] == 'Y' || fields[7][0] == 'y';
 
 //        vector<string> temp;
-//        cout << "å¤„ç†ä¹‹åçš„å­—ç¬¦ä¸²ï¼š" << name << "\t" << press << "\t" << author << endl;
+//        cout << "´¦ÀíÖ®ºóµÄ×Ö·û´®£º" << name << "\t" << press << "\t" << author << endl;
     }
 
-    // todo:å¯¹booksè¿›è¡Œæ“ä½œ,å°†å®ƒå­˜åˆ°æ•°æ®åº“é‡Œ
+    // todo:¶Ôbooks½øĞĞ²Ù×÷,½«Ëü´æµ½Êı¾İ¿âÀï
     return;
 }
 
 
 vector<string> User::serialize() {
-    // todo: è¿™é‡Œç­‰ä»–ä»¬çš„å‡½æ•°å£°æ˜ç»™æˆ‘ä»¬
+    // todo: ÕâÀïµÈËûÃÇµÄº¯ÊıÉùÃ÷¸øÎÒÃÇ
     vector<string> info;
 ////    info.push_back(to_string(this->id));
 //    info.push_back(to_string(this->jobNum));
@@ -87,12 +89,12 @@ vector<string> User::serialize() {
 }
 
 bool User::deSerialize(vector<string> info) {
-    //todo: è¿™é‡Œç­‰ä»–ä»¬çš„å‡½æ•°å£°æ˜ç»™æˆ‘ä»¬
+    //todo: ÕâÀïµÈËûÃÇµÄº¯ÊıÉùÃ÷¸øÎÒÃÇ
 //    int id = stoi(info[0]);
 //    int jobNum = stoi(info[1]);
 //    int borrowNum = stoi(info[2]);
 //    status type;
-//    type = Teacher;// todo:è¿™ä¸ªæšä¸¾è¦æ€ä¹ˆæ“ä½œ
+//    type = Teacher;// todo:Õâ¸öÃ¶¾ÙÒªÔõÃ´²Ù×÷
 //    string password = info[4];
 //    User(id, jobNum, borrowNum, type, password);
     return true;
@@ -104,7 +106,7 @@ std::string User::statuEnumToString(status statu) {
 }
 
 status User::stringEnumToStatu(std::string str) {
-    for (int i = 0; i < str.size(); ++i) { // è½¬åŒ–ä¸ºå¤§å†™
+    for (int i = 0; i < str.size(); ++i) { // ×ª»¯Îª´óĞ´
         str[i] = toupper(str[i]);
     }
     string strs[4] = {"ADMIN", "TEACHER", "GRADUATE", "UNDERGRADUATE"};
@@ -113,9 +115,57 @@ status User::stringEnumToStatu(std::string str) {
             return status(i);
         }
     }
-    return Undergraduate;//æ²¡æ‰¾åˆ°é»˜è®¤è¿”å›çš„,//todo:æˆ–è®¸ä¸è¯¥è¿™ä¹ˆå†™
+    return Undergraduate;//Ã»ÕÒµ½Ä¬ÈÏ·µ»ØµÄ,//todo:»òĞí²»¸ÃÕâÃ´Ğ´
 }
 
 User::User(int jobNum, status type, const string &name, const string &password) : jobNum(jobNum), type(type),
                                                                                   name(name), password(password) {}
+
+bool User::setPassword(const string &password) {
+    // todo:´ıÊµÏÖ¼ÓÃÜº¯Êı
+    this->password = password;
+    return true;
+}
+
+bool User::isLegalPassword(const std::string &password) {
+    // todo:´ıÊµÏÖÑéÖ¤¼ÓÃÜº¯Êı
+    return (password == this->password);
+}
+
+bool User::changePwd(const std::string &password) {
+
+    return this->setPassword(password);
+}
+
+User User::login(std::string name, std::string password) {
+
+    return User();
+}
+
+User User::checkUserExist(int jobNum) {
+    DbAdapter db("User");
+//    vector<vector<string>> results= db.searchBySingleField("jobNum",to_string(jobNum));
+//    if (results.size()>0){
+//        return
+//    }
+    return User();
+}
+
+std::vector<Order> User::getBorrowedHistory() {
+
+    return Order::getAssignUserBorrowedHistory(this->jobNum);
+
+}
+
+std::vector<Order> User::getBorrowingList() {
+    return Order::getAssignUserBorrowingList(this->jobNum);
+}
+
+bool User::addUsers(std::vector<std::vector<std::string>> queryData, std::vector<long long> &ids) {
+    DbAdapter dbAdapter("User");
+    dbAdapter.insert(queryData, ids);
+    return true;
+}
+
+
 

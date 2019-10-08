@@ -1,0 +1,8 @@
+#ifndef MYC1_BOOKINSTANCEDBADAPTER_H
+#define MYC1_BOOKINSTANCEDBADAPTER_H
+
+class BookInstanceDbAdapter {
+
+};
+
+#endif //MYC1_BOOKINSTANCEDBADAPTER_H

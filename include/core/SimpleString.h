@@ -41,6 +41,13 @@ public:
      * @return
      */
     static std::string readPathFromCmd();
+
+    /**
+     *
+     * @param path
+     * @return
+     */
+    static std::ifstream readFinFromPath(std::string path);
 };
 
 

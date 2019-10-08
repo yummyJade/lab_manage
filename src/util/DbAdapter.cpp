@@ -22,7 +22,8 @@ bool DbAdapter::connect() {
             printf("数据库连接成功 by-谭\n");
             return true;
         }
-        printf("未找到表 by-谭\n");
+        cout << this->db->chooseTable(this->dbName) << endl;
+        printf("未找到表, by-谭\n");
         return false;
 
     } else {
@@ -33,11 +34,11 @@ bool DbAdapter::connect() {
 
 bool DbAdapter::disconnect() {
     if (this->db == NULL) {
-        printf("数据库尚未连接");
+        printf("数据库尚未连接\n");
         return false;
     } else {
         delete this->db;
-        printf("数据库断开连接成功");
+        printf("数据库断开连接成功\n");
         return true;
     }
 }

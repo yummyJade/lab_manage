@@ -15,10 +15,10 @@ class DbAdapter {
 public:
     DbAdapter();
 
+
     virtual ~DbAdapter();
 
     DbAdapter(const string &dbName);
-
 
     // 连接数据库
     bool connect();
@@ -26,7 +26,7 @@ public:
     // 断开连接
     bool disconnect();
 
-    // 插入数据
+    // 插入数据,这个是强制插入,不帮忙判重
     bool insert(vector<vector<string>> values, vector<long long> ids);
 
     // 根据单个字段的值删除

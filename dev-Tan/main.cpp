@@ -1,14 +1,11 @@
 //
 // Created by Tjm on 2019/9/22.
 //
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <vector>
 #include "../include/libm.h"
 #include "../src/libcpp.h"
+
+#include <fstream>
 #include <regex>
-//#include "../thirdParty/sqlite3/sqlite3.h"
 
 using namespace std;
 
@@ -42,12 +39,13 @@ int readBooksInfo() {
     string line;
     int num = 0;
     getline(fin, line); // 吃掉首行
-    vector<vector<string>> result;
+    vector<vector<string>> books;
+    vector<vector<string>> bookinstances;
     while (getline(fin, line)) //整行读取，换行符“\n”区分，遇到文件尾标志eof终止读取
     {
         if (num++ > 10) // 打印10行做测试
             break;
-        cout << "原始字符串：" << line << endl;
+//        cout << "原始字符串：" << line << endl;
         istringstream sin(line);
 
         vector<string> fields;
@@ -65,14 +63,24 @@ int readBooksInfo() {
         int count = stoi(fields[7]);
 
         Book book(type, count, price, name, author, isbn, press); // 插入书种的表
-        result.push_back(book.serialize());
 
-        ll bookId = 1;//从上面获取到bookid
+        books.push_back(book.serialize());
         for (int i = 0; i < count; ++i) {
-            BookInstance(bookId, position);
+            BookInstance bookInstance(isbn, position);
+
         }
-        cout << "处理之后的字符串：" << name << "\t" << press << "\t" << author << endl;
+
     }
+
+    // 插入books
+    vector<ll> ids;
+    Book::addBooks(books, ids);
+
+    // 插入bookinstances
+
+
+
+
     return 0;
 }
 
@@ -95,6 +103,7 @@ int readUsersInfo() {
     string line;
     int num = 0;
     getline(fin, line); // 吃掉首行
+    vector<vector<string>> users;
     while (getline(fin, line)) //整行读取，换行符“\n”区分，遇到文件尾标志eof终止读取
     {
         if (num++ > 10) // 打印10行做测试
@@ -108,14 +117,22 @@ int readUsersInfo() {
             fields.push_back(field);
         }
 
-        long long workNum = stoll(fields[0]);
-        string name = fields[1];
-        string password = fields[2];
-        int statu = stoi(fields[3]);
 
-//        User();
-//        cout << "处理之后的字符串：" << name << "\t" << press << "\t" << author << endl;
+        long long jobNum = stoll(fields[0]); // 工号
+        string name = fields[1]; // 姓名
+        string password = fields[2]; // 密码
+        int statu = stoi(fields[3]); //状态
+
+
+        User user(jobNum, static_cast<status>(statu), name, password);
+        users.push_back(user.serialize());
+
     }
+    vector<long long> ids;
+    // todo: 导入的用户可能有重复,这里要处理
+    User::addUsers(users, ids);
+
+
     return 0;
 }
 
@@ -187,8 +204,12 @@ int regexTest() {
 
 
 int main() {
-
+    Book::printBookList(Book::searchAll());
+    Book::importBooks();// 导入书籍的函数
     readBooksInfo();
+    Book::printBookList(Book::searchAll());
+
+
 
 //    Book::printBookList(Book::searchAll());
 
