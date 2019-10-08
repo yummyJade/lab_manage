@@ -34,12 +34,16 @@ public:
 
     ~Book();
 
+    // 保存当前对象到数据库, 暂时写一下看看好不好使
+    void save();
+
     //打印书本基本信息
     void printBookInfo();
 
 
     // ----------------------------------------------------------------
     // ------下面这些是静态函数------------------------------------------
+
     static bool importBooks();
 
     // 静态函数, 删除书籍
@@ -88,6 +92,7 @@ private:
     // 静态函数, 增加书籍
     static bool addBooks(std::vector<std::vector<std::string>> queryData, std::vector<long long> &ids);
 
-
+    // 静态函数, 将类中所有符合isbn条件的对象的馆藏量增加对应的addCount本
+    static bool updateBooksCount(std::vector<std::string> isbns, std::vector<int> addCount);
 };
 

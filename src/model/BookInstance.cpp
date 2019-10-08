@@ -14,19 +14,22 @@ BookInstance::BookInstance(const string &isbn, int status, const string &positio
 
 BookInstance::BookInstance(const string &isbn, const string &position) : isbn(isbn), position(position) {}
 
+int BookInstance::addBookInstance(BookInstance instance, int firstId) {
+    // todo: Á¬½ÓÊı¾İ¿â
+    return 66;
+}
+
 int BookInstance::importBookInstances(std::vector<BookInstance> instances, int firstId = -1) {
     int index = 0;
-    if (firstId == -1) {//å¦‚æœæ˜¯é¦–æ¬¡æ’å…¥,å…ˆæ’ä¸€æœ¬
+    if (firstId == -1) {//Èç¹ûÊÇÊ×´Î²åÈë,ÏÈ²åÒ»±¾
         firstId = addBookInstance(instances[index++], firstId);
     }
 
-    while (index < instances.size()) {// å°†å°šæœªå¯¼å…¥çš„å®ä¾‹å…¨éƒ¨å¯¼å…¥
+    while (index < instances.size()) {// ½«ÉĞÎ´µ¼ÈëµÄÊµÀıÈ«²¿µ¼Èë
         addBookInstance(instances[index++], firstId);
     }
     return firstId;
 }
 
-int BookInstance::addBookInstance(std::vector<BookInstance> instances, int firstId) {
-    return 0;
-}
+
 
