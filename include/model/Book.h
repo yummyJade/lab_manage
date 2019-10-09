@@ -43,8 +43,11 @@ public:
 
     // ----------------------------------------------------------------
     // ------下面这些是静态函数------------------------------------------
-
+    // 导入书籍，这个函数要搬出去
     static bool importBooks();
+
+    // 导出所有书籍，这个函数要搬出去
+    static bool exportBooks();
 
     // 静态函数, 删除书籍
     static bool deleteBooksByBookIds(std::vector<std::string> bookIds);
