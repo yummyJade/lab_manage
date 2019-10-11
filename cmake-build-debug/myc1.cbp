@@ -126,7 +126,7 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/dev-Tan/main.cpp">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/dev-test/menuTest.cpp">
 			<Option target="myc1"/>
 		</Unit>
 		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/core/Date.h">
@@ -153,6 +153,9 @@
 		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/util/DbAdapter.h">
 			<Option target="Include"/>
 		</Unit>
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/util/TableRenderer.h">
+			<Option target="Include"/>
+		</Unit>
 		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/src/core/Date.cpp">
 			<Option target="Include"/>
 		</Unit>
@@ -175,6 +178,9 @@
 			<Option target="Include"/>
 		</Unit>
 		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/src/util/DbAdapter.cpp">
+			<Option target="Include"/>
+		</Unit>
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/src/util/TableRenderer.cpp">
 			<Option target="Include"/>
 		</Unit>
 		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/CMakeLists.txt">

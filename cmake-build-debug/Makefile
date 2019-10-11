@@ -135,32 +135,32 @@ Include/fast:
 	$(MAKE) -f include\CMakeFiles\Include.dir\build.make include/CMakeFiles/Include.dir/build
 .PHONY : Include/fast
 
-dev-Tan/main.obj: dev-Tan/main.cpp.obj
+dev-test/menuTest.obj: dev-test/menuTest.cpp.obj
 
-.PHONY : dev-Tan/main.obj
+.PHONY : dev-test/menuTest.obj
 
 # target to build an object file
-dev-Tan/main.cpp.obj:
-	$(MAKE) -f CMakeFiles\myc1.dir\build.make CMakeFiles/myc1.dir/dev-Tan/main.cpp.obj
-.PHONY : dev-Tan/main.cpp.obj
+dev-test/menuTest.cpp.obj:
+	$(MAKE) -f CMakeFiles\myc1.dir\build.make CMakeFiles/myc1.dir/dev-test/menuTest.cpp.obj
+.PHONY : dev-test/menuTest.cpp.obj
 
-dev-Tan/main.i: dev-Tan/main.cpp.i
+dev-test/menuTest.i: dev-test/menuTest.cpp.i
 
-.PHONY : dev-Tan/main.i
+.PHONY : dev-test/menuTest.i
 
 # target to preprocess a source file
-dev-Tan/main.cpp.i:
-	$(MAKE) -f CMakeFiles\myc1.dir\build.make CMakeFiles/myc1.dir/dev-Tan/main.cpp.i
-.PHONY : dev-Tan/main.cpp.i
+dev-test/menuTest.cpp.i:
+	$(MAKE) -f CMakeFiles\myc1.dir\build.make CMakeFiles/myc1.dir/dev-test/menuTest.cpp.i
+.PHONY : dev-test/menuTest.cpp.i
 
-dev-Tan/main.s: dev-Tan/main.cpp.s
+dev-test/menuTest.s: dev-test/menuTest.cpp.s
 
-.PHONY : dev-Tan/main.s
+.PHONY : dev-test/menuTest.s
 
 # target to generate assembly for a file
-dev-Tan/main.cpp.s:
-	$(MAKE) -f CMakeFiles\myc1.dir\build.make CMakeFiles/myc1.dir/dev-Tan/main.cpp.s
-.PHONY : dev-Tan/main.cpp.s
+dev-test/menuTest.cpp.s:
+	$(MAKE) -f CMakeFiles\myc1.dir\build.make CMakeFiles/myc1.dir/dev-test/menuTest.cpp.s
+.PHONY : dev-test/menuTest.cpp.s
 
 # Help Target
 help:
@@ -172,9 +172,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... Include
-	@echo ... dev-Tan/main.obj
-	@echo ... dev-Tan/main.i
-	@echo ... dev-Tan/main.s
+	@echo ... dev-test/menuTest.obj
+	@echo ... dev-test/menuTest.i
+	@echo ... dev-test/menuTest.s
 .PHONY : help
 
 

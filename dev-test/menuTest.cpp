@@ -3,6 +3,7 @@
 #include <iomanip>
 #include <vector>
 #include "libm.h"
+#include "../src/libcpp.h"
 
 using namespace std;
 
@@ -17,7 +18,7 @@ void printSearchResult();
 bool offFlag = false;
 //一些需要先初始化的东西
 void init(){
-    DbAdapter *dbHelper = new DbAdapter("书");
+    DbAdapter *dbHelper = new DbAdapter("Book");
 
 }
 //打印主菜单
@@ -177,7 +178,7 @@ void printSearchResult(){
 void printSearchMenu(){
     system("cls");
     while (1) {
-        DbAdapter *dbHelper = new DbAdapter("书");
+        DbAdapter *dbHelper = new DbAdapter("Book");
         cout << "------------图书搜索--------------" << endl
              << "1.所有" << endl
              << "2.书名" << endl
@@ -193,30 +194,12 @@ void printSearchMenu(){
         string keyWord;
         cout << "请输入您的搜索词:";
         cin >> keyWord;
-        vector<vector<string> > queryData;
-        switch (choose){
-            case 1:
-                cout<< "xxxxxx" << endl;break;
-            case 2:
-                queryData = dbHelper->searchBySingleField("书名", keyWord);
-                for (ll i = 0; i < queryData.size(); i++) {
-                    for (ll j = 0; j < queryData[0].size(); j++) {
-                        printf("%s\t", queryData[i][j].data());
-                    }
-                    printf("\n");
-                }
-                break;
-            case 3:
-                queryData = dbHelper->searchBySingleField("作者", keyWord);
-            case 4:
-                queryData = dbHelper->searchBySingleField("isbn", keyWord);
-            case 5:
-                queryData = dbHelper->searchBySingleField("类型",keyWord);
-            case 0:
-                break;
-            default:
-                cout << "该选项不存在，请重新输入!" << endl;
-        }
+        string fieds[] = {"", "all", "name", "author", "isbn", "type"};
+        // todo: 这里判断choose是否合法
+        vector<Book> books = Book::searchBooksBySingleField(fieds[choose], keyWord);
+        Book::printBookList(books);
+
+
         if(choose == 0){
             break;
         }

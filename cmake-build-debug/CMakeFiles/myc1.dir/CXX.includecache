@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-E:/Sources/Cpp/repos/Lib_manage/database_v1.0/database.cpp
+../database_v1.0/database.cpp
 cstdio
 -
 iostream
@@ -20,29 +20,19 @@ stdlib.h
 memory.h
 -
 
-E:/Sources/Cpp/repos/Lib_manage/dev-Tan/main.cpp
-../include/libm.h
-E:/Sources/Cpp/repos/Lib_manage/include/libm.h
-../src/libcpp.h
-E:/Sources/Cpp/repos/Lib_manage/src/libcpp.h
-fstream
--
-regex
--
-
-E:/Sources/Cpp/repos/Lib_manage/include/core/Date.h
+../include/core/Date.h
 string
 -
 
-E:/Sources/Cpp/repos/Lib_manage/include/core/SimpleString.h
+../include/core/SimpleString.h
 string
 -
 
-E:/Sources/Cpp/repos/Lib_manage/include/core/SimpleTime.h
+../include/core/SimpleTime.h
 Date.h
-E:/Sources/Cpp/repos/Lib_manage/include/core/Date.h
+../include/core/Date.h
 
-E:/Sources/Cpp/repos/Lib_manage/include/libm.h
+../include/libm.h
 iostream
 -
 stdio.h
@@ -50,23 +40,93 @@ stdio.h
 string
 -
 core/Date.h
-E:/Sources/Cpp/repos/Lib_manage/include/core/Date.h
+../include/core/Date.h
 core/SimpleTime.h
-E:/Sources/Cpp/repos/Lib_manage/include/core/SimpleTime.h
+../include/core/SimpleTime.h
 core/SimpleString.h
-E:/Sources/Cpp/repos/Lib_manage/include/core/SimpleString.h
+../include/core/SimpleString.h
 model/Book.h
-E:/Sources/Cpp/repos/Lib_manage/include/model/Book.h
+../include/model/Book.h
 model/BookInstance.h
-E:/Sources/Cpp/repos/Lib_manage/include/model/BookInstance.h
+../include/model/BookInstance.h
 model/Order.h
-E:/Sources/Cpp/repos/Lib_manage/include/model/Order.h
+../include/model/Order.h
 model/User.h
-E:/Sources/Cpp/repos/Lib_manage/include/model/User.h
+../include/model/User.h
 util/DbAdapter.h
-E:/Sources/Cpp/repos/Lib_manage/include/util/DbAdapter.h
+../include/util/DbAdapter.h
 util/Record.h
-E:/Sources/Cpp/repos/Lib_manage/include/util/Record.h
+../include/util/Record.h
+util/TableRenderer.h
+../include/util/TableRenderer.h
+
+../include/model/Book.h
+core/SimpleTime.h
+../include/model/core/SimpleTime.h
+iostream
+-
+vector
+-
+
+../include/model/BookInstance.h
+iostream
+-
+vector
+-
+../core/Date.h
+../include/core/Date.h
+
+../include/model/Order.h
+core/SimpleTime.h
+../include/model/core/SimpleTime.h
+iostream
+-
+vector
+-
+
+../include/model/User.h
+vector
+-
+../model/Order.h
+../include/model/Order.h
+
+../include/util/DbAdapter.h
+../../database_v1.0/database.cpp
+../database_v1.0/database.cpp
+
+../include/util/Record.h
+
+../include/util/TableRenderer.h
+string
+-
+iostream
+-
+iomanip
+-
+vector
+-
+
+E:/Sources/Cpp/repos/Lib_manage/dev-test/menuTest.cpp
+iostream
+-
+stdlib.h
+-
+iomanip
+-
+vector
+-
+libm.h
+E:/Sources/Cpp/repos/Lib_manage/dev-test/libm.h
+../src/libcpp.h
+E:/Sources/Cpp/repos/Lib_manage/src/libcpp.h
+
+E:/Sources/Cpp/repos/Lib_manage/include/core/Date.h
+string
+-
+
+E:/Sources/Cpp/repos/Lib_manage/include/core/SimpleString.h
+string
+-
 
 E:/Sources/Cpp/repos/Lib_manage/include/model/Book.h
 core/SimpleTime.h
@@ -102,7 +162,15 @@ E:/Sources/Cpp/repos/Lib_manage/include/util/DbAdapter.h
 ../../database_v1.0/database.cpp
 E:/Sources/Cpp/repos/Lib_manage/database_v1.0/database.cpp
 
-E:/Sources/Cpp/repos/Lib_manage/include/util/Record.h
+E:/Sources/Cpp/repos/Lib_manage/include/util/TableRenderer.h
+string
+-
+iostream
+-
+iomanip
+-
+vector
+-
 
 E:/Sources/Cpp/repos/Lib_manage/src/core/Date.cpp
 ../../include/core/Date.h
@@ -153,6 +221,8 @@ util/DbAdapter.cpp
 E:/Sources/Cpp/repos/Lib_manage/src/util/DbAdapter.cpp
 util/Record.cpp
 E:/Sources/Cpp/repos/Lib_manage/src/util/Record.cpp
+util/TableRenderer.cpp
+E:/Sources/Cpp/repos/Lib_manage/src/util/TableRenderer.cpp
 
 E:/Sources/Cpp/repos/Lib_manage/src/model/Book.cpp
 ../../include/model/Book.h
@@ -169,6 +239,8 @@ model/BookInstance.h
 -
 ../../include/util/DbAdapter.h
 E:/Sources/Cpp/repos/Lib_manage/include/util/DbAdapter.h
+../../include/util/TableRenderer.h
+E:/Sources/Cpp/repos/Lib_manage/include/util/TableRenderer.h
 
 E:/Sources/Cpp/repos/Lib_manage/src/model/BookInstance.cpp
 ../../include/model/BookInstance.h
@@ -209,4 +281,10 @@ E:/Sources/Cpp/repos/Lib_manage/src/util/util/DbAdapter.h
 E:/Sources/Cpp/repos/Lib_manage/src/util/Record.cpp
 util/Record.h
 E:/Sources/Cpp/repos/Lib_manage/src/util/util/Record.h
+
+E:/Sources/Cpp/repos/Lib_manage/src/util/TableRenderer.cpp
+util/TableRenderer.h
+E:/Sources/Cpp/repos/Lib_manage/src/util/util/TableRenderer.h
+Windows.h
+-
 

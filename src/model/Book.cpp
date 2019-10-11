@@ -5,6 +5,7 @@
 #include <sstream>
 #include <model/BookInstance.h>
 #include "../../include/util/DbAdapter.h"
+#include "../../include/util/TableRenderer.h"
 using namespace std;
 
 Book::Book() {
@@ -91,20 +92,20 @@ bool Book::deSerialize(std::vector<std::string> info) {
 }
 
 
-std::vector<std::vector<std::string>> Book::searchBooksBySingleField(std::string field, std::string value) {
+std::vector<Book> Book::searchBooksBySingleField(std::string field, std::string value) {
     DbAdapter dbAdapter("Book");
     vector<vector<string> > queryData = dbAdapter.searchBySingleField(field, value);
-    return queryData;
+    return Book::stringsToBooks(queryData);
 }
 
 
-void Book::printBookList(std::vector<std::vector<std::string>> queryData) {
-    for (ll i = 0; i < queryData.size(); i++) {
-        for (ll j = 0; j < queryData[0].size(); j++) {
-            printf("%s\t", queryData[i][j].data());
-        }
-        printf("\n");
+void Book::printBookList(std::vector<Book> books) {
+    vector<string> navs = {"类型", "馆藏量", "价格", "书名", "作者", "ISBN", "出版社", "链表ID"};
+    TableRenderer render(navs);
+    for (int i = 0; i < books.size(); ++i) {
+        render.addColume(books[i].serialize());
     }
+    render.render();
 }
 
 bool
@@ -259,9 +260,7 @@ std::vector<int> Book::checkISBNsExist(std::vector<std::string> isbns) {
 
 bool Book::updateBooksCount(std::vector<std::string> isbns, std::vector<int> addCount) {
     for (int i = 0; i < isbns.size(); ++i) {
-        Book book;
-        book.deSerialize(Book::searchBooksBySingleField("isbn", isbns[i].data())[0]);
-        int oldCount = book.count;
+        int oldCount = Book::searchBooksBySingleField("isbn", isbns[i].data())[0].count;
         Book::updateBooks("isbn", isbns[i].data(), "count", to_string(oldCount + addCount[i]));
     }
     return true;
@@ -276,6 +275,16 @@ void Book::save() {
 bool Book::exportBooks() {
 
     return false;
+}
+
+std::vector<Book> Book::stringsToBooks(std::vector<std::vector<std::string>> books) {
+    vector<Book> results;
+    for (int i = 0; i < books.size(); ++i) {
+        Book book; // todo: 这里好像要用new
+        book.deSerialize(books[i]);
+        results.push_back(book);
+    }
+    return results;
 }
 
 

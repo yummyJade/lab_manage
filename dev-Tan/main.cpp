@@ -91,27 +91,6 @@ int main() {
 //    Book::updateBooks("isbn","978-5-664-71497-5","count","999");
     Book::importBooks();// 导入书籍的函数
     Book::printBookList(Book::searchAll());
-//    DbAdapter db("Book");
-//    vector<vector<string> > queryData=db.searchBySingleField("isbn","978-5-664-71497-5");
-
-
-
-//    Book::printBookList(Book::searchAll());
-
-//    DbAdapter *dbHelper = new DbAdapter("书");
-//    vector<vector<string> > queryData = dbHelper->searchBySingleField("作者", "谢立");
-//
-//
-//    for (ll i = 0; i < queryData.size(); i++) {
-////        printf("2");
-//        for (ll j = 0; j < queryData[0].size(); j++) {
-//            printf("%s\t", queryData[i][j].data());
-//        }
-//        printf("\n");
-//    }
-//    return 1;
-
-
 
 }
 

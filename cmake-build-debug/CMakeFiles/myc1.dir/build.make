@@ -56,28 +56,28 @@ include CMakeFiles/myc1.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/myc1.dir/flags.make
 
-CMakeFiles/myc1.dir/dev-Tan/main.cpp.obj: CMakeFiles/myc1.dir/flags.make
-CMakeFiles/myc1.dir/dev-Tan/main.cpp.obj: CMakeFiles/myc1.dir/includes_CXX.rsp
-CMakeFiles/myc1.dir/dev-Tan/main.cpp.obj: ../dev-Tan/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/myc1.dir/dev-Tan/main.cpp.obj"
-	C:\PROGRA~2\CODEBL~1\MinGW\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\myc1.dir\dev-Tan\main.cpp.obj -c E:\Sources\Cpp\repos\Lib_manage\dev-Tan\main.cpp
+CMakeFiles/myc1.dir/dev-test/menuTest.cpp.obj: CMakeFiles/myc1.dir/flags.make
+CMakeFiles/myc1.dir/dev-test/menuTest.cpp.obj: CMakeFiles/myc1.dir/includes_CXX.rsp
+CMakeFiles/myc1.dir/dev-test/menuTest.cpp.obj: ../dev-test/menuTest.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/myc1.dir/dev-test/menuTest.cpp.obj"
+	C:\PROGRA~2\CODEBL~1\MinGW\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\myc1.dir\dev-test\menuTest.cpp.obj -c E:\Sources\Cpp\repos\Lib_manage\dev-test\menuTest.cpp
 
-CMakeFiles/myc1.dir/dev-Tan/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/myc1.dir/dev-Tan/main.cpp.i"
-	C:\PROGRA~2\CODEBL~1\MinGW\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\Sources\Cpp\repos\Lib_manage\dev-Tan\main.cpp > CMakeFiles\myc1.dir\dev-Tan\main.cpp.i
+CMakeFiles/myc1.dir/dev-test/menuTest.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/myc1.dir/dev-test/menuTest.cpp.i"
+	C:\PROGRA~2\CODEBL~1\MinGW\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\Sources\Cpp\repos\Lib_manage\dev-test\menuTest.cpp > CMakeFiles\myc1.dir\dev-test\menuTest.cpp.i
 
-CMakeFiles/myc1.dir/dev-Tan/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/myc1.dir/dev-Tan/main.cpp.s"
-	C:\PROGRA~2\CODEBL~1\MinGW\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\Sources\Cpp\repos\Lib_manage\dev-Tan\main.cpp -o CMakeFiles\myc1.dir\dev-Tan\main.cpp.s
+CMakeFiles/myc1.dir/dev-test/menuTest.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/myc1.dir/dev-test/menuTest.cpp.s"
+	C:\PROGRA~2\CODEBL~1\MinGW\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\Sources\Cpp\repos\Lib_manage\dev-test\menuTest.cpp -o CMakeFiles\myc1.dir\dev-test\menuTest.cpp.s
 
 # Object files for target myc1
 myc1_OBJECTS = \
-"CMakeFiles/myc1.dir/dev-Tan/main.cpp.obj"
+"CMakeFiles/myc1.dir/dev-test/menuTest.cpp.obj"
 
 # External object files for target myc1
 myc1_EXTERNAL_OBJECTS =
 
-myc1.exe: CMakeFiles/myc1.dir/dev-Tan/main.cpp.obj
+myc1.exe: CMakeFiles/myc1.dir/dev-test/menuTest.cpp.obj
 myc1.exe: CMakeFiles/myc1.dir/build.make
 myc1.exe: CMakeFiles/myc1.dir/linklibs.rsp
 myc1.exe: CMakeFiles/myc1.dir/objects1.rsp
