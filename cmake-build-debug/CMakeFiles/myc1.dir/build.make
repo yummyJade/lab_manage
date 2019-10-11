@@ -33,19 +33,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe"
+CMAKE_COMMAND = C:\Users\Tjm\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\192.6603.37\bin\cmake\win\bin\cmake.exe
 
 # The command to remove a file.
-RM = "D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E remove -f
+RM = C:\Users\Tjm\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\192.6603.37\bin\cmake\win\bin\cmake.exe -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = D:\projects\CLionProjects\myc1
+CMAKE_SOURCE_DIR = E:\Sources\Cpp\repos\Lib_manage
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = D:\projects\CLionProjects\myc1\cmake-build-debug
+CMAKE_BINARY_DIR = E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/myc1.dir/depend.make
@@ -56,33 +56,33 @@ include CMakeFiles/myc1.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/myc1.dir/flags.make
 
-CMakeFiles/myc1.dir/dev-Tan/main.cpp.obj: CMakeFiles/myc1.dir/flags.make
-CMakeFiles/myc1.dir/dev-Tan/main.cpp.obj: CMakeFiles/myc1.dir/includes_CXX.rsp
-CMakeFiles/myc1.dir/dev-Tan/main.cpp.obj: ../dev-Tan/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\projects\CLionProjects\myc1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/myc1.dir/dev-Tan/main.cpp.obj"
-	D:\Install\CodeBlocks\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\myc1.dir\dev-Tan\main.cpp.obj -c D:\projects\CLionProjects\myc1\dev-Tan\main.cpp
+CMakeFiles/myc1.dir/dev-test/menuTest.cpp.obj: CMakeFiles/myc1.dir/flags.make
+CMakeFiles/myc1.dir/dev-test/menuTest.cpp.obj: CMakeFiles/myc1.dir/includes_CXX.rsp
+CMakeFiles/myc1.dir/dev-test/menuTest.cpp.obj: ../dev-test/menuTest.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/myc1.dir/dev-test/menuTest.cpp.obj"
+	C:\PROGRA~2\CODEBL~1\MinGW\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\myc1.dir\dev-test\menuTest.cpp.obj -c E:\Sources\Cpp\repos\Lib_manage\dev-test\menuTest.cpp
 
-CMakeFiles/myc1.dir/dev-Tan/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/myc1.dir/dev-Tan/main.cpp.i"
-	D:\Install\CodeBlocks\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\projects\CLionProjects\myc1\dev-Tan\main.cpp > CMakeFiles\myc1.dir\dev-Tan\main.cpp.i
+CMakeFiles/myc1.dir/dev-test/menuTest.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/myc1.dir/dev-test/menuTest.cpp.i"
+	C:\PROGRA~2\CODEBL~1\MinGW\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\Sources\Cpp\repos\Lib_manage\dev-test\menuTest.cpp > CMakeFiles\myc1.dir\dev-test\menuTest.cpp.i
 
-CMakeFiles/myc1.dir/dev-Tan/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/myc1.dir/dev-Tan/main.cpp.s"
-	D:\Install\CodeBlocks\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\projects\CLionProjects\myc1\dev-Tan\main.cpp -o CMakeFiles\myc1.dir\dev-Tan\main.cpp.s
+CMakeFiles/myc1.dir/dev-test/menuTest.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/myc1.dir/dev-test/menuTest.cpp.s"
+	C:\PROGRA~2\CODEBL~1\MinGW\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\Sources\Cpp\repos\Lib_manage\dev-test\menuTest.cpp -o CMakeFiles\myc1.dir\dev-test\menuTest.cpp.s
 
 # Object files for target myc1
 myc1_OBJECTS = \
-"CMakeFiles/myc1.dir/dev-Tan/main.cpp.obj"
+"CMakeFiles/myc1.dir/dev-test/menuTest.cpp.obj"
 
 # External object files for target myc1
 myc1_EXTERNAL_OBJECTS =
 
-myc1.exe: CMakeFiles/myc1.dir/dev-Tan/main.cpp.obj
+myc1.exe: CMakeFiles/myc1.dir/dev-test/menuTest.cpp.obj
 myc1.exe: CMakeFiles/myc1.dir/build.make
 myc1.exe: CMakeFiles/myc1.dir/linklibs.rsp
 myc1.exe: CMakeFiles/myc1.dir/objects1.rsp
 myc1.exe: CMakeFiles/myc1.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=D:\projects\CLionProjects\myc1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable myc1.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable myc1.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\myc1.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -95,6 +95,6 @@ CMakeFiles/myc1.dir/clean:
 .PHONY : CMakeFiles/myc1.dir/clean
 
 CMakeFiles/myc1.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" D:\projects\CLionProjects\myc1 D:\projects\CLionProjects\myc1 D:\projects\CLionProjects\myc1\cmake-build-debug D:\projects\CLionProjects\myc1\cmake-build-debug D:\projects\CLionProjects\myc1\cmake-build-debug\CMakeFiles\myc1.dir\DependInfo.cmake --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" E:\Sources\Cpp\repos\Lib_manage E:\Sources\Cpp\repos\Lib_manage E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles\myc1.dir\DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/myc1.dir/depend
 

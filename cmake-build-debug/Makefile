@@ -38,19 +38,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe"
+CMAKE_COMMAND = C:\Users\Tjm\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\192.6603.37\bin\cmake\win\bin\cmake.exe
 
 # The command to remove a file.
-RM = "D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E remove -f
+RM = C:\Users\Tjm\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\192.6603.37\bin\cmake\win\bin\cmake.exe -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = D:\projects\CLionProjects\myc1
+CMAKE_SOURCE_DIR = E:\Sources\Cpp\repos\Lib_manage
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = D:\projects\CLionProjects\myc1\cmake-build-debug
+CMAKE_BINARY_DIR = E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -58,7 +58,7 @@ CMAKE_BINARY_DIR = D:\projects\CLionProjects\myc1\cmake-build-debug
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available."
+	C:\Users\Tjm\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\192.6603.37\bin\cmake\win\bin\cmake.exe -E echo "No interactive CMake dialog available."
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -69,7 +69,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	C:\Users\Tjm\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\192.6603.37\bin\cmake\win\bin\cmake.exe -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -79,9 +79,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start D:\projects\CLionProjects\myc1\cmake-build-debug\CMakeFiles D:\projects\CLionProjects\myc1\cmake-build-debug\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles\progress.marks
 	$(MAKE) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start D:\projects\CLionProjects\myc1\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -135,32 +135,32 @@ Include/fast:
 	$(MAKE) -f include\CMakeFiles\Include.dir\build.make include/CMakeFiles/Include.dir/build
 .PHONY : Include/fast
 
-dev-Tan/main.obj: dev-Tan/main.cpp.obj
+dev-test/menuTest.obj: dev-test/menuTest.cpp.obj
 
-.PHONY : dev-Tan/main.obj
+.PHONY : dev-test/menuTest.obj
 
 # target to build an object file
-dev-Tan/main.cpp.obj:
-	$(MAKE) -f CMakeFiles\myc1.dir\build.make CMakeFiles/myc1.dir/dev-Tan/main.cpp.obj
-.PHONY : dev-Tan/main.cpp.obj
+dev-test/menuTest.cpp.obj:
+	$(MAKE) -f CMakeFiles\myc1.dir\build.make CMakeFiles/myc1.dir/dev-test/menuTest.cpp.obj
+.PHONY : dev-test/menuTest.cpp.obj
 
-dev-Tan/main.i: dev-Tan/main.cpp.i
+dev-test/menuTest.i: dev-test/menuTest.cpp.i
 
-.PHONY : dev-Tan/main.i
+.PHONY : dev-test/menuTest.i
 
 # target to preprocess a source file
-dev-Tan/main.cpp.i:
-	$(MAKE) -f CMakeFiles\myc1.dir\build.make CMakeFiles/myc1.dir/dev-Tan/main.cpp.i
-.PHONY : dev-Tan/main.cpp.i
+dev-test/menuTest.cpp.i:
+	$(MAKE) -f CMakeFiles\myc1.dir\build.make CMakeFiles/myc1.dir/dev-test/menuTest.cpp.i
+.PHONY : dev-test/menuTest.cpp.i
 
-dev-Tan/main.s: dev-Tan/main.cpp.s
+dev-test/menuTest.s: dev-test/menuTest.cpp.s
 
-.PHONY : dev-Tan/main.s
+.PHONY : dev-test/menuTest.s
 
 # target to generate assembly for a file
-dev-Tan/main.cpp.s:
-	$(MAKE) -f CMakeFiles\myc1.dir\build.make CMakeFiles/myc1.dir/dev-Tan/main.cpp.s
-.PHONY : dev-Tan/main.cpp.s
+dev-test/menuTest.cpp.s:
+	$(MAKE) -f CMakeFiles\myc1.dir\build.make CMakeFiles/myc1.dir/dev-test/menuTest.cpp.s
+.PHONY : dev-test/menuTest.cpp.s
 
 # Help Target
 help:
@@ -172,9 +172,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... Include
-	@echo ... dev-Tan/main.obj
-	@echo ... dev-Tan/main.i
-	@echo ... dev-Tan/main.s
+	@echo ... dev-test/menuTest.obj
+	@echo ... dev-test/menuTest.i
+	@echo ... dev-test/menuTest.s
 .PHONY : help
 
 

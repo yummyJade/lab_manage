@@ -133,7 +133,11 @@ bool User::isLegalPassword(const std::string &password) {
 }
 
 bool User::changePwd(const std::string &password) {
+    // 输入原来的密码
 
+    // 判断原来的密码是否正确，不正确则跳到上面重新输入
+
+    // 若正确，则输入新的密码
     return this->setPassword(password);
 }
 

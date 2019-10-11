@@ -14,4 +14,5 @@
 #include "model/User.cpp"
 #include "util/DbAdapter.cpp"
 #include "util/Record.cpp"
+#include "util/TableRenderer.cpp"
 #endif //MYC1_LIBCPP_H

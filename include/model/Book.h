@@ -19,7 +19,6 @@ private:
 private:
     //打印书本类型
     std::string printType();
-
     std::string printIsLend();
 
 
@@ -34,19 +33,26 @@ public:
 
     ~Book();
 
+    // 保存当前对象到数据库, 暂时写一下看看好不好使
+    void save();
+
     //打印书本基本信息
     void printBookInfo();
 
 
     // ----------------------------------------------------------------
     // ------下面这些是静态函数------------------------------------------
+    // 导入书籍，这个函数要搬出去
     static bool importBooks();
+
+    // 导出所有书籍，这个函数要搬出去
+    static bool exportBooks();
 
     // 静态函数, 删除书籍
     static bool deleteBooksByBookIds(std::vector<std::string> bookIds);
 
-    // 静态函数, 根据指定字段的值搜索内容
-    static std::vector<std::vector<std::string>> searchBooksBySingleField(std::string field, std::string value);
+    // 静态函数, 根据指定字段的值搜索内容,返回Book对象数组
+    static std::vector<Book> searchBooksBySingleField(std::string field, std::string value);
 
     // 静态函数, 修改
     static bool
@@ -57,7 +63,7 @@ public:
 
 
     // 静态函数, 打印查询出来的结果集 todo: 完善打印效果
-    static void printBookList(std::vector<std::vector<std::string>> queryData);
+    static void printBookList(std::vector<Book>);
 
     // 静态函数, 借书 todo:原子操作,借书一瞬间炸了
     static void borrowAssignIdBook(long long bookId, long long userId);
@@ -88,6 +94,10 @@ private:
     // 静态函数, 增加书籍
     static bool addBooks(std::vector<std::vector<std::string>> queryData, std::vector<long long> &ids);
 
+    // 静态函数, 将类中所有符合isbn条件的对象的馆藏量增加对应的addCount本
+    static bool updateBooksCount(std::vector<std::string> isbns, std::vector<int> addCount);
 
+    // 二维字符串数组转Book对象数组
+    static std::vector<Book> stringsToBooks(std::vector<std::vector<std::string>>);
 };
 

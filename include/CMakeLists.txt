@@ -11,6 +11,7 @@ set(HEADER_FILES
         model/User.h
 
         util/DbAdapter.h
+        util/TableRenderer.h
 
 
         )
@@ -26,5 +27,6 @@ set(SOURCE_FILES
         ../src/model/Order.cpp
 
         ../src/util/DbAdapter.cpp
+        ../src/util/TableRenderer.cpp
         )
 add_library(Include STATIC ${SOURCE_FILES} ${HEADER_FILES})

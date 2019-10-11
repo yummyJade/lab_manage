@@ -5,6 +5,7 @@
 #include <sstream>
 #include <model/BookInstance.h>
 #include "../../include/util/DbAdapter.h"
+#include "../../include/util/TableRenderer.h"
 using namespace std;
 
 Book::Book() {
@@ -58,59 +59,58 @@ void Book::printBookInfo() {
 }
 
 
-
-
 std::vector<std::string> Book::serialize() {
     vector<string> info;
-//    info.push_back(to_string(this->id));
     info.push_back(to_string(this->type));
     info.push_back(to_string(this->count));
-//    info.push_back(to_string(this->isValid));
     info.push_back(to_string(this->price));
     info.push_back(this->name);
     info.push_back(this->author);
     info.push_back(this->isbn);
     info.push_back(this->press);
-//    info.push_back(this->position);
+    info.push_back(to_string(this->firstInstanceId));
     return info;
 }
 
 bool Book::deSerialize(std::vector<std::string> info) {
+    for (int i = 0; i < info.size(); ++i) {
+        cout << i << " " << info[i].data() << " ";
+    }
     char type = info[0].data()[0];
-//    bool isLend = info[1].data() == "true";
-//    bool isValid = info[2].data() == "true";
-    int price = (int) (info[3].data());
-    string name = info[4].data();
-    string author = info[5].data();
-    string isbn = info[6].data();
-    string press = info[7].data();
-    string postion = info[8].data();
-    long long id = (long long) info[8].data();
+    int count = stoi(info[1].data());
+    int price = stoi(info[2].data());
+    string name = info[3].data();
+    string author = info[4].data();
+    string isbn = info[5].data();
+    string press = info[6].data();
+    long long firstInstanceId = (long long) info[7].data();
 
-    Book(type,price,id,name,author,isbn,press);
+    new(this) Book(type, count, price, firstInstanceId, name, author, isbn, press);
+//    this->Book::Book();
+//    Book(type, count, price, firstInstanceId, name, author, isbn, press);
     return true;
 }
 
-std::vector<std::vector<std::string>> Book::searchBooksBySingleField(std::string field, std::string value) {
+
+std::vector<Book> Book::searchBooksBySingleField(std::string field, std::string value) {
     DbAdapter dbAdapter("Book");
     vector<vector<string> > queryData = dbAdapter.searchBySingleField(field, value);
-    return queryData;
+    return Book::stringsToBooks(queryData);
 }
 
 
-void Book::printBookList(std::vector<std::vector<std::string>> queryData) {
-    for (ll i = 0; i < queryData.size(); i++) {
-//        printf("2\n");
-        for (ll j = 0; j < queryData[0].size(); j++) {
-            printf("%s\t", queryData[i][j].data());
-        }
-        printf("\n");
+void Book::printBookList(std::vector<Book> books) {
+    vector<string> navs = {"类型", "馆藏量", "价格", "书名", "作者", "ISBN", "出版社", "链表ID"};
+    TableRenderer render(navs);
+    for (int i = 0; i < books.size(); ++i) {
+        render.addColume(books[i].serialize());
     }
+    render.render();
 }
 
 bool
 Book::updateBooks(std::string assignField, std::string assignValue, std::string changeField, std::string changeValue) {
-    DbAdapter dbAdapter("书");
+    DbAdapter dbAdapter("Book");
     dbAdapter.updateBySingleField(assignField, assignValue, changeField, changeValue);
     return true;
 }
@@ -141,11 +141,13 @@ bool Book::addBooks(std::vector<std::vector<std::string>> queryData, vector<long
 
 int Book::checkAssignISBNExist(std::string isbn) {
     DbAdapter dbAdapter("Book");
-    vector<vector<string>> result = dbAdapter.searchBySingleField("ISBN", isbn);
+    vector<vector<string>> result = dbAdapter.searchBySingleField("isbn", isbn);
     if (result.size() > 0) {
+//        cout<<"isbn:"<<isbn<<" 有"<<endl;
 //        cout << "末尾元素是" << result[0].back();
         return stoi(result[0].back());//todo :这里用了魔数,不对,要保证最后一个参数是第一本id
     }
+//    cout<<"isbn:"<<isbn<<" 没有"<<endl;
     return -1;
 }
 
@@ -161,10 +163,8 @@ bool Book::importBooks() {
             cout << "已找到文件,正在读取" << endl;
             break;
         }
-
         cout << "文件不存在,请检查路径后重新输入" << endl;
     }
-
 
     /* 先判断一下这次要导入的书籍种类哪些是已经存在的*/
     getline(fin, line); // 吃掉首行
@@ -177,18 +177,18 @@ bool Book::importBooks() {
         while (getline(sin, field, ',')) {
             fields.push_back(field);
         }
-//        string isbn = fields[4];
         isbns.push_back(fields[4]);
     }
     vector<int> isExists = Book::checkISBNsExist(isbns);
 
-
     /* 对不同情况的书籍执行不同操作*/
     int index = 0;//要操作的行下标
-    fin = ifstream(path);//打开文件流操作
+    fin.clear();
+    fin.seekg(0, ios::beg); // 重新跳转到文件头部
     getline(fin, line); // 吃掉首行
-    vector<vector<string>> newBooks; // 这些数据要insert到Book表
-    vector<vector<string>> updateBooks; // 这些数据要新update Book表已有的数据
+    vector<vector<string>> newBooks; // 要insert到Book表的数据
+    vector<string> updateIsbns; // 已经存在的，只需要更新馆藏量的isbn号
+    vector<int> addCounts; // 已经存在的，要添加的馆藏量
 
     while (getline(fin, line)) //整行读取，换行符“\n”区分，遇到文件尾标志eof终止读取
     {
@@ -199,6 +199,7 @@ bool Book::importBooks() {
         while (getline(sin, field, ',')) {
             fields.push_back(field);
         }
+
         string name = fields[0];
         string author = fields[1];
         string press = fields[2];
@@ -209,28 +210,37 @@ bool Book::importBooks() {
         int count = stoi(fields[7]);
 
         vector<BookInstance> bookinstancesFirstAdd;
+
         for (int i = 0; i < count; ++i) {
             BookInstance bookInstance(isbn, position);
             bookinstancesFirstAdd.push_back(bookInstance);
         }
         // 插入book实例到instance表
-        long long firstInstanceId = BookInstance::importBookInstances(bookinstancesFirstAdd);//获取链表的第一个位置
+
+//        long long firstInstanceId = BookInstance::importBookInstances(bookinstancesFirstAdd,
+//                                                                      isExists[index]);//获取链表的第一个位置
+        isExists[index] = BookInstance::importBookInstances(bookinstancesFirstAdd,
+                                                            isExists[index]);//获取链表的第一个位置
 
         if (isExists[index] == -1) {//若该种书是首次被添加的
-            Book book(type, count, price, firstInstanceId, name, author, isbn, press);
+            // 添加到插入信息数组
+//            Book book1;
+//            book1.deSerialize(fields);
+
+            Book book(type, count, price, isExists[index], name, author, isbn, press);
             newBooks.push_back(book.serialize());
         } else {//若该种书已有实例
-            // 更新Book表中原来书籍的馆藏数量
+            // 添加到更新信息数组
+            updateIsbns.push_back(isbn);
+            addCounts.push_back(count);
         }
-
-        vector<BookInstance> instances;
-
-
+        index++;
     }
-
     // 插入books
     vector<ll> ids;
     Book::addBooks(newBooks, ids);
+    // 更新图书馆藏量
+    Book::updateBooksCount(updateIsbns, addCounts);
     return true;
 }
 
@@ -242,7 +252,37 @@ Book::Book(char type, int count, int price, long long int firstInstanceId, const
 std::vector<int> Book::checkISBNsExist(std::vector<std::string> isbns) {
     vector<int> results;
     for (int i = 0; i < isbns.size(); ++i) {
-        results.push_back(Book::checkAssignISBNExist(isbns[i]));
+        results.push_back(Book::checkAssignISBNExist(isbns[i].data()));
+    }
+    return results;
+}
+
+
+bool Book::updateBooksCount(std::vector<std::string> isbns, std::vector<int> addCount) {
+    for (int i = 0; i < isbns.size(); ++i) {
+        int oldCount = Book::searchBooksBySingleField("isbn", isbns[i].data())[0].count;
+        Book::updateBooks("isbn", isbns[i].data(), "count", to_string(oldCount + addCount[i]));
+    }
+    return true;
+}
+
+
+void Book::save() {
+
+
+}
+
+bool Book::exportBooks() {
+
+    return false;
+}
+
+std::vector<Book> Book::stringsToBooks(std::vector<std::vector<std::string>> books) {
+    vector<Book> results;
+    for (int i = 0; i < books.size(); ++i) {
+        Book book; // todo: 这里好像要用new
+        book.deSerialize(books[i]);
+        results.push_back(book);
     }
     return results;
 }

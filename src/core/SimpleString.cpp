@@ -9,7 +9,7 @@ using namespace std;
 
 
 bool SimpleString::isDigital(std::string str) {
-    //todo:é‡è¦çº§åˆ«9,æœ‰æ—¶é—´æµ‹æµ‹å“ªä¸ªå®žçŽ°å¿«
+    //todo:ÖØÒª¼¶±ð9,ÓÐÊ±¼ä²â²âÄÄ¸öÊµÏÖ¿ì
     stringstream sin(str);
     int num;
     char p;
@@ -26,7 +26,7 @@ string SimpleString::fixPath(std::string str){
 
 
 bool SimpleString::isLegalPath(std::string str) {
-    string suffix = str.substr(str.find_last_of("."), str.size()); // èŽ·å–åŽç¼€,//todo:è¿™é‡ŒåŽç¼€ä¸å­˜åœ¨ä¼°è®¡ä¼šæŠ¥é”™
+    string suffix = str.substr(str.find_last_of("."), str.size()); // »ñÈ¡ºó×º,//todo:ÕâÀïºó×º²»´æÔÚ¹À¼Æ»á±¨´í
     if (suffix==".txt"||suffix==".csv"){
         return true;
     }
@@ -37,16 +37,16 @@ std::string SimpleString::readPathFromCmd() {
     string path;
 
     while (true) {
-        printf("è¯·è¾“å…¥æ–‡ä»¶è·¯å¾„:");
+        printf("ÇëÊäÈëÎÄ¼þÂ·¾¶:");
         cin >> path;
         if (path != SimpleString::fixPath(path)) {
-            cout << "æ–‡ä»¶è·¯å¾„ä¿®å¤ä¸º:" << SimpleString::fixPath(path) << endl;
+            cout << "ÎÄ¼þÂ·¾¶ÐÞ¸´Îª:" << SimpleString::fixPath(path) << endl;
             path = SimpleString::fixPath(path);
         }
         if (SimpleString::isLegalPath(path)) {
             break;
         }
-        printf("æ–‡ä»¶è·¯å¾„ä¸åˆæ³•,å¿…é¡»è¾“å…¥ä¸€ä¸ªtxtæˆ–csvæ–‡ä»¶çš„è·¯å¾„\n");
+        printf("ÎÄ¼þÂ·¾¶²»ºÏ·¨,±ØÐëÊäÈëÒ»¸ötxt»òcsvÎÄ¼þµÄÂ·¾¶\n");
     }
 
 
