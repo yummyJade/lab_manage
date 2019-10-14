@@ -56,28 +56,28 @@ include CMakeFiles/myc1.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/myc1.dir/flags.make
 
-CMakeFiles/myc1.dir/dev-test/menuTest.cpp.obj: CMakeFiles/myc1.dir/flags.make
-CMakeFiles/myc1.dir/dev-test/menuTest.cpp.obj: CMakeFiles/myc1.dir/includes_CXX.rsp
-CMakeFiles/myc1.dir/dev-test/menuTest.cpp.obj: ../dev-test/menuTest.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\projects\CLionProjects\myc1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/myc1.dir/dev-test/menuTest.cpp.obj"
-	D:\Install\CodeBlocks\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\myc1.dir\dev-test\menuTest.cpp.obj -c D:\projects\CLionProjects\myc1\dev-test\menuTest.cpp
+CMakeFiles/myc1.dir/yu/Verify.cpp.obj: CMakeFiles/myc1.dir/flags.make
+CMakeFiles/myc1.dir/yu/Verify.cpp.obj: CMakeFiles/myc1.dir/includes_CXX.rsp
+CMakeFiles/myc1.dir/yu/Verify.cpp.obj: ../yu/Verify.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\projects\CLionProjects\myc1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/myc1.dir/yu/Verify.cpp.obj"
+	D:\Install\CodeBlocks\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\myc1.dir\yu\Verify.cpp.obj -c D:\projects\CLionProjects\myc1\yu\Verify.cpp
 
-CMakeFiles/myc1.dir/dev-test/menuTest.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/myc1.dir/dev-test/menuTest.cpp.i"
-	D:\Install\CodeBlocks\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\projects\CLionProjects\myc1\dev-test\menuTest.cpp > CMakeFiles\myc1.dir\dev-test\menuTest.cpp.i
+CMakeFiles/myc1.dir/yu/Verify.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/myc1.dir/yu/Verify.cpp.i"
+	D:\Install\CodeBlocks\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\projects\CLionProjects\myc1\yu\Verify.cpp > CMakeFiles\myc1.dir\yu\Verify.cpp.i
 
-CMakeFiles/myc1.dir/dev-test/menuTest.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/myc1.dir/dev-test/menuTest.cpp.s"
-	D:\Install\CodeBlocks\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\projects\CLionProjects\myc1\dev-test\menuTest.cpp -o CMakeFiles\myc1.dir\dev-test\menuTest.cpp.s
+CMakeFiles/myc1.dir/yu/Verify.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/myc1.dir/yu/Verify.cpp.s"
+	D:\Install\CodeBlocks\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\projects\CLionProjects\myc1\yu\Verify.cpp -o CMakeFiles\myc1.dir\yu\Verify.cpp.s
 
 # Object files for target myc1
 myc1_OBJECTS = \
-"CMakeFiles/myc1.dir/dev-test/menuTest.cpp.obj"
+"CMakeFiles/myc1.dir/yu/Verify.cpp.obj"
 
 # External object files for target myc1
 myc1_EXTERNAL_OBJECTS =
 
-myc1.exe: CMakeFiles/myc1.dir/dev-test/menuTest.cpp.obj
+myc1.exe: CMakeFiles/myc1.dir/yu/Verify.cpp.obj
 myc1.exe: CMakeFiles/myc1.dir/build.make
 myc1.exe: CMakeFiles/myc1.dir/linklibs.rsp
 myc1.exe: CMakeFiles/myc1.dir/objects1.rsp

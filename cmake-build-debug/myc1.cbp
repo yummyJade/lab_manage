@@ -126,9 +126,6 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="D:/projects/CLionProjects/myc1/dev-test/menuTest.cpp">
-			<Option target="myc1"/>
-		</Unit>
 		<Unit filename="D:/projects/CLionProjects/myc1/include/core/Date.h">
 			<Option target="Include"/>
 		</Unit>
@@ -182,6 +179,12 @@
 		</Unit>
 		<Unit filename="D:/projects/CLionProjects/myc1/src/util/TableRenderer.cpp">
 			<Option target="Include"/>
+		</Unit>
+		<Unit filename="D:/projects/CLionProjects/myc1/yu/Verify.cpp">
+			<Option target="myc1"/>
+		</Unit>
+		<Unit filename="D:/projects/CLionProjects/myc1/yu/Verify.h">
+			<Option target="myc1"/>
 		</Unit>
 		<Unit filename="D:/projects/CLionProjects/myc1/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>

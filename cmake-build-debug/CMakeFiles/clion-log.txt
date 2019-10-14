@@ -1,4 +1,7 @@
 "D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" D:\projects\CLionProjects\myc1
 -- Configuring done
--- Generating done
+CMake Error at CMakeLists.txt:26 (add_executable):
+  No SOURCES given to target: myc1
+
+
 -- Build files have been written to: D:/projects/CLionProjects/myc1/cmake-build-debug

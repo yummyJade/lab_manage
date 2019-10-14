@@ -135,32 +135,32 @@ Include/fast:
 	$(MAKE) -f include\CMakeFiles\Include.dir\build.make include/CMakeFiles/Include.dir/build
 .PHONY : Include/fast
 
-dev-test/menuTest.obj: dev-test/menuTest.cpp.obj
+yu/Verify.obj: yu/Verify.cpp.obj
 
-.PHONY : dev-test/menuTest.obj
+.PHONY : yu/Verify.obj
 
 # target to build an object file
-dev-test/menuTest.cpp.obj:
-	$(MAKE) -f CMakeFiles\myc1.dir\build.make CMakeFiles/myc1.dir/dev-test/menuTest.cpp.obj
-.PHONY : dev-test/menuTest.cpp.obj
+yu/Verify.cpp.obj:
+	$(MAKE) -f CMakeFiles\myc1.dir\build.make CMakeFiles/myc1.dir/yu/Verify.cpp.obj
+.PHONY : yu/Verify.cpp.obj
 
-dev-test/menuTest.i: dev-test/menuTest.cpp.i
+yu/Verify.i: yu/Verify.cpp.i
 
-.PHONY : dev-test/menuTest.i
+.PHONY : yu/Verify.i
 
 # target to preprocess a source file
-dev-test/menuTest.cpp.i:
-	$(MAKE) -f CMakeFiles\myc1.dir\build.make CMakeFiles/myc1.dir/dev-test/menuTest.cpp.i
-.PHONY : dev-test/menuTest.cpp.i
+yu/Verify.cpp.i:
+	$(MAKE) -f CMakeFiles\myc1.dir\build.make CMakeFiles/myc1.dir/yu/Verify.cpp.i
+.PHONY : yu/Verify.cpp.i
 
-dev-test/menuTest.s: dev-test/menuTest.cpp.s
+yu/Verify.s: yu/Verify.cpp.s
 
-.PHONY : dev-test/menuTest.s
+.PHONY : yu/Verify.s
 
 # target to generate assembly for a file
-dev-test/menuTest.cpp.s:
-	$(MAKE) -f CMakeFiles\myc1.dir\build.make CMakeFiles/myc1.dir/dev-test/menuTest.cpp.s
-.PHONY : dev-test/menuTest.cpp.s
+yu/Verify.cpp.s:
+	$(MAKE) -f CMakeFiles\myc1.dir\build.make CMakeFiles/myc1.dir/yu/Verify.cpp.s
+.PHONY : yu/Verify.cpp.s
 
 # Help Target
 help:
@@ -172,9 +172,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... Include
-	@echo ... dev-test/menuTest.obj
-	@echo ... dev-test/menuTest.i
-	@echo ... dev-test/menuTest.s
+	@echo ... yu/Verify.obj
+	@echo ... yu/Verify.i
+	@echo ... yu/Verify.s
 .PHONY : help
 
 

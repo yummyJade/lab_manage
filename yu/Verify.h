@@ -9,10 +9,10 @@
 class Verify {
 public:
     Verify();
-    int convertDigtal(char inputStr[]);
+    static int convertDigtal(char inputStr[]);
     bool IsDigital(char input);     //验证是否为一个合法的整数
-    bool optionExist(int choose, int sum);     //判断一个选项是否存在
-    bool optionExist(int choose, int optionArr[]);      //同上
+    static bool optionExist(int choose, int sum);     //判断一个选项是否存在
+    static bool optionExist(int choose, int optionArr[]);      //同上
 };
 
 

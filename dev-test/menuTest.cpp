@@ -181,8 +181,6 @@ void printSearchMenu(){
 
     while (1) {
         system("cls");
-        DbAdapter *dbHelper = new DbAdapter("Book");
-        Verify verify = Verify();
         cout << "------------图书搜索--------------" << endl
              << "1.所有" << endl
              << "2.书名" << endl
@@ -197,7 +195,7 @@ void printSearchMenu(){
         cin.clear();
         cin >> input;
         // todo: input长度超出来了怎么办
-        choose = verify.convertDigtal(input);
+        choose = Verify::convertDigtal(input);
         cout << "您的选择是:" << choose << endl;
         string keyWord;
         cout << "请输入您的搜索词:";
@@ -205,15 +203,13 @@ void printSearchMenu(){
         string fieds[] = {"", "all", "name", "author", "isbn", "type"};
         int options[] = {1,2,3,4,5,0};
         // todo: 这里判断choose是否合法
-        if(verify.optionExist(choose,6)){
+        if(Verify::optionExist(choose,6)){
             vector<Book> books = Book::searchBooksBySingleField(fieds[choose], keyWord);
             Book::printBookList(books);
             if(choose == 0){
                 break;
             }
-        }else{
         }
-
     }
 }
 
