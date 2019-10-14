@@ -18,5 +18,6 @@
     <file url="file://$PROJECT_DIR$/src/model/BookInstance.cpp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/model/User.cpp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/util/DbAdapter.cpp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/yu/Verify.cpp" charset="GBK" />
   </component>
 </project>

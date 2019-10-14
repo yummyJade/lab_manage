@@ -1,4 +1,7 @@
-C:\Users\Tjm\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\192.6603.37\bin\cmake\win\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=C:/Program Files (x86)/CodeBlocks/MinGW/bin/mingw32-make.exe" "-DCMAKE_C_COMPILER=C:/Program Files (x86)/CodeBlocks/MinGW/bin/gcc.exe" "-DCMAKE_CXX_COMPILER=C:/Program Files (x86)/CodeBlocks/MinGW/bin/g++.exe" -G "CodeBlocks - MinGW Makefiles" E:\Sources\Cpp\repos\Lib_manage
+"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" D:\projects\CLionProjects\myc1
 -- Configuring done
--- Generating done
--- Build files have been written to: E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug
+CMake Error at CMakeLists.txt:26 (add_executable):
+  No SOURCES given to target: myc1
+
+
+-- Build files have been written to: D:/projects/CLionProjects/myc1/cmake-build-debug
