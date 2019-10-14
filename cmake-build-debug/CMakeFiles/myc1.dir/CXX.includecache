@@ -55,8 +55,6 @@ model/User.h
 ../include/model/User.h
 util/DbAdapter.h
 ../include/util/DbAdapter.h
-util/Record.h
-../include/util/Record.h
 util/TableRenderer.h
 ../include/util/TableRenderer.h
 
@@ -94,8 +92,6 @@ vector
 ../../database_v1.0/database.cpp
 ../database_v1.0/database.cpp
 
-../include/util/Record.h
-
 ../include/util/TableRenderer.h
 string
 -
@@ -106,7 +102,7 @@ iomanip
 vector
 -
 
-E:/Sources/Cpp/repos/Lib_manage/dev-test/menuTest.cpp
+D:/projects/CLionProjects/myc1/dev-test/menuTest.cpp
 iostream
 -
 stdlib.h
@@ -116,53 +112,57 @@ iomanip
 vector
 -
 libm.h
-E:/Sources/Cpp/repos/Lib_manage/dev-test/libm.h
+D:/projects/CLionProjects/myc1/dev-test/libm.h
 ../src/libcpp.h
-E:/Sources/Cpp/repos/Lib_manage/src/libcpp.h
+D:/projects/CLionProjects/myc1/src/libcpp.h
+../yu/Verify.h
+D:/projects/CLionProjects/myc1/yu/Verify.h
+../yu/Verify.cpp
+D:/projects/CLionProjects/myc1/yu/Verify.cpp
 
-E:/Sources/Cpp/repos/Lib_manage/include/core/Date.h
+D:/projects/CLionProjects/myc1/include/core/Date.h
 string
 -
 
-E:/Sources/Cpp/repos/Lib_manage/include/core/SimpleString.h
+D:/projects/CLionProjects/myc1/include/core/SimpleString.h
 string
 -
 
-E:/Sources/Cpp/repos/Lib_manage/include/model/Book.h
+D:/projects/CLionProjects/myc1/include/model/Book.h
 core/SimpleTime.h
-E:/Sources/Cpp/repos/Lib_manage/include/model/core/SimpleTime.h
+D:/projects/CLionProjects/myc1/include/model/core/SimpleTime.h
 iostream
 -
 vector
 -
 
-E:/Sources/Cpp/repos/Lib_manage/include/model/BookInstance.h
+D:/projects/CLionProjects/myc1/include/model/BookInstance.h
 iostream
 -
 vector
 -
 ../core/Date.h
-E:/Sources/Cpp/repos/Lib_manage/include/core/Date.h
+D:/projects/CLionProjects/myc1/include/core/Date.h
 
-E:/Sources/Cpp/repos/Lib_manage/include/model/Order.h
+D:/projects/CLionProjects/myc1/include/model/Order.h
 core/SimpleTime.h
-E:/Sources/Cpp/repos/Lib_manage/include/model/core/SimpleTime.h
+D:/projects/CLionProjects/myc1/include/model/core/SimpleTime.h
 iostream
 -
 vector
 -
 
-E:/Sources/Cpp/repos/Lib_manage/include/model/User.h
+D:/projects/CLionProjects/myc1/include/model/User.h
 vector
 -
 ../model/Order.h
-E:/Sources/Cpp/repos/Lib_manage/include/model/Order.h
+D:/projects/CLionProjects/myc1/include/model/Order.h
 
-E:/Sources/Cpp/repos/Lib_manage/include/util/DbAdapter.h
+D:/projects/CLionProjects/myc1/include/util/DbAdapter.h
 ../../database_v1.0/database.cpp
-E:/Sources/Cpp/repos/Lib_manage/database_v1.0/database.cpp
+D:/projects/CLionProjects/myc1/database_v1.0/database.cpp
 
-E:/Sources/Cpp/repos/Lib_manage/include/util/TableRenderer.h
+D:/projects/CLionProjects/myc1/include/util/TableRenderer.h
 string
 -
 iostream
@@ -172,17 +172,17 @@ iomanip
 vector
 -
 
-E:/Sources/Cpp/repos/Lib_manage/src/core/Date.cpp
+D:/projects/CLionProjects/myc1/src/core/Date.cpp
 ../../include/core/Date.h
-E:/Sources/Cpp/repos/Lib_manage/include/core/Date.h
+D:/projects/CLionProjects/myc1/include/core/Date.h
 iostream
 -
 string
 -
 
-E:/Sources/Cpp/repos/Lib_manage/src/core/SimpleString.cpp
+D:/projects/CLionProjects/myc1/src/core/SimpleString.cpp
 core/SimpleString.h
-E:/Sources/Cpp/repos/Lib_manage/src/core/core/SimpleString.h
+D:/projects/CLionProjects/myc1/src/core/core/SimpleString.h
 iostream
 -
 string
@@ -194,39 +194,37 @@ vector
 regex
 -
 
-E:/Sources/Cpp/repos/Lib_manage/src/core/SimpleTime.cpp
+D:/projects/CLionProjects/myc1/src/core/SimpleTime.cpp
 core/SimpleTime.h
-E:/Sources/Cpp/repos/Lib_manage/src/core/core/SimpleTime.h
+D:/projects/CLionProjects/myc1/src/core/core/SimpleTime.h
 iostream
 -
 string
 -
 
-E:/Sources/Cpp/repos/Lib_manage/src/libcpp.h
+D:/projects/CLionProjects/myc1/src/libcpp.h
 core/Date.cpp
-E:/Sources/Cpp/repos/Lib_manage/src/core/Date.cpp
+D:/projects/CLionProjects/myc1/src/core/Date.cpp
 core/SimpleTime.cpp
-E:/Sources/Cpp/repos/Lib_manage/src/core/SimpleTime.cpp
+D:/projects/CLionProjects/myc1/src/core/SimpleTime.cpp
 core/SimpleString.cpp
-E:/Sources/Cpp/repos/Lib_manage/src/core/SimpleString.cpp
+D:/projects/CLionProjects/myc1/src/core/SimpleString.cpp
 model/Book.cpp
-E:/Sources/Cpp/repos/Lib_manage/src/model/Book.cpp
+D:/projects/CLionProjects/myc1/src/model/Book.cpp
 model/BookInstance.cpp
-E:/Sources/Cpp/repos/Lib_manage/src/model/BookInstance.cpp
+D:/projects/CLionProjects/myc1/src/model/BookInstance.cpp
 model/Order.cpp
-E:/Sources/Cpp/repos/Lib_manage/src/model/Order.cpp
+D:/projects/CLionProjects/myc1/src/model/Order.cpp
 model/User.cpp
-E:/Sources/Cpp/repos/Lib_manage/src/model/User.cpp
+D:/projects/CLionProjects/myc1/src/model/User.cpp
 util/DbAdapter.cpp
-E:/Sources/Cpp/repos/Lib_manage/src/util/DbAdapter.cpp
-util/Record.cpp
-E:/Sources/Cpp/repos/Lib_manage/src/util/Record.cpp
+D:/projects/CLionProjects/myc1/src/util/DbAdapter.cpp
 util/TableRenderer.cpp
-E:/Sources/Cpp/repos/Lib_manage/src/util/TableRenderer.cpp
+D:/projects/CLionProjects/myc1/src/util/TableRenderer.cpp
 
-E:/Sources/Cpp/repos/Lib_manage/src/model/Book.cpp
+D:/projects/CLionProjects/myc1/src/model/Book.cpp
 ../../include/model/Book.h
-E:/Sources/Cpp/repos/Lib_manage/include/model/Book.h
+D:/projects/CLionProjects/myc1/include/model/Book.h
 iostream
 -
 core/SimpleString.h
@@ -238,13 +236,13 @@ sstream
 model/BookInstance.h
 -
 ../../include/util/DbAdapter.h
-E:/Sources/Cpp/repos/Lib_manage/include/util/DbAdapter.h
+D:/projects/CLionProjects/myc1/include/util/DbAdapter.h
 ../../include/util/TableRenderer.h
-E:/Sources/Cpp/repos/Lib_manage/include/util/TableRenderer.h
+D:/projects/CLionProjects/myc1/include/util/TableRenderer.h
 
-E:/Sources/Cpp/repos/Lib_manage/src/model/BookInstance.cpp
+D:/projects/CLionProjects/myc1/src/model/BookInstance.cpp
 ../../include/model/BookInstance.h
-E:/Sources/Cpp/repos/Lib_manage/include/model/BookInstance.h
+D:/projects/CLionProjects/myc1/include/model/BookInstance.h
 iostream
 -
 vector
@@ -252,9 +250,9 @@ vector
 string
 -
 
-E:/Sources/Cpp/repos/Lib_manage/src/model/Order.cpp
+D:/projects/CLionProjects/myc1/src/model/Order.cpp
 ../../include/model/Order.h
-E:/Sources/Cpp/repos/Lib_manage/include/model/Order.h
+D:/projects/CLionProjects/myc1/include/model/Order.h
 vector
 -
 iostream
@@ -262,11 +260,11 @@ iostream
 string
 -
 
-E:/Sources/Cpp/repos/Lib_manage/src/model/User.cpp
+D:/projects/CLionProjects/myc1/src/model/User.cpp
 ../../include/model/User.h
-E:/Sources/Cpp/repos/Lib_manage/include/model/User.h
+D:/projects/CLionProjects/myc1/include/model/User.h
 ../../include/core/SimpleString.h
-E:/Sources/Cpp/repos/Lib_manage/include/core/SimpleString.h
+D:/projects/CLionProjects/myc1/include/core/SimpleString.h
 fstream
 -
 sstream
@@ -274,17 +272,33 @@ sstream
 util/DbAdapter.h
 -
 
-E:/Sources/Cpp/repos/Lib_manage/src/util/DbAdapter.cpp
+D:/projects/CLionProjects/myc1/src/util/DbAdapter.cpp
 util/DbAdapter.h
-E:/Sources/Cpp/repos/Lib_manage/src/util/util/DbAdapter.h
+D:/projects/CLionProjects/myc1/src/util/util/DbAdapter.h
 
-E:/Sources/Cpp/repos/Lib_manage/src/util/Record.cpp
-util/Record.h
-E:/Sources/Cpp/repos/Lib_manage/src/util/util/Record.h
-
-E:/Sources/Cpp/repos/Lib_manage/src/util/TableRenderer.cpp
+D:/projects/CLionProjects/myc1/src/util/TableRenderer.cpp
 util/TableRenderer.h
-E:/Sources/Cpp/repos/Lib_manage/src/util/util/TableRenderer.h
+D:/projects/CLionProjects/myc1/src/util/util/TableRenderer.h
 Windows.h
 -
+
+D:/projects/CLionProjects/myc1/yu/./Verify.h
+
+D:/projects/CLionProjects/myc1/yu/Verify.cpp
+stdio.h
+-
+stdlib.h
+-
+ctype.h
+-
+string.h
+-
+string
+-
+iostream
+-
+./Verify.h
+D:/projects/CLionProjects/myc1/yu/./Verify.h
+
+D:/projects/CLionProjects/myc1/yu/Verify.h
 

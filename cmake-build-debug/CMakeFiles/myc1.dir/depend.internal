@@ -12,25 +12,26 @@ CMakeFiles/myc1.dir/dev-test/menuTest.cpp.obj
  ../include/model/Order.h
  ../include/model/User.h
  ../include/util/DbAdapter.h
- ../include/util/Record.h
  ../include/util/TableRenderer.h
- E:/Sources/Cpp/repos/Lib_manage/dev-test/menuTest.cpp
- E:/Sources/Cpp/repos/Lib_manage/include/core/Date.h
- E:/Sources/Cpp/repos/Lib_manage/include/core/SimpleString.h
- E:/Sources/Cpp/repos/Lib_manage/include/model/Book.h
- E:/Sources/Cpp/repos/Lib_manage/include/model/BookInstance.h
- E:/Sources/Cpp/repos/Lib_manage/include/model/Order.h
- E:/Sources/Cpp/repos/Lib_manage/include/model/User.h
- E:/Sources/Cpp/repos/Lib_manage/include/util/DbAdapter.h
- E:/Sources/Cpp/repos/Lib_manage/include/util/TableRenderer.h
- E:/Sources/Cpp/repos/Lib_manage/src/core/Date.cpp
- E:/Sources/Cpp/repos/Lib_manage/src/core/SimpleString.cpp
- E:/Sources/Cpp/repos/Lib_manage/src/core/SimpleTime.cpp
- E:/Sources/Cpp/repos/Lib_manage/src/libcpp.h
- E:/Sources/Cpp/repos/Lib_manage/src/model/Book.cpp
- E:/Sources/Cpp/repos/Lib_manage/src/model/BookInstance.cpp
- E:/Sources/Cpp/repos/Lib_manage/src/model/Order.cpp
- E:/Sources/Cpp/repos/Lib_manage/src/model/User.cpp
- E:/Sources/Cpp/repos/Lib_manage/src/util/DbAdapter.cpp
- E:/Sources/Cpp/repos/Lib_manage/src/util/Record.cpp
- E:/Sources/Cpp/repos/Lib_manage/src/util/TableRenderer.cpp
+ D:/projects/CLionProjects/myc1/dev-test/menuTest.cpp
+ D:/projects/CLionProjects/myc1/include/core/Date.h
+ D:/projects/CLionProjects/myc1/include/core/SimpleString.h
+ D:/projects/CLionProjects/myc1/include/model/Book.h
+ D:/projects/CLionProjects/myc1/include/model/BookInstance.h
+ D:/projects/CLionProjects/myc1/include/model/Order.h
+ D:/projects/CLionProjects/myc1/include/model/User.h
+ D:/projects/CLionProjects/myc1/include/util/DbAdapter.h
+ D:/projects/CLionProjects/myc1/include/util/TableRenderer.h
+ D:/projects/CLionProjects/myc1/src/core/Date.cpp
+ D:/projects/CLionProjects/myc1/src/core/SimpleString.cpp
+ D:/projects/CLionProjects/myc1/src/core/SimpleTime.cpp
+ D:/projects/CLionProjects/myc1/src/libcpp.h
+ D:/projects/CLionProjects/myc1/src/model/Book.cpp
+ D:/projects/CLionProjects/myc1/src/model/BookInstance.cpp
+ D:/projects/CLionProjects/myc1/src/model/Order.cpp
+ D:/projects/CLionProjects/myc1/src/model/User.cpp
+ D:/projects/CLionProjects/myc1/src/util/DbAdapter.cpp
+ D:/projects/CLionProjects/myc1/src/util/TableRenderer.cpp
+ D:/projects/CLionProjects/myc1/yu/./Verify.h
+ D:/projects/CLionProjects/myc1/yu/Verify.cpp
+ D:/projects/CLionProjects/myc1/yu/Verify.h

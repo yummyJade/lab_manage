@@ -4,6 +4,8 @@
 #include <vector>
 #include "libm.h"
 #include "../src/libcpp.h"
+#include "../yu/Verify.h"
+#include "../yu/Verify.cpp"
 
 using namespace std;
 
@@ -176,9 +178,11 @@ void printSearchResult(){
 
 //搜索方式
 void printSearchMenu(){
-    system("cls");
+
     while (1) {
+        system("cls");
         DbAdapter *dbHelper = new DbAdapter("Book");
+        Verify verify = Verify();
         cout << "------------图书搜索--------------" << endl
              << "1.所有" << endl
              << "2.书名" << endl
@@ -189,20 +193,27 @@ void printSearchMenu(){
              << "---------------------------------" << endl
              << "请输入您的选择:";
         int choose;
-        cin >> choose;
+        char input[50];
+        cin.clear();
+        cin >> input;
+        // todo: input长度超出来了怎么办
+        choose = verify.convertDigtal(input);
         cout << "您的选择是:" << choose << endl;
         string keyWord;
         cout << "请输入您的搜索词:";
         cin >> keyWord;
         string fieds[] = {"", "all", "name", "author", "isbn", "type"};
+        int options[] = {1,2,3,4,5,0};
         // todo: 这里判断choose是否合法
-        vector<Book> books = Book::searchBooksBySingleField(fieds[choose], keyWord);
-        Book::printBookList(books);
-
-
-        if(choose == 0){
-            break;
+        if(verify.optionExist(choose,6)){
+            vector<Book> books = Book::searchBooksBySingleField(fieds[choose], keyWord);
+            Book::printBookList(books);
+            if(choose == 0){
+                break;
+            }
+        }else{
         }
+
     }
 }
 
@@ -263,7 +274,7 @@ void printUserManageMenu(){
         }
     }
 }
-
+//
 int main(){
 init();
     printMainMenu();
