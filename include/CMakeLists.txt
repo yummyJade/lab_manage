@@ -13,6 +13,8 @@ set(HEADER_FILES
         util/DbAdapter.h
         util/TableRenderer.h
 
+        service/BookService.h
+        service/UserService.h
 
         )
 
@@ -28,5 +30,8 @@ set(SOURCE_FILES
 
         ../src/util/DbAdapter.cpp
         ../src/util/TableRenderer.cpp
+
+        ../src/service/BookService.cpp
+        ../src/service/UserService.cpp
         )
 add_library(Include STATIC ${SOURCE_FILES} ${HEADER_FILES})

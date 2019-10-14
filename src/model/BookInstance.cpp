@@ -31,5 +31,11 @@ int BookInstance::importBookInstances(std::vector<BookInstance> instances, int f
     return firstId;
 }
 
+BookInstance BookInstance::getInstanceById(int id) {
+    
+    BookInstance bookInstance = BookInstance("ISBN", "position");
+    return bookInstance;
+}
+
 
 

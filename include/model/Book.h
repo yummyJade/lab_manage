@@ -3,6 +3,7 @@
 #include "core/SimpleTime.h"
 #include <iostream>
 #include <vector>
+
 class Book {
 
 private:
@@ -19,6 +20,7 @@ private:
 private:
     //打印书本类型
     std::string printType();
+
     std::string printIsLend();
 
 

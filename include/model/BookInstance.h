@@ -5,7 +5,7 @@
 #include <vector>
 #include "../core/Date.h"
 class BookInstance {
-private:
+public:
     long long id;
     std::string isbn;     //图书所属种类的isbn
     int status;     //状态
@@ -34,6 +34,23 @@ public:
      * @return
      */
     static int importBookInstances(std::vector<BookInstance> instances, int firstId);
+
+
+//    /**
+//     * 检索field字段的值为value的内容
+//     * @param field
+//     * @param value
+//     * @return
+//     */
+//    static std::vector<BookInstance> filter(std::string field,std::string value);
+
+
+    /**
+     * 检索id字段值为参数id的内容
+     * @param id
+     * @return
+     */
+    static BookInstance getInstanceById(int id);
 };
 
 #endif //MYC1_BOOKINSTANCE_H

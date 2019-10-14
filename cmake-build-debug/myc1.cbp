@@ -126,7 +126,7 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/dev-test/menuTest.cpp">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/dev-Tan/main.cpp">
 			<Option target="myc1"/>
 		</Unit>
 		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/core/Date.h">
@@ -148,6 +148,12 @@
 			<Option target="Include"/>
 		</Unit>
 		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/model/User.h">
+			<Option target="Include"/>
+		</Unit>
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/service/BookService.h">
+			<Option target="Include"/>
+		</Unit>
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/service/UserService.h">
 			<Option target="Include"/>
 		</Unit>
 		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/util/DbAdapter.h">
@@ -175,6 +181,12 @@
 			<Option target="Include"/>
 		</Unit>
 		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/src/model/User.cpp">
+			<Option target="Include"/>
+		</Unit>
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/src/service/BookService.cpp">
+			<Option target="Include"/>
+		</Unit>
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/src/service/UserService.cpp">
 			<Option target="Include"/>
 		</Unit>
 		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/src/util/DbAdapter.cpp">

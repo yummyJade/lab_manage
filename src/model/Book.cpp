@@ -73,9 +73,9 @@ std::vector<std::string> Book::serialize() {
 }
 
 bool Book::deSerialize(std::vector<std::string> info) {
-    for (int i = 0; i < info.size(); ++i) {
-        cout << i << " " << info[i].data() << " ";
-    }
+//    for (int i = 0; i < info.size(); ++i) {
+//        cout << i << " " << info[i].data() << " ";
+//    }
     char type = info[0].data()[0];
     int count = stoi(info[1].data());
     int price = stoi(info[2].data());
@@ -95,13 +95,14 @@ bool Book::deSerialize(std::vector<std::string> info) {
 std::vector<Book> Book::searchBooksBySingleField(std::string field, std::string value) {
     DbAdapter dbAdapter("Book");
     vector<vector<string> > queryData = dbAdapter.searchBySingleField(field, value);
+//    cout<<"执行到这里"<<endl;
     return Book::stringsToBooks(queryData);
 }
 
 
 void Book::printBookList(std::vector<Book> books) {
     vector<string> navs = {"类型", "馆藏量", "价格", "书名", "作者", "ISBN", "出版社", "链表ID"};
-    TableRenderer render(navs);
+    TableRenderer render(navs, 8);
     for (int i = 0; i < books.size(); ++i) {
         render.addColume(books[i].serialize());
     }
@@ -188,6 +189,7 @@ bool Book::importBooks() {
     getline(fin, line); // 吃掉首行
     vector<vector<string>> newBooks; // 要insert到Book表的数据
     vector<string> updateIsbns; // 已经存在的，只需要更新馆藏量的isbn号
+    updateIsbns.empty();
     vector<int> addCounts; // 已经存在的，要添加的馆藏量
 
     while (getline(fin, line)) //整行读取，换行符“\n”区分，遇到文件尾标志eof终止读取
@@ -217,30 +219,35 @@ bool Book::importBooks() {
         }
         // 插入book实例到instance表
 
-//        long long firstInstanceId = BookInstance::importBookInstances(bookinstancesFirstAdd,
-//                                                                      isExists[index]);//获取链表的第一个位置
-        isExists[index] = BookInstance::importBookInstances(bookinstancesFirstAdd,
-                                                            isExists[index]);//获取链表的第一个位置
+        long long firstInstanceId = BookInstance::importBookInstances(bookinstancesFirstAdd,
+                                                                      isExists[index]);//获取链表的第一个位置
+//        isExists[index] = BookInstance::importBookInstances(bookinstancesFirstAdd,
+//                                                            isExists[index]);//获取链表的第一个位置
 
         if (isExists[index] == -1) {//若该种书是首次被添加的
             // 添加到插入信息数组
 //            Book book1;
 //            book1.deSerialize(fields);
 
-            Book book(type, count, price, isExists[index], name, author, isbn, press);
+            Book book(type, count, price, firstInstanceId, name, author, isbn, press);
             newBooks.push_back(book.serialize());
         } else {//若该种书已有实例
             // 添加到更新信息数组
+//            cout<<"index is "<<index<<" isExi[index] is "<< firstInstanceId<<endl;
             updateIsbns.push_back(isbn);
             addCounts.push_back(count);
         }
         index++;
     }
     // 插入books
+    cout << "插入操作" << endl;
     vector<ll> ids;
     Book::addBooks(newBooks, ids);
     // 更新图书馆藏量
-    Book::updateBooksCount(updateIsbns, addCounts);
+    cout << "update操作" << endl;
+    cout << "update size is " << updateIsbns.size() << endl;
+    if (updateIsbns.size() > 0)
+        Book::updateBooksCount(updateIsbns, addCounts);
     return true;
 }
 
@@ -261,6 +268,7 @@ std::vector<int> Book::checkISBNsExist(std::vector<std::string> isbns) {
 bool Book::updateBooksCount(std::vector<std::string> isbns, std::vector<int> addCount) {
     for (int i = 0; i < isbns.size(); ++i) {
         int oldCount = Book::searchBooksBySingleField("isbn", isbns[i].data())[0].count;
+        cout << "old count is " << oldCount << endl;
         Book::updateBooks("isbn", isbns[i].data(), "count", to_string(oldCount + addCount[i]));
     }
     return true;
@@ -279,6 +287,7 @@ bool Book::exportBooks() {
 
 std::vector<Book> Book::stringsToBooks(std::vector<std::vector<std::string>> books) {
     vector<Book> results;
+//    cout<<"book 的size是"<<books.size()<<endl;
     for (int i = 0; i < books.size(); ++i) {
         Book book; // todo: 这里好像要用new
         book.deSerialize(books[i]);

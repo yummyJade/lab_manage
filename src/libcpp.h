@@ -15,4 +15,6 @@
 #include "util/DbAdapter.cpp"
 #include "util/Record.cpp"
 #include "util/TableRenderer.cpp"
+#include "service/BookService.cpp"
+#include "service/UserService.cpp"
 #endif //MYC1_LIBCPP_H

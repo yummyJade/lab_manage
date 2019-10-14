@@ -1,4 +1,6 @@
 #include "../../include/model/User.h"
+#include "../../include/model/Book.h"
+#include "../../include/model/BookInstance.h"
 #include "../../include/core/SimpleString.h"
 #include <fstream>
 #include <sstream>
@@ -6,74 +8,15 @@
 
 using namespace std;
 
+const int User::lendDays[3] = {30, 60, 90};
+const int User::lendNums[3] = {30, 60, 90};
+
 User::User()
 {
 }
 
 
 User::~User() {
-}
-
-
-void User::addBooksOperate() {
-    string path = "";
-    ifstream fin;
-    while (true) {
-        printf("请输入文件路径:");
-        cin >> path;
-        if (path != SimpleString::fixPath(path)) {
-            cout << "文件路径修复为:" << SimpleString::fixPath(path) << endl;
-            path = SimpleString::fixPath(path);
-        }
-
-        cout << "正在寻找文件" << path << endl;
-        // "E:\\Sources\\Cpp\\repos\\Lib_manage\\dev-Tan\\books.csv"
-        fin = ifstream(path);//打开文件流操作
-        if (fin.good()) {
-            cout << "已找到文件,正在读取" << endl;
-            break;
-        } else {
-            cout << "文件不存在,请检查路径后重新输入" << endl;
-            continue;
-        }
-
-    }
-
-
-    string line;
-    int num = 0;
-    vector<vector<string>> books;
-
-    while (getline(fin, line))   //整行读取，换行符“\n”区分，遇到文件尾标志eof终止读取
-    {
-
-        if (num++ > 10) // 打印10行做测试
-            break;
-        cout << "原始字符串：" << line << endl;
-        istringstream sin(line);
-
-        vector<string> fields;
-        string field;
-        while (getline(sin, field, ',')) {
-            fields.push_back(field);
-        }
-        books.push_back(fields);
-
-//        string name = fields[0];
-//        string press = fields[1];
-//        string author = fields[2];
-//        char type = fields[3][0];
-//        string isbn = fields[4];
-//        int price=stof(fields[5])*100;
-//        int num = stoi(fields[6]);
-//        bool isLend = fields[7][0] == 'Y' || fields[7][0] == 'y';
-
-//        vector<string> temp;
-//        cout << "处理之后的字符串：" << name << "\t" << press << "\t" << author << endl;
-    }
-
-    // todo:对books进行操作,将它存到数据库里
-    return;
 }
 
 
@@ -156,9 +99,7 @@ User User::checkUserExist(int jobNum) {
 }
 
 std::vector<Order> User::getBorrowedHistory() {
-
     return Order::getAssignUserBorrowedHistory(this->jobNum);
-
 }
 
 std::vector<Order> User::getBorrowingList() {
@@ -169,6 +110,37 @@ bool User::addUsers(std::vector<std::vector<std::string>> queryData, std::vector
     DbAdapter dbAdapter("User");
     dbAdapter.insert(queryData, ids);
     return true;
+}
+
+int User::isAllowedLogin() {
+    // 判断用户状态,是否被禁止登陆
+    if (this->type == status::Ban)
+        return 1;
+    // 判断用户所有订单的状态,是否有超时订单
+    if (!Order::getAssignUserOweOrder(this->firstOrderId).empty())
+        return 2;
+    return 0;
+}
+
+bool User::borrowAssignBookInstance(long long bookInstanceId) {
+    // 判断用户能否借书(是否有权借阅,借书数量是多少)
+    if (Order::getAssignUserBorrowingList(this->firstOrderId).size() >= User::lendNums[this->type]) {
+        return 1; // 返回1,借书数量已达上线
+    }
+    // 判断该书是否能被借阅
+    BookInstance instance = BookInstance::getInstanceById(bookInstanceId);
+
+//    if(instance == NULL){
+//        return 5; // 返回5,图书不存在
+//    }
+//    BookInstance instance=instances[0];
+
+//    if(instances[0].status==)
+
+    // 插入一条借阅记录Order,需要能借多久,
+    Order order();
+    // 设置该Bookinstance不可借,并更新应还时间
+    return false;
 }
 
 

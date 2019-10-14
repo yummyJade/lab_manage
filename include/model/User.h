@@ -3,21 +3,22 @@
 #include <vector>
 #include "../model/Order.h"
 enum status {
-    Admin,Teacher, Graduate, Undergraduate
+    Admin, Teacher, Graduate, Undergraduate, Ban
 };        //特权思想枚举
-const std::string STATUS[4] = {
-        "ADMIN","TEACHER","GRADUATE","UNDERGRADUATE"
+const std::string STATUS[] = {
+        "ADMIN", "TEACHER", "GRADUATE", "UNDERGRADUATE", "BAN"
 };
 
 class User {
-    constexpr static const int lendDays[3] = {30, 60, 90}; // 最多可同时借书的时长,单位天
-    constexpr static const int lendNums[3] = {30, 60, 90}; // 最多可同时借书的本数
+    static const int lendDays[3];//= {30, 60, 90}; // 最多可同时借书的时长,单位天
+    static const int lendNums[3];// = {30, 60, 90}; // 最多可同时借书的本数
 private:
     int jobNum;        //工号即id
     status type;
     std::string name;        //姓名
     std::string password;        //password
     long long firstOrderId;  // 该学生借的第一本书的订单在Order表的id,-1表示未借
+
     /**
      * 将枚举类型的statu转化成对应的字符串
      * @param statu
@@ -114,20 +115,26 @@ private:
      */
     std::vector<Order> getBorrowingList();
 
+    /**
+     * 判断是否允许该账号登陆,在账号密码验证成功后执行该函数
+     * @return 0-允许登陆,1-账号被禁止,2-有欠费
+     */
+    int isAllowedLogin();
 
+    /**
+     * 用户借指定书
+     * @param bookInstanceId
+     * @return
+     */
+    bool borrowAssignBookInstance(long long bookInstanceId);
     //------------------------------------------------------------------------------
-    //----下面这些是管理员用户的操作,且与图书相关----------------------------------------
+    //----下面这些是管理员的操作,且与图书相关-------------------------------------------
     //------------------------------------------------------------------------------
 
-    // 待完成,书籍导入
-    void addBooksOperate();
 
-    // 待完成,打印逾期未还名单
-    void printTimeOutOrders();
 
     // 待完成,打印某一种书的情况(由isbn?..指定),包括是否被借阅,啥时候还
     void printAssignBookInfo();
-
 
     //------------------------------------------------------------------------------
     //----下面这些是管理员用户的操作,且与User相关---------------------------------------

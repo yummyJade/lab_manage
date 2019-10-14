@@ -18,5 +18,7 @@
 #include "util/DbAdapter.h"
 #include "util/Record.h"
 #include "util/TableRenderer.h"
+#include "service/BookService.h"
+#include "service/UserService.h"
 
 #endif //MYC1_LIBM_H
