@@ -36,21 +36,29 @@ public:
     static int importBookInstances(std::vector<BookInstance> instances, int firstId);
 
 
-//    /**
-//     * 检索field字段的值为value的内容
-//     * @param field
-//     * @param value
-//     * @return
-//     */
-//    static std::vector<BookInstance> filter(std::string field,std::string value);
+    // 手动添加一本书的实例
+    static bool addOneBookInstancesService();
 
+    // 手动删除一本书的实例
+    static bool deleteOneBookInstancesService();
 
     /**
      * 检索id字段值为参数id的内容
      * @param id
      * @return
      */
-    static BookInstance getInstanceById(int id);
+    static BookInstance *getInstanceById(int id);
+
+    /**
+     * 获取某本书的所有实例
+     * @param firstId
+     * @return
+     */
+    static std::vector<BookInstance> getInstancesByFirstId(int firstId);
+
+    // 删除指定
+    static bool deleteInstancesByAssignInstanceId(int id);
+
 };
 
 #endif //MYC1_BOOKINSTANCE_H

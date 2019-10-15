@@ -110,17 +110,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named myc1
+# Target rules for targets named libManage
 
 # Build rule for target.
-myc1: cmake_check_build_system
-	$(MAKE) -f CMakeFiles\Makefile2 myc1
-.PHONY : myc1
+libManage: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 libManage
+.PHONY : libManage
 
 # fast build rule for target.
-myc1/fast:
-	$(MAKE) -f CMakeFiles\myc1.dir\build.make CMakeFiles/myc1.dir/build
-.PHONY : myc1/fast
+libManage/fast:
+	$(MAKE) -f CMakeFiles\libManage.dir\build.make CMakeFiles/libManage.dir/build
+.PHONY : libManage/fast
 
 #=============================================================================
 # Target rules for targets named Include
@@ -135,32 +135,32 @@ Include/fast:
 	$(MAKE) -f include\CMakeFiles\Include.dir\build.make include/CMakeFiles/Include.dir/build
 .PHONY : Include/fast
 
-dev-Tan/main.obj: dev-Tan/main.cpp.obj
+dev-test/beautifulMenu.obj: dev-test/beautifulMenu.cpp.obj
 
-.PHONY : dev-Tan/main.obj
+.PHONY : dev-test/beautifulMenu.obj
 
 # target to build an object file
-dev-Tan/main.cpp.obj:
-	$(MAKE) -f CMakeFiles\myc1.dir\build.make CMakeFiles/myc1.dir/dev-Tan/main.cpp.obj
-.PHONY : dev-Tan/main.cpp.obj
+dev-test/beautifulMenu.cpp.obj:
+	$(MAKE) -f CMakeFiles\libManage.dir\build.make CMakeFiles/libManage.dir/dev-test/beautifulMenu.cpp.obj
+.PHONY : dev-test/beautifulMenu.cpp.obj
 
-dev-Tan/main.i: dev-Tan/main.cpp.i
+dev-test/beautifulMenu.i: dev-test/beautifulMenu.cpp.i
 
-.PHONY : dev-Tan/main.i
+.PHONY : dev-test/beautifulMenu.i
 
 # target to preprocess a source file
-dev-Tan/main.cpp.i:
-	$(MAKE) -f CMakeFiles\myc1.dir\build.make CMakeFiles/myc1.dir/dev-Tan/main.cpp.i
-.PHONY : dev-Tan/main.cpp.i
+dev-test/beautifulMenu.cpp.i:
+	$(MAKE) -f CMakeFiles\libManage.dir\build.make CMakeFiles/libManage.dir/dev-test/beautifulMenu.cpp.i
+.PHONY : dev-test/beautifulMenu.cpp.i
 
-dev-Tan/main.s: dev-Tan/main.cpp.s
+dev-test/beautifulMenu.s: dev-test/beautifulMenu.cpp.s
 
-.PHONY : dev-Tan/main.s
+.PHONY : dev-test/beautifulMenu.s
 
 # target to generate assembly for a file
-dev-Tan/main.cpp.s:
-	$(MAKE) -f CMakeFiles\myc1.dir\build.make CMakeFiles/myc1.dir/dev-Tan/main.cpp.s
-.PHONY : dev-Tan/main.cpp.s
+dev-test/beautifulMenu.cpp.s:
+	$(MAKE) -f CMakeFiles\libManage.dir\build.make CMakeFiles/libManage.dir/dev-test/beautifulMenu.cpp.s
+.PHONY : dev-test/beautifulMenu.cpp.s
 
 # Help Target
 help:
@@ -168,13 +168,13 @@ help:
 	@echo ... all (the default if no target is provided)
 	@echo ... clean
 	@echo ... depend
-	@echo ... myc1
+	@echo ... libManage
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... Include
-	@echo ... dev-Tan/main.obj
-	@echo ... dev-Tan/main.i
-	@echo ... dev-Tan/main.s
+	@echo ... dev-test/beautifulMenu.obj
+	@echo ... dev-test/beautifulMenu.i
+	@echo ... dev-test/beautifulMenu.s
 .PHONY : help
 
 

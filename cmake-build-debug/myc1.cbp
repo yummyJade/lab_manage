@@ -17,8 +17,8 @@
 					<DistClean command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="myc1">
-				<Option output="E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/myc1.exe" prefix_auto="0" extension_auto="0"/>
+			<Target title="libManage">
+				<Option output="E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/libManage.exe" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -33,14 +33,14 @@
 					<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include-fixed"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/Makefile&quot;  VERBOSE=1 myc1"/>
+					<Build command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/Makefile&quot;  VERBOSE=1 libManage"/>
 					<CompileFile command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="myc1/fast">
-				<Option output="E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/myc1.exe" prefix_auto="0" extension_auto="0"/>
+			<Target title="libManage/fast">
+				<Option output="E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/libManage.exe" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -55,7 +55,7 @@
 					<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include-fixed"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/Makefile&quot;  VERBOSE=1 myc1/fast"/>
+					<Build command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/Makefile&quot;  VERBOSE=1 libManage/fast"/>
 					<CompileFile command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -126,8 +126,8 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/dev-Tan/main.cpp">
-			<Option target="myc1"/>
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/dev-test/beautifulMenu.cpp">
+			<Option target="libManage"/>
 		</Unit>
 		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/core/Date.h">
 			<Option target="Include"/>

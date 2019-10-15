@@ -87,11 +87,28 @@ int regexTest() {
 
 
 int main() {
+    // 批量导入书籍
 //    Book::printBookList(Book::searchAll());
 //    Book::updateBooks("isbn","978-5-664-71497-5","count","999");
-//    Book::importBooks();// 导入书籍的函数
+//    Book::importBooksService();// 导入书籍的函数
 //    Book::printBookList(Book::searchAll());
 
+
+//    User::importUsers();
+
+//    printBookDetailInfo("978-5-664-71597-5");
+
+
+    // 手动插入单本书籍
+//    Book::printBookList(Book::searchAll());
+//    Book::addOneBookService();
+//    Book::printBookList(Book::searchAll());
+
+
+    // 手动插入图书的实例
+//    Book::printBookList(Book::searchAll());
+//    BookInstance::addOneBookInstancesService();
+//    Book::printBookList(Book::searchAll());
 
 
 }

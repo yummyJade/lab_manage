@@ -10,7 +10,24 @@ bool printBookDetailInfo(std::string isbn) {
     }
     Book book = books[0];
 
-    printf("ä¹¦å:%s\nä½œè€…:%s\nå‡ºç‰ˆç¤¾:%s\nç±»åˆ«:%s\nISBN:%s\nä»·æ ¼:%s\n");
+    book.printBookInfo();
 
+    vector<string> navs = {"±àºÅ", "Í¼ÊéÎ»ÖÃ", "×´Ì¬\\Ô¤¼Æ¹é»¹Ê±¼ä"};
+    TableRenderer render(navs, 8);
 
+    vector<BookInstance> instances = BookInstance::getInstancesByFirstId(book.getFirstInstanceId());
+    int index = 1;
+    for (int i = 0; i < instances.size(); ++i) {
+        vector<string> line;
+        if (instances[i].status == 1) {// ¿É½è
+            line = {to_string(index++), instances[i].position, "¿É½è"};
+        } else {
+            line = {to_string(index++), instances[i].position, instances[i].planReturnDate.serialize()};
+        }
+
+        render.addColume(line);
+    }
+
+    render.render();
+    return true;
 }

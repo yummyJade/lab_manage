@@ -19,11 +19,11 @@ bool DbAdapter::connect() {
         db = DataBase::getInstance();
 //        db->getInstance();
         if (this->db->chooseTable(this->dbName) != "未进入") {
-            printf("数据库连接成功 by-谭\n");
+//            printf("数据库连接成功 by-谭\n");
             return true;
         }
         cout << this->db->chooseTable(this->dbName) << endl;
-        printf("未找到表, by-谭\n");
+//        printf("未找到表, by-谭\n");
         return false;
 
     } else {
@@ -34,11 +34,11 @@ bool DbAdapter::connect() {
 
 bool DbAdapter::disconnect() {
     if (this->db == NULL) {
-        printf("数据库尚未连接\n");
+//        printf("数据库尚未连接\n");
         return false;
     } else {
         delete this->db;
-        printf("数据库断开连接成功\n");
+//        printf("数据库断开连接成功\n");
         return true;
     }
 }

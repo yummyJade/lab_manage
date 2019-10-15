@@ -13,7 +13,7 @@ class User {
     static const int lendDays[3];//= {30, 60, 90}; // 最多可同时借书的时长,单位天
     static const int lendNums[3];// = {30, 60, 90}; // 最多可同时借书的本数
 private:
-    int jobNum;        //工号即id
+    long long jobNum;        //工号即id
     status type;
     std::string name;        //姓名
     std::string password;        //password
@@ -37,7 +37,10 @@ public:
     User();
     ~User();
 
-    User(int jobNum, status type, const std::string &name, const std::string &password);
+    User(long long jobNum, status type, const std::string &name, const std::string &password);
+
+    User(long long int jobNum, status type, const std::string &name, const std::string &password,
+         long long int firstOrderId);
 
     // 序列化函数
     std::vector<std::string> serialize();
@@ -50,9 +53,6 @@ public:
 
     bool canLendBook();
 
-    void setId(int value);
-
-    int getId();
 
     void setJobNum(int jobNum);
 
@@ -81,7 +81,7 @@ private:
      * @param jobNum
      * @return
      */
-    static User checkUserExist(int jobNum);
+    static bool checkUserExist(long long jobNum, User *user);
 
     /** 待完成
      * 用户登陆
@@ -149,6 +149,13 @@ public:
     // 静态函数, 批量导入用户
     static bool addUsers(std::vector<std::vector<std::string>> queryData, std::vector<long long> &ids);
 
-};
+    // 批量导入用户，这个函数要搬出去
+    static bool importUsers();
 
-//const int User::lendDays[3]={30,60,90};
+    /**
+     * 加密密码
+     * @param pwd
+     * @return
+     */
+    static std::string encryPassword(std::string pwd);
+};

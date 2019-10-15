@@ -1,11 +1,9 @@
 #pragma once
-
 #include "core/SimpleTime.h"
 #include <iostream>
 #include <vector>
 
 class Book {
-
 private:
     char type;        //书所属类别A--V，期刊为0
     int count;      //计数
@@ -19,7 +17,7 @@ private:
 
 private:
     //打印书本类型
-    std::string printType();
+    std::string getTypeContent();
 
     std::string printIsLend();
 
@@ -33,10 +31,11 @@ public:
     Book(char type, int count, int price, const std::string &name, const std::string &author, const std::string &isbn,
          const std::string &press);
 
+
     ~Book();
 
-    // 保存当前对象到数据库, 暂时写一下看看好不好使
-    void save();
+    long long int getFirstInstanceId() const;
+
 
     //打印书本基本信息
     void printBookInfo();
@@ -44,11 +43,17 @@ public:
 
     // ----------------------------------------------------------------
     // ------下面这些是静态函数------------------------------------------
-    // 导入书籍，这个函数要搬出去
-    static bool importBooks();
+    // 批量导入书籍，这个函数要搬出去
+    static bool importBooksService();
 
     // 导出所有书籍，这个函数要搬出去
-    static bool exportBooks();
+    static bool exportBooks(std::vector<Book> books);
+
+    // 添加一本书籍
+    static bool addOneBookService();
+
+    // 批量删除书籍
+    static bool batchDeleteAssignIsbnsBooks(std::vector<std::string> isbns);
 
     // 静态函数, 删除书籍
     static bool deleteBooksByBookIds(std::vector<std::string> bookIds);
@@ -61,7 +66,7 @@ public:
     updateBooks(std::string assignField, std::string assignValue, std::string changeField, std::string changeValue);
 
     // 静态函数, 显示该表所有内容
-    static std::vector<std::vector<std::string>> searchAll();
+    static std::vector<Book> searchAll();
 
 
     // 静态函数, 打印查询出来的结果集 todo: 完善打印效果
@@ -80,24 +85,25 @@ public:
     // 反序列化函数
     bool deSerialize(std::vector<std::string>);
 
+/**
+ * 判断给定的isbn号的书籍是否存在,若存在,则返回首本id,否则返回-1
+ * @param isbn
+ * @return
+ */
+    static int checkAssignISBNExist(std::string isbn);
+
+// 静态函数, 将类中所有符合isbn条件的对象的馆藏量增加对应的addCount本
+    static bool updateBooksCount(std::vector<std::string> isbns, std::vector<int> addCount);
+
 private:
     //------------------------------------------------------
     //----下面这些是与数据库交互的接口,由private调用------------
-    /**
-     * 判断给定的isbn号的书籍是否存在,若存在,则返回首本id,否则返回-1
-     * @param isbn
-     * @return
-     */
-    static int checkAssignISBNExist(std::string isbn);
 
     // 静态函数, 增加书籍,判断给定的isbn数组中,哪些是已经存在的,存在返回首本id,不存在返回-1
     static std::vector<int> checkISBNsExist(std::vector<std::string> isbns);
 
     // 静态函数, 增加书籍
     static bool addBooks(std::vector<std::vector<std::string>> queryData, std::vector<long long> &ids);
-
-    // 静态函数, 将类中所有符合isbn条件的对象的馆藏量增加对应的addCount本
-    static bool updateBooksCount(std::vector<std::string> isbns, std::vector<int> addCount);
 
     // 二维字符串数组转Book对象数组
     static std::vector<Book> stringsToBooks(std::vector<std::vector<std::string>>);
