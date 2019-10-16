@@ -21,6 +21,7 @@ Verify::Verify(){
 }
 
 int Verify::convertDigtal(char inputStr[]){
+    //todo:stringתchar
     int inputInt;
     if(isdigit(inputStr[0])){
         inputInt = atoi(inputStr);
@@ -31,7 +32,7 @@ int Verify::convertDigtal(char inputStr[]){
 }
 
 bool Verify::optionExist(int choose, int sum){
-    return (choose < sum && choose > -1)? true: false;
+    return (choose < sum && choose > -1);
 }
 
 bool Verify::optionExist(int choose, int optionArr[]) {
