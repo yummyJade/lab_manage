@@ -21,7 +21,6 @@ Verify::Verify(){
 }
 
 int Verify::convertDigtal(char inputStr[]){
-    //todo:string转char
     int inputInt;
     if(isdigit(inputStr[0])){
         inputInt = atoi(inputStr);
@@ -32,7 +31,7 @@ int Verify::convertDigtal(char inputStr[]){
 }
 
 bool Verify::optionExist(int choose, int sum){
-    return (choose < sum && choose > -1);
+    return choose < sum && choose > -1;
 }
 
 bool Verify::optionExist(int choose, int optionArr[]) {
@@ -45,7 +44,8 @@ bool Verify::optionExist(int choose, int optionArr[]) {
     cout << "选项不存在" << endl;
     return false;
 }
-int main ()
+
+int main222()
 {
     char str[]="dgd";
 

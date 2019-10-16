@@ -1,6 +1,7 @@
 #include "../../include/core/Date.h"
 #include <iostream>
 #include <string>
+#include <ctime>
 using namespace std;
 
 Date::Date() {
@@ -120,6 +121,12 @@ bool Date::deSerialize(std::string info) {
     this->day = num;
 
     return true;
+}
+
+Date Date::today() {
+    time_t now = time(0);
+    tm *ltm = localtime(&now);
+    return Date(1900 + ltm->tm_year, 1 + ltm->tm_mon, ltm->tm_mday);
 }
 
 

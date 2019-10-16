@@ -3,21 +3,22 @@
 #include <vector>
 #include "../model/Order.h"
 enum status {
-    Admin,Teacher, Graduate, Undergraduate
+    Admin, Teacher, Graduate, Undergraduate, Ban
 };        //特权思想枚举
-const std::string STATUS[4] = {
-        "ADMIN","TEACHER","GRADUATE","UNDERGRADUATE"
+const std::string STATUS[] = {
+        "ADMIN", "TEACHER", "GRADUATE", "UNDERGRADUATE", "BAN"
 };
 
 class User {
-    constexpr static const int lendDays[3] = {30, 60, 90}; // 最多可同时借书的时长,单位天
-    constexpr static const int lendNums[3] = {30, 60, 90}; // 最多可同时借书的本数
+    static const int lendDays[3];//= {30, 60, 90}; // 最多可同时借书的时长,单位天
+    static const int lendNums[3];// = {30, 60, 90}; // 最多可同时借书的本数
 private:
-    int jobNum;        //工号即id
+    long long jobNum;        //工号即id
     status type;
     std::string name;        //姓名
     std::string password;        //password
     long long firstOrderId;  // 该学生借的第一本书的订单在Order表的id,-1表示未借
+
     /**
      * 将枚举类型的statu转化成对应的字符串
      * @param statu
@@ -36,7 +37,10 @@ public:
     User();
     ~User();
 
-    User(int jobNum, status type, const std::string &name, const std::string &password);
+    User(long long jobNum, status type, const std::string &name, const std::string &password);
+
+    User(long long int jobNum, status type, const std::string &name, const std::string &password,
+         long long int firstOrderId);
 
     // 序列化函数
     std::vector<std::string> serialize();
@@ -49,9 +53,6 @@ public:
 
     bool canLendBook();
 
-    void setId(int value);
-
-    int getId();
 
     void setJobNum(int jobNum);
 
@@ -80,7 +81,7 @@ private:
      * @param jobNum
      * @return
      */
-    static User checkUserExist(int jobNum);
+    static bool checkUserExist(long long jobNum, User *user);
 
     /** 待完成
      * 用户登陆
@@ -114,20 +115,26 @@ private:
      */
     std::vector<Order> getBorrowingList();
 
+    /**
+     * 判断是否允许该账号登陆,在账号密码验证成功后执行该函数
+     * @return 0-允许登陆,1-账号被禁止,2-有欠费
+     */
+    int isAllowedLogin();
 
+    /**
+     * 用户借指定书
+     * @param bookInstanceId
+     * @return
+     */
+    bool borrowAssignBookInstance(long long bookInstanceId);
     //------------------------------------------------------------------------------
-    //----下面这些是管理员用户的操作,且与图书相关----------------------------------------
+    //----下面这些是管理员的操作,且与图书相关-------------------------------------------
     //------------------------------------------------------------------------------
 
-    // 待完成,书籍导入
-    void addBooksOperate();
 
-    // 待完成,打印逾期未还名单
-    void printTimeOutOrders();
 
     // 待完成,打印某一种书的情况(由isbn?..指定),包括是否被借阅,啥时候还
     void printAssignBookInfo();
-
 
     //------------------------------------------------------------------------------
     //----下面这些是管理员用户的操作,且与User相关---------------------------------------
@@ -142,6 +149,13 @@ public:
     // 静态函数, 批量导入用户
     static bool addUsers(std::vector<std::vector<std::string>> queryData, std::vector<long long> &ids);
 
-};
+    // 批量导入用户，这个函数要搬出去
+    static bool importUsers();
 
-//const int User::lendDays[3]={30,60,90};
+    /**
+     * 加密密码
+     * @param pwd
+     * @return
+     */
+    static std::string encryPassword(std::string pwd);
+};

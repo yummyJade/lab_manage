@@ -32,6 +32,12 @@ public:
      */
     int compare(Date another);
 
+    /**
+     * 返回 今天日期
+     * @return
+     */
+    static Date today();
+
     // 序列化函数
     std::string serialize();
 

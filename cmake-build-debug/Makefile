@@ -38,19 +38,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe"
+CMAKE_COMMAND = C:\Users\Tjm\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\192.6603.37\bin\cmake\win\bin\cmake.exe
 
 # The command to remove a file.
-RM = "D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E remove -f
+RM = C:\Users\Tjm\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\192.6603.37\bin\cmake\win\bin\cmake.exe -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = D:\projects\CLionProjects\myc1
+CMAKE_SOURCE_DIR = E:\Sources\Cpp\repos\Lib_manage
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = D:\projects\CLionProjects\myc1\cmake-build-debug
+CMAKE_BINARY_DIR = E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -58,7 +58,7 @@ CMAKE_BINARY_DIR = D:\projects\CLionProjects\myc1\cmake-build-debug
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available."
+	C:\Users\Tjm\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\192.6603.37\bin\cmake\win\bin\cmake.exe -E echo "No interactive CMake dialog available."
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -69,7 +69,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	"D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	C:\Users\Tjm\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\192.6603.37\bin\cmake\win\bin\cmake.exe -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -79,9 +79,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start D:\projects\CLionProjects\myc1\cmake-build-debug\CMakeFiles D:\projects\CLionProjects\myc1\cmake-build-debug\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles\progress.marks
 	$(MAKE) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start D:\projects\CLionProjects\myc1\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -110,17 +110,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named myc1
+# Target rules for targets named libManage
 
 # Build rule for target.
-myc1: cmake_check_build_system
-	$(MAKE) -f CMakeFiles\Makefile2 myc1
-.PHONY : myc1
+libManage: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 libManage
+.PHONY : libManage
 
 # fast build rule for target.
-myc1/fast:
-	$(MAKE) -f CMakeFiles\myc1.dir\build.make CMakeFiles/myc1.dir/build
-.PHONY : myc1/fast
+libManage/fast:
+	$(MAKE) -f CMakeFiles\libManage.dir\build.make CMakeFiles/libManage.dir/build
+.PHONY : libManage/fast
 
 #=============================================================================
 # Target rules for targets named Include
@@ -135,32 +135,32 @@ Include/fast:
 	$(MAKE) -f include\CMakeFiles\Include.dir\build.make include/CMakeFiles/Include.dir/build
 .PHONY : Include/fast
 
-yu/Verify.obj: yu/Verify.cpp.obj
+dev-test/beautifulMenu.obj: dev-test/beautifulMenu.cpp.obj
 
-.PHONY : yu/Verify.obj
+.PHONY : dev-test/beautifulMenu.obj
 
 # target to build an object file
-yu/Verify.cpp.obj:
-	$(MAKE) -f CMakeFiles\myc1.dir\build.make CMakeFiles/myc1.dir/yu/Verify.cpp.obj
-.PHONY : yu/Verify.cpp.obj
+dev-test/beautifulMenu.cpp.obj:
+	$(MAKE) -f CMakeFiles\libManage.dir\build.make CMakeFiles/libManage.dir/dev-test/beautifulMenu.cpp.obj
+.PHONY : dev-test/beautifulMenu.cpp.obj
 
-yu/Verify.i: yu/Verify.cpp.i
+dev-test/beautifulMenu.i: dev-test/beautifulMenu.cpp.i
 
-.PHONY : yu/Verify.i
+.PHONY : dev-test/beautifulMenu.i
 
 # target to preprocess a source file
-yu/Verify.cpp.i:
-	$(MAKE) -f CMakeFiles\myc1.dir\build.make CMakeFiles/myc1.dir/yu/Verify.cpp.i
-.PHONY : yu/Verify.cpp.i
+dev-test/beautifulMenu.cpp.i:
+	$(MAKE) -f CMakeFiles\libManage.dir\build.make CMakeFiles/libManage.dir/dev-test/beautifulMenu.cpp.i
+.PHONY : dev-test/beautifulMenu.cpp.i
 
-yu/Verify.s: yu/Verify.cpp.s
+dev-test/beautifulMenu.s: dev-test/beautifulMenu.cpp.s
 
-.PHONY : yu/Verify.s
+.PHONY : dev-test/beautifulMenu.s
 
 # target to generate assembly for a file
-yu/Verify.cpp.s:
-	$(MAKE) -f CMakeFiles\myc1.dir\build.make CMakeFiles/myc1.dir/yu/Verify.cpp.s
-.PHONY : yu/Verify.cpp.s
+dev-test/beautifulMenu.cpp.s:
+	$(MAKE) -f CMakeFiles\libManage.dir\build.make CMakeFiles/libManage.dir/dev-test/beautifulMenu.cpp.s
+.PHONY : dev-test/beautifulMenu.cpp.s
 
 # Help Target
 help:
@@ -168,13 +168,13 @@ help:
 	@echo ... all (the default if no target is provided)
 	@echo ... clean
 	@echo ... depend
-	@echo ... myc1
+	@echo ... libManage
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... Include
-	@echo ... yu/Verify.obj
-	@echo ... yu/Verify.i
-	@echo ... yu/Verify.s
+	@echo ... dev-test/beautifulMenu.obj
+	@echo ... dev-test/beautifulMenu.i
+	@echo ... dev-test/beautifulMenu.s
 .PHONY : help
 
 

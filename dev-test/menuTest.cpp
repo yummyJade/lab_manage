@@ -67,8 +67,7 @@ void printMainMenu() {
 //用户菜单
 void printUserMenu(){
     while (1){
-
-
+        system("cls");
         cout << "------------用户操作--------------" << endl
              << "1.图书搜索" << endl
              << "2.个人订单" << endl
@@ -114,7 +113,7 @@ void printAdminMenu(){
 
         cout << "------------管理员操作--------------" << endl
              << "1.图书搜索" << endl
-             << "2.添加书目" << endl
+             << "2.导入图书" << endl
              << "3.减少书目" << endl
              << "4.用户管理" << endl
              << "0.返回上一级" << endl
@@ -127,8 +126,7 @@ void printAdminMenu(){
             case 1:
                 printSearchMenu();break;
             case 2:
-
-                cout << "增加书啦" << endl;
+                Book::importBooks();
                 break;
             case 3:
                 cout << "减少书啦" << endl;
@@ -178,7 +176,7 @@ void printSearchResult(){
 
 //搜索方式
 void printSearchMenu(){
-
+    system("cls");
     while (1) {
         system("cls");
         cout << "------------图书搜索--------------" << endl
@@ -270,7 +268,7 @@ void printUserManageMenu(){
         }
     }
 }
-//
+
 int main(){
 init();
     printMainMenu();

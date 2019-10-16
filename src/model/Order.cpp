@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 
+using namespace std;
 Order::Order()
 {
 }
@@ -61,10 +62,39 @@ Order::Order(long long userId, long long bookId, const SimpleTime &borrowTime, c
              Status statu) : userId(
         userId), bookId(bookId), borrowTime(borrowTime), returnTime(returnTime), statu(statu) {}
 
-std::vector<Order> Order::getAssignUserBorrowedHistory(int jobNum) {
+
+//1代表在借，2代表已还，3代表预约，4代表已续借的在借，5代表预约已到
+std::vector<Order> Order::getAssignUserBorrowedHistory(int firstOrderId) {
     return std::vector<Order>();
 }
 
-std::vector<Order> Order::getAssignUserBorrowingList(int jobNum) {
-    return std::vector<Order>();
+
+std::vector<Order> Order::getAssignUserBorrowingList(int firstOrderId) {
+    // 获取所有借阅记录
+    vector<Order> orders = Order::getAssignUserBorrowedHistory(firstOrderId);
+    vector<Order> result;
+    int borringIndexs[] = {1, 4}; // 在借状态statu的值集合
+    for (int i = 0; i < orders.size(); ++i) {
+        for (int j = 0; j < sizeof(borringIndexs) / sizeof(int); ++j) {
+            if (orders[i].statu == borringIndexs[j]) {
+                result.push_back(orders[i]);
+                break;
+            }
+        }
+    }
+    return result;
+}
+
+
+std::vector<Order> Order::getAssignUserOweOrder(int firstOrderId) {
+    // 先获取所有在借记录
+    vector<Order> orders = Order::getAssignUserBorrowingList(firstOrderId);
+    vector<Order> result;
+    for (int i = 0; i < orders.size(); ++i) {
+        // 如果应还时间小于今天,则已逾期
+        if (orders[i].returnTime.compare(Date::today()) <= -1) {
+            result.push_back(orders[i]);
+        }
+    }
+    return result;
 }

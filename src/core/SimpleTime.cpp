@@ -1,6 +1,7 @@
 #include "core/SimpleTime.h"
 #include <iostream>
 #include <string>
+#include <ctime>
 using namespace std;
 
 
@@ -70,6 +71,32 @@ bool SimpleTime::deSerialize(std::string info) {
     this->second = num;
 
     return true;
+}
+
+SimpleTime::SimpleTime(short hour, short minute, short second, const Date &date) : hour(hour), minute(minute),
+                                                                                   second(second), date(date) {}
+
+SimpleTime SimpleTime::nowTime() {
+    time_t now = time(0);
+    tm *ltm = localtime(&now);
+    return SimpleTime(ltm->tm_hour, ltm->tm_min, ltm->tm_sec, Date::today());
+}
+
+int SimpleTime::compare(SimpleTime another) {
+    int result = this->date.compare(another.date) != 0;
+    if (result == 0) {
+        if (this->hour != another.hour) {
+            return this->hour - another.hour;
+        } else if (this->minute != another.minute) {
+            return this->minute - another.minute;
+        } else
+            return this->second - another.second;
+    }
+    return result;
+}
+
+int SimpleTime::compare(Date another) {
+    return this->date.compare(another);
 }
 
 

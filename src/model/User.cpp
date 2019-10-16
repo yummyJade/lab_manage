@@ -1,10 +1,15 @@
 #include "../../include/model/User.h"
+#include "../../include/model/Book.h"
+#include "../../include/model/BookInstance.h"
 #include "../../include/core/SimpleString.h"
 #include <fstream>
 #include <sstream>
 #include <util/DbAdapter.h>
 
 using namespace std;
+
+const int User::lendDays[3] = {30, 60, 90};
+const int User::lendNums[3] = {30, 60, 90};
 
 User::User()
 {
@@ -15,88 +20,24 @@ User::~User() {
 }
 
 
-void User::addBooksOperate() {
-    string path = "";
-    ifstream fin;
-    while (true) {
-        printf("请输入文件路径:");
-        cin >> path;
-        if (path != SimpleString::fixPath(path)) {
-            cout << "文件路径修复为:" << SimpleString::fixPath(path) << endl;
-            path = SimpleString::fixPath(path);
-        }
-
-        cout << "正在寻找文件" << path << endl;
-        // "E:\\Sources\\Cpp\\repos\\Lib_manage\\dev-Tan\\books.csv"
-        fin = ifstream(path);//打开文件流操作
-        if (fin.good()) {
-            cout << "已找到文件,正在读取" << endl;
-            break;
-        } else {
-            cout << "文件不存在,请检查路径后重新输入" << endl;
-            continue;
-        }
-
-    }
-
-
-    string line;
-    int num = 0;
-    vector<vector<string>> books;
-
-    while (getline(fin, line))   //整行读取，换行符“\n”区分，遇到文件尾标志eof终止读取
-    {
-
-        if (num++ > 10) // 打印10行做测试
-            break;
-        cout << "原始字符串：" << line << endl;
-        istringstream sin(line);
-
-        vector<string> fields;
-        string field;
-        while (getline(sin, field, ',')) {
-            fields.push_back(field);
-        }
-        books.push_back(fields);
-
-//        string name = fields[0];
-//        string press = fields[1];
-//        string author = fields[2];
-//        char type = fields[3][0];
-//        string isbn = fields[4];
-//        int price=stof(fields[5])*100;
-//        int num = stoi(fields[6]);
-//        bool isLend = fields[7][0] == 'Y' || fields[7][0] == 'y';
-
-//        vector<string> temp;
-//        cout << "处理之后的字符串：" << name << "\t" << press << "\t" << author << endl;
-    }
-
-    // todo:对books进行操作,将它存到数据库里
-    return;
-}
-
-
 vector<string> User::serialize() {
-    // todo: 这里等他们的函数声明给我们
     vector<string> info;
-////    info.push_back(to_string(this->id));
-//    info.push_back(to_string(this->jobNum));
-//
-//    info.push_back(to_string(this->type));
-//    info.push_back(password);
+    info.push_back(to_string(this->jobNum));
+    info.push_back(to_string(this->type));
+    info.push_back(this->name);
+    info.push_back(this->password);
+    info.push_back(to_string(this->firstOrderId));
     return info;
 }
 
 bool User::deSerialize(vector<string> info) {
-    //todo: 这里等他们的函数声明给我们
-//    int id = stoi(info[0]);
-//    int jobNum = stoi(info[1]);
-//    int borrowNum = stoi(info[2]);
-//    status type;
-//    type = Teacher;// todo:这个枚举要怎么操作
-//    string password = info[4];
-//    User(id, jobNum, borrowNum, type, password);
+    long long jobNum = stoll(info[0]);
+    status type = static_cast<status>(stoi(info[1]));
+
+    string name = info[2];
+    string password = info[3];
+    int firstOrderId = stoi(info[4]);
+    new(this) User(jobNum, type, name, password, firstOrderId);
     return true;
 }
 
@@ -118,8 +59,10 @@ status User::stringEnumToStatu(std::string str) {
     return Undergraduate;//没找到默认返回的,//todo:或许不该这么写
 }
 
-User::User(int jobNum, status type, const string &name, const string &password) : jobNum(jobNum), type(type),
-                                                                                  name(name), password(password) {}
+User::User(long long jobNum, status type, const string &name, const string &password) : jobNum(jobNum), type(type),
+                                                                                        name(name), password(password) {
+    this->firstOrderId = -1;
+}
 
 bool User::setPassword(const string &password) {
     // todo:待实现加密函数
@@ -146,19 +89,23 @@ User User::login(std::string name, std::string password) {
     return User();
 }
 
-User User::checkUserExist(int jobNum) {
+bool User::checkUserExist(long long jobNum, User *user = NULL) {
     DbAdapter db("User");
-//    vector<vector<string>> results= db.searchBySingleField("jobNum",to_string(jobNum));
-//    if (results.size()>0){
-//        return
-//    }
-    return User();
+    vector<vector<string>> results = db.searchBySingleField("jobNum", to_string(jobNum));
+
+    if (results.size() > 0) {
+        if (user != NULL) {
+            User temp;
+            temp.deSerialize(results[0]);
+            *user = temp;
+        }
+        return true;
+    }
+    return false;
 }
 
 std::vector<Order> User::getBorrowedHistory() {
-
     return Order::getAssignUserBorrowedHistory(this->jobNum);
-
 }
 
 std::vector<Order> User::getBorrowingList() {
@@ -170,6 +117,99 @@ bool User::addUsers(std::vector<std::vector<std::string>> queryData, std::vector
     dbAdapter.insert(queryData, ids);
     return true;
 }
+
+int User::isAllowedLogin() {
+    // 判断用户状态,是否被禁止登陆
+    if (this->type == status::Ban)
+        return 1;
+    // 判断用户所有订单的状态,是否有超时订单
+    if (!Order::getAssignUserOweOrder(this->firstOrderId).empty())
+        return 2;
+    return 0;
+}
+
+bool User::borrowAssignBookInstance(long long bookInstanceId) {
+    // 判断用户能否借书(是否有权借阅,借书数量是多少)
+    if (Order::getAssignUserBorrowingList(this->firstOrderId).size() >= User::lendNums[this->type]) {
+        return 1; // 返回1,借书数量已达上线
+    }
+    // 判断该书是否能被借阅
+    BookInstance *instance = BookInstance::getInstanceById(bookInstanceId);
+
+//    if(instance == NULL){
+//        return 5; // 返回5,图书不存在
+//    }
+//    BookInstance instance=instances[0];
+
+//    if(instances[0].status==)
+
+    // 插入一条借阅记录Order,需要能借多久,
+    Order order();
+    // 设置该Bookinstance不可借,并更新应还时间
+    return false;
+}
+
+bool User::importUsers() {
+    /* 读取一个有效路径,并打开其对应的文件*/
+    string path;
+    ifstream fin;
+    string line;
+    while (true) {
+        path = SimpleString::readPathFromCmd();// "E:\\Sources\\Cpp\\repos\\Lib_manage\\dev-Tan\\newBooks.csv"
+        fin = ifstream(path);//打开文件流操作
+        if (fin.good()) {
+            cout << "已找到文件,正在读取" << endl;
+            break;
+        }
+        cout << "文件不存在,请检查路径后重新输入" << endl;
+    }
+
+    int index = 0;//要操作的行下标
+    fin.clear();
+    fin.seekg(0, ios::beg); // 重新跳转到文件头部
+    getline(fin, line); // 吃掉首行
+    vector<vector<string>> users; // 要insert到User表的数据
+    vector<long long> existUsers; //已经存在的用户工号
+
+
+    while (getline(fin, line)) //整行读取，换行符“\n”区分，遇到文件尾标志eof终止读取
+    {
+        istringstream sin(line);
+
+        vector<string> fields;
+        string field;
+        while (getline(sin, field, ',')) {
+            fields.push_back(field);
+        }
+        long long jobNum = stoll(fields[0]);
+        string name = fields[1];
+        string pwd = fields[2];
+        int state = stoi(fields[3]);
+
+        if (User::checkUserExist(jobNum)) {
+            existUsers.push_back(jobNum);
+        } else {
+            pwd = User::encryPassword(pwd);
+            User user(jobNum, static_cast<status>(state), name, pwd);
+            users.push_back(user.serialize());
+        }
+    }
+    vector<long long> ids;
+    User::addUsers(users, ids);
+    cout << "插入成功,以下工号的用户已经存在" << endl;
+    for (int i = 0; i < existUsers.size(); ++i) {
+        cout << existUsers[i] << endl;
+    }
+    return true;
+}
+
+
+std::string User::encryPassword(std::string pwd) {
+    return "123456";
+}
+
+User::User(long long int jobNum, status type, const string &name, const string &password, long long int firstOrderId)
+        : jobNum(jobNum), type(type), name(name), password(password), firstOrderId(firstOrderId) {}
 
 
 

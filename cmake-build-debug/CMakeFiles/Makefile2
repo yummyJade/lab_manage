@@ -49,54 +49,54 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe"
+CMAKE_COMMAND = C:\Users\Tjm\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\192.6603.37\bin\cmake\win\bin\cmake.exe
 
 # The command to remove a file.
-RM = "D:\Install\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E remove -f
+RM = C:\Users\Tjm\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\192.6603.37\bin\cmake\win\bin\cmake.exe -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = D:\projects\CLionProjects\myc1
+CMAKE_SOURCE_DIR = E:\Sources\Cpp\repos\Lib_manage
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = D:\projects\CLionProjects\myc1\cmake-build-debug
+CMAKE_BINARY_DIR = E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug
 
 #=============================================================================
-# Target rules for target CMakeFiles/myc1.dir
+# Target rules for target CMakeFiles/libManage.dir
 
 # All Build rule for target.
-CMakeFiles/myc1.dir/all:
-	$(MAKE) -f CMakeFiles\myc1.dir\build.make CMakeFiles/myc1.dir/depend
-	$(MAKE) -f CMakeFiles\myc1.dir\build.make CMakeFiles/myc1.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=D:\projects\CLionProjects\myc1\cmake-build-debug\CMakeFiles --progress-num=11,12 "Built target myc1"
-.PHONY : CMakeFiles/myc1.dir/all
+CMakeFiles/libManage.dir/all:
+	$(MAKE) -f CMakeFiles\libManage.dir\build.make CMakeFiles/libManage.dir/depend
+	$(MAKE) -f CMakeFiles\libManage.dir\build.make CMakeFiles/libManage.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles --progress-num=13,14 "Built target libManage"
+.PHONY : CMakeFiles/libManage.dir/all
 
 # Include target in all.
-all: CMakeFiles/myc1.dir/all
+all: CMakeFiles/libManage.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/myc1.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start D:\projects\CLionProjects\myc1\cmake-build-debug\CMakeFiles 2
-	$(MAKE) -f CMakeFiles\Makefile2 CMakeFiles/myc1.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start D:\projects\CLionProjects\myc1\cmake-build-debug\CMakeFiles 0
-.PHONY : CMakeFiles/myc1.dir/rule
+CMakeFiles/libManage.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles 2
+	$(MAKE) -f CMakeFiles\Makefile2 CMakeFiles/libManage.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles 0
+.PHONY : CMakeFiles/libManage.dir/rule
 
 # Convenience name for target.
-myc1: CMakeFiles/myc1.dir/rule
+libManage: CMakeFiles/libManage.dir/rule
 
-.PHONY : myc1
-
-# clean rule for target.
-CMakeFiles/myc1.dir/clean:
-	$(MAKE) -f CMakeFiles\myc1.dir\build.make CMakeFiles/myc1.dir/clean
-.PHONY : CMakeFiles/myc1.dir/clean
+.PHONY : libManage
 
 # clean rule for target.
-clean: CMakeFiles/myc1.dir/clean
+CMakeFiles/libManage.dir/clean:
+	$(MAKE) -f CMakeFiles\libManage.dir\build.make CMakeFiles/libManage.dir/clean
+.PHONY : CMakeFiles/libManage.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/libManage.dir/clean
 
 .PHONY : clean
 
@@ -125,7 +125,7 @@ include/preinstall:
 include/CMakeFiles/Include.dir/all:
 	$(MAKE) -f include\CMakeFiles\Include.dir\build.make include/CMakeFiles/Include.dir/depend
 	$(MAKE) -f include\CMakeFiles\Include.dir\build.make include/CMakeFiles/Include.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=D:\projects\CLionProjects\myc1\cmake-build-debug\CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10 "Built target Include"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12 "Built target Include"
 .PHONY : include/CMakeFiles/Include.dir/all
 
 # Include target in all.
@@ -135,9 +135,9 @@ all: include/CMakeFiles/Include.dir/all
 
 # Build rule for subdir invocation for target.
 include/CMakeFiles/Include.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start D:\projects\CLionProjects\myc1\cmake-build-debug\CMakeFiles 10
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles 12
 	$(MAKE) -f CMakeFiles\Makefile2 include/CMakeFiles/Include.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start D:\projects\CLionProjects\myc1\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles 0
 .PHONY : include/CMakeFiles/Include.dir/rule
 
 # Convenience name for target.
