@@ -6,6 +6,7 @@
 #include <model/BookInstance.h>
 #include "../../include/util/DbAdapter.h"
 #include "../../include/util/TableRenderer.h"
+
 using namespace std;
 
 Book::Book() {
@@ -18,29 +19,75 @@ Book::~Book() {
 string Book::getTypeContent() {
     string temp;
     switch (type) {
-        case 'A':temp = "马克思主义、列宁主义、毛泽东思想、邓小平理论";break;
-        case 'B':temp = "哲学、宗教";break;
-        case 'C':temp = "社会科学总论";break;
-        case 'D':temp = "政治、法律";break;
-        case 'E':temp = "军事";break;
-        case 'F':temp = "经济";break;
-        case 'G':temp = "文化、科学、教育、体育";break;
-        case 'H':temp = "语言、文字";break;
-        case 'I':temp = "文学";break;
-        case 'J':temp = "艺术";break;
-        case 'K':temp = "历史、地理";break;
-        case 'N':temp = "自然科学总论";break;
-        case 'O':temp = "数理科学和化学";break;
-        case 'P':temp = "天文学、地球科学";break;
-        case 'Q':temp = "生物科学";break;
-        case 'R':temp = "医药、卫生";break;
-        case 'S':temp = "农业科学";break;
-        case 'T':temp = "工业技术";break;
-        case 'U':temp = "交通运输";break;
-        case 'V':temp = "航空、航天";break;
-        case 'X':temp = "环境科学、安全科学";break;
-        case 'Z':temp = "综合性图书";break;
-        default:temp = "期刊杂志";break;
+        case 'A':
+            temp = "马克思主义、列宁主义、毛泽东思想、邓小平理论";
+            break;
+        case 'B':
+            temp = "哲学、宗教";
+            break;
+        case 'C':
+            temp = "社会科学总论";
+            break;
+        case 'D':
+            temp = "政治、法律";
+            break;
+        case 'E':
+            temp = "军事";
+            break;
+        case 'F':
+            temp = "经济";
+            break;
+        case 'G':
+            temp = "文化、科学、教育、体育";
+            break;
+        case 'H':
+            temp = "语言、文字";
+            break;
+        case 'I':
+            temp = "文学";
+            break;
+        case 'J':
+            temp = "艺术";
+            break;
+        case 'K':
+            temp = "历史、地理";
+            break;
+        case 'N':
+            temp = "自然科学总论";
+            break;
+        case 'O':
+            temp = "数理科学和化学";
+            break;
+        case 'P':
+            temp = "天文学、地球科学";
+            break;
+        case 'Q':
+            temp = "生物科学";
+            break;
+        case 'R':
+            temp = "医药、卫生";
+            break;
+        case 'S':
+            temp = "农业科学";
+            break;
+        case 'T':
+            temp = "工业技术";
+            break;
+        case 'U':
+            temp = "交通运输";
+            break;
+        case 'V':
+            temp = "航空、航天";
+            break;
+        case 'X':
+            temp = "环境科学、安全科学";
+            break;
+        case 'Z':
+            temp = "综合性图书";
+            break;
+        default:
+            temp = "期刊杂志";
+            break;
     }
     return temp;
 }
@@ -106,10 +153,10 @@ std::vector<Book> Book::searchBooksBySingleField(std::string field, std::string 
 
 
 void Book::printBookList(std::vector<Book> books) {
-    vector<string> navs = {"类型", "馆藏量", "价格", "书名", "作者", "ISBN", "出版社", "链表ID"};
+    vector<string> navs = {"书名", "作者", "出版社", "类型", "馆藏量", "ISBN"};
     TableRenderer render(navs, 8);
     for (int i = 0; i < books.size(); ++i) {
-        render.addColume(books[i].serialize());
+        render.addColume(books[i].getPrintLineStr());
     }
     render.render();
 }
@@ -142,7 +189,9 @@ std::vector<Book> Book::searchAll() {
 
 Book::Book(char type, int count, int price, const string &name, const string &author, const string &isbn,
            const string &press) : type(type), count(count), price(price), name(name), author(author), isbn(isbn),
-                                  press(press) {}
+                                  press(press) {
+    this->appointmentNum = 0;
+}
 
 bool Book::addBooks(std::vector<std::vector<std::string>> queryData, vector<long long> &ids) {
     DbAdapter dbAdapter("Book");
@@ -260,7 +309,9 @@ bool Book::importBooksService() {
 Book::Book(char type, int count, int price, long long int firstInstanceId, const string &name, const string &author,
            const string &isbn, const string &press) : type(type), count(count), price(price),
                                                       firstInstanceId(firstInstanceId), name(name), author(author),
-                                                      isbn(isbn), press(press) {}
+                                                      isbn(isbn), press(press) {
+    this->appointmentNum = 0;
+}
 
 std::vector<int> Book::checkISBNsExist(std::vector<std::string> isbns) {
     vector<int> results;
@@ -362,6 +413,100 @@ bool Book::batchDeleteAssignIsbnsBooks(std::vector<std::string> isbns) {
 
 long long int Book::getFirstInstanceId() const {
     return firstInstanceId;
+}
+
+char Book::getType() const {
+    return type;
+}
+
+int Book::getCount() const {
+    return count;
+}
+
+
+int Book::getPrice() const {
+    return price;
+}
+
+int Book::getId() const {
+    return id;
+}
+
+const string &Book::getName() const {
+    return name;
+}
+
+const string &Book::getAuthor() const {
+    return author;
+}
+
+const string &Book::getIsbn() const {
+    return isbn;
+}
+
+const string &Book::getPress() const {
+    return press;
+}
+
+void Book::setType(char type) {
+    Book::type = type;
+}
+
+void Book::setCount(int count) {
+    Book::count = count;
+}
+
+void Book::setPrice(int price) {
+    Book::price = price;
+}
+
+void Book::setId(int id) {
+    Book::id = id;
+}
+
+void Book::setFirstInstanceId(long long int firstInstanceId) {
+    Book::firstInstanceId = firstInstanceId;
+}
+
+void Book::setName(const string &name) {
+    Book::name = name;
+}
+
+void Book::setAuthor(const string &author) {
+    Book::author = author;
+}
+
+void Book::setIsbn(const string &isbn) {
+    Book::isbn = isbn;
+}
+
+void Book::setPress(const string &press) {
+    Book::press = press;
+}
+
+void Book::setAppointmentNum(int appointmentNum) {
+    Book::appointmentNum = appointmentNum;
+}
+
+bool Book::updateBookModifiableInfo() {
+    Book::updateBooks("isbn", this->isbn, "name", this->name);
+    Book::updateBooks("isbn", this->isbn, "author", this->author);
+    Book::updateBooks("isbn", this->isbn, "press", this->press);
+    Book::updateBooks("isbn", this->isbn, "type", to_string(this->type));
+    Book::updateBooks("isbn", this->isbn, "price", to_string(this->price));
+    return true;
+}
+
+std::vector<std::string> Book::getPrintLineStr() {
+    vector<string> info;
+    info.push_back(this->name);
+    info.push_back(this->author);
+    info.push_back(this->press);
+
+    info.push_back(this->getTypeContent());
+    info.push_back(to_string(this->count));
+    info.push_back(this->isbn);
+    return info;
 }
 
 

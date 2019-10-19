@@ -3,6 +3,7 @@
 #include "core/SimpleTime.h"
 #include <iostream>
 #include <vector>
+#include "../../include/util/Record.h"
 
 enum Status {
     BORROWING, RETURNED
@@ -35,6 +36,9 @@ public:
 
     Order(long long userId, long long bookId, const SimpleTime &borrowTime, const SimpleTime &returnTime, Status statu);
 
+    Order(long long int id, long long int userId, long long int bookId, const SimpleTime &borrowTime,
+          const SimpleTime &returnTime, Status statu);
+
     ~Order();
 
     // 计算欠款
@@ -45,6 +49,18 @@ public:
 
     // 反序列化函数
     bool deSerialize(std::vector<std::string>);
+
+    // 序列化为Record
+    Record toRecordCopy();
+
+    // Record转化为Order
+    static Order RecordCopyToOrder(Record record);
+
+private:
+    //------------------------------------------------------
+    //----下面这些是与数据库交互的接口,由private调用------------
+    // 添加一个实例到数据库,返回其id
+    static int addOneOrder(Order order, int firstId = -1);
 
 public:
     //------------------------------------------------------

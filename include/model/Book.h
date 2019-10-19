@@ -7,6 +7,7 @@ class Book {
 private:
     char type;        //书所属类别A--V，期刊为0
     int count;      //计数
+    // 预约人数
     int price;        //书本价格,单位分
     int id;
     long long firstInstanceId;  // 第一本图书实例在Instance表的id
@@ -34,12 +35,57 @@ public:
 
     ~Book();
 
+    char getType() const;
+
+    int getCount() const;
+
+    int getPrice() const;
+
+    int getId() const;
+
+    const std::string &getName() const;
+
+    const std::string &getAuthor() const;
+
+    const std::string &getIsbn() const;
+
+    const std::string &getPress() const;
+
+
     long long int getFirstInstanceId() const;
+
+    void setType(char type);
+
+    void setCount(int count);
+
+    void setPrice(int price);
+
+    void setId(int id);
+
+    void setFirstInstanceId(long long int firstInstanceId);
+
+    void setName(const std::string &name);
+
+    void setAuthor(const std::string &author);
+
+    void setIsbn(const std::string &isbn);
+
+    void setPress(const std::string &press);
+
+    void setAppointmentNum(int appointmentNum);
 
 
     //打印书本基本信息
     void printBookInfo();
 
+    // 获取用于表格答案的字符数组;
+    std::vector<std::string> getPrintLineStr();
+
+    /**
+     * 修改当前书的可修改信息(书名,出版社,作者,类型,价格)
+     * @return
+     */
+    bool updateBookModifiableInfo();
 
     // ----------------------------------------------------------------
     // ------下面这些是静态函数------------------------------------------
@@ -64,6 +110,7 @@ public:
     // 静态函数, 修改
     static bool
     updateBooks(std::string assignField, std::string assignValue, std::string changeField, std::string changeValue);
+
 
     // 静态函数, 显示该表所有内容
     static std::vector<Book> searchAll();
@@ -95,6 +142,7 @@ public:
 // 静态函数, 将类中所有符合isbn条件的对象的馆藏量增加对应的addCount本
     static bool updateBooksCount(std::vector<std::string> isbns, std::vector<int> addCount);
 
+    int appointmentNum;
 private:
     //------------------------------------------------------
     //----下面这些是与数据库交互的接口,由private调用------------

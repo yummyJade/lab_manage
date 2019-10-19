@@ -130,3 +130,25 @@ Date Date::today() {
 }
 
 
+int Date::toInt() {
+    string time = "";
+    time += this->year;
+    if (this->month < 10) {
+        time += "0";
+    }
+    time += this->month;
+    if (this->day < 10) {
+        time += "0";
+    }
+    time += this->day;
+    return atoi(time.c_str());
+}
+
+
+Date Date::intDate2Date(int date) {
+    string time_str = to_string(date);
+    return Date(atoi(time_str.substr(0, 3).c_str()), atoi(time_str.substr(4, 5).c_str()),
+                atoi(time_str.substr(6, 7).c_str()));
+}
+
+

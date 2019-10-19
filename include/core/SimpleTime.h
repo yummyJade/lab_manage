@@ -40,5 +40,12 @@ public:
 
     // 返回当前时间
     static SimpleTime nowTime();
+
+    // 转化为ll 类型
+    long long toLLTime();
+
+    // ll 转化为 SimpleTime
+    static SimpleTime llTimeToSimpleTime(long long time);
+
 };
 

@@ -5,6 +5,7 @@
 #include <fstream>
 #include <sstream>
 #include <util/DbAdapter.h>
+#include <util/TableRenderer.h>
 
 using namespace std;
 
@@ -84,7 +85,7 @@ bool User::changePwd(const std::string &password) {
     return this->setPassword(password);
 }
 
-User User::login(std::string name, std::string password) {
+User User::login(long long jobNum, std::string password) {
 
     return User();
 }
@@ -120,7 +121,7 @@ bool User::addUsers(std::vector<std::vector<std::string>> queryData, std::vector
 
 int User::isAllowedLogin() {
     // 判断用户状态,是否被禁止登陆
-    if (this->type == status::Ban)
+    if (this->type < 0)
         return 1;
     // 判断用户所有订单的状态,是否有超时订单
     if (!Order::getAssignUserOweOrder(this->firstOrderId).empty())
@@ -133,15 +134,22 @@ bool User::borrowAssignBookInstance(long long bookInstanceId) {
     if (Order::getAssignUserBorrowingList(this->firstOrderId).size() >= User::lendNums[this->type]) {
         return 1; // 返回1,借书数量已达上线
     }
-    // 判断该书是否能被借阅
+
+    // 判断该书是否能被借阅,
     BookInstance *instance = BookInstance::getInstanceById(bookInstanceId);
+    if (instance == NULL) {
+        return 5; // 返回5,图书不存在
+    }
+    if (instance->status != 1) {
+        return 2; // 返回2,该书不是可借
+    }
 
-//    if(instance == NULL){
-//        return 5; // 返回5,图书不存在
-//    }
-//    BookInstance instance=instances[0];
+    //todo: 判断是否已经被预约,这个好像不需要,到时候删掉
+    Book book = Book::searchBooksBySingleField("isbn", instance->isbn)[0];
+    if (book.appointmentNum > 0) {
+        return 3; // 返回3,该书已被预约
+    }
 
-//    if(instances[0].status==)
 
     // 插入一条借阅记录Order,需要能借多久,
     Order order();
@@ -210,6 +218,123 @@ std::string User::encryPassword(std::string pwd) {
 
 User::User(long long int jobNum, status type, const string &name, const string &password, long long int firstOrderId)
         : jobNum(jobNum), type(type), name(name), password(password), firstOrderId(firstOrderId) {}
+
+
+std::string User::getUserMeaasge() {
+    // 检测是否有正在预约书籍
+
+
+    // 检测是否有预约已到书籍
+
+    // 检测是否有即将逾期的借阅
+    vector<Order> boringOrders = Order::getAssignUserBorrowingList(this->firstOrderId);
+    for (int i = 0; i < boringOrders.size(); ++i) {
+
+    }
+
+
+    return std::__cxx11::string();
+}
+
+bool User::appointmentAssignBook(int jobNum, int bookId) {
+    // 判断用户是否超过最大预约数
+
+    // 判断该书是否可被预约(是否没有状态为可借阅的instance)
+
+    // 创建预约Order
+
+    // 更新Book表中预约数量
+
+    return false;
+}
+
+std::vector<std::string> User::getPrintLineStr() {
+    vector<string> info;
+    info.push_back(to_string(this->jobNum));
+    info.push_back(this->name);
+    info.push_back(User::statuEnumToString(this->type));
+    return info;
+}
+
+void User::printUserList(std::vector<User> users) {
+    vector<string> navs = {"工号", "姓名", "账号类型"};
+    TableRenderer render(navs, 8);
+    for (int i = 0; i < users.size(); ++i) {
+        render.addColume(users[i].getPrintLineStr());
+    }
+    render.render();
+}
+
+User User::getUserByJobNum(long long jobNum) {
+    DbAdapter db("User");
+    vector<vector<string>> results = db.searchBySingleField("jobNum", to_string(jobNum));
+    User user;
+    if (results.size() == 0) {
+        cout << "错误,该用户不存在,该接口调用需保证用户存在";
+    } else {
+        user.deSerialize(results[0]);
+    }
+
+    return user;
+}
+
+const int *User::getLendDays() {
+    return lendDays;
+}
+
+const int *User::getLendNums() {
+    return lendNums;
+}
+
+long long int User::getJobNum() const {
+    return jobNum;
+}
+
+status User::getType() const {
+    return type;
+}
+
+const string &User::getName() const {
+    return name;
+}
+
+const string &User::getPassword() const {
+    return password;
+}
+
+long long int User::getFirstOrderId() const {
+    return firstOrderId;
+}
+
+bool User::updateUsersAssignField(std::string assignField, std::string assignValue, std::string changeField,
+                                  std::string changeValue) {
+    DbAdapter dbAdapter("User");
+    dbAdapter.updateBySingleField(assignField, assignValue, changeField, changeValue);
+    return true;
+}
+
+void User::setJobNum1(long long int jobNum) {
+    User::jobNum = jobNum;
+}
+
+void User::setType(status type) {
+    User::type = type;
+}
+
+void User::setName(const string &name) {
+    User::name = name;
+}
+
+void User::setFirstOrderId(long long int firstOrderId) {
+    User::firstOrderId = firstOrderId;
+}
+
+User::User(long long int jobNum, status type, const string &name) : jobNum(jobNum), type(type), name(name) {
+    this->firstOrderId = -1;
+    this->setPassword(to_string(this->jobNum));
+}
+
+
 
 
 

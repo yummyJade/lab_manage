@@ -1,7 +1,10 @@
 #include "../../include/model/Order.h"
+#include "../../include/util/Record.h"
+#include "../../include/util/TableRecord.h"
 #include <vector>
 #include <iostream>
 #include <string>
+
 
 using namespace std;
 Order::Order()
@@ -98,3 +101,34 @@ std::vector<Order> Order::getAssignUserOweOrder(int firstOrderId) {
     }
     return result;
 }
+
+int Order::addOneOrder(Order order, int firstId) {
+//    TableRecord* table =TableRecord::getInstance();
+//    Record record;
+//    table->insertData(firstId,record);
+    return 0;
+}
+
+Record Order::toRecordCopy() {
+    Record record;
+    record.setId(this->id);
+    record.setBookId(this->bookId);
+    record.setState(this->statu);
+    record.setStId(this->userId);
+    record.setBoTime(this->borrowTime.toLLTime());
+    record.setReTime(this->returnTime.toLLTime());
+    return record;
+}
+
+
+Order Order::RecordCopyToOrder(Record record) {
+    SimpleTime boTime = SimpleTime::llTimeToSimpleTime(record.getBoTime());
+    SimpleTime reTime = SimpleTime::llTimeToSimpleTime(record.getReTime());
+    return Order(record.getId(), record.getStId(), record.getBookId(), boTime, reTime,
+                 static_cast<Status>(record.getState()));
+}
+
+Order::Order(long long int id, long long int userId, long long int bookId, const SimpleTime &borrowTime,
+             const SimpleTime &returnTime, Status statu) : id(id), userId(userId), bookId(bookId),
+                                                           borrowTime(borrowTime), returnTime(returnTime),
+                                                           statu(statu) {}

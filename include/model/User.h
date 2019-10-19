@@ -3,7 +3,7 @@
 #include <vector>
 #include "../model/Order.h"
 enum status {
-    Admin, Teacher, Graduate, Undergraduate, Ban
+    Admin = 0, Teacher = 1, Graduate = 2, Undergraduate = 3, BanTeacher = -1, BanGraduate = -2, BanUndergraduate = -3
 };        //特权思想枚举
 const std::string STATUS[] = {
         "ADMIN", "TEACHER", "GRADUATE", "UNDERGRADUATE", "BAN"
@@ -26,16 +26,12 @@ private:
      */
     static std::string statuEnumToString(status statu);
 
-    /**
-     * 将字符串转换为对应的枚举
-     * @param str
-     * @return
-     */
-    static status stringEnumToStatu(std::string str);
-
 public:
     User();
     ~User();
+
+    // 默认用工号做密码
+    User(long long int jobNum, status type, const std::string &name);
 
     User(long long jobNum, status type, const std::string &name, const std::string &password);
 
@@ -56,6 +52,59 @@ public:
 
     void setJobNum(int jobNum);
 
+    void setJobNum1(long long int jobNum);
+
+    void setType(status type);
+
+    void setName(const std::string &name);
+
+    void setFirstOrderId(long long int firstOrderId);
+
+    static const int *getLendDays();
+
+    static const int *getLendNums();
+
+    long long int getJobNum() const;
+
+    status getType() const;
+
+    const std::string &getName() const;
+
+    const std::string &getPassword() const;
+
+    long long int getFirstOrderId() const;
+
+
+    // 返回类型对应的中文
+    std::string getTypeContent();
+
+    // 获取当前用户的登陆消息提示
+    std::string getUserMeaasge();
+
+
+/** 待完成
+ * 判断该工号的用户是否存在,若存在则返回该用户
+ * @param jobNum
+ * @return
+ */
+    static bool checkUserExist(long long jobNum, User *user);
+
+/** 已完成
+ * 修改当前登陆的用户的密码,并持久化到数据库
+ * @param password
+ * @return
+ */
+    bool changePwd(const std::string &password);
+
+    static bool updateUsersAssignField(std::string assignField, std::string assignValue, std::string changeField,
+                                       std::string changeValue);
+
+/**
+ * 将字符串转换为对应的枚举
+ * @param str
+ * @return
+ */
+    static status stringEnumToStatu(std::string str);
 
 private:
     /**
@@ -76,12 +125,6 @@ private:
 private:
     //------------------------------------------------------
     //----下面这些是与数据库交互的接口,由private调用------------
-    /** 待完成
-     * 判断该工号的用户是否存在,若存在则返回该用户
-     * @param jobNum
-     * @return
-     */
-    static bool checkUserExist(long long jobNum, User *user);
 
     /** 待完成
      * 用户登陆
@@ -89,19 +132,11 @@ private:
      * @param password
      * @return
      */
-    static User login(std::string name, std::string password);
-
-
+    static User login(long long jobNum, std::string password);
 
 
     //------------------------------------------------------
     //----下面这些是用户共有的操作(需要登陆后操作)---------------
-    /** 已完成
-     * 修改当前登陆的用户的密码
-     * @param password
-     * @return
-     */
-    bool changePwd(const std::string &password);
 
     /** 未完成
      * 获取当前登陆用户的借阅历史记录,通过调用Order类的静态函数实现
@@ -122,11 +157,19 @@ private:
     int isAllowedLogin();
 
     /**
-     * 用户借指定书
+     * 用户借指定书实例
      * @param bookInstanceId
      * @return
      */
     bool borrowAssignBookInstance(long long bookInstanceId);
+
+    /**
+     * 用户预约指定书种
+     * @param jobNum
+     * @param bookId
+     * @return
+     */
+    bool appointmentAssignBook(int jobNum, int bookId);
     //------------------------------------------------------------------------------
     //----下面这些是管理员的操作,且与图书相关-------------------------------------------
     //------------------------------------------------------------------------------
@@ -158,4 +201,13 @@ public:
      * @return
      */
     static std::string encryPassword(std::string pwd);
+
+    // 获取用于打印列表的信息
+    std::vector<std::string> getPrintLineStr();
+
+    // 静态函数, 打印查询出来的结果集 todo: 完善打印效果
+    static void printUserList(std::vector<User>);
+
+    // 获取指定id的用户对象
+    static User getUserByJobNum(long long jobNum);
 };

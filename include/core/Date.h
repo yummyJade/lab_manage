@@ -46,6 +46,8 @@ public:
 
     void print();
 
+    int toInt();
 
+    static Date intDate2Date(int date);
 };
 

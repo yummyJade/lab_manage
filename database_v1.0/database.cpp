@@ -263,7 +263,7 @@ public:
                 string ss(&s[0]);
                 //判断是否是相同名字
                 if (ss == name) {
-                    printf("找到相关数据表\n");
+//                    printf("找到相关数据表\n");
                     this->table_id = lineNum;
                     this->table_name = name;
                     //读取列数
@@ -314,7 +314,7 @@ public:
         }
         fclose(fp);
         if (getFlag) {
-            printf("%s", this->table_name.data());
+//            printf("%s", this->table_name.data());
             return name;
         } else {
             return "未进入";

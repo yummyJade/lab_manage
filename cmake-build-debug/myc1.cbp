@@ -132,6 +132,9 @@
 		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/core/Date.h">
 			<Option target="Include"/>
 		</Unit>
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/core/Library.h">
+			<Option target="Include"/>
+		</Unit>
 		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/core/SimpleString.h">
 			<Option target="Include"/>
 		</Unit>
@@ -156,13 +159,22 @@
 		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/service/UserService.h">
 			<Option target="Include"/>
 		</Unit>
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/util/Bookcopy.h">
+			<Option target="Include"/>
+		</Unit>
 		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/util/DbAdapter.h">
+			<Option target="Include"/>
+		</Unit>
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/util/Record.h">
 			<Option target="Include"/>
 		</Unit>
 		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/util/TableRenderer.h">
 			<Option target="Include"/>
 		</Unit>
 		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/src/core/Date.cpp">
+			<Option target="Include"/>
+		</Unit>
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/src/core/Library.cpp">
 			<Option target="Include"/>
 		</Unit>
 		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/src/core/SimpleString.cpp">

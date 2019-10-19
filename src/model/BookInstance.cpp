@@ -3,9 +3,11 @@
 #include <vector>
 #include <string>
 #include <model/Book.h>
+#include <util/TableRenderer.h>
 
 using namespace std;
 
+const string BookInstance::BOOK_INSTANCE_FIELDS[] = {"", "ID", "ISBN", "STATE", "POSITION", "PLANRETURNDATE"};
 
 BookInstance::BookInstance(const string &isbn, int status, const string &position) : isbn(isbn), status(status),
                                                                                      position(position) {}
@@ -16,8 +18,9 @@ BookInstance::BookInstance(const string &isbn, int status, const string &positio
 BookInstance::BookInstance(const string &isbn, const string &position) : isbn(isbn), position(position) {}
 
 int BookInstance::addBookInstance(BookInstance instance, int firstId) {
+
     // todo: 连接数据库
-    return 66;
+    return 66;// 返回id
 }
 
 int BookInstance::importBookInstances(std::vector<BookInstance> instances, int firstId = -1) {
@@ -32,7 +35,7 @@ int BookInstance::importBookInstances(std::vector<BookInstance> instances, int f
     return firstId;
 }
 
-BookInstance *BookInstance::getInstanceById(int id) {
+BookInstance *BookInstance::getInstanceById(long long id) {
     BookInstance *bookInstance = new BookInstance("ISBN", "position");
     return bookInstance;
 }
@@ -92,23 +95,134 @@ bool BookInstance::addOneBookInstancesService() {
 
 }
 
-bool BookInstance::deleteOneBookInstancesService() {
-    printf("请依次输入要删除的图书条形码\n");
-    int bookInstanceId;
-    cin >> bookInstanceId;
-
-    BookInstance *instance = BookInstance::getInstanceById(bookInstanceId);
-    if (instance == NULL) {//如果图书不存在
-        cout << "删除失败,系统内没有条形码为" << bookInstanceId << "的书籍" << endl;
-        return false;
-    }
-    BookInstance::deleteInstancesByAssignInstanceId(bookInstanceId);
-    return true;
-}
-
 bool BookInstance::deleteInstancesByAssignInstanceId(int id) {
     return false;
 }
+
+bool
+BookInstance::updateAssignFieldsById(long long id, std::vector<std::string> fieds, std::vector<std::string> values) {
+
+    return false;
+}
+
+bool BookInstance::checkAssignBookInstanceIdExist(long long id) {
+    return BookInstance::getInstanceById(id) != NULL;
+}
+
+void BookInstance::printBookInstanceList(std::vector<BookInstance> instances) {
+    vector<string> navs = {"条码号", "图书位置", "状态\\预计归还时间"};
+    TableRenderer render(navs, 8);
+    int index = 1;
+    for (int i = 0; i < instances.size(); ++i) {
+        vector<string> line;
+        if (instances[i].status == 1) {// 可借
+            line = {to_string(index++), instances[i].position, "可借"};
+        } else {
+            line = {to_string(index++), instances[i].position, instances[i].planReturnDate.serialize()};
+        }
+
+        render.addColume(line);
+    }
+}
+
+bool BookInstance::printLine() {
+    printf("条码号:%lld,isbn:%s,馆藏位置:%s,状态:%s", this->id, this->isbn.c_str(), this->position.c_str(), this->status);
+    return true;
+}
+
+long long int BookInstance::getId() const {
+    return id;
+}
+
+const string &BookInstance::getIsbn() const {
+    return isbn;
+}
+
+int BookInstance::getStatus() const {
+    return status;
+}
+
+const string &BookInstance::getPosition() const {
+    return position;
+}
+
+const Date &BookInstance::getPlanReturnDate() const {
+    return planReturnDate;
+}
+
+void BookInstance::setIsbn(const string &isbn) {
+    BookInstance::isbn = isbn;
+}
+
+void BookInstance::setStatus(int status) {
+    BookInstance::status = status;
+}
+
+void BookInstance::setPosition(const string &position) {
+    BookInstance::position = position;
+}
+
+void BookInstance::setPlanReturnDate(const Date &planReturnDate) {
+    BookInstance::planReturnDate = planReturnDate;
+}
+
+bool BookInstance::updateBookInstanceModifiableInfo() {
+//    BookInstance::updateAssignFieldsById("");
+    return false;
+}
+
+std::vector<std::string> BookInstance::getPrintLineStr() {
+    vector<string> info;
+    info.push_back(to_string(this->id));
+    info.push_back(this->position);
+    info.push_back(this->getStatusStr());
+
+    return info;
+}
+
+std::string BookInstance::getStatusStr() {
+    // 状态 1 可借 2 已被借阅 3 已删除(丢失或下架) 4 已被借阅且已被预约
+    switch (this->status) {
+        case 1:
+            return "可借";
+        case 2:
+            return "已被借阅1";
+        case 3:
+            return "已删除";
+        case 4:
+            return "已被借阅2";
+    }
+}
+
+
+bool BookInstance::changeStateAndPersistence(int newState) {
+    this->setStatus(newState);
+
+
+    return false;
+}
+
+Bookcopy BookInstance::toBookCopy() {
+    Bookcopy bookcopy;
+
+    bookcopy.setId(this->id);
+    bookcopy.setIsbn(this->isbn);
+    bookcopy.setState(this->status);
+    bookcopy.setPosition(this->position);
+
+    Date date = this->getPlanReturnDate();
+    int time = date.toInt();
+    bookcopy.setReTime(time);
+
+    return bookcopy;
+}
+
+
+BookInstance BookInstance::BookCopyToBookInstance(Bookcopy bookcopy) {
+    Date planReturnDate = Date::intDate2Date(bookcopy.getReTime());
+    return BookInstance(bookcopy.getIsbn(), bookcopy.getState(), bookcopy.getPosition(), planReturnDate);
+}
+
 
 
 

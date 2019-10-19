@@ -26,6 +26,9 @@ string SimpleString::fixPath(std::string str){
 
 
 bool SimpleString::isLegalPath(std::string str) {
+    if (str.find(".") == string::npos) {
+        return false;
+    }
     string suffix = str.substr(str.find_last_of("."), str.size()); // 获取后缀,//todo:这里后缀不存在估计会报错
     if (suffix==".txt"||suffix==".csv"){
         return true;

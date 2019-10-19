@@ -96,7 +96,7 @@ int main() {
 
 //    User::importUsers();
 
-//    printBookDetailInfo("978-5-664-71597-5");
+    printBookDetailInfo("978-5-664-71597-5");
 
 
     // 手动插入单本书籍

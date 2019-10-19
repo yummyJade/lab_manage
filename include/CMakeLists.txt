@@ -4,6 +4,7 @@ set(HEADER_FILES
         core/Date.h
         core/SimpleString.h
         core/SimpleTime.h
+        core/Library.h
 
         model/Book.h
         model/BookInstance.h
@@ -12,9 +13,12 @@ set(HEADER_FILES
 
         util/DbAdapter.h
         util/TableRenderer.h
+        util/Bookcopy.h
+        util/Record.h
 
         service/BookService.h
         service/UserService.h
+
 
         )
 
@@ -22,6 +26,7 @@ set(SOURCE_FILES
         ../src/core/Date.cpp
         ../src/core/SimpleString.cpp
         ../src/core/SimpleTime.cpp
+        ../src/core/Library.cpp
 
         ../src/model/Book.cpp
         ../src/model/BookInstance.cpp
