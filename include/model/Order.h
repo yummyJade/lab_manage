@@ -3,6 +3,7 @@
 #include "core/SimpleTime.h"
 #include <iostream>
 #include <vector>
+#include "../../linkDatebase/include/Record.h"
 
 enum Status {
     BORROWING, RETURNED
@@ -11,7 +12,7 @@ class Order {
 private:
     long long id;
     long long userId;        //借书的人的id
-    long long bookId;     // 借的书的id
+    int bookId;     // 借的书的id
     SimpleTime borrowTime;        // 借书时间
     SimpleTime returnTime;        // 还书时间
     Status statu;               // 订单状态 1代表在借，2代表已还，3代表预约，4代表已续借的在借，5代表预约已到
@@ -33,9 +34,37 @@ private:
 public:
     Order();
 
-    Order(long long userId, long long bookId, const SimpleTime &borrowTime, const SimpleTime &returnTime, Status statu);
+    // 借书用的
+    Order(long long userId, int bookId, const SimpleTime &borrowTime, const SimpleTime &returnTime, Status statu);
+
+    Order(long long int id, long long int userId, int bookId, const SimpleTime &borrowTime,
+          const SimpleTime &returnTime, Status statu);
 
     ~Order();
+
+    long long int getId() const;
+
+    long long int getUserId() const;
+
+    int getBookId() const;
+
+    const SimpleTime &getBorrowTime() const;
+
+    const SimpleTime &getReturnTime() const;
+
+    Status getStatu() const;
+
+    void setId(long long int id);
+
+    void setUserId(long long int userId);
+
+    void setBookId(int bookId);
+
+    void setBorrowTime(const SimpleTime &borrowTime);
+
+    void setReturnTime(const SimpleTime &returnTime);
+
+    void setStatu(Status statu);
 
     // 计算欠款
     int calcDebt();
@@ -45,6 +74,18 @@ public:
 
     // 反序列化函数
     bool deSerialize(std::vector<std::string>);
+
+    // 序列化为Record
+    Record toRecordCopy();
+
+    // Record转化为Order
+    static Order RecordCopyToOrder(Record record);
+
+private:
+    //------------------------------------------------------
+    //----下面这些是与数据库交互的接口,由private调用------------
+    // 添加一个实例到数据库,返回其id
+    static int addOneOrder(Order order, int firstId = -1);
 
 public:
     //------------------------------------------------------
@@ -71,7 +112,6 @@ public:
      */
     static std::vector<Order> getAssignUserOweOrder(int firstOrderId);
 
-
     /**
      * 获得逾期未还的订单
      * @return
@@ -85,5 +125,21 @@ public:
      * @return
      */
     static std::vector<Order> filter(std::string field, std::string value);
+
+    /**
+     * 往数据库增一条记录
+     * @param order
+     * @return
+     */
+    static int addSingleOrder(int firstId, Order order);
+
+    // 静态函数, 打印查询出来的结果集
+    static void printOrderList(std::vector<Order> orders);
+
+    // 获取用于打印列表的信息
+    std::vector<std::string> getPrintLineStr();
+
+    // 修改指定id的instance的状态和应还时间,用于借还书
+    static bool updateStateAndReturnTimeById(Order order);
 };
 

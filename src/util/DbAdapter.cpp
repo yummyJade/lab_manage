@@ -1,7 +1,3 @@
-//
-// Created by Tjm on 2019/9/24.
-//
-
 #include "util/DbAdapter.h"
 
 DbAdapter::DbAdapter() {
@@ -16,9 +12,8 @@ DbAdapter::DbAdapter(const string &dbName) : dbName(dbName) {
 
 bool DbAdapter::connect() {
     if (this->db == NULL) {
-        db = DataBase::getInstance();
-//        db->getInstance();
-        if (this->db->chooseTable(this->dbName) != "未进入") {
+        db = new DataBase();
+        if (this->db->chooseTable(this->dbName) == 0) {
 //            printf("数据库连接成功 by-谭\n");
             return true;
         }
@@ -57,7 +52,8 @@ vector<vector<string>> DbAdapter::searchBySingleField(string field, string value
 
 
 bool DbAdapter::insert(vector<vector<string>> values, vector<long long> ids) {
-    this->db->insert(values, ids);
+    int result = this->db->insert(values, ids);
+    cout << "插入结果是" << result << endl;
     return true;
 }
 
@@ -83,6 +79,7 @@ vector<vector<string>> DbAdapter::searchAll() {
     for (int i = 0; i < results.size(); ++i) { // 把id装进最后一个位置
         results[i].push_back(to_string(id[i]));
     }
+    cout << "检索到的数量" << results.size() << endl;
     return results;
 }
 

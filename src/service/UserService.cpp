@@ -1,15 +1,140 @@
 #include "service/UserService.h"
+#include "service/BookService.h"
+#include <iostream>
+#include <string>
+#include <model/User.h>
+#include "util/TableRenderer.h"
+
+// ¸ù¾İÊäÈëÑ¡ÔñÒ»¸öuser, È¡Ïû·µ»ØNULL
+User *choseOneUser() {
+    long long jobNum;
+    User *user;
+    while (true) {
+        printf("ÇëÊäÈëÒª²Ù×÷µÄÓÃ»§¹¤ºÅ(ÊäÈë0·µ»Ø):");
+        cin >> jobNum;
+        if (jobNum == 0) {
+            return NULL;
+        }
+
+        if (User::checkUserExist(jobNum, user)) { // ÓÃ»§²»´æÔÚ
+            return user;
+
+        }
+        printf("¹¤ºÅÎª%lldµÄÓÃ»§²»´æÔÚ!", jobNum);
+    }
+
+}
+
+bool printAssignInfo(User user) {
+    vector<User> users;
+    users.push_back(user);
+    printf("¼ìË÷µ½ÈçÏÂĞÅÏ¢\n");
+    User::printUserList(users);
+}
+
+//===============================================================
+//===============================================================
 
 bool borrowAssignBookInstance(int jobNum, long long bookInstanceId) {
-    // åˆ¤æ–­ç”¨æˆ·èƒ½å¦å€Ÿä¹¦(æ˜¯å¦æœ‰æƒå€Ÿé˜…,å€Ÿä¹¦æ•°é‡æ˜¯å¤šå°‘)
+    // ÅĞ¶ÏÓÃ»§ÄÜ·ñ½èÊé(ÊÇ·ñÓĞÈ¨½èÔÄ,½èÊéÊıÁ¿ÊÇ¶àÉÙ)
 
-    // åˆ¤æ–­è¯¥ä¹¦æ˜¯å¦èƒ½è¢«å€Ÿé˜…
+    // ÅĞ¶Ï¸ÃÊéÊÇ·ñÄÜ±»½èÔÄ
 
-    // æ’å…¥ä¸€æ¡å€Ÿé˜…è®°å½•Order,éœ€è¦èƒ½å€Ÿå¤šä¹…,
+    // ²åÈëÒ»Ìõ½èÔÄ¼ÇÂ¼Order,ĞèÒªÄÜ½è¶à¾Ã,
     Order order();
-    // è®¾ç½®è¯¥Bookinstanceä¸å¯å€Ÿ,å¹¶æ›´æ–°åº”è¿˜æ—¶é—´
+    // ÉèÖÃ¸ÃBookinstance²»¿É½è,²¢¸üĞÂÓ¦»¹Ê±¼ä
 
 
 
     return false;
+}
+
+
+bool resetAssignUserPassword() {
+    User *user = choseOneUser();
+    if (user == NULL) {
+        return false;
+    }
+
+    printAssignInfo(*user);
+
+    user->changePwd(to_string(user->getJobNum()));
+    printf("ÃÜÂëÒÑÖØÖÃÎª¸ÃÓÃ»§µÄÑ§ºÅ:%lld\n", user->getJobNum());
+    return true;
+}
+
+
+// ¶³½áÕËºÅ
+bool freezeAssignUser() {
+    User *user = choseOneUser();
+    if (user == NULL) {
+        return false;
+    } else if (user->getType() == 0) {
+        cout << "²»ÄÜ¶³½á¹ÜÀíÔ±ÕËºÅ" << endl;
+        return false;
+    }
+    printAssignInfo(*user);
+
+    int newState = user->getType();
+    if (newState < 0) {
+        printf("²Ù×÷Ê§°Ü,¹¤ºÅÎª:%lldµÄÕËºÅÒÑ¾­ÊÇ¶³½á×´Ì¬", user->getJobNum());
+        return false;
+    }
+    newState = -newState;
+    User::updateUsersAssignField("jobNum", to_string(user->getJobNum()), "state", to_string(newState));
+    printf("ÒÑ¶³½áÑ§ºÅÎª:%lldµÄÓÃ»§\n", user->getJobNum());
+}
+
+
+// ½â¶³ÕËºÅ
+bool unfreezeAssignUser() {
+    User *user = choseOneUser();
+    if (user == NULL) {
+        return false;
+    } else if (user->getType() == 0) {
+        cout << "²»ÄÜ½â¶³¹ÜÀíÔ±ÕËºÅ" << endl;
+        return false;
+    }
+    printAssignInfo(*user);
+
+    int newState = user->getType();
+    if (newState > 0) {
+        printf("²Ù×÷Ê§°Ü,¹¤ºÅÎª:%lldµÄÕËºÅÎ´±»¶³½á,ÎŞĞè½â¶³", user->getJobNum());
+        return false;
+    }
+    newState = -newState;
+    User::updateUsersAssignField("jobNum", to_string(user->getJobNum()), "state", to_string(newState));
+    printf("ÒÑ¶³½áÑ§ºÅÎª:%lldµÄÓÃ»§\n", user->getJobNum());
+}
+
+
+// Ôö¼Óµ¥¸öÓÃ»§
+bool addSingleUserService() {
+    User *user;
+    while (true) {
+        printf("ÇëÒÀ´ÎÊäÈë ¹¤ºÅ,ĞÕÃû,ÓÃ»§ÀàĞÍ(0¹ÜÀíÔ± 1±¾¿ÆÉú 2ÑĞ¾¿Éú 3½ÌÊ¦) ÓÃ¿Õ¸ñ¸ô¿ª[¹¤ºÅÊäÈë0·µ»Ø]\n");
+        long long jobNum;
+        string name;
+        int type;
+        cin >> jobNum >> name >> type;
+
+        if (jobNum == 0) {
+            return true;
+        }
+
+        // ÅĞ¶ÏÓÃ»§ÊÇ·ñ´æÔÚ
+        if (!User::checkUserExist(jobNum, user)) {
+            User newUser(jobNum, static_cast<status>(type), name);
+            vector<vector<string>> users;
+            users.push_back(newUser.serialize());
+            vector<long long> ids;
+            User::addUsers(users, ids);
+
+            return true;
+        }
+        printf("¹¤ºÅÎª%lldµÄÓÃ»§ÒÑ¾­´æÔÚ,Ìí¼ÓÊ§°Ü", jobNum);
+    }
+
+
+    return true;
 }

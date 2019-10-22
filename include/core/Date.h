@@ -23,7 +23,7 @@ public:
      * 给当前对象增加指定天数
      * @param num
      */
-    void addDay(int num);
+    Date addDay(int num);
 
     /**
      * 比较两个日期谁更靠后
@@ -46,6 +46,8 @@ public:
 
     void print();
 
+    int toInt();
 
+    static Date intDate2Date(int date);
 };
 

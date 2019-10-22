@@ -35,7 +35,7 @@ bool Verify::optionExist(int choose, int sum){
 }
 
 bool Verify::optionExist(int choose, int optionArr[]) {
-    int len = sizeof(optionArr)/ sizeof(optionArr[0]);
+    int len = sizeof(optionArr) / sizeof(int);
     for(int i = 0; i < len; i++){
         if(choose == optionArr[i]){
             return true;

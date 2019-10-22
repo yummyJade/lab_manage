@@ -15,4 +15,15 @@
 bool printBookDetailInfo(std::string isbn);
 
 
+// 改变指定种类书籍信息
+bool changeAssignBookInfo();
+
+// 改变指定书实例信息
+bool changeAssignBookInstanceInfo();
+
+
+bool changeAssignBookInstanceState(long long id);
+
+
+
 #endif //MYC1_BOOKSERVICE_H

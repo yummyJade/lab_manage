@@ -3,21 +3,21 @@
 #include <vector>
 #include "../model/Order.h"
 enum status {
-    Admin, Teacher, Graduate, Undergraduate, Ban
+    Admin = 0, Teacher = 1, Graduate = 2, Undergraduate = 3, BanTeacher = -1, BanGraduate = -2, BanUndergraduate = -3
 };        //特权思想枚举
 const std::string STATUS[] = {
         "ADMIN", "TEACHER", "GRADUATE", "UNDERGRADUATE", "BAN"
 };
 
 class User {
-    static const int lendDays[3];//= {30, 60, 90}; // 最多可同时借书的时长,单位天
-    static const int lendNums[3];// = {30, 60, 90}; // 最多可同时借书的本数
+    static const int lendDays[];//= {30, 60, 90}; // 最多可同时借书的时长,单位天
+    static const int lendNums[];// = {30, 60, 90}; // 最多可同时借书的本数
 private:
     long long jobNum;        //工号即id
     status type;
     std::string name;        //姓名
     std::string password;        //password
-    long long firstOrderId;  // 该学生借的第一本书的订单在Order表的id,-1表示未借
+    int firstOrderId;  // 该学生借的第一本书的订单在Order表的id,-1表示未借
 
     /**
      * 将枚举类型的statu转化成对应的字符串
@@ -26,21 +26,17 @@ private:
      */
     static std::string statuEnumToString(status statu);
 
-    /**
-     * 将字符串转换为对应的枚举
-     * @param str
-     * @return
-     */
-    static status stringEnumToStatu(std::string str);
-
 public:
     User();
     ~User();
 
+    // 默认用工号做密码
+    User(long long int jobNum, status type, const std::string &name);
+
     User(long long jobNum, status type, const std::string &name, const std::string &password);
 
     User(long long int jobNum, status type, const std::string &name, const std::string &password,
-         long long int firstOrderId);
+         int firstOrderId);
 
     // 序列化函数
     std::vector<std::string> serialize();
@@ -56,6 +52,64 @@ public:
 
     void setJobNum(int jobNum);
 
+    void setJobNum1(long long int jobNum);
+
+    void setType(status type);
+
+    void setName(const std::string &name);
+
+    void setFirstOrderId(long long int firstOrderId);
+
+    static const int *getLendDays();
+
+    static const int *getLendNums();
+
+    long long int getJobNum() const;
+
+    status getType() const;
+
+    const std::string &getName() const;
+
+    const std::string &getPassword() const;
+
+    int getFirstOrderId() const;
+
+    // 计算该用户一次借阅能借多久
+    int getCanLendDays();
+
+    // 计算该用户同时能借多少本
+    int getCanLendNums();
+
+    // 返回类型对应的中文
+    std::string getTypeContent();
+
+    // 获取当前用户的登陆消息提示
+    std::string getUserMeaasge();
+
+
+/** 待完成
+ * 判断该工号的用户是否存在,若存在则返回该用户
+ * @param jobNum
+ * @return
+ */
+    static bool checkUserExist(long long jobNum, User *user);
+
+/** 已完成
+ * 修改当前登陆的用户的密码,并持久化到数据库
+ * @param password
+ * @return
+ */
+    bool changePwd(const std::string &password);
+
+    static bool updateUsersAssignField(std::string assignField, std::string assignValue, std::string changeField,
+                                       std::string changeValue);
+
+/**
+ * 将字符串转换为对应的枚举
+ * @param str
+ * @return
+ */
+    static status stringEnumToStatu(std::string str);
 
 private:
     /**
@@ -73,15 +127,11 @@ private:
     bool isLegalPassword(const std::string &password);
 
 
+    // 二维字符串数组转User对象数组
+    static std::vector<User> stringsToUsers(std::vector<std::vector<std::string>>);
 private:
     //------------------------------------------------------
     //----下面这些是与数据库交互的接口,由private调用------------
-    /** 待完成
-     * 判断该工号的用户是否存在,若存在则返回该用户
-     * @param jobNum
-     * @return
-     */
-    static bool checkUserExist(long long jobNum, User *user);
 
     /** 待完成
      * 用户登陆
@@ -89,19 +139,11 @@ private:
      * @param password
      * @return
      */
-    static User login(std::string name, std::string password);
-
-
+    static User login(long long jobNum, std::string password);
 
 
     //------------------------------------------------------
     //----下面这些是用户共有的操作(需要登陆后操作)---------------
-    /** 已完成
-     * 修改当前登陆的用户的密码
-     * @param password
-     * @return
-     */
-    bool changePwd(const std::string &password);
 
     /** 未完成
      * 获取当前登陆用户的借阅历史记录,通过调用Order类的静态函数实现
@@ -121,12 +163,15 @@ private:
      */
     int isAllowedLogin();
 
+
+
     /**
-     * 用户借指定书
-     * @param bookInstanceId
+     * 用户预约指定书种
+     * @param jobNum
+     * @param bookId
      * @return
      */
-    bool borrowAssignBookInstance(long long bookInstanceId);
+    bool appointmentAssignBook(int jobNum, int bookId);
     //------------------------------------------------------------------------------
     //----下面这些是管理员的操作,且与图书相关-------------------------------------------
     //------------------------------------------------------------------------------
@@ -158,4 +203,43 @@ public:
      * @return
      */
     static std::string encryPassword(std::string pwd);
+
+    // 获取用于打印列表的信息
+    std::vector<std::string> getPrintLineStr();
+
+    // 静态函数, 打印查询出来的结果集 todo: 完善打印效果
+    static void printUserList(std::vector<User>);
+
+    // 获取指定id的用户对象
+    static User getUserByJobNum(long long jobNum);
+
+    // 静态函数, 根据指定字段的值搜索内容,返回User对象数组
+    static std::vector<User> searchUsersBySingleField(std::string field, std::string value);
+
+    // 静态函数, 显示该表所有内容
+    static std::vector<User> searchAll();
+
+
+    /**
+     * 用户借指定书实例
+     * @param bookInstanceId
+     * @return
+     */
+    int borrowAssignBookInstance(int bookInstanceId);
+
+
+    /**
+     * 用户归还, 指定订单
+     * @param bookInstanceId
+     * @return
+     */
+    static int returnAssignOrder(Order order);
+
+    /**
+     * 用户续借指定订单
+     * @param order
+     * @return
+     */
+    int renewAssignOrder(Order order);
+
 };

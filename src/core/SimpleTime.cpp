@@ -99,6 +99,50 @@ int SimpleTime::compare(Date another) {
     return this->date.compare(another);
 }
 
+long long SimpleTime::toLLTime() {
+    // todo : 这里用cin或者别的重构一下吧,太丑了,不忍直视
+    string time = "";
+    time += this->date.year;
+    if (this->date.month < 10) {
+        time += "0";
+    }
+    time += this->date.month;
+    if (this->date.day < 10) {
+        time += "0";
+    }
+    time += this->date.day;
+    if (this->hour < 10) {
+        time += "0";
+    }
+    time += this->hour;
+    if (this->minute < 10) {
+        time += "0";
+    }
+    time += this->minute;
+    if (this->second < 10) {
+        time += "0";
+    }
+    time += this->second;
+
+    return atoll(time.c_str());
+}
+
+SimpleTime SimpleTime::llTimeToSimpleTime(long long time) {
+    string time_str = to_string(time);
+    if (time_str.length() < 12) {
+        return SimpleTime();
+    }
+    Date date(atoi(time_str.substr(0, 3).c_str()), atoi(time_str.substr(4, 5).c_str()),
+              atoi(time_str.substr(6, 7).c_str()));
+    return SimpleTime(atoi(time_str.substr(8, 9).c_str()), atoi(time_str.substr(10, 11).c_str()),
+                      atoi(time_str.substr(12, 13).c_str()), date);
+}
+
+SimpleTime SimpleTime::addDay(int num) {
+    this->date.addDay(num);
+    return *this;
+}
+
 
 
 

@@ -1,7 +1,13 @@
 #include "../../include/model/Order.h"
+#include "../../linkDatebase/include/Record.h"
+#include "../../linkDatebase/include/TableRecord.h"
 #include <vector>
 #include <iostream>
 #include <string>
+#include <util/TableRenderer.h>
+#include <model/BookInstance.h>
+#include <model/Book.h>
+
 
 using namespace std;
 Order::Order()
@@ -20,20 +26,20 @@ std::vector<std::string> Order::serialize() {
     info.push_back(this->borrowTime.serialize());
     info.push_back(this->returnTime.serialize());
 
-    //todo: æšä¸¾çš„åºåˆ—åŒ–å’Œååºåˆ—åŒ–
+    //todo: Ã¶¾ÙµÄĞòÁĞ»¯ºÍ·´ĞòÁĞ»¯
 //    info.push_back(this->statu);
     return info;
 }
 
 bool Order::deSerialize(std::vector<std::string> info) {
-    //todo: è¿™é‡Œè¦åŠ ä¸Šå¼‚å¸¸å¤„ç†
+    //todo: ÕâÀïÒª¼ÓÉÏÒì³£´¦Àí
 
 //    int IsRenew=stoi(info[0]);
 //    int bookId=stoi(info[1]);
 //    int borrowTime=stoi(info[2]);
 //    int returnTime=stoi(info[3]);
 //    status type;
-//    type=Teacher;// todo:è¿™ä¸ªæšä¸¾è¦æ€ä¹ˆæ“ä½œ
+//    type=Teacher;// todo:Õâ¸öÃ¶¾ÙÒªÔõÃ´²Ù×÷
 //    string password=info[4];
 //
 //    Order(id,jobNum,borrowNum,type,password);
@@ -46,7 +52,7 @@ std::string Order::statuEnumToString(Status statu) {
 }
 
 Status Order::stringEnumToStatu(std::string str) {
-    for (int i = 0; i < str.size(); ++i) { // è½¬åŒ–ä¸ºå¤§å†™
+    for (int i = 0; i < str.size(); ++i) { // ×ª»¯Îª´óĞ´
         str[i] = toupper(str[i]);
     }
     std::string strs[] = {"BORROWING", "RETURNED"};
@@ -55,25 +61,36 @@ Status Order::stringEnumToStatu(std::string str) {
             return Status(i);
         }
     }
-    return BORROWING;//æ²¡æ‰¾åˆ°é»˜è®¤è¿”å›çš„,//todo:æˆ–è®¸ä¸è¯¥è¿™ä¹ˆå†™
+    return BORROWING;//Ã»ÕÒµ½Ä¬ÈÏ·µ»ØµÄ,//todo:»òĞí²»¸ÃÕâÃ´Ğ´
 }
 
-Order::Order(long long userId, long long bookId, const SimpleTime &borrowTime, const SimpleTime &returnTime,
+Order::Order(long long userId, int bookId, const SimpleTime &borrowTime, const SimpleTime &returnTime,
              Status statu) : userId(
         userId), bookId(bookId), borrowTime(borrowTime), returnTime(returnTime), statu(statu) {}
 
 
-//1ä»£è¡¨åœ¨å€Ÿï¼Œ2ä»£è¡¨å·²è¿˜ï¼Œ3ä»£è¡¨é¢„çº¦ï¼Œ4ä»£è¡¨å·²ç»­å€Ÿçš„åœ¨å€Ÿï¼Œ5ä»£è¡¨é¢„çº¦å·²åˆ°
+//1´ú±íÔÚ½è£¬2´ú±íÒÑ»¹£¬3´ú±íÔ¤Ô¼£¬4´ú±íÒÑĞø½èµÄÔÚ½è£¬5´ú±íÔ¤Ô¼ÒÑµ½
 std::vector<Order> Order::getAssignUserBorrowedHistory(int firstOrderId) {
-    return std::vector<Order>();
+    TableRecord *table = TableRecord::getInstance();
+    vector<Record> copys = table->queryByPerson(firstOrderId);
+    vector<Order> result;
+//    cout<<"copys size "<<copys.size()<<endl;
+    for (int i = 0; i < copys.size(); ++i) {
+//        cout<<"¿ªÊ¼×ª»¯"<<endl;
+        result.push_back(Order::RecordCopyToOrder(copys[i]));
+//        cout<<"×ª»¯³É¹¦"<<endl;
+    }
+//    cout<<"copys end "<<endl;
+    return result;
 }
 
 
 std::vector<Order> Order::getAssignUserBorrowingList(int firstOrderId) {
-    // è·å–æ‰€æœ‰å€Ÿé˜…è®°å½•
+    // »ñÈ¡ËùÓĞ½èÔÄ¼ÇÂ¼
     vector<Order> orders = Order::getAssignUserBorrowedHistory(firstOrderId);
+    cout << "ÒÑ»ñÈ¡µ½ËùÓĞ¼ÇÂ¼:" << orders.size() << endl;
     vector<Order> result;
-    int borringIndexs[] = {1, 4}; // åœ¨å€ŸçŠ¶æ€statuçš„å€¼é›†åˆ
+    int borringIndexs[] = {1, 4}; // ÔÚ½è×´Ì¬statuµÄÖµ¼¯ºÏ
     for (int i = 0; i < orders.size(); ++i) {
         for (int j = 0; j < sizeof(borringIndexs) / sizeof(int); ++j) {
             if (orders[i].statu == borringIndexs[j]) {
@@ -82,19 +99,140 @@ std::vector<Order> Order::getAssignUserBorrowingList(int firstOrderId) {
             }
         }
     }
+    cout << "result size " << result.size() << endl;
     return result;
 }
 
 
 std::vector<Order> Order::getAssignUserOweOrder(int firstOrderId) {
-    // å…ˆè·å–æ‰€æœ‰åœ¨å€Ÿè®°å½•
+    // ÏÈ»ñÈ¡ËùÓĞÔÚ½è¼ÇÂ¼
     vector<Order> orders = Order::getAssignUserBorrowingList(firstOrderId);
     vector<Order> result;
     for (int i = 0; i < orders.size(); ++i) {
-        // å¦‚æœåº”è¿˜æ—¶é—´å°äºä»Šå¤©,åˆ™å·²é€¾æœŸ
+        // Èç¹ûÓ¦»¹Ê±¼äĞ¡ÓÚ½ñÌì,ÔòÒÑÓâÆÚ
         if (orders[i].returnTime.compare(Date::today()) <= -1) {
             result.push_back(orders[i]);
         }
     }
     return result;
 }
+
+int Order::addOneOrder(Order order, int firstId) {
+//    TableRecord* table =TableRecord::getInstance();
+//    Record record;
+//    table->insertData(firstId,record);
+    return 0;
+}
+
+Record Order::toRecordCopy() {
+    Record record;
+    record.setId(this->id);
+    record.setBookId(this->bookId);
+    record.setState(this->statu);
+    record.setStId(this->userId);
+    record.setBoTime(this->borrowTime.toLLTime());
+    record.setReTime(this->returnTime.toLLTime());
+    return record;
+}
+
+
+Order Order::RecordCopyToOrder(Record record) {
+    SimpleTime boTime = SimpleTime::llTimeToSimpleTime(record.getBoTime());
+    SimpleTime reTime = SimpleTime::llTimeToSimpleTime(record.getReTime());
+    return Order(record.getId(), record.getStId(), record.getBookId(), boTime, reTime,
+                 static_cast<Status>(record.getState()));
+}
+
+Order::Order(long long int id, long long int userId, int bookId, const SimpleTime &borrowTime,
+             const SimpleTime &returnTime, Status statu) : id(id), userId(userId), bookId(bookId),
+                                                           borrowTime(borrowTime), returnTime(returnTime),
+                                                           statu(statu) {}
+
+int Order::addSingleOrder(int firstId, Order order) {
+    TableRecord *table = TableRecord::getInstance();
+    return table->insertData(firstId, order.toRecordCopy());
+}
+
+void Order::printOrderList(std::vector<Order> orders) {
+    vector<string> navs = {"ÊéÃû", "ÌõÂëºÅ", "½èÊéÊ±¼ä", "»¹Êé/Ó¦»¹Ê±¼ä", "×´Ì¬"};
+    TableRenderer render(navs, 8);
+    for (int i = 0; i < orders.size(); ++i) {
+        render.addColume(orders[i].getPrintLineStr());
+    }
+    render.render();
+}
+
+std::vector<std::string> Order::getPrintLineStr() {
+    vector<string> info;
+    BookInstance *bookInstance = BookInstance::getInstanceById(this->getBookId());
+//    cout<<"isbn:"<<bookInstance->getIsbn()<<"|||";
+    Book book = Book::searchBooksBySingleField("isbn", bookInstance->getIsbn())[0];
+    info.push_back(book.getName());
+    info.push_back(to_string(bookInstance->getId()));
+
+    Date date = (Date &&) this->getBorrowTime();
+//    cout<<"date "<<date.serialize();
+    info.push_back(date.serialize());
+
+    date = (Date &&) this->getReturnTime();
+    info.push_back(date.serialize());
+    info.push_back(to_string(this->getStatu()));//todo:×´Ì¬¸Ä³É¶ÔÓ¦ÖĞÎÄ
+    return info;
+}
+
+long long int Order::getId() const {
+    return id;
+}
+
+long long int Order::getUserId() const {
+    return userId;
+}
+
+int Order::getBookId() const {
+    return bookId;
+}
+
+const SimpleTime &Order::getBorrowTime() const {
+    return borrowTime;
+}
+
+const SimpleTime &Order::getReturnTime() const {
+    return returnTime;
+}
+
+Status Order::getStatu() const {
+    return statu;
+}
+
+void Order::setId(long long int id) {
+    Order::id = id;
+}
+
+void Order::setUserId(long long int userId) {
+    Order::userId = userId;
+}
+
+void Order::setBookId(int bookId) {
+    Order::bookId = bookId;
+}
+
+void Order::setBorrowTime(const SimpleTime &borrowTime) {
+    Order::borrowTime = borrowTime;
+}
+
+void Order::setReturnTime(const SimpleTime &returnTime) {
+    Order::returnTime = returnTime;
+}
+
+void Order::setStatu(Status statu) {
+    Order::statu = statu;
+}
+
+bool Order::updateStateAndReturnTimeById(Order order) {
+    TableRecord *table = TableRecord::getInstance();
+    vector<int> changeIndex = {6, 7};
+    table->update(order.getId(), order.toRecordCopy(), changeIndex);
+    return true;
+}
+
+

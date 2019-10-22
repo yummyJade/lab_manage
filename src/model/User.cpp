@@ -5,11 +5,12 @@
 #include <fstream>
 #include <sstream>
 #include <util/DbAdapter.h>
+#include <util/TableRenderer.h>
 
 using namespace std;
 
-const int User::lendDays[3] = {30, 60, 90};
-const int User::lendNums[3] = {30, 60, 90};
+const int User::lendDays[] = {0, 90, 60, 30, 0};
+const int User::lendNums[] = {0, 90, 60, 30, 0};
 
 User::User()
 {
@@ -84,7 +85,7 @@ bool User::changePwd(const std::string &password) {
     return this->setPassword(password);
 }
 
-User User::login(std::string name, std::string password) {
+User User::login(long long jobNum, std::string password) {
 
     return User();
 }
@@ -120,7 +121,7 @@ bool User::addUsers(std::vector<std::vector<std::string>> queryData, std::vector
 
 int User::isAllowedLogin() {
     // 判断用户状态,是否被禁止登陆
-    if (this->type == status::Ban)
+    if (this->type < 0)
         return 1;
     // 判断用户所有订单的状态,是否有超时订单
     if (!Order::getAssignUserOweOrder(this->firstOrderId).empty())
@@ -128,25 +129,41 @@ int User::isAllowedLogin() {
     return 0;
 }
 
-bool User::borrowAssignBookInstance(long long bookInstanceId) {
+int User::borrowAssignBookInstance(int bookInstanceId) {
     // 判断用户能否借书(是否有权借阅,借书数量是多少)
-    if (Order::getAssignUserBorrowingList(this->firstOrderId).size() >= User::lendNums[this->type]) {
+    cout << "firstOrder is " << this->getFirstOrderId();
+    cout << "用户借阅量" << Order::getAssignUserBorrowingList(this->getFirstOrderId()).size() << endl;
+
+    cout << "用户可借阅量" << this->getCanLendNums() << endl;
+    if (Order::getAssignUserBorrowingList(this->firstOrderId).size() >= this->getCanLendNums()) {
         return 1; // 返回1,借书数量已达上线
     }
-    // 判断该书是否能被借阅
+
+    // 判断该书是否能被借阅,
     BookInstance *instance = BookInstance::getInstanceById(bookInstanceId);
+    if (instance == NULL) {
+        return 5; // 返回5,图书不存在
+    } else if (instance->status != 1) {
+        return 2; // 返回2,该书不是可借
+    }
 
-//    if(instance == NULL){
-//        return 5; // 返回5,图书不存在
-//    }
-//    BookInstance instance=instances[0];
+    // 插入一条借阅记录Order,需要(用户工号,书实例id,借书时间,预计归还时间,订单状态)
+    Order order(this->getJobNum(), bookInstanceId, SimpleTime::nowTime(),
+                SimpleTime::nowTime().addDay(this->getCanLendDays()),
+                static_cast<Status>(1));
 
-//    if(instances[0].status==)
+    int orderId = Order::addSingleOrder(this->getFirstOrderId(), order);
 
-    // 插入一条借阅记录Order,需要能借多久,
-    Order order();
     // 设置该Bookinstance不可借,并更新应还时间
-    return false;
+    instance->setStatus(2);
+    instance->setPlanReturnDate(Date::today().addDay(this->getCanLendDays()));
+    BookInstance::updateStateAndReturnTimeById(*instance);
+
+    // 判断是否首次借阅,是的话更新借阅链表头的字段
+    if (this->getFirstOrderId() == -1) {
+        User::updateUsersAssignField("jobNum", to_string(this->jobNum), "firstOrderId", to_string(orderId));
+    }
+    return 0;
 }
 
 bool User::importUsers() {
@@ -208,8 +225,211 @@ std::string User::encryPassword(std::string pwd) {
     return "123456";
 }
 
-User::User(long long int jobNum, status type, const string &name, const string &password, long long int firstOrderId)
+User::User(long long int jobNum, status type, const string &name, const string &password, int firstOrderId)
         : jobNum(jobNum), type(type), name(name), password(password), firstOrderId(firstOrderId) {}
+
+
+std::string User::getUserMeaasge() {
+    // 检测是否有正在预约书籍
+
+
+    // 检测是否有预约已到书籍
+
+    // 检测是否有即将逾期的借阅
+    vector<Order> boringOrders = Order::getAssignUserBorrowingList(this->firstOrderId);
+    for (int i = 0; i < boringOrders.size(); ++i) {
+
+    }
+
+
+    return std::__cxx11::string();
+}
+
+bool User::appointmentAssignBook(int jobNum, int bookId) {
+    // 判断用户是否超过最大预约数
+
+    // 判断该书是否可被预约(是否没有状态为可借阅的instance)
+
+    // 创建预约Order
+
+    // 更新Book表中预约数量
+
+    return false;
+}
+
+std::vector<std::string> User::getPrintLineStr() {
+    vector<string> info;
+    info.push_back(to_string(this->jobNum));
+    info.push_back(this->name);
+    info.push_back(User::statuEnumToString(this->type));
+    return info;
+}
+
+void User::printUserList(std::vector<User> users) {
+    vector<string> navs = {"工号", "姓名", "账号类型"};
+    TableRenderer render(navs, 8);
+    for (int i = 0; i < users.size(); ++i) {
+        render.addColume(users[i].getPrintLineStr());
+    }
+    render.render();
+}
+
+User User::getUserByJobNum(long long jobNum) {
+    DbAdapter db("User");
+    vector<vector<string>> results = db.searchBySingleField("jobNum", to_string(jobNum));
+    User user;
+    if (results.size() == 0) {
+        cout << "错误,该用户不存在,该接口调用需保证用户存在";
+    } else {
+        user.deSerialize(results[0]);
+    }
+
+    return user;
+}
+
+const int *User::getLendDays() {
+    return lendDays;
+}
+
+const int *User::getLendNums() {
+    return lendNums;
+}
+
+long long int User::getJobNum() const {
+    return jobNum;
+}
+
+status User::getType() const {
+    return type;
+}
+
+const string &User::getName() const {
+    return name;
+}
+
+const string &User::getPassword() const {
+    return password;
+}
+
+int User::getFirstOrderId() const {
+    return firstOrderId;
+}
+
+bool User::updateUsersAssignField(std::string assignField, std::string assignValue, std::string changeField,
+                                  std::string changeValue) {
+    DbAdapter dbAdapter("User");
+    dbAdapter.updateBySingleField(assignField, assignValue, changeField, changeValue);
+    return true;
+}
+
+void User::setJobNum1(long long int jobNum) {
+    User::jobNum = jobNum;
+}
+
+void User::setType(status type) {
+    User::type = type;
+}
+
+void User::setName(const string &name) {
+    User::name = name;
+}
+
+void User::setFirstOrderId(long long int firstOrderId) {
+    User::firstOrderId = firstOrderId;
+}
+
+User::User(long long int jobNum, status type, const string &name) : jobNum(jobNum), type(type), name(name) {
+    this->firstOrderId = -1;
+    this->setPassword(to_string(this->jobNum));
+}
+
+vector<User> User::searchUsersBySingleField(std::string field, std::string value) {
+    DbAdapter dbAdapter("User");
+    vector<vector<string> > queryData = dbAdapter.searchBySingleField(field, value);
+    cout << "检索到" << queryData.size() << endl;
+    return User::stringsToUsers(queryData);
+}
+
+std::vector<User> User::stringsToUsers(std::vector<std::vector<std::string>> users) {
+    vector<User> results;
+    for (int i = 0; i < users.size(); ++i) {
+        User user; // todo: 这里好像要用new
+        user.deSerialize(users[i]);
+        results.push_back(user);
+    }
+    return results;
+}
+
+vector<User> User::searchAll() {
+    vector<User> result;
+    DbAdapter dbAdapter("User");
+    vector<vector<string>> infos = dbAdapter.searchAll();
+    for (int i = 0; i < infos.size(); ++i) {
+        User user;
+        user.deSerialize(infos[i]);
+        result.push_back(user);
+    }
+    return result;
+}
+
+int User::getCanLendDays() {
+    return lendDays[this->getType()];
+}
+
+int User::getCanLendNums() {
+    return lendNums[this->getType()];
+}
+
+int User::returnAssignOrder(Order order) {
+    // 修改订单状态
+    order.setStatu(static_cast<Status>(2));
+    order.setReturnTime(SimpleTime::nowTime());
+    Order::updateStateAndReturnTimeById(order);
+
+    // 获取图书实例
+    BookInstance *instance = BookInstance::getInstanceById(order.getBookId());
+    // 判断图书是否被预约了
+    Book book = Book::searchBooksBySingleField("isbn", instance->getIsbn())[0];
+    if (book.getAppointmentNum() > 0) {//被预约了,特殊处理
+        //todo: 处理预约操作,找到那个预约单子,给他改一下
+
+    } else {// 没被预约,归还图书馆
+        // 修改书的实例的状态(设为可借)
+        instance->setStatus(1);
+        BookInstance::updateStateAndReturnTimeById(*instance);
+        cout << "还书成功!" << endl;
+    }
+    return 0;
+}
+
+int User::renewAssignOrder(Order order) {
+    // 判断是否可续借
+    if (order.getStatu() != 1) {
+        cout << "该借阅已不可再续借" << endl;
+        return 1;//该借阅不可续借
+    }
+
+    // 获取图书实例
+    BookInstance *instance = BookInstance::getInstanceById(order.getBookId());
+    // 判断图书是否被预约了
+    Book book = Book::searchBooksBySingleField("isbn", instance->getIsbn())[0];
+    if (book.getAppointmentNum() > 0) {//被预约了,不允许预约
+        cout << "该书已经被预约,不允许续借" << endl;
+        return 2;
+    } else {// 没被预约,可以续借
+        // 修改订单状态
+        order.setStatu(static_cast<Status>(4));// 修改状态为4
+        SimpleTime old = (SimpleTime &&) order.getReturnTime();//获取旧的应还日期
+        order.setReturnTime(old.addDay(this->getCanLendDays()));
+        Order::updateStateAndReturnTimeById(order);
+        cout << "续借成功" << endl;
+    }
+
+
+    return 0;
+}
+
+
 
 
 
