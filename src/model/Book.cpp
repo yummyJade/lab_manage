@@ -116,6 +116,7 @@ std::vector<std::string> Book::serialize() {
     info.push_back(to_string(this->type));
     info.push_back(to_string(this->count));
     info.push_back(to_string(this->price));
+    info.push_back(to_string(this->appointmentNum));
     info.push_back(this->name);
     info.push_back(this->author);
     info.push_back(this->isbn);
@@ -131,13 +132,14 @@ bool Book::deSerialize(std::vector<std::string> info) {
     char type = info[0].data()[0];
     int count = stoi(info[1].data());
     int price = stoi(info[2].data());
-    string name = info[3].data();
-    string author = info[4].data();
-    string isbn = info[5].data();
-    string press = info[6].data();
-    long long firstInstanceId = (long long) info[7].data();
+    int appointmentNum = stoi(info[3].data());
+    string name = info[4].data();
+    string author = info[5].data();
+    string isbn = info[6].data();
+    string press = info[7].data();
+    int firstInstanceId = atoi(info[8].data());
 
-    new(this) Book(type, count, price, firstInstanceId, name, author, isbn, press);
+    new(this) Book(type, count, appointmentNum, price, firstInstanceId, name, author, isbn, press);
 //    this->Book::Book();
 //    Book(type, count, price, firstInstanceId, name, author, isbn, press);
     return true;
@@ -153,10 +155,16 @@ std::vector<Book> Book::searchBooksBySingleField(std::string field, std::string 
 
 
 void Book::printBookList(std::vector<Book> books) {
-    vector<string> navs = {"书名", "作者", "出版社", "类型", "馆藏量", "ISBN"};
+    vector<string> navs = {"编号", "书名", "作者", "出版社", "类型", "馆藏量", "ISBN"};
     TableRenderer render(navs, 8);
+
     for (int i = 0; i < books.size(); ++i) {
-        render.addColume(books[i].getPrintLineStr());
+        vector<string> line;
+        vector<string> temp = books[i].getPrintLineStr();
+        line.push_back(to_string(i + 1));
+        line.insert(line.end(), temp.begin(), temp.end());
+        render.addColume(line);
+//        render.addColume(books[i].getPrintLineStr());
     }
     render.render();
 }
@@ -195,8 +203,8 @@ Book::Book(char type, int count, int price, const string &name, const string &au
 
 bool Book::addBooks(std::vector<std::vector<std::string>> queryData, vector<long long> &ids) {
     DbAdapter dbAdapter("Book");
-
     dbAdapter.insert(queryData, ids);
+
     return true;
 
 }
@@ -207,7 +215,9 @@ int Book::checkAssignISBNExist(std::string isbn) {
     if (result.size() > 0) {
 //        cout<<"isbn:"<<isbn<<" 有"<<endl;
 //        cout << "末尾元素是" << result[0].back();
-        return stoi(result[0].back());//todo :这里用了魔数,不对,要保证最后一个参数是第一本id
+        Book book;
+        book.deSerialize(result[0]);
+        return book.getFirstInstanceId();
     }
 //    cout<<"isbn:"<<isbn<<" 没有"<<endl;
     return -1;
@@ -279,7 +289,7 @@ bool Book::importBooksService() {
             bookinstancesFirstAdd.push_back(bookInstance);
         }
         // 插入book实例到instance表
-
+//        cout<<"first Id is"<<isExists[index]<<endl;
         long long firstInstanceId = BookInstance::importBookInstances(bookinstancesFirstAdd,
                                                                       isExists[index]);//获取链表的第一个位置
 
@@ -295,23 +305,17 @@ bool Book::importBooksService() {
         index++;
     }
     // 插入books
-    cout << "插入操作" << endl;
+//    cout << "插入操作,插入数量" <<newBooks.size()<< endl;
     vector<ll> ids;
     Book::addBooks(newBooks, ids);
-    // 更新图书馆藏量
-    cout << "update操作" << endl;
-    cout << "update size is " << updateIsbns.size() << endl;
+    // 更新图书的馆藏量
+//    cout << "update操作,update数量"<<updateIsbns.size() << endl;
     if (updateIsbns.size() > 0)
         Book::updateBooksCount(updateIsbns, addCounts);
     return true;
 }
 
-Book::Book(char type, int count, int price, long long int firstInstanceId, const string &name, const string &author,
-           const string &isbn, const string &press) : type(type), count(count), price(price),
-                                                      firstInstanceId(firstInstanceId), name(name), author(author),
-                                                      isbn(isbn), press(press) {
-    this->appointmentNum = 0;
-}
+
 
 std::vector<int> Book::checkISBNsExist(std::vector<std::string> isbns) {
     vector<int> results;
@@ -325,7 +329,7 @@ std::vector<int> Book::checkISBNsExist(std::vector<std::string> isbns) {
 bool Book::updateBooksCount(std::vector<std::string> isbns, std::vector<int> addCount) {
     for (int i = 0; i < isbns.size(); ++i) {
         int oldCount = Book::searchBooksBySingleField("isbn", isbns[i].data())[0].count;
-        cout << "old count is " << oldCount << endl;
+//        cout << "old count is " << oldCount << endl;
         Book::updateBooks("isbn", isbns[i].data(), "count", to_string(oldCount + addCount[i]));
     }
     return true;
@@ -411,7 +415,7 @@ bool Book::batchDeleteAssignIsbnsBooks(std::vector<std::string> isbns) {
     return true;
 }
 
-long long int Book::getFirstInstanceId() const {
+int Book::getFirstInstanceId() const {
     return firstInstanceId;
 }
 
@@ -507,6 +511,25 @@ std::vector<std::string> Book::getPrintLineStr() {
     info.push_back(to_string(this->count));
     info.push_back(this->isbn);
     return info;
+}
+
+Book::Book(char type, int count, int appointmentNum, int price, int firstInstanceId, const string &name,
+           const string &author, const string &isbn, const string &press) : type(type), count(count),
+                                                                            appointmentNum(appointmentNum),
+                                                                            price(price),
+                                                                            firstInstanceId(firstInstanceId),
+                                                                            name(name), author(author), isbn(isbn),
+                                                                            press(press) {}
+
+Book::Book(char type, int count, int price, int firstInstanceId, const string &name, const string &author,
+           const string &isbn, const string &press) : type(type), count(count), price(price),
+                                                      firstInstanceId(firstInstanceId), name(name), author(author),
+                                                      isbn(isbn), press(press) {
+    this->appointmentNum = 0;
+}
+
+int Book::getAppointmentNum() const {
+    return appointmentNum;
 }
 
 

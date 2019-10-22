@@ -129,10 +129,18 @@ long long SimpleTime::toLLTime() {
 
 SimpleTime SimpleTime::llTimeToSimpleTime(long long time) {
     string time_str = to_string(time);
+    if (time_str.length() < 12) {
+        return SimpleTime();
+    }
     Date date(atoi(time_str.substr(0, 3).c_str()), atoi(time_str.substr(4, 5).c_str()),
               atoi(time_str.substr(6, 7).c_str()));
     return SimpleTime(atoi(time_str.substr(8, 9).c_str()), atoi(time_str.substr(10, 11).c_str()),
                       atoi(time_str.substr(12, 13).c_str()), date);
+}
+
+SimpleTime SimpleTime::addDay(int num) {
+    this->date.addDay(num);
+    return *this;
 }
 
 

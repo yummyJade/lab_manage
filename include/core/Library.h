@@ -5,8 +5,8 @@
 
 class Library {
 private:
-    User adminUser;
-    User simpleUser;
+    static User *adminUser;
+    static User *simpleUser;
 
     Library();
 

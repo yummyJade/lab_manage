@@ -7,6 +7,7 @@
 bool printBookDetailInfo(std::string isbn) {
     vector<Book> books = Book::searchBooksBySingleField("isbn", isbn);
     if (books.size() <= 0) {
+        cout << "该图书不存在" << endl;
         return false;
     }
     Book book = books[0];

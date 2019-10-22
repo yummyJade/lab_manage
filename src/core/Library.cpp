@@ -8,6 +8,7 @@
 
 using namespace std;
 
+
 User *Library::loginAdminUser() {
     long long jobNum;
     string password;
@@ -19,4 +20,13 @@ User *Library::loginAdminUser() {
 
 //    User::login(jobNum,password);
     return nullptr;
+}
+
+User *Library::getSimpleUserInstance() {
+    vector<User> results = User::searchUsersBySingleField("jobNum", "10000");
+    if (results.size() > 0) {
+        User *user = new User(results[0]);
+        return user;
+    }
+    return NULL;
 }

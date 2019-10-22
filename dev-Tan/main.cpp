@@ -3,7 +3,7 @@
 //
 #include "../include/libm.h"
 #include "../src/libcpp.h"
-
+#include "../linkDatebase/datacpp.h"
 #include <fstream>
 #include <regex>
 
@@ -87,17 +87,16 @@ int regexTest() {
 
 
 int main() {
-    // 批量导入书籍
+//     批量导入书籍
 //    Book::printBookList(Book::searchAll());
-//    Book::updateBooks("isbn","978-5-664-71497-5","count","999");
+//////    Book::updateBooks("isbn","978-5-664-71497-5","count","999");
 //    Book::importBooksService();// 导入书籍的函数
 //    Book::printBookList(Book::searchAll());
 
 
 //    User::importUsers();
 
-    printBookDetailInfo("978-5-664-71597-5");
-
+//    printBookDetailInfo("978-5-664-71597-5");
 
     // 手动插入单本书籍
 //    Book::printBookList(Book::searchAll());
@@ -109,6 +108,23 @@ int main() {
 //    Book::printBookList(Book::searchAll());
 //    BookInstance::addOneBookInstancesService();
 //    Book::printBookList(Book::searchAll());
+
+//======================================================================================================
+
+//    // 批量导入用户
+//    User::printUserList(User::searchAll());
+//    User::importUsers();// 导入用户的函数
+//    User::printUserList(User::searchAll());
+
+//    User::printUserList(User::searchUsersBySingleField("jobNum","15774591043"));
+//    User::printUserList(User::searchUsersBySingleField("name","陈日作"));
+//    getchar();
+//    getchar();
+//    getchar();
+
+    // 用户借书
+//    User* loginUser=Library::getSimpleUserInstance();
+//    cout<<"借书操作结果 "<<loginUser->borrowAssignBookInstance(60);
 
 
 }

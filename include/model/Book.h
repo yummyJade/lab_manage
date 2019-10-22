@@ -2,15 +2,14 @@
 #include "core/SimpleTime.h"
 #include <iostream>
 #include <vector>
-
 class Book {
 private:
     char type;        //书所属类别A--V，期刊为0
     int count;      //计数
-    // 预约人数
+    int appointmentNum; // 预约人数
     int price;        //书本价格,单位分
     int id;
-    long long firstInstanceId;  // 第一本图书实例在Instance表的id
+    int firstInstanceId;  // 第一本图书实例在Instance表的id
     std::string name;        //书名
     std::string author;        //作者
     std::string isbn;        //ISBN
@@ -26,7 +25,10 @@ private:
 public:
     Book();
 
-    Book(char type, int count, int price, long long int firstInstanceId, const std::string &name,
+    Book(char type, int count, int price, int firstInstanceId, const std::string &name, const std::string &author,
+         const std::string &isbn, const std::string &press);
+
+    Book(char type, int count, int appointmentNum, int price, int firstInstanceId, const std::string &name,
          const std::string &author, const std::string &isbn, const std::string &press);
 
     Book(char type, int count, int price, const std::string &name, const std::string &author, const std::string &isbn,
@@ -34,6 +36,9 @@ public:
 
 
     ~Book();
+
+    int getAppointmentNum() const;
+
 
     char getType() const;
 
@@ -52,7 +57,7 @@ public:
     const std::string &getPress() const;
 
 
-    long long int getFirstInstanceId() const;
+    int getFirstInstanceId() const;
 
     void setType(char type);
 
@@ -116,7 +121,7 @@ public:
     static std::vector<Book> searchAll();
 
 
-    // 静态函数, 打印查询出来的结果集 todo: 完善打印效果
+    // 静态函数, 打印查询出来的结果集
     static void printBookList(std::vector<Book>);
 
     // 静态函数, 借书 todo:原子操作,借书一瞬间炸了
@@ -142,7 +147,6 @@ public:
 // 静态函数, 将类中所有符合isbn条件的对象的馆藏量增加对应的addCount本
     static bool updateBooksCount(std::vector<std::string> isbns, std::vector<int> addCount);
 
-    int appointmentNum;
 private:
     //------------------------------------------------------
     //----下面这些是与数据库交互的接口,由private调用------------

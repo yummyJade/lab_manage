@@ -3,12 +3,12 @@
 
 #include <iostream>
 #include <vector>
-#include <util/Bookcopy.h>
+#include "../../linkDatebase/include/Bookcopy.h"
 #include "../core/Date.h"
 class BookInstance {
     static const std::string BOOK_INSTANCE_FIELDS[];
 public:
-    long long id;
+    int id;
     std::string isbn;     //图书所属种类的isbn
     int status;     //状态 1 可借 2 已被借阅 3 已删除(丢失或下架) 4 已被借阅且已被预约
     std::string position;       // 图书位置
@@ -22,7 +22,9 @@ public:
 
     BookInstance(const std::string &isbn, int status, const std::string &position, const Date &planReturnDate);
 
-    long long int getId() const;
+    BookInstance(int id, const string &isbn, int status, const string &position, const Date &planReturnDate);
+
+    int getId() const;
 
     const std::string &getIsbn() const;
 
@@ -83,7 +85,7 @@ public:
     // 检测指定id的实例是否存在,待完善
     static bool checkAssignBookInstanceIdExist(long long id);
 
-    // 静态函数, 打印查询出来的结果集 todo: 完善打印效果
+    // 静态函数, 打印查询出来的结果集
     static void printBookInstanceList(std::vector<BookInstance> instances);
 
 
@@ -94,7 +96,7 @@ public:
      * @param id
      * @return
      */
-    static BookInstance *getInstanceById(long long id);
+    static BookInstance *getInstanceById(int id);
 
     /**
      * 获取某本书的所有实例
@@ -109,6 +111,8 @@ public:
     // 修改指定id的instance是值为指定内容
     static bool updateAssignFieldsById(long long id, std::vector<std::string> fieds, std::vector<std::string> values);
 
+    // 修改指定id的instance的状态和应还时间,用于借还书
+    static bool updateStateAndReturnTimeById(BookInstance book);
 };
 
 #endif //MYC1_BOOKINSTANCE_H

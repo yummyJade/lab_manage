@@ -159,16 +159,16 @@
 		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/service/UserService.h">
 			<Option target="Include"/>
 		</Unit>
-		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/util/Bookcopy.h">
-			<Option target="Include"/>
-		</Unit>
 		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/util/DbAdapter.h">
 			<Option target="Include"/>
 		</Unit>
-		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/util/Record.h">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/util/TableRenderer.h">
 			<Option target="Include"/>
 		</Unit>
-		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/util/TableRenderer.h">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/linkDatebase/include/Bookcopy.h">
+			<Option target="Include"/>
+		</Unit>
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/linkDatebase/include/Record.h">
 			<Option target="Include"/>
 		</Unit>
 		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/src/core/Date.cpp">

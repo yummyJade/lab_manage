@@ -10,14 +10,14 @@ const std::string STATUS[] = {
 };
 
 class User {
-    static const int lendDays[3];//= {30, 60, 90}; // 最多可同时借书的时长,单位天
-    static const int lendNums[3];// = {30, 60, 90}; // 最多可同时借书的本数
+    static const int lendDays[];//= {30, 60, 90}; // 最多可同时借书的时长,单位天
+    static const int lendNums[];// = {30, 60, 90}; // 最多可同时借书的本数
 private:
     long long jobNum;        //工号即id
     status type;
     std::string name;        //姓名
     std::string password;        //password
-    long long firstOrderId;  // 该学生借的第一本书的订单在Order表的id,-1表示未借
+    int firstOrderId;  // 该学生借的第一本书的订单在Order表的id,-1表示未借
 
     /**
      * 将枚举类型的statu转化成对应的字符串
@@ -36,7 +36,7 @@ public:
     User(long long jobNum, status type, const std::string &name, const std::string &password);
 
     User(long long int jobNum, status type, const std::string &name, const std::string &password,
-         long long int firstOrderId);
+         int firstOrderId);
 
     // 序列化函数
     std::vector<std::string> serialize();
@@ -72,8 +72,13 @@ public:
 
     const std::string &getPassword() const;
 
-    long long int getFirstOrderId() const;
+    int getFirstOrderId() const;
 
+    // 计算该用户一次借阅能借多久
+    int getCanLendDays();
+
+    // 计算该用户同时能借多少本
+    int getCanLendNums();
 
     // 返回类型对应的中文
     std::string getTypeContent();
@@ -122,6 +127,8 @@ private:
     bool isLegalPassword(const std::string &password);
 
 
+    // 二维字符串数组转User对象数组
+    static std::vector<User> stringsToUsers(std::vector<std::vector<std::string>>);
 private:
     //------------------------------------------------------
     //----下面这些是与数据库交互的接口,由private调用------------
@@ -156,12 +163,7 @@ private:
      */
     int isAllowedLogin();
 
-    /**
-     * 用户借指定书实例
-     * @param bookInstanceId
-     * @return
-     */
-    bool borrowAssignBookInstance(long long bookInstanceId);
+
 
     /**
      * 用户预约指定书种
@@ -210,4 +212,34 @@ public:
 
     // 获取指定id的用户对象
     static User getUserByJobNum(long long jobNum);
+
+    // 静态函数, 根据指定字段的值搜索内容,返回User对象数组
+    static std::vector<User> searchUsersBySingleField(std::string field, std::string value);
+
+    // 静态函数, 显示该表所有内容
+    static std::vector<User> searchAll();
+
+
+    /**
+     * 用户借指定书实例
+     * @param bookInstanceId
+     * @return
+     */
+    int borrowAssignBookInstance(int bookInstanceId);
+
+
+    /**
+     * 用户归还, 指定订单
+     * @param bookInstanceId
+     * @return
+     */
+    static int returnAssignOrder(Order order);
+
+    /**
+     * 用户续借指定订单
+     * @param order
+     * @return
+     */
+    int renewAssignOrder(Order order);
+
 };

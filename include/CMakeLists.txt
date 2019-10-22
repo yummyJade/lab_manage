@@ -13,8 +13,8 @@ set(HEADER_FILES
 
         util/DbAdapter.h
         util/TableRenderer.h
-        util/Bookcopy.h
-        util/Record.h
+        ../linkDatebase/include/Bookcopy.h
+        ../linkDatebase/include/Record.h
 
         service/BookService.h
         service/UserService.h

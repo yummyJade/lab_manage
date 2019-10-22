@@ -30,6 +30,12 @@ public:
      */
     int compare(Date another);
 
+    /**
+     * 给当前对象增加指定天数
+     * @param num
+     */
+    SimpleTime addDay(int num);
+
     // 序列化函数
     std::string serialize();
 

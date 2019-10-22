@@ -24,7 +24,7 @@ void Date::print() {
     cout << this->serialize();
 }
 
-void Date::addDay(int num) {
+Date Date::addDay(int num) {
     int numOfYear = isLeapYear(year) ? 366 : 365;
     while (num > numOfYear) {
         year++;
@@ -59,6 +59,7 @@ void Date::addDay(int num) {
             day = 1;
         }
     }
+    return *this;
 }
 
 int Date::compare(Date another) {
@@ -147,6 +148,10 @@ int Date::toInt() {
 
 Date Date::intDate2Date(int date) {
     string time_str = to_string(date);
+    if (time_str.length() < 7) {
+        return Date();
+    }
+//    cout<<"str is "<<time_str<<endl;
     return Date(atoi(time_str.substr(0, 3).c_str()), atoi(time_str.substr(4, 5).c_str()),
                 atoi(time_str.substr(6, 7).c_str()));
 }

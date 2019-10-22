@@ -8,6 +8,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <string>
+#include "../database/statu.h"
 #include "core/Date.h"
 #include "core/SimpleTime.h"
 #include "core/SimpleString.h"
@@ -17,8 +18,8 @@
 #include "model/Order.h"
 #include "model/User.h"
 #include "util/DbAdapter.h"
-#include "util/Bookcopy.h"
-#include "util/Record.h"
+#include "../linkDatebase/include/Bookcopy.h"
+#include "../linkDatebase/include/Record.h"
 //#include "util/Record.h"
 #include "util/TableRenderer.h"
 #include "service/BookService.h"

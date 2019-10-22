@@ -18,12 +18,10 @@ bool SimpleString::isDigital(std::string str) {
     return !(sin >> p);
 }
 
-
 string SimpleString::fixPath(std::string str){
     regex double_brace("[/\\\\]{1,2}");  // (/{1,2})|(\\\\{1,2})
     return regex_replace(str, double_brace, "\\");
 }
-
 
 bool SimpleString::isLegalPath(std::string str) {
     if (str.find(".") == string::npos) {
