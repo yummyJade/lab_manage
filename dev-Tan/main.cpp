@@ -87,6 +87,13 @@ int regexTest() {
 
 
 int main() {
+    Date date = Date::today();
+    cout << date.serialize() << endl;
+    cout << date.toInt() << endl;
+    SimpleTime time = SimpleTime::nowTime();
+    cout << time.serialize() << endl;
+    cout << time.toLLTime() << endl;
+
 //     批量导入书籍
 //    Book::printBookList(Book::searchAll());
 //////    Book::updateBooks("isbn","978-5-664-71497-5","count","999");
