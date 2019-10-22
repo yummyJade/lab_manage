@@ -135,32 +135,32 @@ Include/fast:
 	$(MAKE) -f include\CMakeFiles\Include.dir\build.make include/CMakeFiles/Include.dir/build
 .PHONY : Include/fast
 
-dev-test/beautifulMenu.obj: dev-test/beautifulMenu.cpp.obj
+dev-Tan/main.obj: dev-Tan/main.cpp.obj
 
-.PHONY : dev-test/beautifulMenu.obj
+.PHONY : dev-Tan/main.obj
 
 # target to build an object file
-dev-test/beautifulMenu.cpp.obj:
-	$(MAKE) -f CMakeFiles\libManage.dir\build.make CMakeFiles/libManage.dir/dev-test/beautifulMenu.cpp.obj
-.PHONY : dev-test/beautifulMenu.cpp.obj
+dev-Tan/main.cpp.obj:
+	$(MAKE) -f CMakeFiles\libManage.dir\build.make CMakeFiles/libManage.dir/dev-Tan/main.cpp.obj
+.PHONY : dev-Tan/main.cpp.obj
 
-dev-test/beautifulMenu.i: dev-test/beautifulMenu.cpp.i
+dev-Tan/main.i: dev-Tan/main.cpp.i
 
-.PHONY : dev-test/beautifulMenu.i
+.PHONY : dev-Tan/main.i
 
 # target to preprocess a source file
-dev-test/beautifulMenu.cpp.i:
-	$(MAKE) -f CMakeFiles\libManage.dir\build.make CMakeFiles/libManage.dir/dev-test/beautifulMenu.cpp.i
-.PHONY : dev-test/beautifulMenu.cpp.i
+dev-Tan/main.cpp.i:
+	$(MAKE) -f CMakeFiles\libManage.dir\build.make CMakeFiles/libManage.dir/dev-Tan/main.cpp.i
+.PHONY : dev-Tan/main.cpp.i
 
-dev-test/beautifulMenu.s: dev-test/beautifulMenu.cpp.s
+dev-Tan/main.s: dev-Tan/main.cpp.s
 
-.PHONY : dev-test/beautifulMenu.s
+.PHONY : dev-Tan/main.s
 
 # target to generate assembly for a file
-dev-test/beautifulMenu.cpp.s:
-	$(MAKE) -f CMakeFiles\libManage.dir\build.make CMakeFiles/libManage.dir/dev-test/beautifulMenu.cpp.s
-.PHONY : dev-test/beautifulMenu.cpp.s
+dev-Tan/main.cpp.s:
+	$(MAKE) -f CMakeFiles\libManage.dir\build.make CMakeFiles/libManage.dir/dev-Tan/main.cpp.s
+.PHONY : dev-Tan/main.cpp.s
 
 # Help Target
 help:
@@ -172,9 +172,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... Include
-	@echo ... dev-test/beautifulMenu.obj
-	@echo ... dev-test/beautifulMenu.i
-	@echo ... dev-test/beautifulMenu.s
+	@echo ... dev-Tan/main.obj
+	@echo ... dev-Tan/main.i
+	@echo ... dev-Tan/main.s
 .PHONY : help
 
 
