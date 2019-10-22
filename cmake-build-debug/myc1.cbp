@@ -126,7 +126,7 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/dev-Tan/main.cpp">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/dev-test/beautifulMenu.cpp">
 			<Option target="libManage"/>
 		</Unit>
 		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/core/Date.h">
