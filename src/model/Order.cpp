@@ -171,7 +171,6 @@ std::vector<std::string> Order::getPrintLineStr() {
     info.push_back(to_string(bookInstance->getId()));
 
     Date date = (Date &&) this->getBorrowTime();
-//    cout<<"date "<<date.serialize();
     info.push_back(date.serialize());
 
     date = (Date &&) this->getReturnTime();

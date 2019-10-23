@@ -5,7 +5,6 @@
 #include <vector>
 
 #include "Bookcopy.h"
-
 using namespace std;
 
 class TableBookcopy {
@@ -21,11 +20,9 @@ public:
     vector<Bookcopy> query(int id);
 
     int update(int id, Bookcopy bookcopy, vector<int> reviseField);
-
     int update(int id, Bookcopy bookcopy);
 
     vector<int> updateByBookId(int id, Bookcopy bookcopy, vector<int> reviseField);
-
     vector<int> updateByBookId(int id, Bookcopy bookcopy);
 
     vector<Bookcopy> queryByBookId(int id);

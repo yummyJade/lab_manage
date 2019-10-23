@@ -1,11 +1,9 @@
 #include "../../linkDatebase/include/TableRecord.h"
 #include "../../linkDatebase/include/IndexRecord.h"
 #include <iostream>
-
 using namespace std;
 IndexRecord *IndexRecord::indexRecord = NULL;                       //静态变量初始化
 TableRecord *TableRecord::tableRecord = NULL;
-
 void writeRecord(int head_size, int data_size, Record record, int id) {
     /*参数说明：
     head_size：文件头长度

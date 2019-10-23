@@ -101,28 +101,19 @@ int SimpleTime::compare(Date another) {
 
 long long SimpleTime::toLLTime() {
     // todo : 这里用cin或者别的重构一下吧,太丑了,不忍直视
-    string time = "";
-    time += this->date.year;
-    if (this->date.month < 10) {
-        time += "0";
-    }
-    time += this->date.month;
-    if (this->date.day < 10) {
-        time += "0";
-    }
-    time += this->date.day;
+    string time = to_string(this->date.toInt());
     if (this->hour < 10) {
         time += "0";
     }
-    time += this->hour;
+    time += to_string(this->hour);
     if (this->minute < 10) {
         time += "0";
     }
-    time += this->minute;
+    time += to_string(this->minute);
     if (this->second < 10) {
         time += "0";
     }
-    time += this->second;
+    time += to_string(this->second);
 
     return atoll(time.c_str());
 }
@@ -132,10 +123,10 @@ SimpleTime SimpleTime::llTimeToSimpleTime(long long time) {
     if (time_str.length() < 12) {
         return SimpleTime();
     }
-    Date date(atoi(time_str.substr(0, 3).c_str()), atoi(time_str.substr(4, 5).c_str()),
-              atoi(time_str.substr(6, 7).c_str()));
-    return SimpleTime(atoi(time_str.substr(8, 9).c_str()), atoi(time_str.substr(10, 11).c_str()),
-                      atoi(time_str.substr(12, 13).c_str()), date);
+    Date date(atoi(time_str.substr(0, 4).c_str()), atoi(time_str.substr(4, 2).c_str()),
+              atoi(time_str.substr(6, 2).c_str()));
+    return SimpleTime(atoi(time_str.substr(8, 2).c_str()), atoi(time_str.substr(10, 2).c_str()),
+                      atoi(time_str.substr(12, 2).c_str()), date);
 }
 
 SimpleTime SimpleTime::addDay(int num) {

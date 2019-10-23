@@ -133,15 +133,15 @@ Date Date::today() {
 
 int Date::toInt() {
     string time = "";
-    time += this->year;
+    time += to_string(this->year);
     if (this->month < 10) {
         time += "0";
     }
-    time += this->month;
+    time += to_string(this->month);
     if (this->day < 10) {
         time += "0";
     }
-    time += this->day;
+    time += to_string(this->day);
     return atoi(time.c_str());
 }
 
@@ -152,8 +152,8 @@ Date Date::intDate2Date(int date) {
         return Date();
     }
 //    cout<<"str is "<<time_str<<endl;
-    return Date(atoi(time_str.substr(0, 3).c_str()), atoi(time_str.substr(4, 5).c_str()),
-                atoi(time_str.substr(6, 7).c_str()));
+    return Date(atoi(time_str.substr(0, 4).c_str()), atoi(time_str.substr(4, 2).c_str()),
+                atoi(time_str.substr(6, 2).c_str()));
 }
 
 

@@ -26,19 +26,16 @@ public:
     int insertData(int id, Record record);
 
     int update(int id, Record record, vector<int> reviseField);
-
     int update(int id, Record record);
 
     vector<Record> query(int id);
 
     vector<int> updateByPerson(int id, Record record, vector<int> reviseField);
-
     vector<int> updateByPerson(int id, Record record);
 
     vector<Record> queryByPerson(int id);
 
     vector<int> updateByBookId(int bookId, Record record, vector<int> reviseField);
-
     vector<int> updateByBookId(int bookId, Record record);
 
     vector<Record> queryByBookId(int bookId);
