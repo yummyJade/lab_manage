@@ -1,8 +1,6 @@
 #ifndef BOOKCOPY_H
 #define BOOKCOPY_H
-
 #include <string>
-
 using namespace std;
 
 class Bookcopy {

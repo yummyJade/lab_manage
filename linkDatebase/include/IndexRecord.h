@@ -1,8 +1,6 @@
 #ifndef INDEXRECORD_H
 #define INDEXRECORD_H
-
 #include <vector>
-
 using namespace std;
 
 class IndexRecord {

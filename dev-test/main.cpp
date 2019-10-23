@@ -281,8 +281,6 @@ void printUserManageMenu(){
                         offFlag = true;
                         cout << "×¢Ïú³É¹¦£¡" << endl;
                         break;
-
-
                     } else{
                         break;
                     }

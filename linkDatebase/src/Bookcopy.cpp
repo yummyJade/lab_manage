@@ -14,7 +14,6 @@ Bookcopy::~Bookcopy() {
 void Bookcopy::setId(int id) {
     this->id = id;
 }
-
 int Bookcopy::getId() {
     return id;
 }
@@ -29,7 +28,6 @@ int Bookcopy::getBookId() {
 void Bookcopy::setState(int state) {
     this->state = state;
 }
-
 int Bookcopy::getState() {
     return state;
 }
@@ -37,7 +35,6 @@ int Bookcopy::getState() {
 void Bookcopy::setReTime(int reTime) {
     this->reTime = reTime;
 }
-
 int Bookcopy::getReTime() {
     return reTime;
 }
@@ -48,7 +45,6 @@ void Bookcopy::setPosition(string position) {
     //printf("xiezheyong2:%s\n", this->position);
     //printf("xiezhengyong3:%s\n", this->getPosition());
 }
-
 string Bookcopy::getPosition() {
     return position;
 }
@@ -56,7 +52,6 @@ string Bookcopy::getPosition() {
 void Bookcopy::setIsbn(string isbn) {
     this->isbn = isbn;
 }
-
 string Bookcopy::getIsbn() {
     return isbn;
 }
@@ -64,7 +59,6 @@ string Bookcopy::getIsbn() {
 void Bookcopy::setNextId(int nextId) {
     this->nextId = nextId;
 }
-
 int Bookcopy::getNextId() {
     return nextId;
 }
