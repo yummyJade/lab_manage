@@ -34,16 +34,16 @@ bool Verify::optionExist(int choose, int sum){
     return choose < sum && choose > -1;
 }
 
-bool Verify::optionExist(int choose, int optionArr[]) {
-    int len = sizeof(optionArr) / sizeof(int);
-    for(int i = 0; i < len; i++){
-        if(choose == optionArr[i]){
-            return true;
-        }
-    }
-    cout << "选项不存在" << endl;
-    return false;
-}
+//bool Verify::optionExist(int choose, int optionArr[]) {
+//    int len = sizeof(optionArr) / sizeof(int);
+//    for(int i = 0; i < len; i++){
+//        if(choose == optionArr[i]){
+//            return true;
+//        }
+//    }
+//    cout << "选项不存在" << endl;
+//    return false;
+//}
 
 int main222()
 {

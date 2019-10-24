@@ -10,7 +10,7 @@ class BookInstance {
 public:
     int id;
     std::string isbn;     //图书所属种类的isbn
-    int status;     //状态 1 可借 2 已被借阅 3 已删除(丢失或下架) 4 已被借阅且已被预约
+    int status;     //状态 1 可借 2 已被借阅 3 已删除(丢失或下架) 4 已被借阅且已被预约 5 yibeiyuyue
     std::string position;       // 图书位置
     Date planReturnDate; // 预计归还日期
 
