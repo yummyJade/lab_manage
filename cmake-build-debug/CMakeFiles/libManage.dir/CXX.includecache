@@ -17,6 +17,8 @@ cstdio
 -
 string
 -
+algorithm
+-
 
 ../database/database.h
 cstdio

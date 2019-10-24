@@ -184,7 +184,8 @@ std::vector<std::string> Order::getPrintLineStr() {
     info.push_back(date.serialize());
     date = this->getReturnTime();
     info.push_back(date.date.serialize());
-    info.push_back(to_string(this->getStatu()));//todo:状态改成对应中文
+	info.push_back(this->getStatuStr());
+    //info.push_back(to_string(this->getStatu()));//todo:状态改成对应中文
     return info;
 }
 
@@ -210,6 +211,11 @@ const SimpleTime &Order::getReturnTime() const {
 
 Status Order::getStatu() const {
     return statu;
+}
+
+std::string Order::getStatuStr() {
+	string strs[] = { "", "在借", "已还","预约", "已续借","预约已到" };
+	return strs[this->getStatu()];
 }
 
 void Order::setId(long long int id) {

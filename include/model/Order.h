@@ -54,6 +54,8 @@ public:
 
     Status getStatu() const;
 
+	std::string getStatuStr();
+
     void setId(long long int id);
 
     void setUserId(long long int userId);
