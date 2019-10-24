@@ -25,6 +25,7 @@ bool printAssignInstanceInfo(BookInstance instance) {
     instances.push_back(instance);
     printf("检索到如下信息\n");
     BookInstance::printBookInstanceList(instances);
+	return true;
 }
 
 //===============================================================

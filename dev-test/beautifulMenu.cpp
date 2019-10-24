@@ -27,6 +27,7 @@ bool printLoginUserInfo();
 bool printLoginUserInfo() {
     User *loginUser = Library::getSimpleUserInstance();
     printf("工号:%lld    姓名:%s\n", loginUser->getJobNum(), loginUser->getName().c_str());
+	return true;
 }
 
 //用户搜索
@@ -153,6 +154,7 @@ bool printUserMenu(string userOpera = "0") {
     if (userOpera[0] == '3') {
         printTree(2, "31.修改密码", deepIndex);
     }
+	return true;
 
 }
 
@@ -241,6 +243,7 @@ bool printAdminDealUserMenu(string userOpera = "0") {
             }
         }
     }
+	return true;
 }
 
 // 管理员首页

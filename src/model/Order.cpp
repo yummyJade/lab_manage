@@ -77,7 +77,11 @@ std::vector<Order> Order::getAssignUserBorrowedHistory(int firstOrderId) {
 //    cout<<"copys size "<<copys.size()<<endl;
     for (int i = 0; i < copys.size(); ++i) {
 //        cout<<"开始转化"<<endl;
-        result.push_back(Order::RecordCopyToOrder(copys[i]));
+		Order order = Order::RecordCopyToOrder(copys[i]);
+		cout << "转化后的时间" << order.borrowTime.serialize()<<endl;
+		result.push_back(order);
+		//result.push_back(Order::RecordCopyToOrder(copys[i]));
+
 //        cout<<"转化成功"<<endl;
     }
 //    cout<<"copys end "<<endl;
@@ -131,14 +135,19 @@ Record Order::toRecordCopy() {
     record.setState(this->statu);
     record.setStId(this->userId);
     record.setBoTime(this->borrowTime.toLLTime());
-    record.setReTime(this->returnTime.toLLTime());
+    //record.setReTime(this->returnTime.toLLTime());
+	record.setReTime(this->returnTime.date.toInt());
     return record;
 }
 
 
 Order Order::RecordCopyToOrder(Record record) {
     SimpleTime boTime = SimpleTime::llTimeToSimpleTime(record.getBoTime());
-    SimpleTime reTime = SimpleTime::llTimeToSimpleTime(record.getReTime());
+	Date reDate = Date::intDate2Date(record.getReTime());
+	cout << "借书时间是" << record.getBoTime() << endl;
+	cout << "借书时间2是" << boTime.serialize() << endl;
+	SimpleTime reTime = SimpleTime(0,0,0,reDate);
+    //SimpleTime reTime = SimpleTime::llTimeToSimpleTime(record.getReTime());
     return Order(record.getId(), record.getStId(), record.getBookId(), boTime, reTime,
                  static_cast<Status>(record.getState()));
 }
@@ -170,11 +179,11 @@ std::vector<std::string> Order::getPrintLineStr() {
     info.push_back(book.getName());
     info.push_back(to_string(bookInstance->getId()));
 
-    Date date = (Date &&) this->getBorrowTime();
-    info.push_back(date.serialize());
+    SimpleTime date = this->getBorrowTime();
 
-    date = (Date &&) this->getReturnTime();
     info.push_back(date.serialize());
+    date = this->getReturnTime();
+    info.push_back(date.date.serialize());
     info.push_back(to_string(this->getStatu()));//todo:状态改成对应中文
     return info;
 }

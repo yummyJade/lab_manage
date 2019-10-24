@@ -3,6 +3,7 @@
 #include "index.h"
 #include <cstdio>
 #include <string>
+#include <algorithm>
 
 using namespace std;
 

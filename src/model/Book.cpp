@@ -93,12 +93,13 @@ string Book::getTypeContent() {
 }
 
 string Book::printIsLend() {
-//    return isLend ? "可借" : "不可借";
+    return "不可借";
 //    if (isLend) {
 //        return "可借";
 //    } else if (!isLend) {
 //        return "不可借";
 //    }
+
 }
 
 void Book::printBookInfo() {

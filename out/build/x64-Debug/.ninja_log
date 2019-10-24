@@ -1,0 +1,22 @@
+# ninja log v5
+2	5135	593544420	CMakeFiles/libManage.dir/dev-test/beautifulMenu.cpp.obj	f0ab3371214220cd
+5153	6620	593544422	libManage.exe	7962b90ca9232adf
+3	4414	593544607	CMakeFiles/libManage.dir/dev-test/beautifulMenu.cpp.obj	f0ab3371214220cd
+4427	5310	593544608	libManage.exe	7962b90ca9232adf
+2	4629	593544867	CMakeFiles/libManage.dir/dev-test/beautifulMenu.cpp.obj	f0ab3371214220cd
+4644	5444	593544868	libManage.exe	7962b90ca9232adf
+1	4954	593628298	CMakeFiles/libManage.dir/dev-Tan/main.cpp.obj	a23a1c17316a479b
+4961	6624	593628300	libManage.exe	184ff3b26c6dc3f0
+1	538	593628327	build.ninja	782ed8bcb4aa9866
+6	5420	593628332	CMakeFiles/libManage.dir/dev-test/beautifulMenu.cpp.obj	f0ab3371214220cd
+5452	6397	593628333	libManage.exe	7962b90ca9232adf
+3	4577	593629177	CMakeFiles/libManage.dir/dev-test/beautifulMenu.cpp.obj	f0ab3371214220cd
+4615	5384	593629178	libManage.exe	7962b90ca9232adf
+3	4411	593629369	CMakeFiles/libManage.dir/dev-test/beautifulMenu.cpp.obj	f0ab3371214220cd
+4425	5123	593629370	libManage.exe	7962b90ca9232adf
+3	4485	593629706	CMakeFiles/libManage.dir/dev-test/beautifulMenu.cpp.obj	f0ab3371214220cd
+4499	5229	593629706	libManage.exe	7962b90ca9232adf
+4	4752	593630085	CMakeFiles/libManage.dir/dev-test/beautifulMenu.cpp.obj	f0ab3371214220cd
+4768	5533	593630085	libManage.exe	7962b90ca9232adf
+4	5110	593630453	CMakeFiles/libManage.dir/dev-test/beautifulMenu.cpp.obj	f0ab3371214220cd
+5122	6291	593630454	libManage.exe	7962b90ca9232adf

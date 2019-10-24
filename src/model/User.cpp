@@ -241,8 +241,8 @@ std::string User::getUserMeaasge() {
 
     }
 
-
-    return std::__cxx11::string();
+	string str = "123";
+    return str;
 }
 
 bool User::appointmentAssignBook(int jobNum, int bookId) {
