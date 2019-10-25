@@ -17,10 +17,8 @@ User::User()
 {
 }
 
-
 User::~User() {
 }
-
 
 vector<string> User::serialize() {
     vector<string> info;
@@ -287,7 +285,8 @@ std::vector<std::string> User::getPrintLineStr() {
     vector<string> info;
     info.push_back(to_string(this->jobNum));
     info.push_back(this->name);
-    info.push_back(User::statuEnumToString(this->type));
+	info.push_back(this->getTypeStr());
+    //info.push_back(User::statuEnumToString(this->type));
     return info;
 }
 
@@ -331,6 +330,15 @@ long long int User::getJobNum() const {
 
 status User::getType() const {
     return type;
+}
+
+std::string User::getTypeStr() {
+	string strs[] = { "管理员","本科生","研究生","教师" };
+	string result = "";
+	if (this->getType() < 0) {
+		result = "冻结的";
+	}
+	return result+strs[this->getType()];
 }
 
 const string &User::getName() const {

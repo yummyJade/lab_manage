@@ -72,6 +72,8 @@ public:
 
     status getType() const;
 
+	std::string getTypeStr();
+
     const std::string &getName() const;
 
     const std::string &getPassword() const;
