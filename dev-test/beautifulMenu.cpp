@@ -14,9 +14,9 @@ using namespace std;
 
 bool printTree(int level, string str, int deepIndex = -1);
 
-bool printAdminMenu(string userOpera);
+int printAdminMenu(string userOpera);
 
-void printBookSearchMenu();
+void printBookSearchMenu(bool canLend);
 
 void printUserSearchMenu();
 
@@ -30,7 +30,7 @@ bool printLoginUserInfo() {
 	return true;
 }
 
-//用户搜索
+// 用户搜索
 void printUserSearchMenu() {
     system("cls");
     while (1) {
@@ -71,8 +71,8 @@ void printUserSearchMenu() {
     }
 }
 
-//图书搜索
-void printBookSearchMenu() {
+// 图书搜索
+void printBookSearchMenu(bool canLend=false) {
     system("cls");
     while (1) {
         system("cls");
@@ -91,8 +91,11 @@ void printBookSearchMenu() {
         cin >> input;
         // todo: input长度超出来了怎么办
         choose = Verify::convertDigtal(input);
+		if (choose == 0) {
+			return;
+		}
         cout << "您的选择是:" << choose << endl;
-
+		
 
         string fieds[] = {"", "all", "name", "author", "isbn", "type"};
         int options[] = {1, 2, 3, 4, 5, 0};
@@ -102,8 +105,9 @@ void printBookSearchMenu() {
             string keyWord;
             cin >> keyWord;
             vector<Book> books = Book::searchBooksBySingleField(fieds[choose], keyWord);
+			//cout << "搜到的的内容长度为:" << books.size() << endl;
             Book::printBookList(books);
-            cout << "请选择要操作的图书序号(输入0返回):";
+            cout << "请输入要查看详情的图书序号(输入0返回):";
             int operaNum;
             cin >> operaNum;
             if (operaNum == 0) {
@@ -112,29 +116,37 @@ void printBookSearchMenu() {
                 // 打印第operaNum本书的详细信息
                 printBookDetailInfo(books[operaNum - 1].getIsbn());
 
-                // 打印操作信息
-                cout << "-----------------操作--------------" << endl
-                     << "借阅图书(输入条码号)" << endl
-                     << "预约该书(输入-1)" << endl
-                     << "返回(输入0)" << endl
-                     << "输入:";
-                cin >> operaNum;
-                if (operaNum == 0) {
-                    break;
-                } else if (operaNum == -1) {
-                    //todo:用户预约
-                } else {
-                    User *loginUser = Library::getSimpleUserInstance();
-                    loginUser->borrowAssignBookInstance(operaNum);
-                }
-
+				if (!canLend) {
+					cout << "按回车键返回" ;
+					cin.get();
+					cin.get();
+				}
+				else {// 可以借阅
+					// 打印操作信息
+					cout << "-----------------操作--------------" << endl
+						<< "借阅图书(输入条码号)" << endl
+						<< "预约该书(输入-1)" << endl
+						<< "返回(输入0)" << endl
+						<< "输入:";
+					cin >> operaNum;
+					if (operaNum == 0) {
+						break;
+					}
+					else if (operaNum == -1) {
+						//todo:用户预约
+					}
+					else {
+						User* loginUser = Library::getSimpleUserInstance();
+						loginUser->borrowAssignBookInstance(operaNum);
+					}
+				}
             }
         }
     }
 }
 
 // 普通用户首页
-bool printUserMenu(string userOpera = "0") {
+int printUserMenu(string userOpera = "0") {
     system("cls");
     int deepIndex = userOpera.length() + 1;
 
@@ -154,12 +166,12 @@ bool printUserMenu(string userOpera = "0") {
     if (userOpera[0] == '3') {
         printTree(2, "31.修改密码", deepIndex);
     }
-	return true;
+	return 0;
 
 }
 
 // 管理员操作用户的页面
-bool printAdminDealUserMenu(string userOpera = "0") {
+int printAdminDealUserMenu(string userOpera = "0") {
     system("cls");
     printLoginUserInfo();
     int deepIndex = userOpera.length() + 1;
@@ -182,18 +194,17 @@ bool printAdminDealUserMenu(string userOpera = "0") {
         printTree(2, "32.续借操作", deepIndex);
     }
 
+	printTree(1, "9.注销该用户的登陆");
+
 
     if (userOpera != "") {
         cout << endl << "请选择操作:" << endl;
         int operaNum = 0;
         cin >> operaNum;
-//        if (to_string(operaNum).length() <= deepIndex-1){
-//            printAdminMenu(to_string(operaNum));
-//        }
 
         switch (operaNum) {
             case 11:
-                printBookSearchMenu();
+                printBookSearchMenu(true);
                 break;
             case 12: {//领取预约已到书籍
 
@@ -203,14 +214,20 @@ bool printAdminDealUserMenu(string userOpera = "0") {
             case 13:
                 break;
 
-            case 21:
+            case 21:// 查看在借记录
                 Order::printOrderList(
                         Order::getAssignUserBorrowingList(Library::getSimpleUserInstance()->getFirstOrderId()));
-                break;
-            case 22:
+				cout << "按回车键返回";
+				cin.get();
+				cin.get();
+				break;
+            case 22:// 查看历史借阅记录
                 Order::printOrderList(
                         Order::getAssignUserBorrowedHistory(Library::getSimpleUserInstance()->getFirstOrderId()));
-                break;
+				cout << "按回车键返回" ;
+				cin.get();
+				cin.get();
+				break;
 
             case 31: {//还书
                 // 打印在借列表
@@ -241,20 +258,22 @@ bool printAdminDealUserMenu(string userOpera = "0") {
                 }
                 break;
             }
+			default :
+				return operaNum;
+				break;
         }
     }
-	return true;
+	return 0;
 }
 
 // 管理员首页
-bool printAdminMenu(string userOpera = "0") {
+int printAdminMenu(string userOpera = "0") {
     system("cls");
     int deepIndex = userOpera.length() + 1;
 
     printTree(1, "1.检索操作");
     if (userOpera[0] == '1') {
         printTree(2, "11.图书检索", deepIndex);
-
         printTree(2, "12.用户检索", deepIndex);
     }
 
@@ -305,9 +324,6 @@ bool printAdminMenu(string userOpera = "0") {
         cout << endl << "请选择操作:" << endl;
         int operaNum = 0;
         cin >> operaNum;
-//        if (to_string(operaNum).length() <= deepIndex-1){
-//            printAdminMenu(to_string(operaNum));
-//        }
 
         switch (operaNum) {
             case 11:
@@ -378,13 +394,14 @@ bool printAdminMenu(string userOpera = "0") {
                 break;
 
             default:
+				return operaNum;
                 printAdminMenu(to_string(operaNum));
                 break;
         }
     }
 
 
-    return false;
+    return 0;
 }
 
 
@@ -406,15 +423,28 @@ bool printTree(int level, string str, int deepIndex) {
 
 int main() {
 
-    string operaNum = "";
-    printAdminDealUserMenu(operaNum);
-    while (operaNum != "-1") {
-        cout << "请输入操作数" << endl;
-        cin >> operaNum;
-        system("cls");
-        printAdminDealUserMenu(operaNum);
-    }
+	// 管理员操作用户的界面
+ //   string operaNum = "";
+	//int resultCode= printAdminDealUserMenu(operaNum);
+ //   
+ //   while (resultCode != 9) {//9 是注销操作
+ //       /*cout << "请输入操作数" << endl;
+ //       cin >> operaNum;
+ //       system("cls");*/
+	//	resultCode=printAdminDealUserMenu(to_string(resultCode));
+ //   }
 
+
+	// 管理员界面
+	string operaNum = "";
+	int resultCode= printAdminMenu(operaNum);
+    
+    while (resultCode != 9) {//9 是注销操作
+        /*cout << "请输入操作数" << endl;
+        cin >> operaNum;
+        system("cls");*/
+		resultCode= printAdminMenu(to_string(resultCode));
+    }
 
 }
 

@@ -5,15 +5,14 @@
 #include "util/TableRenderer.h"
 
 bool printBookDetailInfo(std::string isbn) {
+	system("cls");
     vector<Book> books = Book::searchBooksBySingleField("isbn", isbn);
     if (books.size() <= 0) {
         cout << "该图书不存在" << endl;
         return false;
     }
     Book book = books[0];
-
     book.printBookInfo();
-
     vector<string> navs = {"编号", "图书位置", "状态\\预计归还时间"};
     TableRenderer render(navs, 8);
 

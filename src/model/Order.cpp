@@ -78,7 +78,7 @@ std::vector<Order> Order::getAssignUserBorrowedHistory(int firstOrderId) {
     for (int i = 0; i < copys.size(); ++i) {
 //        cout<<"开始转化"<<endl;
 		Order order = Order::RecordCopyToOrder(copys[i]);
-		cout << "转化后的时间" << order.borrowTime.serialize()<<endl;
+		// cout << "转化后的时间" << order.borrowTime.serialize()<<endl;
 		result.push_back(order);
 		//result.push_back(Order::RecordCopyToOrder(copys[i]));
 
@@ -144,8 +144,8 @@ Record Order::toRecordCopy() {
 Order Order::RecordCopyToOrder(Record record) {
     SimpleTime boTime = SimpleTime::llTimeToSimpleTime(record.getBoTime());
 	Date reDate = Date::intDate2Date(record.getReTime());
-	cout << "借书时间是" << record.getBoTime() << endl;
-	cout << "借书时间2是" << boTime.serialize() << endl;
+	//cout << "借书时间是" << record.getBoTime() << endl;
+	//cout << "借书时间2是" << boTime.serialize() << endl;
 	SimpleTime reTime = SimpleTime(0,0,0,reDate);
     //SimpleTime reTime = SimpleTime::llTimeToSimpleTime(record.getReTime());
     return Order(record.getId(), record.getStId(), record.getBookId(), boTime, reTime,
