@@ -19,7 +19,7 @@
 			</Target>
 			<Target title="libManage">
 				<Option output="D:/projects/CLionProjects/myc1/cmake-build-debug/libManage.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="D:/projects/CLionProjects/myc1/cmake-build-debug"/>
+				<Option working_dir=""/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -41,7 +41,7 @@
 			</Target>
 			<Target title="libManage/fast">
 				<Option output="D:/projects/CLionProjects/myc1/cmake-build-debug/libManage.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="D:/projects/CLionProjects/myc1/cmake-build-debug"/>
+				<Option working_dir=""/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>

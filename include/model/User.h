@@ -12,6 +12,7 @@ const std::string STATUS[] = {
 class User {
     static const int lendDays[];//= {30, 60, 90}; // 最多可同时借书的时长,单位天
     static const int lendNums[];// = {30, 60, 90}; // 最多可同时借书的本数
+    static const int appointNums[];// = {3, 6, 9}; //最多可以同时预约的书本数量
 private:
     long long jobNum;        //工号即id
     status type;
@@ -50,6 +51,7 @@ public:
     bool canLendBook();
 
 
+
     void setJobNum(int jobNum);
 
     void setJobNum1(long long int jobNum);
@@ -63,6 +65,8 @@ public:
     static const int *getLendDays();
 
     static const int *getLendNums();
+
+    static const int *getAppointNums();
 
     long long int getJobNum() const;
 
@@ -79,6 +83,10 @@ public:
 
     // 计算该用户同时能借多少本
     int getCanLendNums();
+
+    //计算该用户同时能够预约多少本
+    int getCanAppointNums();
+
 
     // 返回类型对应的中文
     std::string getTypeContent();
@@ -164,14 +172,16 @@ private:
     int isAllowedLogin();
 
 
-
+public:
     /**
      * 用户预约指定书种
      * @param jobNum
-     * @param bookId
+     * @param isbn
      * @return
      */
-    bool appointmentAssignBook(int jobNum, int bookId);
+    bool appointmentAssignBook(int bookId, std::string isbn);
+
+
     //------------------------------------------------------------------------------
     //----下面这些是管理员的操作,且与图书相关-------------------------------------------
     //------------------------------------------------------------------------------
@@ -241,5 +251,10 @@ public:
      * @return
      */
     int renewAssignOrder(Order order);
+    /**
+    * 用户取回已到的预约
+    *
+    */
+    bool getArrivedAppointment(Order order);
 
 };

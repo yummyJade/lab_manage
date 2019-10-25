@@ -144,8 +144,12 @@ public:
  */
     static int checkAssignISBNExist(std::string isbn);
 
+
 // 静态函数, 将类中所有符合isbn条件的对象的馆藏量增加对应的addCount本
     static bool updateBooksCount(std::vector<std::string> isbns, std::vector<int> addCount);
+
+//静态函数，将对应isbn的书籍的对象的预约数量增加或减少 1.增加 -1.减少
+    static bool updateBooksAppointmentNum(std::string isbn, int addAppointmentNum);
 
 private:
     //------------------------------------------------------

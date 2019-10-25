@@ -11,6 +11,7 @@ using namespace std;
 
 const int User::lendDays[] = {0, 90, 60, 30, 0};
 const int User::lendNums[] = {0, 90, 60, 30, 0};
+const int User::appointNums[] = {0, 9, 6, 3, 0};
 
 User::User()
 {
@@ -244,19 +245,44 @@ std::string User::getUserMeaasge() {
 	string str = "123";
     return str;
 }
-
-bool User::appointmentAssignBook(int jobNum, int bookId) {
+// todo:返回类型改一下
+bool User::appointmentAssignBook(int bookId, std::string isbn) {
     // 判断用户是否超过最大预约数
+    if(Order::getAssignUserAppointmentList(this->firstOrderId).size() >= this->getCanAppointNums()){
+        cout << "超过最大预约数" << endl;
+        return 1;
+    }
+    //判断是否超过可借书的数量（可借数量+已预约的数量）
+    if((Order::getAssignUserBorrowingList(this->firstOrderId).size() + Order::getAssignUserAppointmentList(this->firstOrderId).size()) >= this->getCanLendNums()){
+        cout << "超过最大可借数" << endl;
+        return 2;
+    }
+    // todo:判断该用户是否已经借阅了或者预约了这本书
 
-    // 判断该书是否可被预约(是否没有状态为可借阅的instance)
+    // 判断该书是否可被预约(是否没有状态为可借的且没有下架) 用bookid查bookinstance
+    if(!BookInstance::checkAssignBookCanAppointmentInstanceExist(isbn)){
+        cout << "不可逾越" << endl;
+        return 3;
+    }
+    // 创建预约Order（用户号，书本唯一标识isbn(xbookId)，当前预约时间，状态为借阅）
+    Order order(this->getJobNum(), bookId, SimpleTime::nowTime(), SimpleTime::nowTime(), static_cast<Status>(3));
+    //持久化
 
-    // 创建预约Order
+    int orderId = Order::addSingleOrder(this->getFirstOrderId(), order);
+    cout << "在这里" << endl;
+    // 更新Book表中预约数量，为增加，其实这个函数很没用，不过我不知道怎么样把book持久化到数据库，update么
 
-    // 更新Book表中预约数量
+    Book::updateBooksAppointmentNum(isbn,1);
+    cout << "在这里" << endl;
+    cout << "预约成功，请等待到书通知" << endl;
 
-    return false;
+    return true;
 }
 
+//bool User::getArrivedAppointment(){
+//    //todo:用户领取预约已到的书籍
+//
+//}
 std::vector<std::string> User::getPrintLineStr() {
     vector<string> info;
     info.push_back(to_string(this->jobNum));
@@ -293,6 +319,10 @@ const int *User::getLendDays() {
 
 const int *User::getLendNums() {
     return lendNums;
+}
+
+const int *User::getAppointNums(){
+    return appointNums;
 }
 
 long long int User::getJobNum() const {
@@ -380,6 +410,10 @@ int User::getCanLendNums() {
     return lendNums[this->getType()];
 }
 
+int User::getCanAppointNums() {
+    return appointNums[this->getType()];
+}
+
 int User::returnAssignOrder(Order order) {
     // 修改订单状态
     order.setStatu(static_cast<Status>(2));
@@ -391,7 +425,33 @@ int User::returnAssignOrder(Order order) {
     // 判断图书是否被预约了
     Book book = Book::searchBooksBySingleField("isbn", instance->getIsbn())[0];
     if (book.getAppointmentNum() > 0) {//被预约了,特殊处理
-        //todo: 处理预约操作,找到那个预约单子,给他改一下
+        //处理预约操作,找到那个预约单子,给他改一下
+        //找到所有满足bookid==isbn && status = 3的单子
+        //todo:注意一下这个string到int转换合不合法
+        vector<Order> orders = Order::getAssignBookAppointingList(atoi(instance->getIsbn().c_str()));
+        int earliestIndex = 0;       //借阅时间最早的下标
+        SimpleTime earliestDate = orders[0].getBorrowTime();         //记录时间最早那一天，这里的初值付给order里面第一个也行，
+        for (int i = 1; i < orders.size(); ++i) {
+            //接下来比较时间前后，找到最小？大的那个，
+            if(earliestDate.compare(orders[i].getBorrowTime()) > 0) {    //大于0说明当前时间比compare里的要大，也就是要靠后
+                earliestIndex = i;
+                earliestDate = orders[i].getBorrowTime();
+            }
+        }
+        //找到最大的以后更改对应订单的信息，将bookId修改为当前instanceId，将status改为5
+        orders[earliestIndex].setStatu(static_cast<Status>(5));
+        //存的实例id就是这个么？
+        orders[earliestIndex].setBookId(instance->getId());
+        Order::updateStateAndBookIdById(orders[earliestIndex]);
+
+        //修改BookInstance的状态status为5,这里只修改了一项函数会不会报错
+        instance->setStatus(5);
+        //todo:记得新增一个修改单项status的函数
+        BookInstance::updateStateAndReturnTimeById(*instance);
+
+        //修改Book预约人数减一
+        Book::updateBooksAppointmentNum(instance->getIsbn(),-1);
+
 
     } else {// 没被预约,归还图书馆
         // 修改书的实例的状态(设为可借)
@@ -428,6 +488,23 @@ int User::renewAssignOrder(Order order) {
 
     return 0;
 }
+
+bool User::getArrivedAppointment(Order order) {
+    //现在这本书真正归这个人所有了，所以首先要修改订单信息
+    order.setStatu(static_cast<Status>(1));
+    order.setBorrowTime(SimpleTime::nowTime());
+    //其实设置这个时间，我个人认为没有意义
+    order.setReturnTime(SimpleTime::nowTime().addDay(this->getCanLendDays()));
+    Order::updateStateAndReturnTimeAndLendTimeById(order);
+    //修改bookInstance的应还时间以及status状态
+    BookInstance *instance = BookInstance::getInstanceById(order.getBookId());
+    instance->setStatus(2);
+    instance->setPlanReturnDate(Date::today().addDay(this->getCanLendDays()));
+    BookInstance::updateStateAndReturnTimeById(*instance);
+    cout << "您的图书已领取！" << endl;
+	return true;
+}
+
 
 
 

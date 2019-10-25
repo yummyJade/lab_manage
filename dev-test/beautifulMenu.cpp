@@ -27,6 +27,7 @@ bool printLoginUserInfo();
 bool printLoginUserInfo() {
     User *loginUser = Library::getSimpleUserInstance();
     printf("工号:%lld    姓名:%s\n", loginUser->getJobNum(), loginUser->getName().c_str());
+	return true;
 }
 
 //用户搜索
@@ -110,7 +111,7 @@ void printBookSearchMenu() {
             } else {
                 // 打印第operaNum本书的详细信息
                 printBookDetailInfo(books[operaNum - 1].getIsbn());
-
+                int bookIndex = operaNum;
                 // 打印操作信息
                 cout << "-----------------操作--------------" << endl
                      << "借阅图书(输入条码号)" << endl
@@ -122,6 +123,8 @@ void printBookSearchMenu() {
                     break;
                 } else if (operaNum == -1) {
                     //todo:用户预约
+                    User *loginUser = Library::getSimpleUserInstance();
+                    loginUser->appointmentAssignBook(books[bookIndex - 1].getId(), books[bookIndex - 1].getIsbn());
                 } else {
                     User *loginUser = Library::getSimpleUserInstance();
                     loginUser->borrowAssignBookInstance(operaNum);
@@ -153,6 +156,7 @@ bool printUserMenu(string userOpera = "0") {
     if (userOpera[0] == '3') {
         printTree(2, "31.修改密码", deepIndex);
     }
+	return true;
 
 }
 
@@ -194,7 +198,17 @@ bool printAdminDealUserMenu(string userOpera = "0") {
                 printBookSearchMenu();
                 break;
             case 12: {//领取预约已到书籍
-
+                //打印所有已到的预约书籍
+                vector<Order> resultSet = Order::getAssignUserArrivedAppointmentList(
+                        Library::getSimpleUserInstance()->getFirstOrderId());
+                Order::printOrderList(resultSet);
+                int operaNum;
+                cout << "请选择要领取的书籍（输入0返回）";
+                cin >> operaNum;
+                if(operaNum > 0) {  //领取
+                    Library::getSimpleUserInstance();
+//                    User::getArrivedAppointment(resultSet[operaNum - 1]);
+                }
                 break;
             }
 
@@ -241,6 +255,7 @@ bool printAdminDealUserMenu(string userOpera = "0") {
             }
         }
     }
+	return true;
 }
 
 // 管理员首页

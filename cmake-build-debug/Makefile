@@ -135,32 +135,20 @@ Include/fast:
 	$(MAKE) -f include\CMakeFiles\Include.dir\build.make include/CMakeFiles/Include.dir/build
 .PHONY : Include/fast
 
-dev-test/beautifulMenu.obj: dev-test/beautifulMenu.cpp.obj
-
+# target to build an object file
+dev-test/beautifulMenu.obj:
+	$(MAKE) -f CMakeFiles\libManage.dir\build.make CMakeFiles/libManage.dir/dev-test/beautifulMenu.obj
 .PHONY : dev-test/beautifulMenu.obj
 
-# target to build an object file
-dev-test/beautifulMenu.cpp.obj:
-	$(MAKE) -f CMakeFiles\libManage.dir\build.make CMakeFiles/libManage.dir/dev-test/beautifulMenu.cpp.obj
-.PHONY : dev-test/beautifulMenu.cpp.obj
-
-dev-test/beautifulMenu.i: dev-test/beautifulMenu.cpp.i
-
+# target to preprocess a source file
+dev-test/beautifulMenu.i:
+	$(MAKE) -f CMakeFiles\libManage.dir\build.make CMakeFiles/libManage.dir/dev-test/beautifulMenu.i
 .PHONY : dev-test/beautifulMenu.i
 
-# target to preprocess a source file
-dev-test/beautifulMenu.cpp.i:
-	$(MAKE) -f CMakeFiles\libManage.dir\build.make CMakeFiles/libManage.dir/dev-test/beautifulMenu.cpp.i
-.PHONY : dev-test/beautifulMenu.cpp.i
-
-dev-test/beautifulMenu.s: dev-test/beautifulMenu.cpp.s
-
-.PHONY : dev-test/beautifulMenu.s
-
 # target to generate assembly for a file
-dev-test/beautifulMenu.cpp.s:
-	$(MAKE) -f CMakeFiles\libManage.dir\build.make CMakeFiles/libManage.dir/dev-test/beautifulMenu.cpp.s
-.PHONY : dev-test/beautifulMenu.cpp.s
+dev-test/beautifulMenu.s:
+	$(MAKE) -f CMakeFiles\libManage.dir\build.make CMakeFiles/libManage.dir/dev-test/beautifulMenu.s
+.PHONY : dev-test/beautifulMenu.s
 
 # Help Target
 help:

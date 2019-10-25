@@ -30,6 +30,7 @@ bool printAssignInfo(User user) {
     users.push_back(user);
     printf("检索到如下信息\n");
     User::printUserList(users);
+	return true;
 }
 
 //===============================================================

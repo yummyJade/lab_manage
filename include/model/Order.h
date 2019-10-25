@@ -90,7 +90,17 @@ private:
 public:
     //------------------------------------------------------
     //----下面这些是与数据库交互的接口,由 public 调用------------
-
+    /**
+     * 获取指定书籍的历史借书记录
+     * @param bookId
+     * @return
+     */
+    static std::vector<Order> getAssignBookBorrowedHistory(int bookId);
+    /**
+     * 获取指定书籍的正在预约的记录
+     *
+     */
+    static std::vector<Order> getAssignBookAppointingList(int bookId);
     /**
      * 获取指定用户的历史借书记录
      * @param firstOrderId
@@ -105,6 +115,23 @@ public:
      */
     static std::vector<Order> getAssignUserBorrowingList(int firstOrderId);
 
+    /**
+     * 获取指定用户的已预约未取的记录
+     * @param firstOrderId
+     * @return
+     */
+    static std::vector<Order> getAssignUserAppointmentList(int firstOrderId);
+    /**
+     * 获取指定用户的已到的预约（且没有超期
+     * @param firstOrderId
+     * @return
+     */
+     //todo:这个预约超期判断谁来做，此时要判断么
+     static std::vector<Order> getAssignUserArrivedAppointmentList(int firstOrderId);
+    /**
+     * 判断指定用户的在预约记录是否有该本书（未实现）
+     */
+    static bool judgeAssignUserAppointmentList(int firstOrderId, int isbn);
     /**
      * 获取指定用户正在逾期的借书记录
      * @param firstOrderId
@@ -141,5 +168,11 @@ public:
 
     // 修改指定id的instance的状态和应还时间,用于借还书
     static bool updateStateAndReturnTimeById(Order order);
+
+    //修改指定id的instance的状态和bookId,用于预约书
+    static bool updateStateAndBookIdById(Order order);
+
+    //修改指定id的instance的状态和借书时间还书时间，用于领取书
+    static bool updateStateAndReturnTimeAndLendTimeById(Order order);
 };
 

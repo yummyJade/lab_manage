@@ -1,6 +1,0 @@
-D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/libManage.dir
-D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/edit_cache.dir
-D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-D:/projects/CLionProjects/myc1/cmake-build-debug/include/CMakeFiles/Include.dir
-D:/projects/CLionProjects/myc1/cmake-build-debug/include/CMakeFiles/edit_cache.dir
-D:/projects/CLionProjects/myc1/cmake-build-debug/include/CMakeFiles/rebuild_cache.dir
