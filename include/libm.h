@@ -13,6 +13,7 @@
 #include "core/SimpleTime.h"
 #include "core/SimpleString.h"
 #include "core/Library.h"
+#include "core/MD5.h"
 #include "model/Book.h"
 #include "model/BookInstance.h"
 #include "model/Order.h"

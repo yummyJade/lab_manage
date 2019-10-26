@@ -6,6 +6,8 @@
 #include "core/SimpleTime.cpp"
 #include "core/SimpleString.cpp"
 #include "core/Library.cpp"
+#include "core/MD5.cpp"
+
 #include "model/Book.cpp"
 #include "model/BookInstance.cpp"
 #include "model/Order.cpp"

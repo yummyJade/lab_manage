@@ -56,28 +56,28 @@ include CMakeFiles/libManage.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/libManage.dir/flags.make
 
-CMakeFiles/libManage.dir/dev-test/beautifulMenu.cpp.obj: CMakeFiles/libManage.dir/flags.make
-CMakeFiles/libManage.dir/dev-test/beautifulMenu.cpp.obj: CMakeFiles/libManage.dir/includes_CXX.rsp
-CMakeFiles/libManage.dir/dev-test/beautifulMenu.cpp.obj: ../dev-test/beautifulMenu.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/libManage.dir/dev-test/beautifulMenu.cpp.obj"
-	C:\PROGRA~2\CODEBL~1\MinGW\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\libManage.dir\dev-test\beautifulMenu.cpp.obj -c E:\Sources\Cpp\repos\Lib_manage\dev-test\beautifulMenu.cpp
+CMakeFiles/libManage.dir/dev-Tan/main.cpp.obj: CMakeFiles/libManage.dir/flags.make
+CMakeFiles/libManage.dir/dev-Tan/main.cpp.obj: CMakeFiles/libManage.dir/includes_CXX.rsp
+CMakeFiles/libManage.dir/dev-Tan/main.cpp.obj: ../dev-Tan/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:\Sources\Cpp\repos\Lib_manage\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/libManage.dir/dev-Tan/main.cpp.obj"
+	C:\PROGRA~2\CODEBL~1\MinGW\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\libManage.dir\dev-Tan\main.cpp.obj -c E:\Sources\Cpp\repos\Lib_manage\dev-Tan\main.cpp
 
-CMakeFiles/libManage.dir/dev-test/beautifulMenu.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/libManage.dir/dev-test/beautifulMenu.cpp.i"
-	C:\PROGRA~2\CODEBL~1\MinGW\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\Sources\Cpp\repos\Lib_manage\dev-test\beautifulMenu.cpp > CMakeFiles\libManage.dir\dev-test\beautifulMenu.cpp.i
+CMakeFiles/libManage.dir/dev-Tan/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/libManage.dir/dev-Tan/main.cpp.i"
+	C:\PROGRA~2\CODEBL~1\MinGW\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\Sources\Cpp\repos\Lib_manage\dev-Tan\main.cpp > CMakeFiles\libManage.dir\dev-Tan\main.cpp.i
 
-CMakeFiles/libManage.dir/dev-test/beautifulMenu.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/libManage.dir/dev-test/beautifulMenu.cpp.s"
-	C:\PROGRA~2\CODEBL~1\MinGW\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\Sources\Cpp\repos\Lib_manage\dev-test\beautifulMenu.cpp -o CMakeFiles\libManage.dir\dev-test\beautifulMenu.cpp.s
+CMakeFiles/libManage.dir/dev-Tan/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/libManage.dir/dev-Tan/main.cpp.s"
+	C:\PROGRA~2\CODEBL~1\MinGW\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\Sources\Cpp\repos\Lib_manage\dev-Tan\main.cpp -o CMakeFiles\libManage.dir\dev-Tan\main.cpp.s
 
 # Object files for target libManage
 libManage_OBJECTS = \
-"CMakeFiles/libManage.dir/dev-test/beautifulMenu.cpp.obj"
+"CMakeFiles/libManage.dir/dev-Tan/main.cpp.obj"
 
 # External object files for target libManage
 libManage_EXTERNAL_OBJECTS =
 
-libManage.exe: CMakeFiles/libManage.dir/dev-test/beautifulMenu.cpp.obj
+libManage.exe: CMakeFiles/libManage.dir/dev-Tan/main.cpp.obj
 libManage.exe: CMakeFiles/libManage.dir/build.make
 libManage.exe: CMakeFiles/libManage.dir/linklibs.rsp
 libManage.exe: CMakeFiles/libManage.dir/objects1.rsp

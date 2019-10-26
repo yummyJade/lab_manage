@@ -2,6 +2,7 @@
 #include "../../include/model/Book.h"
 #include "../../include/model/BookInstance.h"
 #include "../../include/core/SimpleString.h"
+#include "../../include/core/MD5.h"
 #include <fstream>
 #include <sstream>
 #include <util/DbAdapter.h>
@@ -64,28 +65,67 @@ User::User(long long jobNum, status type, const string &name, const string &pass
 }
 
 bool User::setPassword(const string &password) {
-    // todo:待实现加密函数
-    this->password = password;
-    return true;
+    this->password = calcMD5(password);
 }
 
 bool User::isLegalPassword(const std::string &password) {
-    // todo:待实现验证加密函数
-    return (password == this->password);
+    return (calcMD5(password) == this->password);
 }
 
 bool User::changePwd(const std::string &password) {
+    string pwd;
     // 输入原来的密码
+    do {
+        cout << "请输入原密码(输入0取消修改):";
+        cin >> pwd;
+        if (pwd == "0") {
+            return false;
+        }
+        if (this->isLegalPassword(pwd)) {
+            break;
+        } else {
+            cout << "原密码错误" << endl;
+        }
+    } while (true);
 
-    // 判断原来的密码是否正确，不正确则跳到上面重新输入
+    // 若正确，则输入新的密码  todo: 做一个密码长度限制
+    cout << "请输入新密码:";
+    cin >> pwd;
+    this->setPassword(pwd);
+    User::updateUsersAssignField("jobNum", to_string(this->getJobNum()), "password", this->getPassword());
+    cout << "修改成功";
 
-    // 若正确，则输入新的密码
-    return this->setPassword(password);
+    return true;
 }
 
-User User::login(long long jobNum, std::string password) {
+int User::login(long long jobNum, std::string password, User *user = NULL) {
+    if (checkUserExist(jobNum, user)) {
+        if (user->isLegalPassword(password)) {// 判断用户名是否正确
+            if (user->getType() < 0)// 判断用户状态,是否被禁止登陆
+                return 3;// 返回3,用户被禁止登陆
 
-    return User();
+            // 判断用户所有订单的状态,是否有超时订单
+            if (!Order::getAssignUserOweOrder(user->getFirstOrderId()).empty()) {
+                cout << "该用户有逾期借阅,需要处理后才能登陆" << endl;
+                cout << "输入Y处理逾期,N取消登录:";
+                char operate;
+                cin >> operate;
+                if (operate == 'Y' || operate == 'y') {
+                    // 处理逾期情况
+                    if (user->dealWithOverTimeOrder() == 0) {
+                        return 0;// 登陆成功
+                    }
+                }
+                return 4;// 返回4,有逾期借阅,禁止登陆
+            }
+            return 0; // 返回0,登陆成功
+        } else {
+            return 2;//返回2,密码错误
+        }
+    } else {
+        return 1;// 返回1,用户不存在
+    }
+    
 }
 
 bool User::checkUserExist(long long jobNum, User *user = NULL) {
@@ -117,15 +157,7 @@ bool User::addUsers(std::vector<std::vector<std::string>> queryData, std::vector
     return true;
 }
 
-int User::isAllowedLogin() {
-    // 判断用户状态,是否被禁止登陆
-    if (this->type < 0)
-        return 1;
-    // 判断用户所有订单的状态,是否有超时订单
-    if (!Order::getAssignUserOweOrder(this->firstOrderId).empty())
-        return 2;
-    return 0;
-}
+
 
 int User::borrowAssignBookInstance(int bookInstanceId) {
     // 判断用户能否借书(是否有权借阅,借书数量是多少)
@@ -227,16 +259,20 @@ User::User(long long int jobNum, status type, const string &name, const string &
         : jobNum(jobNum), type(type), name(name), password(password), firstOrderId(firstOrderId) {}
 
 
-std::string User::getUserMeaasge() {
+std::string User::getUserMessage() {
     // 检测是否有正在预约书籍
 
 
     // 检测是否有预约已到书籍
 
     // 检测是否有即将逾期的借阅
-    vector<Order> boringOrders = Order::getAssignUserBorrowingList(this->firstOrderId);
-    for (int i = 0; i < boringOrders.size(); ++i) {
-
+    vector<Order> borrowingOrders = Order::getAssignUserBorrowingList(this->firstOrderId);
+    vector<Order> soonTimeOutOrders;
+    for (int i = 0; i < borrowingOrders.size(); ++i) {
+        SimpleTime returnTime = borrowingOrders[i].getReturnTime();
+        if (returnTime.compare(Date::today()) <= 3) {// 3天内到期的书
+            soonTimeOutOrders.push_back(borrowingOrders[i]);
+        }
     }
 
 	string str = "123";
@@ -435,6 +471,35 @@ int User::renewAssignOrder(Order order) {
 
 
     return 0;
+}
+
+int User::dealWithOverTimeOrder() {
+    // 打印逾期的借阅
+    vector<Order> OweOrders = Order::getAssignUserOweOrder(this->getFirstOrderId());
+    Order::printOrderList(OweOrders);
+
+    int arrears = 0;//要还的钱,单位分
+    int allOverDays = 0;//总的逾期天数
+    for (int i = 0; i < OweOrders.size(); ++i) {
+        Date planreturnDate = OweOrders[i].getReturnTime().date;
+        allOverDays += Date::today().compare(planreturnDate);
+    }
+
+    printf("总共逾期%d本书,共计逾期时间%d天,应缴%.2f元罚款\n", OweOrders.size(), allOverDays, allOverDays * 0.03);
+    printf("输入Y缴纳罚款并归还书籍,N取消操作");
+    char operate;
+    cin >> operate;
+    if (operate == 'Y' || operate == 'y') {
+        for (int i = 0; i < OweOrders.size(); ++i) {
+            // 还书
+            this->returnAssignOrder(OweOrders[i]);
+        }
+        printf("缴纳罚款成功,逾期书籍已归还\n");
+        return 0; // 已缴纳罚款
+    }
+    return 1;// 未缴纳罚款
+
+
 }
 
 

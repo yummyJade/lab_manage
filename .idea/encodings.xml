@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/.gitignore" charset="GBK" />
     <file url="file://$PROJECT_DIR$/CMakeLists.txt" charset="GBK" />
     <file url="file://$PROJECT_DIR$/database/database.cpp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/database/database.h" charset="GBK" />
@@ -15,6 +16,7 @@
     <file url="file://$PROJECT_DIR$/dev-test/beautifulMenu.cpp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/dev-test/main.cpp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/dev-test/menuTest.cpp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/include/core/MD5.h" charset="GBK" />
     <file url="file://$PROJECT_DIR$/include/model/Book.h" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/include/model/BookInstance.h" charset="GBK" />
     <file url="file://$PROJECT_DIR$/include/model/Order.h" charset="UTF-8" />
@@ -24,6 +26,7 @@
     <file url="file://$PROJECT_DIR$/linkDatebase/src/TableBookcopy.cpp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/linkDatebase/src/TableRecord.cpp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/core/Date.cpp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/core/Library.cpp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/core/SimpleString.cpp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/core/SimpleTime.cpp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/model/Book.cpp" charset="GBK" />

@@ -86,21 +86,21 @@ public:
     std::string getTypeContent();
 
     // 获取当前用户的登陆消息提示
-    std::string getUserMeaasge();
+    std::string getUserMessage();
 
 
-/** 待完成
- * 判断该工号的用户是否存在,若存在则返回该用户
- * @param jobNum
- * @return
- */
+    /** 待完成
+     * 判断该工号的用户是否存在,若存在则返回该用户
+     * @param jobNum
+     * @return
+     */
     static bool checkUserExist(long long jobNum, User *user);
 
-/** 已完成
- * 修改当前登陆的用户的密码,并持久化到数据库
- * @param password
- * @return
- */
+    /** 已完成
+     * 修改当前登陆的用户的密码,并持久化到数据库
+     * @param password
+     * @return
+     */
     bool changePwd(const std::string &password);
 
     static bool updateUsersAssignField(std::string assignField, std::string assignValue, std::string changeField,
@@ -115,7 +115,7 @@ public:
 
 private:
     /**
-     * 修改密码
+     * 修改密码,不持久化到数据库
      * @param password
      * @return
      */
@@ -131,17 +131,13 @@ private:
 
     // 二维字符串数组转User对象数组
     static std::vector<User> stringsToUsers(std::vector<std::vector<std::string>>);
+
+
 private:
     //------------------------------------------------------
     //----下面这些是与数据库交互的接口,由private调用------------
 
-    /** 待完成
-     * 用户登陆
-     * @param name
-     * @param password
-     * @return
-     */
-    static User login(long long jobNum, std::string password);
+
 
 
     //------------------------------------------------------
@@ -158,13 +154,6 @@ private:
      * 获取当前登陆用户正在借阅的书的记录,通过调用Order类的静态函数实现
      */
     std::vector<Order> getBorrowingList();
-
-    /**
-     * 判断是否允许该账号登陆,在账号密码验证成功后执行该函数
-     * @return 0-允许登陆,1-账号被禁止,2-有欠费
-     */
-    int isAllowedLogin();
-
 
 
     /**
@@ -243,5 +232,21 @@ public:
      * @return
      */
     int renewAssignOrder(Order order);
+
+
+    /** 待完成
+     * 用户登陆
+     * @param name
+     * @param password
+     * @return
+     */
+    static int login(long long jobNum, std::string password, User *user);
+
+
+    /**
+     * 处理用户的逾期借阅
+     * @return
+     */
+    int dealWithOverTimeOrder();
 
 };

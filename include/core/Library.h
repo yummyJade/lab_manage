@@ -13,6 +13,8 @@ private:
     ~Library();
 
 public:
+    static User *login(bool needSimpleUser);
+
     // 登陆管理员账号
     static User *loginAdminUser();
 

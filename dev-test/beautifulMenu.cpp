@@ -14,6 +14,7 @@ using namespace std;
 
 bool printTree(int level, string str, int deepIndex = -1);
 
+
 int printAdminMenu(string userOpera);
 
 void printBookSearchMenu(bool canLend);
@@ -21,7 +22,6 @@ void printBookSearchMenu(bool canLend);
 void printUserSearchMenu();
 
 bool printLoginUserInfo();
-
 
 // 打印登陆的用户的信息
 bool printLoginUserInfo() {
@@ -148,6 +148,7 @@ void printBookSearchMenu(bool canLend=false) {
 // 普通用户首页
 int printUserMenu(string userOpera = "0") {
     system("cls");
+    User user*=Library::getSimpleUserInstance();
     int deepIndex = userOpera.length() + 1;
 
     printTree(1, "1.检索操作");
@@ -158,14 +159,61 @@ int printUserMenu(string userOpera = "0") {
     printTree(1, "2.我的借阅");
     if (userOpera[0] == '2') {
         printTree(2, "21.我的在借图书", deepIndex);
-        printTree(2, "22.我的预约图书", deepIndex);
-        printTree(2, "21.我的借阅图书", deepIndex);
+        printTree(2, "22.我的借阅历史", deepIndex);
+        printTree(2, "21.我的预约图书", deepIndex);
     }
 
     printTree(1, "3.账号相关");
     if (userOpera[0] == '3') {
         printTree(2, "31.修改密码", deepIndex);
     }
+
+
+    if (userOpera != "") {
+        cout << endl << "请选择操作:" << endl;
+        int operaNum = 0;
+        cin >> operaNum;
+
+        switch (operaNum) {
+            case 11:
+                printBookSearchMenu(true);
+                break;
+            case 12: {//领取预约已到书籍
+
+                break;
+            }
+
+            case 13:
+                break;
+
+            case 21:// 查看在借记录
+                Order::printOrderList(
+                        Order::getAssignUserBorrowingList(Library::getSimpleUserInstance()->getFirstOrderId()));
+                cout << "按回车键返回";
+                cin.get();
+                cin.get();
+                break;
+            case 22:// 查看历史借阅记录
+                Order::printOrderList(
+                        Order::getAssignUserBorrowedHistory(Library::getSimpleUserInstance()->getFirstOrderId()));
+                cout << "按回车键返回";
+                cin.get();
+                cin.get();
+                break;
+
+            case 23:// todo:查看正在预约的借阅记录
+
+                break;
+
+            case 31: { //修改密码
+                user->changePwd();
+                break;
+            }
+            default :
+                return operaNum;
+        }
+    }
+
 	return 0;
 
 }
@@ -390,7 +438,9 @@ int printAdminMenu(string userOpera = "0") {
 
 
             case 400:
-                printAdminDealUserMenu();
+                if (Library::login(true) != NULL) {
+                    printAdminDealUserMenu();
+                }
                 break;
 
             default:
@@ -448,4 +498,19 @@ int main() {
 
 }
 
+
+void trueMain() {
+    User *user = Library.login();
+    if (user == NULL) {// 用户不登录
+        cout << "退出应用成功" << endl;
+        return;
+    }
+    if (user->getType() == 0) {//管理员账号
+        printAdminMenu();
+    } else {
+        printUserMenu();
+    }
+
+
+}
 

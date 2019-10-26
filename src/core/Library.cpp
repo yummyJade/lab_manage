@@ -8,14 +8,52 @@
 
 using namespace std;
 
+User *Library::login(bool needSimpleUser = false) {
+    long long jobNum;
+    string password;
+    User *user;
+    int resultCode = 1;
+
+    while (resultCode != 0) {
+        cout << "ÇëÊäÈë¹¤ºÅ(ÊäÈë0È¡ÏûµÇÂ½)";
+        cin >> jobNum;
+        if (jobNum == 0) {
+            return NULL;
+        }
+        cout << "ÇëÊäÈëÃÜÂë";
+        cin >> password;
+        resultCode = User::login(jobNum, password, user);
+        switch (resultCode) {
+            default:
+            case 1:
+                cout << "ÕËºÅ²»´æÔÚ" << endl;
+            case 2:
+                cout << "ÃÜÂë´íÎó" << endl;
+            case 0:
+                if (needSimpleUser && user->getType() == 0) {
+                    cout << "¸ÃÕË»§ÊÇ¹ÜÀíÔ±ÕËºÅ,ÇëµÇÂ½Ò»¸öÆÕÍ¨ÕË»§";
+                    resultCode = 3;
+                }
+                break;
+        }
+    }
+
+    if (needSimpleUser || user->getType() != 0) {
+        Library::simpleUser = user;
+    } else {
+        Library::adminUser = user;
+    }
+
+    return user;
+}
 
 User *Library::loginAdminUser() {
     long long jobNum;
     string password;
 
-    cout << "å·¥å·:";
+    cout << "¹¤ºÅ:";
     cin >> jobNum;
-    cout << "å¯†ç :";
+    cout << "ÃÜÂë:";
     cin >> password;
 
 //    User::login(jobNum,password);

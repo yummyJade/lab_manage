@@ -87,6 +87,12 @@ int regexTest() {
 
 
 int main() {
+
+    string password;
+    cin >> password;
+    cout << calcMD5(password) << endl;
+
+
     Date date = Date::today();
     cout << date.serialize() << endl;
     cout << date.toInt() << endl;
