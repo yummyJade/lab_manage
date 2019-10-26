@@ -93,13 +93,13 @@ string Book::getTypeContent() {
 }
 
 string Book::printIsLend() {
-    return "不可借";
+//    return isLend ? "可借" : "不可借";
 //    if (isLend) {
 //        return "可借";
 //    } else if (!isLend) {
 //        return "不可借";
 //    }
-
+	return "";
 }
 
 void Book::printBookInfo() {
@@ -170,8 +170,7 @@ void Book::printBookList(std::vector<Book> books) {
     render.render();
 }
 
-bool
-Book::updateBooks(std::string assignField, std::string assignValue, std::string changeField, std::string changeValue) {
+bool Book::updateBooks(std::string assignField, std::string assignValue, std::string changeField, std::string changeValue) {
     DbAdapter dbAdapter("Book");
     dbAdapter.updateBySingleField(assignField, assignValue, changeField, changeValue);
     return true;
@@ -332,6 +331,15 @@ bool Book::updateBooksCount(std::vector<std::string> isbns, std::vector<int> add
         int oldCount = Book::searchBooksBySingleField("isbn", isbns[i].data())[0].count;
 //        cout << "old count is " << oldCount << endl;
         Book::updateBooks("isbn", isbns[i].data(), "count", to_string(oldCount + addCount[i]));
+    }
+    return true;
+}
+
+//只有两种情况 +1 -1
+bool Book::updateBooksAppointmentNum(std::string isbn, int addAppointmentNum){
+    if(abs(addAppointmentNum) == 1) {
+        int oldAppointmentNum = Book::searchBooksBySingleField("isbn",isbn.data())[0].appointmentNum;
+        Book::updateBooks("isbn", isbn, "appointmentNum", to_string(oldAppointmentNum + addAppointmentNum));
     }
     return true;
 }

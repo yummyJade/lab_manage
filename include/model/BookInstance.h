@@ -10,7 +10,7 @@ class BookInstance {
 public:
     int id;
     std::string isbn;     //图书所属种类的isbn
-    int status;     //状态 1 可借 2 已被借阅 3 已删除(丢失或下架) 4 已被借阅且已被预约
+    int status;     //状态 1 可借 2 已被借阅 3 已删除(丢失或下架) 4 已被借阅且已被预约 5 已被预约
     std::string position;       // 图书位置
     Date planReturnDate; // 预计归还日期
 
@@ -85,6 +85,11 @@ public:
     // 检测指定id的实例是否存在,待完善
     static bool checkAssignBookInstanceIdExist(long long id);
 
+
+    // 检测指定isbn的实例能否预约（至少有一本在借状态或已被预约的书
+    static bool checkAssignBookCanAppointmentInstanceExist(std::string isbn);
+
+
     // 静态函数, 打印查询出来的结果集
     static void printBookInstanceList(std::vector<BookInstance> instances);
 
@@ -113,6 +118,8 @@ public:
 
     // 修改指定id的instance的状态和应还时间,用于借还书
     static bool updateStateAndReturnTimeById(BookInstance book);
+
+
 };
 
 #endif //MYC1_BOOKINSTANCE_H

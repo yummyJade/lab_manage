@@ -14,7 +14,6 @@ using namespace std;
 
 bool printTree(int level, string str, int deepIndex = -1);
 
-
 int printAdminMenu(string userOpera);
 
 void printBookSearchMenu(bool canLend);
@@ -95,7 +94,7 @@ void printBookSearchMenu(bool canLend=false) {
 			return;
 		}
         cout << "您的选择是:" << choose << endl;
-		
+
 
         string fieds[] = {"", "all", "name", "author", "isbn", "type"};
         int options[] = {1, 2, 3, 4, 5, 0};
@@ -133,7 +132,8 @@ void printBookSearchMenu(bool canLend=false) {
 						break;
 					}
 					else if (operaNum == -1) {
-						//todo:用户预约
+						User *loginUser = Library::getSimpleUserInstance();
+                        loginUser->appointmentAssignBook(books[bookIndex - 1].getId(), books[bookIndex - 1].getIsbn());
 					}
 					else {
 						User* loginUser = Library::getSimpleUserInstance();
@@ -148,7 +148,6 @@ void printBookSearchMenu(bool canLend=false) {
 // 普通用户首页
 int printUserMenu(string userOpera = "0") {
     system("cls");
-    User user*=Library::getSimpleUserInstance();
     int deepIndex = userOpera.length() + 1;
 
     printTree(1, "1.检索操作");
@@ -255,7 +254,17 @@ int printAdminDealUserMenu(string userOpera = "0") {
                 printBookSearchMenu(true);
                 break;
             case 12: {//领取预约已到书籍
-
+                //打印所有已到的预约书籍
+                vector<Order> resultSet = Order::getAssignUserArrivedAppointmentList(
+                        Library::getSimpleUserInstance()->getFirstOrderId());
+                Order::printOrderList(resultSet);
+                int operaNum;
+                cout << "请选择要领取的书籍（输入0返回）";
+                cin >> operaNum;
+                if(operaNum > 0) {  //领取
+                    Library::getSimpleUserInstance();
+//                    User::getArrivedAppointment(resultSet[operaNum - 1]);
+                }
                 break;
             }
 

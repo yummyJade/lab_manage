@@ -1,4 +1,0 @@
-C:\Users\Tjm\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\192.6603.37\bin\cmake\win\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=C:/Program Files (x86)/CodeBlocks/MinGW/bin/mingw32-make.exe" "-DCMAKE_C_COMPILER=C:/Program Files (x86)/CodeBlocks/MinGW/bin/gcc.exe" "-DCMAKE_CXX_COMPILER=C:/Program Files (x86)/CodeBlocks/MinGW/bin/g++.exe" -G "CodeBlocks - MinGW Makefiles" E:\Sources\Cpp\repos\Lib_manage
--- Configuring done
--- Generating done
--- Build files have been written to: E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug

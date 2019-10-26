@@ -105,11 +105,6 @@ int main() {
 
     Date newDate = Date::intDate2Date(date.toInt());
     cout << newDate.serialize() << endl;
-
-	
-
-
-
 //     批量导入书籍
 //    Book::printBookList(Book::searchAll());
 //////    Book::updateBooks("isbn","978-5-664-71497-5","count","999");

@@ -1,4 +1,4 @@
-# Install script for directory: E:/Sources/Cpp/repos/Lib_manage
+# Install script for directory: D:/projects/CLionProjects/myc1
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -33,8 +33,9 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for the subdirectory.
-  include("E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/include/cmake_install.cmake")
+  # Include the install script for each subdirectory.
+  include("D:/projects/CLionProjects/myc1/cmake-build-debug/include/cmake_install.cmake")
+
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -45,5 +46,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "D:/projects/CLionProjects/myc1/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
