@@ -19,7 +19,7 @@ bool SimpleString::isDigital(std::string str) {
 }
 
 string SimpleString::fixPath(std::string str){
-    regex double_brace("[/\\\\]{1,2}");  // (/{1,2})|(\\\\{1,2})
+	regex double_brace("[/\\\\]{1,2}");
     return regex_replace(str, double_brace, "\\");
 }
 
@@ -27,7 +27,7 @@ bool SimpleString::isLegalPath(std::string str) {
     if (str.find(".") == string::npos) {
         return false;
     }
-    string suffix = str.substr(str.find_last_of("."), str.size()); // 获取后缀,//todo:这里后缀不存在估计会报错
+    string suffix = str.substr(str.find_last_of("."), str.size()); // 获取后缀,
     if (suffix==".txt"||suffix==".csv"){
         return true;
     }

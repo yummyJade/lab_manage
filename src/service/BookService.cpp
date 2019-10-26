@@ -4,7 +4,7 @@
 #include <model/User.h>
 #include "util/TableRenderer.h"
 
-bool printBookDetailInfo(std::string isbn) {
+bool printBookDetailInfo(std::string isbn, vector<BookInstance>* saveInstances=NULL) {
 	system("cls");
     vector<Book> books = Book::searchBooksBySingleField("isbn", isbn);
     if (books.size() <= 0) {
@@ -17,7 +17,9 @@ bool printBookDetailInfo(std::string isbn) {
     TableRenderer render(navs, 8);
 
     vector<BookInstance> instances = BookInstance::getInstancesByFirstId(book.getFirstInstanceId());
-
+	if (saveInstances != NULL) {// 把结果集送出去
+		*saveInstances = instances;
+	}
     BookInstance::printBookInstanceList(instances);
 
     return true;

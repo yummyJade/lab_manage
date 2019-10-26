@@ -38,11 +38,11 @@ include rules.ninja
 
 build cmake_object_order_depends_target_libManage: phony || CMakeFiles\libManage.dir
 
-build CMakeFiles\libManage.dir\dev-Tan\main.cpp.obj: CXX_COMPILER__libManage ..\..\..\dev-Tan\main.cpp || cmake_object_order_depends_target_libManage
+build CMakeFiles\libManage.dir\dev-test\beautifulMenu.obj: CXX_COMPILER__libManage ..\..\..\dev-test\beautifulMenu.cpp || cmake_object_order_depends_target_libManage
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1   -std:c++14
   INCLUDES = -I..\..\..\include
   OBJECT_DIR = CMakeFiles\libManage.dir
-  OBJECT_FILE_DIR = CMakeFiles\libManage.dir\dev-Tan
+  OBJECT_FILE_DIR = CMakeFiles\libManage.dir\dev-test
   TARGET_COMPILE_PDB = CMakeFiles\libManage.dir\
   TARGET_PDB = libManage.pdb
 
@@ -54,7 +54,7 @@ build CMakeFiles\libManage.dir\dev-Tan\main.cpp.obj: CXX_COMPILER__libManage ..\
 #############################################
 # Link the executable libManage.exe
 
-build libManage.exe: CXX_EXECUTABLE_LINKER__libManage CMakeFiles\libManage.dir\dev-Tan\main.cpp.obj
+build libManage.exe: CXX_EXECUTABLE_LINKER__libManage CMakeFiles\libManage.dir\dev-test\beautifulMenu.obj
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
   LINK_LIBRARIES = kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
@@ -103,7 +103,7 @@ build rebuild_cache: phony CMakeFiles\rebuild_cache.util
 
 build cmake_object_order_depends_target_Include: phony || include\CMakeFiles\Include.dir
 
-build include\CMakeFiles\Include.dir\__\src\core\Date.cpp.obj: CXX_COMPILER__Include ..\..\..\src\core\Date.cpp || cmake_object_order_depends_target_Include
+build include\CMakeFiles\Include.dir\__\src\core\Date.obj: CXX_COMPILER__Include ..\..\..\src\core\Date.cpp || cmake_object_order_depends_target_Include
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1   -std:c++14
   INCLUDES = -I..\..\..\include
   OBJECT_DIR = include\CMakeFiles\Include.dir
@@ -111,7 +111,7 @@ build include\CMakeFiles\Include.dir\__\src\core\Date.cpp.obj: CXX_COMPILER__Inc
   TARGET_COMPILE_PDB = include\CMakeFiles\Include.dir\Include.pdb
   TARGET_PDB = include\Include.pdb
 
-build include\CMakeFiles\Include.dir\__\src\core\SimpleString.cpp.obj: CXX_COMPILER__Include ..\..\..\src\core\SimpleString.cpp || cmake_object_order_depends_target_Include
+build include\CMakeFiles\Include.dir\__\src\core\SimpleString.obj: CXX_COMPILER__Include ..\..\..\src\core\SimpleString.cpp || cmake_object_order_depends_target_Include
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1   -std:c++14
   INCLUDES = -I..\..\..\include
   OBJECT_DIR = include\CMakeFiles\Include.dir
@@ -119,7 +119,7 @@ build include\CMakeFiles\Include.dir\__\src\core\SimpleString.cpp.obj: CXX_COMPI
   TARGET_COMPILE_PDB = include\CMakeFiles\Include.dir\Include.pdb
   TARGET_PDB = include\Include.pdb
 
-build include\CMakeFiles\Include.dir\__\src\core\SimpleTime.cpp.obj: CXX_COMPILER__Include ..\..\..\src\core\SimpleTime.cpp || cmake_object_order_depends_target_Include
+build include\CMakeFiles\Include.dir\__\src\core\SimpleTime.obj: CXX_COMPILER__Include ..\..\..\src\core\SimpleTime.cpp || cmake_object_order_depends_target_Include
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1   -std:c++14
   INCLUDES = -I..\..\..\include
   OBJECT_DIR = include\CMakeFiles\Include.dir
@@ -127,7 +127,7 @@ build include\CMakeFiles\Include.dir\__\src\core\SimpleTime.cpp.obj: CXX_COMPILE
   TARGET_COMPILE_PDB = include\CMakeFiles\Include.dir\Include.pdb
   TARGET_PDB = include\Include.pdb
 
-build include\CMakeFiles\Include.dir\__\src\core\Library.cpp.obj: CXX_COMPILER__Include ..\..\..\src\core\Library.cpp || cmake_object_order_depends_target_Include
+build include\CMakeFiles\Include.dir\__\src\core\Library.obj: CXX_COMPILER__Include ..\..\..\src\core\Library.cpp || cmake_object_order_depends_target_Include
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1   -std:c++14
   INCLUDES = -I..\..\..\include
   OBJECT_DIR = include\CMakeFiles\Include.dir
@@ -135,7 +135,7 @@ build include\CMakeFiles\Include.dir\__\src\core\Library.cpp.obj: CXX_COMPILER__
   TARGET_COMPILE_PDB = include\CMakeFiles\Include.dir\Include.pdb
   TARGET_PDB = include\Include.pdb
 
-build include\CMakeFiles\Include.dir\__\src\model\Book.cpp.obj: CXX_COMPILER__Include ..\..\..\src\model\Book.cpp || cmake_object_order_depends_target_Include
+build include\CMakeFiles\Include.dir\__\src\model\Book.obj: CXX_COMPILER__Include ..\..\..\src\model\Book.cpp || cmake_object_order_depends_target_Include
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1   -std:c++14
   INCLUDES = -I..\..\..\include
   OBJECT_DIR = include\CMakeFiles\Include.dir
@@ -143,7 +143,7 @@ build include\CMakeFiles\Include.dir\__\src\model\Book.cpp.obj: CXX_COMPILER__In
   TARGET_COMPILE_PDB = include\CMakeFiles\Include.dir\Include.pdb
   TARGET_PDB = include\Include.pdb
 
-build include\CMakeFiles\Include.dir\__\src\model\BookInstance.cpp.obj: CXX_COMPILER__Include ..\..\..\src\model\BookInstance.cpp || cmake_object_order_depends_target_Include
+build include\CMakeFiles\Include.dir\__\src\model\BookInstance.obj: CXX_COMPILER__Include ..\..\..\src\model\BookInstance.cpp || cmake_object_order_depends_target_Include
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1   -std:c++14
   INCLUDES = -I..\..\..\include
   OBJECT_DIR = include\CMakeFiles\Include.dir
@@ -151,7 +151,7 @@ build include\CMakeFiles\Include.dir\__\src\model\BookInstance.cpp.obj: CXX_COMP
   TARGET_COMPILE_PDB = include\CMakeFiles\Include.dir\Include.pdb
   TARGET_PDB = include\Include.pdb
 
-build include\CMakeFiles\Include.dir\__\src\model\User.cpp.obj: CXX_COMPILER__Include ..\..\..\src\model\User.cpp || cmake_object_order_depends_target_Include
+build include\CMakeFiles\Include.dir\__\src\model\User.obj: CXX_COMPILER__Include ..\..\..\src\model\User.cpp || cmake_object_order_depends_target_Include
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1   -std:c++14
   INCLUDES = -I..\..\..\include
   OBJECT_DIR = include\CMakeFiles\Include.dir
@@ -159,7 +159,7 @@ build include\CMakeFiles\Include.dir\__\src\model\User.cpp.obj: CXX_COMPILER__In
   TARGET_COMPILE_PDB = include\CMakeFiles\Include.dir\Include.pdb
   TARGET_PDB = include\Include.pdb
 
-build include\CMakeFiles\Include.dir\__\src\model\Order.cpp.obj: CXX_COMPILER__Include ..\..\..\src\model\Order.cpp || cmake_object_order_depends_target_Include
+build include\CMakeFiles\Include.dir\__\src\model\Order.obj: CXX_COMPILER__Include ..\..\..\src\model\Order.cpp || cmake_object_order_depends_target_Include
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1   -std:c++14
   INCLUDES = -I..\..\..\include
   OBJECT_DIR = include\CMakeFiles\Include.dir
@@ -167,7 +167,7 @@ build include\CMakeFiles\Include.dir\__\src\model\Order.cpp.obj: CXX_COMPILER__I
   TARGET_COMPILE_PDB = include\CMakeFiles\Include.dir\Include.pdb
   TARGET_PDB = include\Include.pdb
 
-build include\CMakeFiles\Include.dir\__\src\util\DbAdapter.cpp.obj: CXX_COMPILER__Include ..\..\..\src\util\DbAdapter.cpp || cmake_object_order_depends_target_Include
+build include\CMakeFiles\Include.dir\__\src\util\DbAdapter.obj: CXX_COMPILER__Include ..\..\..\src\util\DbAdapter.cpp || cmake_object_order_depends_target_Include
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1   -std:c++14
   INCLUDES = -I..\..\..\include
   OBJECT_DIR = include\CMakeFiles\Include.dir
@@ -175,7 +175,7 @@ build include\CMakeFiles\Include.dir\__\src\util\DbAdapter.cpp.obj: CXX_COMPILER
   TARGET_COMPILE_PDB = include\CMakeFiles\Include.dir\Include.pdb
   TARGET_PDB = include\Include.pdb
 
-build include\CMakeFiles\Include.dir\__\src\util\TableRenderer.cpp.obj: CXX_COMPILER__Include ..\..\..\src\util\TableRenderer.cpp || cmake_object_order_depends_target_Include
+build include\CMakeFiles\Include.dir\__\src\util\TableRenderer.obj: CXX_COMPILER__Include ..\..\..\src\util\TableRenderer.cpp || cmake_object_order_depends_target_Include
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1   -std:c++14
   INCLUDES = -I..\..\..\include
   OBJECT_DIR = include\CMakeFiles\Include.dir
@@ -183,7 +183,7 @@ build include\CMakeFiles\Include.dir\__\src\util\TableRenderer.cpp.obj: CXX_COMP
   TARGET_COMPILE_PDB = include\CMakeFiles\Include.dir\Include.pdb
   TARGET_PDB = include\Include.pdb
 
-build include\CMakeFiles\Include.dir\__\src\service\BookService.cpp.obj: CXX_COMPILER__Include ..\..\..\src\service\BookService.cpp || cmake_object_order_depends_target_Include
+build include\CMakeFiles\Include.dir\__\src\service\BookService.obj: CXX_COMPILER__Include ..\..\..\src\service\BookService.cpp || cmake_object_order_depends_target_Include
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1   -std:c++14
   INCLUDES = -I..\..\..\include
   OBJECT_DIR = include\CMakeFiles\Include.dir
@@ -191,7 +191,7 @@ build include\CMakeFiles\Include.dir\__\src\service\BookService.cpp.obj: CXX_COM
   TARGET_COMPILE_PDB = include\CMakeFiles\Include.dir\Include.pdb
   TARGET_PDB = include\Include.pdb
 
-build include\CMakeFiles\Include.dir\__\src\service\UserService.cpp.obj: CXX_COMPILER__Include ..\..\..\src\service\UserService.cpp || cmake_object_order_depends_target_Include
+build include\CMakeFiles\Include.dir\__\src\service\UserService.obj: CXX_COMPILER__Include ..\..\..\src\service\UserService.cpp || cmake_object_order_depends_target_Include
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1   -std:c++14
   INCLUDES = -I..\..\..\include
   OBJECT_DIR = include\CMakeFiles\Include.dir
@@ -207,7 +207,7 @@ build include\CMakeFiles\Include.dir\__\src\service\UserService.cpp.obj: CXX_COM
 #############################################
 # Link the static library include\Include.lib
 
-build include\Include.lib: CXX_STATIC_LIBRARY_LINKER__Include include\CMakeFiles\Include.dir\__\src\core\Date.cpp.obj include\CMakeFiles\Include.dir\__\src\core\SimpleString.cpp.obj include\CMakeFiles\Include.dir\__\src\core\SimpleTime.cpp.obj include\CMakeFiles\Include.dir\__\src\core\Library.cpp.obj include\CMakeFiles\Include.dir\__\src\model\Book.cpp.obj include\CMakeFiles\Include.dir\__\src\model\BookInstance.cpp.obj include\CMakeFiles\Include.dir\__\src\model\User.cpp.obj include\CMakeFiles\Include.dir\__\src\model\Order.cpp.obj include\CMakeFiles\Include.dir\__\src\util\DbAdapter.cpp.obj include\CMakeFiles\Include.dir\__\src\util\TableRenderer.cpp.obj include\CMakeFiles\Include.dir\__\src\service\BookService.cpp.obj include\CMakeFiles\Include.dir\__\src\service\UserService.cpp.obj
+build include\Include.lib: CXX_STATIC_LIBRARY_LINKER__Include include\CMakeFiles\Include.dir\__\src\core\Date.obj include\CMakeFiles\Include.dir\__\src\core\SimpleString.obj include\CMakeFiles\Include.dir\__\src\core\SimpleTime.obj include\CMakeFiles\Include.dir\__\src\core\Library.obj include\CMakeFiles\Include.dir\__\src\model\Book.obj include\CMakeFiles\Include.dir\__\src\model\BookInstance.obj include\CMakeFiles\Include.dir\__\src\model\User.obj include\CMakeFiles\Include.dir\__\src\model\Order.obj include\CMakeFiles\Include.dir\__\src\util\DbAdapter.obj include\CMakeFiles\Include.dir\__\src\util\TableRenderer.obj include\CMakeFiles\Include.dir\__\src\service\BookService.obj include\CMakeFiles\Include.dir\__\src\service\UserService.obj
   LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
   LINK_FLAGS = /machine:x64
   OBJECT_DIR = include\CMakeFiles\Include.dir
@@ -258,6 +258,11 @@ build libManage: phony libManage.exe
 # Folder: E:/Sources/Cpp/repos/Lib_manage/out/build/x64-Debug/include
 
 build include\all: phony Include
+
+# =============================================================================
+# Unknown Build Time Dependencies.
+# Tell Ninja that they may appear as side effects of build rules
+# otherwise ordered by order-only dependencies.
 
 # =============================================================================
 # Built-in targets

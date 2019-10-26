@@ -105,8 +105,8 @@ string Book::printIsLend() {
 void Book::printBookInfo() {
     this->getTypeContent();
     printf("---------------------------------------------------------\n");
-    printf("书名:%s\n作者:%s\n出版社:%s\n类别:%s\nISBN:%s\n价格:%.2f\n", name.c_str(), author.c_str(), press.c_str(),
-           this->getTypeContent().c_str(), isbn.c_str(), price / 100);
+    printf("书名:%s\n作者:%s\n出版社:%s\n类别:%s\nISBN:%s\n预约人数:%d人\n价格:%.2f元\n", name.c_str(), author.c_str(), press.c_str(),
+           this->getTypeContent().c_str(), isbn.c_str(), this->getAppointmentNum(),(double)price / 100.0);
     printf("---------------------------------------------------------\n");
 //    cout << id << name << author << isbn << type;
 }
@@ -139,8 +139,9 @@ bool Book::deSerialize(std::vector<std::string> info) {
     string isbn = info[6].data();
     string press = info[7].data();
     int firstInstanceId = atoi(info[8].data());
+	int id = atoi(info[info.size()-1].data());
 
-    new(this) Book(type, count, appointmentNum, price, firstInstanceId, name, author, isbn, press);
+    new(this) Book(id,type, count, appointmentNum, price, firstInstanceId, name, author, isbn, press);
 //    this->Book::Book();
 //    Book(type, count, price, firstInstanceId, name, author, isbn, press);
     return true;
@@ -213,13 +214,10 @@ int Book::checkAssignISBNExist(std::string isbn) {
     DbAdapter dbAdapter("Book");
     vector<vector<string>> result = dbAdapter.searchBySingleField("isbn", isbn);
     if (result.size() > 0) {
-//        cout<<"isbn:"<<isbn<<" 有"<<endl;
-//        cout << "末尾元素是" << result[0].back();
         Book book;
         book.deSerialize(result[0]);
         return book.getFirstInstanceId();
     }
-//    cout<<"isbn:"<<isbn<<" 没有"<<endl;
     return -1;
 }
 
@@ -368,7 +366,8 @@ std::vector<Book> Book::stringsToBooks(std::vector<std::vector<std::string>> boo
 }
 
 bool Book::addOneBookService() {
-    printf("请依次输入 书名,作者,出版社,类型,isbn,价格,位置,有效数量,用空格隔开\n");
+	//预约测试用书1 谭坚铭 谭谭出版社 c 912-654-51-2 6021 南区宿舍 1
+    printf("请依次输入 书名,作者,出版社,类型,isbn,价格(单位:元),位置,有效数量,用空格隔开\n");
     vector<string> fields;
     int index = 0;
     string temp_info;
@@ -393,8 +392,8 @@ bool Book::addOneBookService() {
         BookInstance bookInstance(isbn, position);
         bookinstancesFirstAdd.push_back(bookInstance);
     }
-    // 插入book实例到instance表
 
+    // 插入book实例到instance表
     int firstId = Book::checkAssignISBNExist(isbn);
     long long firstInstanceId = BookInstance::importBookInstances(bookinstancesFirstAdd,
                                                                   firstId);//获取链表的第一个位置
@@ -405,6 +404,7 @@ bool Book::addOneBookService() {
         books.push_back(book.serialize());
         vector<long long int> ids;
         Book::addBooks(books, ids);
+		cout << "图书插入成功" << endl;
     } else {
         vector<int> counts;
         counts.push_back(count);
@@ -520,6 +520,15 @@ std::vector<std::string> Book::getPrintLineStr() {
     info.push_back(to_string(this->count));
     info.push_back(this->isbn);
     return info;
+}
+
+Book::Book(int id,char type, int count, int appointmentNum, int price, int firstInstanceId, const string& name,
+	const string& author, const string& isbn, const string& press) :id(id), type(type), count(count),
+	appointmentNum(appointmentNum),
+	price(price),
+	firstInstanceId(firstInstanceId),
+	name(name), author(author), isbn(isbn),
+	press(press) {
 }
 
 Book::Book(char type, int count, int appointmentNum, int price, int firstInstanceId, const string &name,

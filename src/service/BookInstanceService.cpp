@@ -40,7 +40,7 @@ bool outShelvesAssignBookInstance() {
 
 
     printAssignInstanceInfo(*instance);
-//    user->changePwd(to_string(user->getJobNum()));
+//    user->changePwdService(to_string(user->getJobNum()));
 
     printf("已下架条码号为:%d的图书\n", instance->getId());
     return true;

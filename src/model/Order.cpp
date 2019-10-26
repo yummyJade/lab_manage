@@ -82,7 +82,7 @@ std::vector<Order> Order::getAssignBookBorrowedHistory(int bookId) {
 std::vector<Order> Order::getAssignBookAppointingList(int bookId) {
     //先获取所有的借阅记录
     vector<Order> orders = Order::getAssignBookBorrowedHistory(bookId);
-    cout << "已获取到所有记录:" << orders.size() << endl;
+//    cout << "已获取到所有记录:" << orders.size() << endl;
     vector<Order> result;
     int appointmentIndex = 3;       //表示所有的在预约状态
     for (int i = 0; i < orders.size(); ++i) {
@@ -96,9 +96,10 @@ std::vector<Order> Order::getAssignBookAppointingList(int bookId) {
 //1代表在借，2代表已还，3代表预约，4代表已续借的在借，5代表预约已到
 std::vector<Order> Order::getAssignUserBorrowedHistory(int firstOrderId) {
     TableRecord *table = TableRecord::getInstance();
+	//cout << "firstID is" << firstOrderId << endl;
     vector<Record> copys = table->queryByPerson(firstOrderId);
     vector<Order> result;
-//    cout<<"copys size "<<copys.size()<<endl;
+    //cout<<"copys size "<<copys.size()<<endl;
     for (int i = 0; i < copys.size(); ++i) {
 //        cout<<"开始转化"<<endl;
         result.push_back(Order::RecordCopyToOrder(copys[i]));
@@ -112,7 +113,7 @@ std::vector<Order> Order::getAssignUserBorrowedHistory(int firstOrderId) {
 std::vector<Order> Order::getAssignUserBorrowingList(int firstOrderId) {
     // 获取所有借阅记录
     vector<Order> orders = Order::getAssignUserBorrowedHistory(firstOrderId);
-    cout << "已获取到所有记录:" << orders.size() << endl;
+    //cout << "已获取到所有记录:" << orders.size() << endl;
     vector<Order> result;
     int borringIndexs[] = {1, 4}; // 在借状态statu的值集合
     for (int i = 0; i < orders.size(); ++i) {
@@ -195,14 +196,19 @@ Record Order::toRecordCopy() {
     record.setState(this->statu);
     record.setStId(this->userId);
     record.setBoTime(this->borrowTime.toLLTime());
-    record.setReTime(this->returnTime.toLLTime());
+	//record.setReTime(this->returnTime.toLLTime());
+	record.setReTime(this->returnTime.date.toInt());
     return record;
 }
 
 
 Order Order::RecordCopyToOrder(Record record) {
     SimpleTime boTime = SimpleTime::llTimeToSimpleTime(record.getBoTime());
-    SimpleTime reTime = SimpleTime::llTimeToSimpleTime(record.getReTime());
+	Date reDate = Date::intDate2Date(record.getReTime());
+	SimpleTime reTime = SimpleTime(0, 0, 0, reDate);
+
+    //SimpleTime reTime = SimpleTime::llTimeToSimpleTime(record.getReTime());
+
     return Order(record.getId(), record.getStId(), record.getBookId(), boTime, reTime,
                  static_cast<Status>(record.getState()));
 }
@@ -218,10 +224,14 @@ int Order::addSingleOrder(int firstId, Order order) {
 }
 
 void Order::printOrderList(std::vector<Order> orders) {
-    vector<string> navs = {"书名", "条码号", "借书时间", "还书/应还时间", "状态"};
+    vector<string> navs = {"编号","书名", "条码号", "借书时间", "还书/应还时间", "状态"};
     TableRenderer render(navs, 8);
     for (int i = 0; i < orders.size(); ++i) {
-        render.addColume(orders[i].getPrintLineStr());
+		vector<string> line;
+		vector<string> temp = orders[i].getPrintLineStr();
+		line.push_back(to_string(i + 1));
+		line.insert(line.end(), temp.begin(), temp.end());
+        render.addColume(line);
     }
     render.render();
 }
@@ -234,15 +244,20 @@ std::vector<std::string> Order::getPrintLineStr() {
     info.push_back(book.getName());
     info.push_back(to_string(bookInstance->getId()));
 
-    Date date = (Date &&) this->getBorrowTime();
+    SimpleTime date =  this->getBorrowTime();
     info.push_back(date.serialize());
 
-    date = (Date &&) this->getReturnTime();
-    info.push_back(date.serialize());
-    info.push_back(to_string(this->getStatu()));//todo:状态改成对应中文
+    date = this->getReturnTime();
+    info.push_back(date.date.serialize());
+	info.push_back(this->getStatuStr());
+    //info.push_back(to_string(this->getStatu()));//todo:状态改成对应中文
     return info;
 }
 
+std::string Order::getStatuStr() {
+	string strs[] = { "", "在借", "已还","预约中", "在借(已续借)","预约已到" };
+	return strs[this->getStatu()];
+}
 long long int Order::getId() const {
     return id;
 }

@@ -23,6 +23,7 @@ void init(){
     DbAdapter *dbHelper = new DbAdapter("Book");
 
 }
+
 //´òÓ¡Ö÷²Ëµ¥
 void printMainMenu() {
     system("cls");

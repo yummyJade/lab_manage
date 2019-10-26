@@ -63,12 +63,23 @@ Date Date::addDay(int num) {
 }
 
 int Date::compare(Date another) {
-    if (this->year != another.year) {
+	struct tm t1 = { 0 };
+	struct tm t2 = { 0 };
+	double seconds;
+
+	t1.tm_year = this->year - 1900; t1.tm_mon = this->month-1; t1.tm_mday = this->day;//现在时间2016,11,21  
+	t2.tm_year = another.year - 1900; t2.tm_mon = another.month-1; t2.tm_mday = another.day;//高考时间2017,6,7  
+
+	seconds = difftime(mktime(&t1), mktime(&t2));//转换结构体为time_t,利用difftime,计算时间差  
+	int compareResult = seconds / 86400;
+	return compareResult;
+
+    /*if (this->year != another.year) {
         return this->year - another.year;
     } else if (this->month != another.month) {
         return this->month - another.month;
     } else
-        return this->day - another.day;
+        return this->day - another.day;*/
 }
 
 string Date::serialize() {

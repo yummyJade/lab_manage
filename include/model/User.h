@@ -1,5 +1,4 @@
 #pragma once
-
 #include <vector>
 #include "../model/Order.h"
 enum status {
@@ -88,12 +87,8 @@ public:
     //计算该用户同时能够预约多少本
     int getCanAppointNums();
 
-
-    // 返回类型对应的中文
-    std::string getTypeContent();
-
-    // 获取当前用户的登陆消息提示
-    std::string getUserMessage();
+    // 获取当前用户的登陆消息提示(预约已到和3天内到期的书籍)
+    bool getUserMessage();
 
 
     /** 待完成
@@ -108,7 +103,7 @@ public:
      * @param password
      * @return
      */
-    bool changePwd(const std::string &password);
+    bool changePwdService();
 
     static bool updateUsersAssignField(std::string assignField, std::string assignValue, std::string changeField,
                                        std::string changeValue);
@@ -120,13 +115,14 @@ public:
  */
     static status stringEnumToStatu(std::string str);
 
+/**
+ * 修改密码,并持久化到数据库
+ * @param password
+ * @return
+ */
+bool setPassword(const std::string &password);
+
 private:
-    /**
-     * 修改密码,不持久化到数据库
-     * @param password
-     * @return
-     */
-    bool setPassword(const std::string &password);
 
     /**
      * 判断密码是否正确

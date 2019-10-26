@@ -19,7 +19,7 @@
 			</Target>
 			<Target title="libManage">
 				<Option output="E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/libManage.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug"/>
+				<Option working_dir=""/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -41,7 +41,7 @@
 			</Target>
 			<Target title="libManage/fast">
 				<Option output="E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/libManage.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug"/>
+				<Option working_dir=""/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -126,7 +126,7 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/dev-Tan/main.cpp">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/dev-test/beautifulMenu.cpp">
 			<Option target="libManage"/>
 		</Unit>
 		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/core/Date.h">

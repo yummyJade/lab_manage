@@ -123,6 +123,7 @@ public:
      * @return
      */
     static std::vector<Order> getAssignUserAppointmentList(int firstOrderId);
+
     /**
      * 获取指定用户的已到的预约（且没有超期
      * @param firstOrderId
@@ -130,6 +131,7 @@ public:
      */
      //todo:这个预约超期判断谁来做，此时要判断么
      static std::vector<Order> getAssignUserArrivedAppointmentList(int firstOrderId);
+
     /**
      * 判断指定用户的在预约记录是否有该本书（未实现）
      */

@@ -8,7 +8,7 @@
 // 根据输入选择一个user, 取消返回NULL
 User *choseOneUser() {
     long long jobNum;
-    User *user;
+    User *user=new User();
     while (true) {
         printf("请输入要操作的用户工号(输入0返回):");
         cin >> jobNum;
@@ -59,7 +59,7 @@ bool resetAssignUserPassword() {
 
     printAssignInfo(*user);
 
-    user->changePwd(to_string(user->getJobNum()));
+    user->setPassword(to_string(user->getJobNum()));
     printf("密码已重置为该用户的学号:%lld\n", user->getJobNum());
     return true;
 }
@@ -76,14 +76,23 @@ bool freezeAssignUser() {
     }
     printAssignInfo(*user);
 
-    int newState = user->getType();
-    if (newState < 0) {
-        printf("操作失败,工号为:%lld的账号已经是冻结状态", user->getJobNum());
-        return false;
-    }
-    newState = -newState;
-    User::updateUsersAssignField("jobNum", to_string(user->getJobNum()), "state", to_string(newState));
-    printf("已冻结学号为:%lld的用户\n", user->getJobNum());
+	char opera;
+	cout << "输入Y确认冻结,N取消操作";
+	cin >> opera;
+	if (opera == 'Y' || opera == 'y') {
+		int newState = user->getType();
+		if (newState < 0) {
+			printf("操作失败,工号为:%lld的账号已经是冻结状态\n", user->getJobNum());
+			return false;
+		}
+		newState = -newState;
+		User::updateUsersAssignField("jobNum", to_string(user->getJobNum()), "type", to_string(newState));
+		printf("已冻结学号为:%lld的用户\n", user->getJobNum());
+	}
+	else {
+		cout << "取消操作"<<endl;
+	}
+    
 }
 
 
@@ -97,15 +106,22 @@ bool unfreezeAssignUser() {
         return false;
     }
     printAssignInfo(*user);
-
-    int newState = user->getType();
-    if (newState > 0) {
-        printf("操作失败,工号为:%lld的账号未被冻结,无需解冻", user->getJobNum());
-        return false;
-    }
-    newState = -newState;
-    User::updateUsersAssignField("jobNum", to_string(user->getJobNum()), "state", to_string(newState));
-    printf("已冻结学号为:%lld的用户\n", user->getJobNum());
+	char opera;
+	cout << "输入Y确认冻结,N取消操作";
+	cin >> opera;
+	if (opera == 'Y' || opera == 'y') {
+		int newState = user->getType();
+		if (newState > 0) {
+			printf("操作失败,工号为:%lld的账号未被冻结,无需解冻\n", user->getJobNum());
+			return false;
+		}
+		newState = -newState;
+		User::updateUsersAssignField("jobNum", to_string(user->getJobNum()), "type", to_string(newState));
+		printf("已解冻学号为:%lld的用户\n", user->getJobNum());
+	}
+	else {
+		cout << "取消操作" << endl;
+	}
 }
 
 

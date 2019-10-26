@@ -161,15 +161,12 @@ void BookInstance::printBookInstanceList(std::vector<BookInstance> instances) {
 
     for (int i = 0; i < instances.size(); ++i) {
         vector<string> line;
-
         if (instances[i].status == 1) {// ¿É½è
-
             line = {to_string(index++), to_string(instances[i].getId()), instances[i].position, "¿É½è"};
         } else {
             line = {to_string(index++), to_string(instances[i].getId()), instances[i].position,
                     instances[i].planReturnDate.serialize()};
         }
-
         render.addColume(line);
     }
     render.render();

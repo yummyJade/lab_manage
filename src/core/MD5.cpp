@@ -1,135 +1,173 @@
 #include <iostream>
-#include "core/MD5.h"
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
+#include <windows.h>
 
-/*4ï¿½ï¿½ï¿½ï¿½ãº¯ï¿½ï¿½*/
-inline unsigned int F(unsigned int X, unsigned int Y, unsigned int Z) {
+char md5(char tmp)
+{
+    void ROL(unsigned int& s, unsigned short cx); //32Î»ÊýÑ­»·×óÒÆÊµÏÖº¯Êý
+    void ltob(unsigned int& i); //B\L»¥×ª£¬½ÓÊÜUINTÀàÐÍ
+    unsigned int* MD5(const char* mStr); //½Ó¿Úº¯Êý£¬²¢Ö´ÐÐÊý¾ÝÌî³ä£¬¼ÆËãMD5Ê±µ÷ÓÃ´Ëº¯Êý
+    char tmpstr[256],buf[4][10], result[32];
+    std::cout << "ÇëÊäÈëÐèÒª¼ÓÃÜµÄÃÜÂë" << endl;
+    std::cin >> tmpstr[256];
+    unsigned int* tmpGroup = MD5(tmpstr);
+    sprintf(buf[0], "%8X", tmpGroup[0]);
+    sprintf(buf[1], "%8X", tmpGroup[3]);
+    sprintf(buf[2], "%8X", tmpGroup[2]);
+    sprintf(buf[3], "%8X", tmpGroup[1]);
+    std::cout << "MD5:" << buf[0] << buf[1] << buf[2] << buf[3] << std::endl;
+    delete[] tmpGroup;
+    int k = 0;
+    for (int i = 0;i < 4;i++)
+        for (int j = 0;j < 8;j++) {
+            result[k] = buf[i][j];
+            k++;
+        }
+
+
+    return result[32]; //ÔÚ´ËÏÂ¶Ïµã²ÅÄÜ¿´µ½Êä³öµÄÖµ
+}
+// md5¼ÓÃÜËã·¨.cpp : ´ËÎÄ¼þ°üº¬ "main" º¯Êý¡£³ÌÐòÖ´ÐÐ½«ÔÚ´Ë´¦¿ªÊ¼²¢½áÊø¡£
+//
+
+/*4×é¼ÆËãº¯Êý*/
+inline unsigned int F(unsigned int X, unsigned int Y, unsigned int Z)
+{
     return (X & Y) | ((~X) & Z);
 }
-
-inline unsigned int G(unsigned int X, unsigned int Y, unsigned int Z) {
+inline unsigned int G(unsigned int X, unsigned int Y, unsigned int Z)
+{
     return (X & Z) | (Y & (~Z));
 }
-
-inline unsigned int H(unsigned int X, unsigned int Y, unsigned int Z) {
+inline unsigned int H(unsigned int X, unsigned int Y, unsigned int Z)
+{
     return X ^ Y ^ Z;
 }
-
-inline unsigned int I(unsigned int X, unsigned int Y, unsigned int Z) {
+inline unsigned int I(unsigned int X, unsigned int Y, unsigned int Z)
+{
     return Y ^ (X | (~Z));
 }
-/*4ï¿½ï¿½ï¿½ï¿½ãº¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
+/*4×é¼ÆËãº¯Êý½áÊø*/
 
-/*32Î»ï¿½ï¿½Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½Öºï¿½ï¿½ï¿½*/
-void ROL(unsigned int &s, unsigned short cx) {
+/*32Î»ÊýÑ­»·×óÒÆÊµÏÖº¯Êý*/
+void ROL(unsigned int& s, unsigned short cx)
+{
     if (cx > 32)cx %= 32;
     s = (s << cx) | (s >> (32 - cx));
     return;
 }
 
-/*B\Lï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½UINTï¿½ï¿½ï¿½ï¿½*/
-void ltob(unsigned int &i) {
-    unsigned int tmp = i;//ï¿½ï¿½ï¿½æ¸±ï¿½ï¿½
-    byte *psour = (byte * ) & tmp, *pdes = (byte * ) & i;
-    pdes += 3;//ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ë£¬×¼ï¿½ï¿½ï¿½ï¿½ï¿½Òµï¿½×ª
-    for (short i = 3; i >= 0; --i) {
+/*B\L»¥×ª£¬½ÓÊÕUINTÀàÐÍ*/
+void ltob(unsigned int& i)
+{
+    unsigned int tmp = i;//±£´æ¸±±¾
+    byte* psour = (byte*)&tmp, * pdes = (byte*)&i;
+    pdes += 3;//µ÷ÕûÖ¸Õë£¬×¼±¸×óÓÒµ÷×ª
+    for (short i = 3; i >= 0; --i)
+    {
         CopyMemory(pdes - i, psour + i, 1);
     }
     return;
 }
 
 /*
-MD5Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ãº¯ï¿½ï¿½ï¿½ï¿½label=ï¿½Ú¼ï¿½ï¿½ï¿½Ñ­ï¿½ï¿½ï¿½ï¿½1<=label<=4ï¿½ï¿½ï¿½ï¿½lGroupï¿½ï¿½ï¿½ï¿½=4ï¿½ï¿½ï¿½ï¿½ï¿½Ó¸ï¿½ï¿½ï¿½ï¿½ï¿½M=ï¿½ï¿½ï¿½Ý£ï¿½16ï¿½ï¿½32Î»ï¿½ï¿½Ö¸ï¿½ë£©
-ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð·ï¿½Ê½: --A--D--C--B--ï¿½ï¿½ï¿½ï¿½ lGroup[0]=A; lGroup[1]=D; lGroup[2]=C; lGroup[3]=B;
+MD5Ñ­»·¼ÆËãº¯Êý£¬label=µÚ¼¸ÂÖÑ­»·£¨1<=label<=4£©£¬lGroupÊý×é=4¸öÖÖ×Ó¸±±¾£¬M=Êý¾Ý£¨16×é32Î»ÊýÖ¸Õë£©
+ÖÖ×ÓÊý×éÅÅÁÐ·½Ê½: --A--D--C--B--£¬¼´ lGroup[0]=A; lGroup[1]=D; lGroup[2]=C; lGroup[3]=B;
 */
-void AccLoop(unsigned short label, unsigned int *lGroup, void *M) {
-    unsigned int *i1, *i2, *i3, *i4, TAcc, tmpi = 0; //ï¿½ï¿½ï¿½ï¿½:4ï¿½ï¿½Ö¸ï¿½ë£» Tï¿½ï¿½ï¿½Û¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö²ï¿½ï¿½ï¿½ï¿½ï¿½
-    typedef unsigned int(*clac)(unsigned int X, unsigned int Y, unsigned int Z); //ï¿½ï¿½ï¿½åº¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+void AccLoop(unsigned short label, unsigned int* lGroup, void* M)
+{
+    unsigned int* i1, * i2, * i3, * i4, TAcc, tmpi = 0; //¶¨Òå:4¸öÖ¸Õë£» T±íÀÛ¼ÓÆ÷£» ¾Ö²¿±äÁ¿
+    typedef unsigned int(*clac)(unsigned int X, unsigned int Y, unsigned int Z); //¶¨Òåº¯ÊýÀàÐÍ
     const unsigned int rolarray[4][4] = {
-            {7, 12, 17, 22},
-            {5, 9,  14, 20},
-            {4, 11, 16, 23},
-            {6, 10, 15, 21}
-    };//Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-Î»ï¿½ï¿½ï¿½ï¿½
+            { 7, 12, 17, 22 },
+            { 5, 9, 14, 20 },
+            { 4, 11, 16, 23 },
+            { 6, 10, 15, 21 }
+    };//Ñ­»·×óÒÆ-Î»Êý±í
     const unsigned short mN[4][16] = {
-            {0, 1, 2,  3,  4,  5,  6,  7,  8,  9,  10, 11, 12, 13, 14, 15},
-            {1, 6, 11, 0,  5,  10, 15, 4,  9,  14, 3,  8,  13, 2,  7,  12},
-            {5, 8, 11, 14, 1,  4,  7,  10, 13, 0,  3,  6,  9,  12, 15, 2},
-            {0, 7, 14, 5,  12, 3,  10, 1,  8,  15, 6,  13, 4,  11, 2,  9}
-    };//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-    const unsigned int *pM = static_cast<unsigned int *>(M);//×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îª32Î»ï¿½ï¿½Uint
-    TAcc = ((label - 1) * 16) + 1; //ï¿½ï¿½ï¿½ÝµÚ¼ï¿½ï¿½ï¿½Ñ­ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½Tï¿½ï¿½ï¿½Û¼ï¿½ï¿½ï¿½
-    clac clacArr[4] = {F, G, H, I}; //ï¿½ï¿½ï¿½å²¢ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ãº¯ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 },
+            { 1, 6, 11, 0, 5, 10, 15, 4, 9, 14, 3, 8, 13, 2, 7, 12 },
+            { 5, 8, 11, 14, 1, 4, 7, 10, 13, 0, 3, 6, 9, 12, 15, 2 },
+            { 0, 7, 14, 5, 12, 3, 10, 1, 8, 15, 6, 13, 4, 11, 2, 9 }
+    };//Êý¾Ý×ø±ê±í
+    const unsigned int* pM = static_cast<unsigned int*>(M);//×ª»»ÀàÐÍÎª32Î»µÄUint
+    TAcc = ((label - 1) * 16) + 1; //¸ù¾ÝµÚ¼¸ÂÖÑ­»·³õÊ¼»¯T±íÀÛ¼ÓÆ÷
+    clac clacArr[4] = { F, G, H, I }; //¶¨Òå²¢³õÊ¼»¯¼ÆËãº¯ÊýÖ¸ÕëÊý×é
 
-    /*Ò»ï¿½ï¿½Ñ­ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½16ï¿½ï¿½->16ï¿½Î£ï¿½*/
-    for (short i = 0; i < 16; ++i) {
-        /*ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½Ô±ä»»*/
+    /*Ò»ÂÖÑ­»·¿ªÊ¼£¨16×é->16´Î£©*/
+    for (short i = 0; i < 16; ++i)
+    {
+        /*½øÐÐÖ¸Õë×Ô±ä»»*/
         i1 = lGroup + ((0 + i) % 4);
         i2 = lGroup + ((3 + i) % 4);
         i3 = lGroup + ((2 + i) % 4);
         i4 = lGroup + ((1 + i) % 4);
 
-        /*ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ã¿ªÊ¼: A+F(B,C,D)+M[i]+T[i+1] ×¢:ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ö±ï¿½Ó¼ï¿½ï¿½ï¿½Tï¿½ï¿½*/
-        tmpi = (*i1 + clacArr[label - 1](*i2, *i3, *i4) + pM[(mN[label - 1][i])] +
-                (unsigned int) (0x100000000UL * abs(sin((double) (TAcc + i)))));
-        ROL(tmpi, rolarray[label - 1][i % 4]);//ï¿½Ú¶ï¿½ï¿½ï¿½:Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-        *i1 = *i2 + tmpi;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:ï¿½ï¿½Ó²ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        /*µÚÒ»²½¼ÆËã¿ªÊ¼: A+F(B,C,D)+M[i]+T[i+1] ×¢:µÚÒ»²½ÖÐÖ±½Ó¼ÆËãT±í*/
+        tmpi = (*i1 + clacArr[label - 1](*i2, *i3, *i4) + pM[(mN[label - 1][i])] + (unsigned int)(0x100000000UL * abs(sin((double)(TAcc + i)))));
+        ROL(tmpi, rolarray[label - 1][i % 4]);//µÚ¶þ²½:Ñ­»·×óÒÆ
+        *i1 = *i2 + tmpi;//µÚÈý²½:Ïà¼Ó²¢¸³Öµµ½ÖÖ×Ó
     }
     return;
 }
 
-/*ï¿½Ó¿Úºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
-unsigned int *MD5(const char *mStr) {
-    unsigned int mLen = strlen(mStr); //ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+/*½Ó¿Úº¯Êý£¬²¢Ö´ÐÐÊý¾ÝÌî³ä*/
+unsigned int* MD5(const char* mStr)
+{
+    unsigned int mLen = strlen(mStr); //¼ÆËã×Ö·û´®³¤¶È
     if (mLen < 0) return 0;
-    unsigned int FillSize = 448 - ((mLen * 8) % 512); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½bitï¿½ï¿½
-    unsigned int FSbyte = FillSize / 8; //ï¿½ï¿½ï¿½Ö½Ú±ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-    unsigned int BuffLen = mLen + 8 + FSbyte; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È»ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½
-    unsigned char *md5Buff = new unsigned char[BuffLen]; //ï¿½ï¿½ï¿½ä»ºï¿½ï¿½ï¿½ï¿½
-    CopyMemory(md5Buff, mStr, mLen); //ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    unsigned int FillSize = 448 - ((mLen * 8) % 512); //¼ÆËãÐèÌî³äµÄbitÊý
+    unsigned int FSbyte = FillSize / 8; //ÒÔ×Ö½Ú±íÊ¾µÄÌî³äÊý
+    unsigned int BuffLen = mLen + 8 + FSbyte; //»º³åÇø³¤¶È»òÕßËµÌî³äºóµÄ³¤¶È
+    unsigned char* md5Buff = new unsigned char[BuffLen]; //·ÖÅä»º³åÇø
+    CopyMemory(md5Buff, mStr, mLen); //¸´ÖÆ×Ö·û´®µ½»º³åÇø
 
-    /*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ä¿ªÊ¼*/
-    md5Buff[mLen] = 0x80; //ï¿½ï¿½Ò»ï¿½ï¿½bitï¿½ï¿½ï¿½1
-    ZeroMemory(&md5Buff[mLen + 1], FSbyte - 1); //ï¿½ï¿½ï¿½ï¿½bitï¿½ï¿½ï¿½0ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ãºï¿½ï¿½ï¿½ÎªFillMemory
-    unsigned long long lenBit = mLen * 8ULL; //ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½×¼ï¿½ï¿½ï¿½ï¿½ï¿½
-    CopyMemory(&md5Buff[mLen + FSbyte], &lenBit, 8); //ï¿½ï¿½ä³¤ï¿½ï¿½
-    /*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
+    /*Êý¾ÝÌî³ä¿ªÊ¼*/
+    md5Buff[mLen] = 0x80; //µÚÒ»¸öbitÌî³ä1
+    ZeroMemory(&md5Buff[mLen + 1], FSbyte - 1); //ÆäËübitÌî³ä0£¬ÁíÒ»¿ÉÓÃº¯ÊýÎªFillMemory
+    unsigned long long lenBit = mLen * 8ULL; //¼ÆËã×Ö·û´®³¤¶È£¬×¼±¸Ìî³ä
+    CopyMemory(&md5Buff[mLen + FSbyte], &lenBit, 8); //Ìî³ä³¤¶È
+    /*Êý¾ÝÌî³ä½áÊø*/
 
-    /*ï¿½ï¿½ï¿½ã¿ªÊ¼*/
-    unsigned int LoopNumber = BuffLen / 64; //ï¿½ï¿½16ï¿½ï¿½ï¿½ï¿½ÎªÒ»ï¿½ï¿½ï¿½é£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-    unsigned int A = 0x67452301, B = 0x0EFCDAB89, C = 0x98BADCFE, D = 0x10325476;//ï¿½ï¿½Ê¼4ï¿½ï¿½ï¿½ï¿½ï¿½Ó£ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-    unsigned int *lGroup = new unsigned int[4]{A, D, C, B}; //ï¿½ï¿½ï¿½Ó¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½
-    for (unsigned int Bcount = 0; Bcount < LoopNumber; ++Bcount) //ï¿½ï¿½ï¿½ï¿½ï¿½Ñ­ï¿½ï¿½ï¿½ï¿½Ê¼
+    /*ÔËËã¿ªÊ¼*/
+    unsigned int LoopNumber = BuffLen / 64; //ÒÔ16¸ö×ÖÎªÒ»·Ö×é£¬¼ÆËã·Ö×éÊýÁ¿
+    unsigned int A = 0x67452301, B = 0x0EFCDAB89, C = 0x98BADCFE, D = 0x10325476;//³õÊ¼4¸öÖÖ×Ó£¬Ð¡¶ËÀàÐÍ
+    unsigned int* lGroup = new unsigned int[4]{ A, D, C, B }; //ÖÖ×Ó¸±±¾Êý×é,²¢×÷Îª·µ»ØÖµ·µ»Ø
+    for (unsigned int Bcount = 0; Bcount < LoopNumber; ++Bcount) //·Ö×é´óÑ­»·¿ªÊ¼
     {
-        /*ï¿½ï¿½ï¿½ï¿½4ï¿½Î¼ï¿½ï¿½ï¿½ï¿½Ð¡Ñ­ï¿½ï¿½*/
-        for (unsigned short Lcount = 0; Lcount < 4;) {
+        /*½øÈë4´Î¼ÆËãµÄÐ¡Ñ­»·*/
+        for (unsigned short Lcount = 0; Lcount < 4;)
+        {
             AccLoop(++Lcount, lGroup, &md5Buff[Bcount * 64]);
         }
-        /*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½Ò»ï¿½Öµï¿½ï¿½ï¿½ï¿½Ó»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
+        /*Êý¾ÝÏà¼Ó×÷ÎªÏÂÒ»ÂÖµÄÖÖ×Ó»òÕß×îÖÕÊä³ö*/
         A = (lGroup[0] += A);
         B = (lGroup[3] += B);
         C = (lGroup[2] += C);
         D = (lGroup[1] += D);
     }
-    /*×ªï¿½ï¿½ï¿½Ú´ï¿½ï¿½ÐµÄ²ï¿½ï¿½Öºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾*/
+    /*×ª»»ÄÚ´æÖÐµÄ²¼¾Öºó²ÅÄÜÕý³£ÏÔÊ¾*/
     ltob(lGroup[0]);
     ltob(lGroup[1]);
     ltob(lGroup[2]);
     ltob(lGroup[3]);
-    delete[] md5Buff; //ï¿½ï¿½ï¿½ï¿½Ú´æ²¢ï¿½ï¿½ï¿½ï¿½
+    delete[] md5Buff; //Çå³ýÄÚ´æ²¢·µ»Ø
     return lGroup;
 }
 
-
 string calcMD5(string rawPassword) {
-    void ROL(unsigned int &s, unsigned short cx); //32Î»ï¿½ï¿½Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½Öºï¿½ï¿½ï¿½
-    void ltob(unsigned int &i); //B\Lï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½UINTï¿½ï¿½ï¿½ï¿½
-    unsigned int *MD5(const char *mStr); //ï¿½Ó¿Úºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ä£¬ï¿½ï¿½ï¿½ï¿½MD5Ê±ï¿½ï¿½ï¿½Ã´Ëºï¿½ï¿½ï¿½
+    void ROL(unsigned int &s, unsigned short cx);
+    void ltob(unsigned int &i);
+    unsigned int *MD5(const char *mStr);
     char tmpstr[256], buf[4][10];
     unsigned int *tmpGroup = MD5(rawPassword.c_str());
-    sprintf_s(buf[0], "%8X", tmpGroup[0]);
-    sprintf_s(buf[1], "%8X", tmpGroup[3]);
-    sprintf_s(buf[2], "%8X", tmpGroup[2]);
-    sprintf_s(buf[3], "%8X", tmpGroup[1]);
+    sprintf(buf[0], "%8X", tmpGroup[0]);
+    sprintf(buf[1], "%8X", tmpGroup[3]);
+    sprintf(buf[2], "%8X", tmpGroup[2]);
+    sprintf(buf[3], "%8X", tmpGroup[1]);
     delete[] tmpGroup;
     int k = 0;
     string result;
@@ -142,13 +180,13 @@ string calcMD5(string rawPassword) {
     return result;
 }
 
-// ï¿½ï¿½ï¿½Ð³ï¿½ï¿½ï¿½: Ctrl + F5 ï¿½ï¿½ï¿½ï¿½ï¿½ >ï¿½ï¿½ï¿½ï¿½Ê¼Ö´ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ï¿½Ëµï¿½
-// ï¿½ï¿½ï¿½Ô³ï¿½ï¿½ï¿½: F5 ï¿½ï¿½ï¿½ï¿½ï¿½ >ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Ô¡ï¿½ï¿½Ëµï¿½
+// ÔËÐÐ³ÌÐò: Ctrl + F5 »òµ÷ÊÔ >¡°¿ªÊ¼Ö´ÐÐ(²»µ÷ÊÔ)¡±²Ëµ¥
+// µ÷ÊÔ³ÌÐò: F5 »òµ÷ÊÔ >¡°¿ªÊ¼µ÷ÊÔ¡±²Ëµ¥
 
-// ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ã¼ï¿½ï¿½ï¿½: 
-//   1. Ê¹ï¿½Ã½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½
-//   2. Ê¹ï¿½ï¿½ï¿½Å¶ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-//   3. Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú²é¿´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
-//   4. Ê¹ï¿½Ã´ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½Ú²é¿´ï¿½ï¿½ï¿½ï¿½
-//   5. ×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½î¡±ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ÂµÄ´ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½î¡±ï¿½Ô½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½Ä¿
-//   6. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½Ù´Î´ò¿ª´ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½>ï¿½ï¿½ï¿½ò¿ª¡ï¿½>ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½ .sln ï¿½Ä¼ï¿½
+// ÈëÃÅÊ¹ÓÃ¼¼ÇÉ: 
+//   1. Ê¹ÓÃ½â¾ö·½°¸×ÊÔ´¹ÜÀíÆ÷´°¿ÚÌí¼Ó/¹ÜÀíÎÄ¼þ
+//   2. Ê¹ÓÃÍÅ¶Ó×ÊÔ´¹ÜÀíÆ÷´°¿ÚÁ¬½Óµ½Ô´´úÂë¹ÜÀí
+//   3. Ê¹ÓÃÊä³ö´°¿Ú²é¿´Éú³ÉÊä³öºÍÆäËûÏûÏ¢
+//   4. Ê¹ÓÃ´íÎóÁÐ±í´°¿Ú²é¿´´íÎó
+//   5. ×ªµ½¡°ÏîÄ¿¡±>¡°Ìí¼ÓÐÂÏî¡±ÒÔ´´½¨ÐÂµÄ´úÂëÎÄ¼þ£¬»ò×ªµ½¡°ÏîÄ¿¡±>¡°Ìí¼ÓÏÖÓÐÏî¡±ÒÔ½«ÏÖÓÐ´úÂëÎÄ¼þÌí¼Óµ½ÏîÄ¿
+//   6. ½«À´£¬ÈôÒªÔÙ´Î´ò¿ª´ËÏîÄ¿£¬Çë×ªµ½¡°ÎÄ¼þ¡±>¡°´ò¿ª¡±>¡°ÏîÄ¿¡±²¢Ñ¡Ôñ .sln ÎÄ¼þ

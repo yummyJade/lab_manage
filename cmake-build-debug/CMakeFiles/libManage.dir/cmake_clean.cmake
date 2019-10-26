@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/libManage.dir/dev-Tan/main.cpp.obj"
+  "CMakeFiles/libManage.dir/dev-test/beautifulMenu.obj"
   "libManage.pdb"
   "libManage.exe"
   "libManage.exe.manifest"

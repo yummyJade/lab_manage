@@ -88,28 +88,11 @@ int regexTest() {
 
 int main() {
 
-    string password;
-    cin >> password;
-    cout << calcMD5(password) << endl;
-
-
-    Date date = Date::today();
-    cout << date.serialize() << endl;
-    cout << date.toInt() << endl;
-    SimpleTime time = SimpleTime::nowTime();
-    cout << time.serialize() << endl;
-    cout << time.toLLTime() << endl;
-
-    SimpleTime newTime = SimpleTime::llTimeToSimpleTime(time.toLLTime());
-    cout << newTime.serialize() << endl;
-
-    Date newDate = Date::intDate2Date(date.toInt());
-    cout << newDate.serialize() << endl;
 //     批量导入书籍
-//    Book::printBookList(Book::searchAll());
-//////    Book::updateBooks("isbn","978-5-664-71497-5","count","999");
-//    Book::importBooksService();// 导入书籍的函数
-//    Book::printBookList(Book::searchAll());
+    Book::printBookList(Book::searchAll());
+////    Book::updateBooks("isbn","978-5-664-71497-5","count","999");
+    Book::importBooksService();// 导入书籍的函数
+    Book::printBookList(Book::searchAll());
 
 
 //    User::importUsers();
@@ -130,9 +113,9 @@ int main() {
 //======================================================================================================
 
 //    // 批量导入用户
-//    User::printUserList(User::searchAll());
-//    User::importUsers();// 导入用户的函数
-//    User::printUserList(User::searchAll());
+    //User::printUserList(User::searchAll());
+    //User::importUsers();// 导入用户的函数
+    //User::printUserList(User::searchAll());
 
 //    User::printUserList(User::searchUsersBySingleField("jobNum","15774591043"));
 //    User::printUserList(User::searchUsersBySingleField("name","陈日作"));

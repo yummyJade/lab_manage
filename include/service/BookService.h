@@ -12,7 +12,7 @@
  * @param isbn
  * @return
  */
-bool printBookDetailInfo(std::string isbn);
+bool printBookDetailInfo(std::string isbn, vector<BookInstance>* saveInstances);
 
 
 // 改变指定种类书籍信息

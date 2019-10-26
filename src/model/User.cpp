@@ -67,13 +67,15 @@ User::User(long long jobNum, status type, const string &name, const string &pass
 
 bool User::setPassword(const string &password) {
     this->password = calcMD5(password);
+    User::updateUsersAssignField("jobNum", to_string(this->getJobNum()), "password", this->getPassword());
+	return true;
 }
 
 bool User::isLegalPassword(const std::string &password) {
     return (calcMD5(password) == this->password);
 }
 
-bool User::changePwd(const std::string &password) {
+bool User::changePwdService() {
     string pwd;
     // 输入原来的密码
     do {
@@ -93,17 +95,18 @@ bool User::changePwd(const std::string &password) {
     cout << "请输入新密码:";
     cin >> pwd;
     this->setPassword(pwd);
-    User::updateUsersAssignField("jobNum", to_string(this->getJobNum()), "password", this->getPassword());
+
     cout << "修改成功";
 
     return true;
 }
 
 int User::login(long long jobNum, std::string password, User *user = NULL) {
+	
     if (checkUserExist(jobNum, user)) {
         if (user->isLegalPassword(password)) {// 判断用户名是否正确
             if (user->getType() < 0)// 判断用户状态,是否被禁止登陆
-                return 3;// 返回3,用户被禁止登陆
+                return 3;// 返回3,用户被禁止登陆(挂失\冻结)
 
             // 判断用户所有订单的状态,是否有超时订单
             if (!Order::getAssignUserOweOrder(user->getFirstOrderId()).empty()) {
@@ -134,11 +137,11 @@ bool User::checkUserExist(long long jobNum, User *user = NULL) {
     vector<vector<string>> results = db.searchBySingleField("jobNum", to_string(jobNum));
 
     if (results.size() > 0) {
-        if (user != NULL) {
-            User temp;
-            temp.deSerialize(results[0]);
-            *user = temp;
-        }
+		if (user != NULL) {
+			*user = User(User::stringsToUsers(results)[0]);
+		}
+		
+		//cout << "password is" << user->getPassword()<<endl;
         return true;
     }
     return false;
@@ -170,19 +173,22 @@ int User::isAllowedLogin() {
 
 int User::borrowAssignBookInstance(int bookInstanceId) {
     // 判断用户能否借书(是否有权借阅,借书数量是多少)
-    cout << "firstOrder is " << this->getFirstOrderId();
+    /*cout << "firstOrder is " << this->getFirstOrderId();
     cout << "用户借阅量" << Order::getAssignUserBorrowingList(this->getFirstOrderId()).size() << endl;
+    cout << "用户可借阅量" << this->getCanLendNums() << endl;*/
 
-    cout << "用户可借阅量" << this->getCanLendNums() << endl;
     if (Order::getAssignUserBorrowingList(this->firstOrderId).size() >= this->getCanLendNums()) {
+		cout << "借书失败,借书数量已达上限" << endl;
         return 1; // 返回1,借书数量已达上线
     }
 
     // 判断该书是否能被借阅,
     BookInstance *instance = BookInstance::getInstanceById(bookInstanceId);
     if (instance == NULL) {
+		cout << "借书失败,该图书不存在"<<endl;
         return 5; // 返回5,图书不存在
     } else if (instance->status != 1) {
+		cout << "借书失败,该图书当前不可被借" << endl;
         return 2; // 返回2,该书不是可借
     }
 
@@ -202,6 +208,7 @@ int User::borrowAssignBookInstance(int bookInstanceId) {
     if (this->getFirstOrderId() == -1) {
         User::updateUsersAssignField("jobNum", to_string(this->jobNum), "firstOrderId", to_string(orderId));
     }
+	cout << "借书成功" << endl;
     return 0;
 }
 
@@ -261,32 +268,39 @@ bool User::importUsers() {
 
 
 std::string User::encryPassword(std::string pwd) {
-    return "123456";
+    return calcMD5(pwd);
 }
 
 User::User(long long int jobNum, status type, const string &name, const string &password, int firstOrderId)
         : jobNum(jobNum), type(type), name(name), password(password), firstOrderId(firstOrderId) {}
 
 
-std::string User::getUserMessage() {
-    // 检测是否有正在预约书籍
-
-
-    // 检测是否有预约已到书籍
+bool User::getUserMessage() {
+    printf("--------------------------------------------------------\n");
+    // 检测是否有预约已到的书籍
+    vector<Order> AppointingOrders = Order::getAssignUserArrivedAppointmentList(this->getFirstOrderId());
+    if(!AppointingOrders.empty()){//有预约已到内容
+        cout<<"您有"<<AppointingOrders.size()<<"本预约的书籍已到,请及时到图书馆领取"<<endl;
+        Order::printOrderList(AppointingOrders);
+    }
 
     // 检测是否有即将逾期的借阅
-    vector<Order> borrowingOrders = Order::getAssignUserBorrowingList(this->firstOrderId);
+    vector<Order> borrowingOrders = Order::getAssignUserBorrowingList(this->getFirstOrderId());
     vector<Order> soonTimeOutOrders;
     for (int i = 0; i < borrowingOrders.size(); ++i) {
         SimpleTime returnTime = borrowingOrders[i].getReturnTime();
-        if (returnTime.compare(Date::today()) <= 3) {// 3天内到期的书
+        if (returnTime.compare(Date::today().addDay(3)) <= 0) {// 3天内到期的书
             soonTimeOutOrders.push_back(borrowingOrders[i]);
         }
     }
-
-	string str = "123";
-    return str;
+    if(!soonTimeOutOrders.empty()){//有预约已到内容
+        cout<<"您有"<<soonTimeOutOrders.size()<<"本借阅的书籍将于3天内到期,请注意及时归还"<<endl;
+        Order::printOrderList(soonTimeOutOrders);
+    }
+    printf("--------------------------------------------------------\n");
+    return true;
 }
+
 // todo:返回类型改一下
 bool User::appointmentAssignBook(int bookId, std::string isbn) {
     // 判断用户是否超过最大预约数
@@ -379,10 +393,12 @@ status User::getType() const {
 std::string User::getTypeStr() {
 	string strs[] = { "管理员","本科生","研究生","教师" };
 	string result = "";
-	if (this->getType() < 0) {
+	int type = this->getType();
+	if (type < 0) {
+		type = -type;
 		result = "冻结的";
 	}
-	return result+strs[this->getType()];
+	return result+strs[type];
 }
 
 const string &User::getName() const {
@@ -431,6 +447,8 @@ vector<User> User::searchUsersBySingleField(std::string field, std::string value
     cout << "检索到" << queryData.size() << endl;
     return User::stringsToUsers(queryData);
 }
+
+
 
 std::vector<User> User::stringsToUsers(std::vector<std::vector<std::string>> users) {
     vector<User> results;
