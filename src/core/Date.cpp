@@ -63,6 +63,7 @@ Date Date::addDay(int num) {
 }
 
 int Date::compare(Date another) {
+
 	struct tm t1 = { 0 };
 	struct tm t2 = { 0 };
 	double seconds;
@@ -71,7 +72,7 @@ int Date::compare(Date another) {
 	t2.tm_year = another.year - 1900; t2.tm_mon = another.month-1; t2.tm_mday = another.day;//高考时间2017,6,7  
 
 	seconds = difftime(mktime(&t1), mktime(&t2));//转换结构体为time_t,利用difftime,计算时间差  
-	int compareResult = seconds / 86400;
+	int compareResult = seconds / 86400;// (24*60*60)=86400s
 	return compareResult;
 
     /*if (this->year != another.year) {

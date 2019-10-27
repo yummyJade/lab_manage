@@ -113,9 +113,9 @@ int main() {
 //======================================================================================================
 
 //    // 批量导入用户
-    //User::printUserList(User::searchAll());
-    //User::importUsers();// 导入用户的函数
-    //User::printUserList(User::searchAll());
+    User::printUserList(User::searchAll());
+    User::importUsers();// 导入用户的函数
+    User::printUserList(User::searchAll());
 
 //    User::printUserList(User::searchUsersBySingleField("jobNum","15774591043"));
 //    User::printUserList(User::searchUsersBySingleField("name","陈日作"));

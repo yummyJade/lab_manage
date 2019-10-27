@@ -198,7 +198,7 @@ public:
     static bool addUsers(std::vector<std::vector<std::string>> queryData, std::vector<long long> &ids);
 
     // 批量导入用户，这个函数要搬出去
-    static bool importUsers();
+    static bool importUsers(std::string incomingPath);
 
     /**
      * 加密密码

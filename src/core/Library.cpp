@@ -60,16 +60,17 @@ User *Library::login(bool needSimpleUser = false) {
 }
 
 User *Library::loginAdminUser() {
-    long long jobNum;
-    string password;
+	if (Library::adminUser == NULL) {
+		cout << "Î´µÇÂ½,Ê¹ÓÃ²âÊÔÕËºÅ" << endl;
+		vector<User> results = User::searchUsersBySingleField("jobNum", "10086");
+		if (results.size() > 0) {
+			User* user = new User(results[0]);
 
-    cout << "¹¤ºÅ:";
-    cin >> jobNum;
-    cout << "ÃÜÂë:";
-    cin >> password;
+			return user;
+		}
+	}
 
-//    User::login(jobNum,password);
-    return nullptr;
+	return Library::adminUser;
 }
 
 User *Library::getSimpleUserInstance() {

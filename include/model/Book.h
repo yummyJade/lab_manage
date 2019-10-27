@@ -25,8 +25,8 @@ private:
 public:
     Book();
 
-	Book::Book(int id, char type, int count, int appointmentNum, int price, int firstInstanceId, const string& name,
-		const string& author, const string& isbn, const string& press);
+	Book(int id, char type, int count, int appointmentNum, int price, int firstInstanceId, const std::string& name,
+		const std::string& author, const std::string& isbn, const std::string& press);
 
     Book(char type, int count, int price, int firstInstanceId, const std::string &name, const std::string &author,
          const std::string &isbn, const std::string &press);
@@ -98,7 +98,7 @@ public:
     // ----------------------------------------------------------------
     // ------下面这些是静态函数------------------------------------------
     // 批量导入书籍，这个函数要搬出去
-    static bool importBooksService();
+    static bool importBooksService(std::string incomingPath);
 
     // 导出所有书籍，这个函数要搬出去
     static bool exportBooks(std::vector<Book> books);

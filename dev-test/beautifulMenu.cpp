@@ -68,11 +68,14 @@ void printUserSearchMenu() {
             vector<User> users = User::searchUsersBySingleField(fieds[choose], keyWord);
             User::printUserList(users);
             cout << "请选择要操作的用户编号(输入0返回):";
-			int operaNum = 0;
+			int operaNum = -1;
 			while (operaNum<0 || operaNum > users.size()) {
 				cin >> operaNum;
 				if (operaNum == 0) {
 					break;
+				}
+				else if (operaNum<0 || operaNum > users.size()) {
+					continue;
 				}
 				// todo: 打印这个用户的相关信息(借阅情况)
 			}
@@ -115,15 +118,16 @@ void printBookSearchMenu(bool canLend=false) {
             string keyWord;
             cin >> keyWord;
             vector<Book> books = Book::searchBooksBySingleField(fieds[choose], keyWord);
-			//cout << "搜到的的内容长度为:" << books.size() << endl;
             Book::printBookList(books);
-			int operaNum=0;
+			int operaNum=-1;
 			while (operaNum<0 || operaNum > books.size()) {
 				cout << "请输入要查看详情的图书序号(输入0返回):";
 
 				cin >> operaNum;
 				if (operaNum == 0) {
 					break;
+				} else if(operaNum<0 || operaNum > books.size()) {
+					continue;
 				}
 				else {
 					// 打印第operaNum本书的详细信息
@@ -136,7 +140,7 @@ void printBookSearchMenu(bool canLend=false) {
 					}
 					else {// 可以借阅
 						// 打印操作信息
-						operaNum = 0;
+						operaNum = -2;
 						while (operaNum<-1 || operaNum> instances->size()) {
 							cout << "-----------------操作--------------" << endl
 								<< "借阅图书(输入编号)" << endl
@@ -151,7 +155,8 @@ void printBookSearchMenu(bool canLend=false) {
 								User* loginUser = Library::getSimpleUserInstance();
 								loginUser->appointmentAssignBook(books[bookIndex].getId(), books[bookIndex].getIsbn());
 							}
-							else { // 借书
+							else if(operaNum>0 && operaNum<= instances->size()) { // 借书
+
 								User* loginUser = Library::getSimpleUserInstance();
 								int resultCode = loginUser->borrowAssignBookInstance((*instances)[operaNum - 1].getId());
 								
@@ -290,8 +295,8 @@ int printAdminDealUserMenu(string userOpera = "0") {
                 cout << "请选择要领取的书籍（输入0返回）";
                 cin >> operaNum;
                 if(operaNum > 0) {  //领取
-                    Library::getSimpleUserInstance();
-//                    User::getArrivedAppointment(resultSet[operaNum - 1]);
+                    User* loginUser=Library::getSimpleUserInstance();
+					loginUser->getArrivedAppointment(resultSet[operaNum - 1]);
                 }
                 break;
             }
@@ -554,6 +559,14 @@ void trueMain() {
 }
 
 int main() {
+	//Book::printBookList(Book::searchAll());
+	//Book::importBooksService();//"E:\\Sources\\Cpp\\repos\\Lib_manage\\dev-Tan\\books.csv"
+	//Book::printBookList(Book::searchAll());
+	////
+	////// 导入用户
+	//User::printUserList(User::searchAll());
+	//User::importUsers();//"E:\\Sources\\Cpp\\repos\\Lib_manage\\dev-Tan\\users.csv"
+	//User::printUserList(User::searchAll());
 
 	// 管理员操作用户的界面
  //   string operaNum = "";

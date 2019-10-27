@@ -80,7 +80,7 @@ std::vector<Order> Order::getAssignBookBorrowedHistory(int bookId) {
 }
 
 std::vector<Order> Order::getAssignBookAppointingList(int bookId) {
-    //先获取所有的借阅记录
+    // 先获取所有的借阅记录
     vector<Order> orders = Order::getAssignBookBorrowedHistory(bookId);
 //    cout << "已获取到所有记录:" << orders.size() << endl;
     vector<Order> result;

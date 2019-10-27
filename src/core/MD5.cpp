@@ -3,7 +3,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
+#include "../../include/core/MD5.h"
 #include <windows.h>
+#include <math.h>
+#include <Windows.h>
+#include <stdio.h>
 
 char md5(char tmp)
 {

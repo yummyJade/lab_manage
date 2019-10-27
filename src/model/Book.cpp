@@ -18,7 +18,9 @@ Book::~Book() {
 
 string Book::getTypeContent() {
     string temp;
-    switch (type) {
+	char this_type=this->getType() ;
+	this_type=toupper(this_type);
+    switch (this_type) {
         case 'A':
             temp = "马克思主义、列宁主义、毛泽东思想、邓小平理论";
             break;
@@ -221,21 +223,26 @@ int Book::checkAssignISBNExist(std::string isbn) {
     return -1;
 }
 
-bool Book::importBooksService() {
-    /* 读取一个有效路径,并打开其对应的文件*/
-    string path;
-    ifstream fin;
-    string line;
-    while (true) {
-        path = SimpleString::readPathFromCmd();// "E:\\Sources\\Cpp\\repos\\Lib_manage\\dev-Tan\\newBooks.csv"
-        fin = ifstream(path);//打开文件流操作
-        if (fin.good()) {
-            cout << "已找到文件,正在读取" << endl;
-            break;
-        }
-        cout << "文件不存在,请检查路径后重新输入" << endl;
-    }
+bool Book::importBooksService(string incomingPath="") {
+	string path;
+	ifstream fin;
+	string line;
 
+	if (incomingPath != "") {
+		fin = ifstream(path);//打开文件流操作
+	}
+	else {
+		/* 读取一个有效路径,并打开其对应的文件*/
+		while (true) {
+			path = SimpleString::readPathFromCmd();// "E:\\Sources\\Cpp\\repos\\Lib_manage\\dev-Tan\\newBooks.csv"
+			fin = ifstream(path);//打开文件流操作
+			if (fin.good()) {
+				cout << "已找到文件,正在读取" << endl;
+				break;
+			}
+			cout << "文件不存在,请检查路径后重新输入" << endl;
+		}
+	}
     /* 先判断一下这次要导入的书籍种类哪些是已经存在的*/
     getline(fin, line); // 吃掉首行
     vector<string> isbns;
@@ -308,8 +315,11 @@ bool Book::importBooksService() {
     Book::addBooks(newBooks, ids);
     // 更新图书的馆藏量
 //    cout << "update操作,update数量"<<updateIsbns.size() << endl;
-    if (updateIsbns.size() > 0)
-        Book::updateBooksCount(updateIsbns, addCounts);
+	if (updateIsbns.size() > 0) {
+		cout << "执行了update" << endl;
+		Book::updateBooksCount(updateIsbns, addCounts);
+	}
+        
     return true;
 }
 

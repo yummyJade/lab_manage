@@ -2,11 +2,7 @@
 #define MYC1_DBADAPTER_H
 
 //#include "../../database_v1.0/database.cpp"
-#include "../../database/index.h"
-#include "../../database/index.cpp"
-#include "../../database/database.h"
-#include "../../database/database.cpp"
-
+#include "../../database/libDB.h"
 class DbAdapter {
     DataBase *db = NULL;
     string dbName;

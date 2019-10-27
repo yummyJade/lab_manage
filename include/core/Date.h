@@ -15,7 +15,7 @@ public:
     /**
      * 判断是否为闰年
      * @param year 年份
-     * @return 该年是否为闰年
+     * @return 该年是否为闰年(true or false)
      */
     bool isLeapYear(int year);
 
@@ -26,15 +26,15 @@ public:
     Date addDay(int num);
 
     /**
-     * 比较两个日期谁更靠后
+     * 比较两个日期的大小
      * @param another
-     * @return 大于0,说明当前日期比another大,等于0时相等,小于0当前更小
+     * @return 大于0,说明当前日期比another大,等于0时相等,小于0当前更小. (返回值为日期相差天数)
      */
     int compare(Date another);
 
     /**
-     * 返回 今天日期
-     * @return
+     * 获得今天日期
+     * @return 今天日期的Date对象
      */
     static Date today();
 

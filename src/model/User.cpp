@@ -212,20 +212,27 @@ int User::borrowAssignBookInstance(int bookInstanceId) {
     return 0;
 }
 
-bool User::importUsers() {
-    /* 读取一个有效路径,并打开其对应的文件*/
-    string path;
-    ifstream fin;
-    string line;
-    while (true) {
-        path = SimpleString::readPathFromCmd();// "E:\\Sources\\Cpp\\repos\\Lib_manage\\dev-Tan\\newBooks.csv"
-        fin = ifstream(path);//打开文件流操作
-        if (fin.good()) {
-            cout << "已找到文件,正在读取" << endl;
-            break;
-        }
-        cout << "文件不存在,请检查路径后重新输入" << endl;
-    }
+bool User::importUsers(string incomingPath="") {
+	string path;
+	ifstream fin;
+	string line;
+	if (incomingPath != "") {
+		fin = ifstream(path);//打开文件流操作
+	}
+	else {
+		/* 读取一个有效路径,并打开其对应的文件*/
+		while (true) {
+			path = SimpleString::readPathFromCmd();// "E:\\Sources\\Cpp\\repos\\Lib_manage\\dev-Tan\\newBooks.csv"
+			fin = ifstream(path);//打开文件流操作
+			if (fin.good()) {
+				cout << "已找到文件,正在读取" << endl;
+				break;
+			}
+			cout << "文件不存在,请检查路径后重新输入" << endl;
+		}
+	}
+
+    
 
     int index = 0;//要操作的行下标
     fin.clear();
@@ -453,7 +460,7 @@ vector<User> User::searchUsersBySingleField(std::string field, std::string value
 std::vector<User> User::stringsToUsers(std::vector<std::vector<std::string>> users) {
     vector<User> results;
     for (int i = 0; i < users.size(); ++i) {
-        User user; // todo: 这里好像要用new
+        User user; 
         user.deSerialize(users[i]);
         results.push_back(user);
     }
@@ -497,8 +504,8 @@ int User::returnAssignOrder(Order order) {
     if (book.getAppointmentNum() > 0) {//被预约了,特殊处理
         //处理预约操作,找到那个预约单子,给他改一下
         //找到所有满足bookid==isbn && status = 3的单子
-        //todo:注意一下这个string到int转换合不合法
-        vector<Order> orders = Order::getAssignBookAppointingList(atoi(instance->getIsbn().c_str()));
+        //todo:注意一下这个string到int转换合不合法,不合法
+        vector<Order> orders = Order::getAssignBookAppointingList(book.getId());
         int earliestIndex = 0;       //借阅时间最早的下标
         SimpleTime earliestDate = orders[0].getBorrowTime();         //记录时间最早那一天，这里的初值付给order里面第一个也行，
         for (int i = 1; i < orders.size(); ++i) {
