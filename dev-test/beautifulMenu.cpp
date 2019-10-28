@@ -243,7 +243,7 @@ int printUserMenu(string userOpera = "0") {
     printTree(1, "2.我的借阅");
     if (userOpera[0] == '2') {
         printTree(2, "21.我的在借图书", deepIndex);
-        printTree(2, "22.我的借阅历史", deepIndex);
+        printTree(2, "22.我的已还借阅", deepIndex);
         printTree(2, "23.我的预约图书", deepIndex);
     }
 
@@ -276,9 +276,9 @@ int printUserMenu(string userOpera = "0") {
                         Order::getAssignUserBorrowingList(Library::getSimpleUserInstance()->getFirstOrderId()));
 				EnterToContinue();
                 break;
-            case 22:// 查看历史借阅记录
+            case 22:// 查看已还借阅
                 Order::printOrderList(
-                        Order::getAssignUserBorrowedHistory(Library::getSimpleUserInstance()->getFirstOrderId()));
+                        Order::getAssignUserCompleteOrders(Library::getSimpleUserInstance()->getFirstOrderId()));
 				EnterToContinue();
                 break;
 
@@ -320,7 +320,9 @@ int printAdminDealUserMenu(string userOpera = "0") {
     printTree(1, "2.借阅记录");
     if (userOpera[0] == '2') {
         printTree(2, "21.查看在借记录", deepIndex);
-        printTree(2, "22.查看历史记录", deepIndex);
+        printTree(2, "22.查看已还借阅", deepIndex);
+		printTree(2, "23.查看预约借阅", deepIndex);
+
     }
 
     printTree(1, "3.还书/续借");
@@ -366,12 +368,18 @@ int printAdminDealUserMenu(string userOpera = "0") {
 				cin.get();
 				cin.get();
 				break;
-            case 22:// 查看历史借阅记录
+            case 22:// 查看已还借阅
                 Order::printOrderList(
-                        Order::getAssignUserBorrowedHistory(Library::getSimpleUserInstance()->getFirstOrderId()));
+                        Order::getAssignUserCompleteOrders(Library::getSimpleUserInstance()->getFirstOrderId()));
 				cout << "按回车键返回" ;
 				cin.get();
 				cin.get();
+				break;
+
+			case 23:// todo:查看正在预约的借阅记录
+				Order::printOrderList(
+					Order::getAssignUserAppointmentList(Library::getSimpleUserInstance()->getFirstOrderId()));
+				EnterToContinue();
 				break;
 
             case 31: {//还书

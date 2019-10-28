@@ -110,6 +110,23 @@ std::vector<Order> Order::getAssignUserBorrowedHistory(int firstOrderId) {
 }
 
 
+std::vector<Order> Order::getAssignUserCompleteOrders(int firstOrderId) {
+	// 获取所有借阅记录
+	vector<Order> orders = Order::getAssignUserBorrowedHistory(firstOrderId);
+	vector<Order> result;
+	int borringIndexs[] = { 2 }; // 已经还
+	for (int i = 0; i < orders.size(); ++i) {
+		for (int j = 0; j < sizeof(borringIndexs) / sizeof(int); ++j) {
+			if (orders[i].statu == borringIndexs[j]) {
+				result.push_back(orders[i]);
+				break;
+			}
+		}
+	}
+	//cout << "result size " << result.size() << endl;
+	return result;
+}
+
 std::vector<Order> Order::getAssignUserBorrowingList(int firstOrderId) {
     // 获取所有借阅记录
     vector<Order> orders = Order::getAssignUserBorrowedHistory(firstOrderId);
@@ -124,7 +141,7 @@ std::vector<Order> Order::getAssignUserBorrowingList(int firstOrderId) {
             }
         }
     }
-    cout << "result size " << result.size() << endl;
+    //cout << "result size " << result.size() << endl;
     return result;
 }
 
@@ -142,7 +159,7 @@ std::vector<Order> Order::getAssignUserAppointmentList(int firstOrderId){
             }
         }
     }
-    cout << "result size " << result.size() << endl;
+    //cout << "result size " << result.size() << endl;
     return result;
 }
 
@@ -159,7 +176,7 @@ std::vector<Order> Order::getAssignUserArrivedAppointmentList(int firstOrderId) 
         }
 
     }
-    cout << "result size " << result.size() << endl;
+    //cout << "result size " << result.size() << endl;
     return result;
 }
 

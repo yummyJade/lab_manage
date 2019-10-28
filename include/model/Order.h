@@ -103,12 +103,21 @@ public:
      *
      */
     static std::vector<Order> getAssignBookAppointingList(int bookId);
+
     /**
      * 获取指定用户的历史借书记录
      * @param firstOrderId
      * @return
      */
     static std::vector<Order> getAssignUserBorrowedHistory(int firstOrderId);
+
+
+	/**
+	 * 获取指定用户的已还记录
+	 * @param firstOrderId
+	 * @return
+	 */
+	static std::vector<Order> getAssignUserCompleteOrders(int firstOrderId);
 
     /**
      * 获取指定用户的正在借阅的记录
