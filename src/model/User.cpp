@@ -533,8 +533,12 @@ int User::returnAssignOrder(Order order) {
 
     } else {// 没被预约,归还图书馆
         // 修改书的实例的状态(设为可借)
-        instance->setStatus(1);
-        BookInstance::updateStateAndReturnTimeById(*instance);
+		int oldState = instance->getStatus();
+		if (oldState != 3) { // 状态为3 表示已经下架,还书后不修改状态
+			instance->setStatus(1);
+			BookInstance::updateStateAndReturnTimeById(*instance);
+		}
+        
         cout << "还书成功!" << endl;
     }
     return 0;

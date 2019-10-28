@@ -25,5 +25,7 @@ bool changeAssignBookInstanceInfo();
 bool changeAssignBookInstanceState(long long id);
 
 
+// 下架指定isbn的所有图书
+bool deleteAssignIsbnBook(std::string isbn);
 
 #endif //MYC1_BOOKSERVICE_H

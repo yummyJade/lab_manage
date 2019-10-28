@@ -127,12 +127,6 @@ public:
     // 静态函数, 打印查询出来的结果集
     static void printBookList(std::vector<Book>);
 
-    // 静态函数, 借书 todo:原子操作,借书一瞬间炸了
-    static void borrowAssignIdBook(long long bookId, long long userId);
-
-    // 静态函数, 借书 todo:原子操作,借书一瞬间炸了
-    static void returnAssignOrderId(long long orderId);
-
 
     // 序列化函数
     std::vector<std::string> serialize();

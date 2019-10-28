@@ -46,7 +46,7 @@ BookInstance *BookInstance::getInstanceById(int id) {
     vector<Bookcopy> results = table->query(id);
     if (results.size() > 0) {
         BookInstance result = BookInstance::BookCopyToBookInstance(results[0]);
-        return new BookInstance(result);
+		return new BookInstance(result);
     }
     return NULL;
 }
@@ -56,7 +56,11 @@ std::vector<BookInstance> BookInstance::getInstancesByFirstId(int firstId) {
     TableBookcopy *table = TableBookcopy::getInstance();
     vector<Bookcopy> copys = table->queryByBookId(firstId);
     for (int i = 0; i < copys.size(); ++i) {
-        result.push_back(BookInstance::BookCopyToBookInstance(copys[i]));
+		BookInstance instance = BookInstance::BookCopyToBookInstance(copys[i]);
+		if (instance.getStatus() != 3) {// ×´Ì¬Îª3ÊÇÒÑ¾­ÏÂ¼Ü
+			result.push_back(instance);
+		}
+        
     }
 
     // mock
@@ -117,13 +121,8 @@ bool BookInstance::deleteInstancesByAssignInstanceId(int id) {
     return false;
 }
 
-bool
-BookInstance::updateAssignFieldsById(long long id, std::vector<std::string> fieds, std::vector<std::string> values) {
 
-    return false;
-}
-
-bool BookInstance::checkAssignBookInstanceIdExist(long long id) {
+bool BookInstance::checkAssignBookInstanceIdExist(int id) {
     return BookInstance::getInstanceById(id) != NULL;
 }
 
@@ -173,7 +172,7 @@ void BookInstance::printBookInstanceList(std::vector<BookInstance> instances) {
 }
 
 bool BookInstance::printLine() {
-    printf("ÌõÂëºÅ:%d,isbn:%s,¹Ý²ØÎ»ÖÃ:%s,×´Ì¬:%s", this->id, this->isbn.c_str(), this->position.c_str(), this->status);
+    printf("ÌõÂëºÅ:%d,isbn:%s,¹Ý²ØÎ»ÖÃ:%s,×´Ì¬:%s\n", this->getId(), this->getIsbn().c_str(), this->getPosition().c_str(), this->getStatusStr().c_str());
     return true;
 }
 

@@ -83,7 +83,7 @@ public:
     static bool addOneBookInstancesService();
 
     // 检测指定id的实例是否存在,待完善
-    static bool checkAssignBookInstanceIdExist(long long id);
+    static bool checkAssignBookInstanceIdExist(int id);
 
 
     // 检测指定isbn的实例能否预约（至少有一本在借状态或已被预约的书
@@ -112,9 +112,6 @@ public:
 
     // 删除指定
     static bool deleteInstancesByAssignInstanceId(int id);
-
-    // 修改指定id的instance是值为指定内容
-    static bool updateAssignFieldsById(long long id, std::vector<std::string> fieds, std::vector<std::string> values);
 
     // 修改指定id的instance的状态和应还时间,用于借还书
     static bool updateStateAndReturnTimeById(BookInstance book);

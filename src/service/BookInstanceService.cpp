@@ -1,11 +1,11 @@
 #include "service/BookInstanceService.h"
 #include "../../include/model/BookInstance.h"
 
-// æ ¹æ®è¾“å…¥é€‰æ‹©ä¸€ä¸ªinstance, å–æ¶ˆè¿”å›NULL
+// ¸ù¾İÊäÈëÑ¡ÔñÒ»¸öinstance, È¡Ïû·µ»ØNULL
 BookInstance *choseOneBookInstance() {
     int id;
     while (true) {
-        printf("è¯·è¾“å…¥è¦æ“ä½œçš„ä¹¦çš„æ¡ç å·(è¾“å…¥0è¿”å›):");
+        printf("ÇëÊäÈëÒª²Ù×÷µÄÊéµÄÌõÂëºÅ(ÊäÈë0·µ»Ø):");
         cin >> id;
         if (id == 0) {
             return NULL;
@@ -15,7 +15,7 @@ BookInstance *choseOneBookInstance() {
             BookInstance *instance = BookInstance::getInstanceById(id);
             return instance;
         }
-        printf("æ¡ç å·ä¸º%dçš„ç”¨æˆ·ä¸å­˜åœ¨!", id);
+        printf("ÌõÂëºÅÎª%dµÄÓÃ»§²»´æÔÚ!", id);
     }
 }
 
@@ -23,7 +23,7 @@ BookInstance *choseOneBookInstance() {
 bool printAssignInstanceInfo(BookInstance instance) {
     vector<BookInstance> instances;
     instances.push_back(instance);
-    printf("æ£€ç´¢åˆ°å¦‚ä¸‹ä¿¡æ¯\n");
+    printf("¼ìË÷µ½ÈçÏÂĞÅÏ¢\n");
     BookInstance::printBookInstanceList(instances);
 	return true;
 }
@@ -31,17 +31,45 @@ bool printAssignInstanceInfo(BookInstance instance) {
 //===============================================================
 //===============================================================
 
-// ä¸‹æ¶æŒ‡å®šä¹¦ç±
-bool outShelvesAssignBookInstance() {
-    BookInstance *instance = choseOneBookInstance();
-    if (instance == NULL) {
-        return false;
-    }
+// ÏÂ¼ÜÖ¸¶¨Êé¼®
+bool deleteAssignBookInstance(int id=-1) {
+	BookInstance* instance = NULL;
+	if (id == -1) {
+		while (true) {
+			printf("ÇëÊäÈëÒªÏÂ¼ÜµÄÊé¼®µÄÌõÂëºÅ(ÊäÈë0·µ»Ø):");
+			cin >> id;
+			if (id == 0) 
+				return false;
+			if (BookInstance::checkAssignBookInstanceIdExist(id)) { 
+				instance = BookInstance::getInstanceById(id);
+				if (instance->getStatus() != 3) {// Í¼Êé´æÔÚ
+					break;
+				}
+			}
+			printf("ÌõÂëºÅÎª%dµÄÍ¼Êé²»´æÔÚ!\n", id);
+		}
+	}
 
+	
+	printf("¼ìË÷µ½ÈçÏÂĞÅÏ¢\n");
+	instance->printLine();
 
-    printAssignInstanceInfo(*instance);
-//    user->changePwdService(to_string(user->getJobNum()));
+	//ÓÉÓÃ»§Ñ¡ÔñÊÇ·ñÒªÏÂ¼Ü
+	cout << "ÊäÈëYÏÂ¼ÜÌõÂëºÅÎª" << id << "µÄÍ¼Êé,ÊäÈëNÈ¡Ïû:";
+	char operate;
+	cin >> operate;
+	if (operate == 'Y' || operate == 'y') {// ÏÂ¼ÜÍ¼Êé
+		// ĞŞ¸ÄBook¹İ²ØÁ¿¼õ1
+		Book book=Book::searchBooksBySingleField("isbn", instance->getIsbn())[0];
+		Book::updateBooks("isbn", instance->getIsbn(), "count", to_string(book.getCount() - 1));
 
-    printf("å·²ä¸‹æ¶æ¡ç å·ä¸º:%dçš„å›¾ä¹¦\n", instance->getId());
-    return true;
+		// ĞŞ¸ÄinstanceµÄ×´Ì¬
+		instance->setStatus(3);// 3ÎªÒÑÏÂ¼Ü
+		BookInstance::updateStateAndReturnTimeById(*instance);
+		delete instance;
+		cout << "ÒÑ³É¹¦ÏÂ¼ÜÌõÂëºÅÎª" << id << "µÄÍ¼Êé" << endl;
+		return true;
+	}
+	cout << "ÒÑÈ¡Ïû²Ù×÷" << endl;
+	return false;
 }

@@ -63,12 +63,12 @@ bool changeAssignBookInfo() {
 
 
 bool changeAssignBookInstanceInfo() {
-    long long id;
+    int id;
     while (true) {
         printf("请输入要修改的书籍的条码号:");
         cin >> id;
         if (!BookInstance::checkAssignBookInstanceIdExist(id)) { // 图书不存在
-            printf("条码号为%lld的图书不存在!", id);
+            printf("条码号为%d的图书不存在!", id);
             return false;
         } else {
             break;
@@ -88,6 +88,51 @@ bool changeAssignBookInstanceInfo() {
     book->setStatus(state);
     book->updateBookInstanceModifiableInfo();
     return true;
+}
+
+
+bool deleteAssignIsbnBook(std::string isbn="") {
+	// 输入isbn号
+	if (isbn == "") {// 没有传isbn参数进来
+		while (true) {
+			printf("请输入要修改的书籍的ISBN(输入0返回):");
+			cin >> isbn;
+			if (isbn == "0") return false;
+			if (Book::checkAssignISBNExist(isbn) == -1) { // 图书不存在
+				printf("isbn为%s的图书不存在!", isbn.c_str());
+				return false;
+			}
+			else {
+				break;
+			}
+		}
+	}
+
+	//检索并打印该isbn的图书信息 以及 所有图书实例的信息
+	vector<Book> books = Book::searchBooksBySingleField("isbn", isbn);
+	Book::printBookList(books); // 打印所有图书实例信息
+
+	vector<BookInstance> instances = BookInstance::getInstancesByFirstId(books[0].getFirstInstanceId());
+	BookInstance::printBookInstanceList(instances);// 打印所有图书实例信息
+
+	//由用户选择是否要全部下架
+	cout << "输入Y下架ISBN为" << isbn << "的所有图书,输入N取消:";
+	char operate;
+	cin >> operate;
+	if (operate == 'Y' || operate == 'y') {// 下架所有图书
+		// 修改Book馆藏量为0
+		Book::updateBooks("isbn",isbn,"count","0");
+
+		// 修改instance的状态
+		for (int i = 0; i < instances.size(); i++) {
+			instances[i].setStatus(3);// 3为已下架
+			BookInstance::updateStateAndReturnTimeById(instances[i]);
+		}
+		cout<<"已成功下架ISBN为" << isbn << "的所有图书"<<endl;
+		return true;
+	}
+	cout << "已取消操作" << endl;
+	return false;
 }
 
 

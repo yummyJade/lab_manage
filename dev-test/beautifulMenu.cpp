@@ -12,6 +12,7 @@
 
 using namespace std;
 
+
 // 按回车键返回
 void EnterToContinue() {
 	cout << "按Enter键返回";
@@ -36,9 +37,11 @@ bool printLoginUserInfo() {
 	return true;
 }
 
+
 // 用户搜索
 void printUserSearchMenu() {
     system("cls");
+	int choose;
     while (1) {
         system("cls");
         cout << "------------用户搜索--------------" << endl
@@ -48,20 +51,17 @@ void printUserSearchMenu() {
              << "0.返回上一级" << endl
              << "---------------------------------" << endl
              << "请输入您的选择:";
-        int choose;
+        
+        cin >> choose;
 		if (choose == 0) {
 			return;
 		}
-        char input[50];
-        cin.clear();
-        cin >> input;
-        // todo: input长度超出来了怎么办
-        choose = Verify::convertDigtal(input);
+
         cout << "您的选择是:" << choose << endl;
         string fieds[] = {"", "all", "jobNum", "name"};
         int options[] = {1, 2, 3, 0};
 
-        if (Verify::optionExist(choose, 6)) {
+        if (choose>0 && choose<=3) {
             cout << "请输入您的搜索词:";
             string keyWord;
             cin >> keyWord;
@@ -86,6 +86,14 @@ void printUserSearchMenu() {
 			else {
 				users = User::searchUsersBySingleField(fieds[choose], keyWord);
 			}
+
+			// 判断查询结果集是否为空
+			if (users.empty()) {//没查到结果
+				cout << "未检索到符合条件的用户" << endl;
+				EnterToContinue();
+				continue;
+			}
+
             User::printUserList(users);
             cout << "请选择要操作的用户编号(输入0返回):";
 
@@ -93,7 +101,7 @@ void printUserSearchMenu() {
 			while (operaNum<0 || operaNum > users.size()) {
 				cin >> operaNum;
 				if (operaNum == 0) {
-					break ;
+					break;
 				}
 				else if (operaNum<0 || operaNum > users.size()) {
 					continue;
@@ -157,6 +165,14 @@ void printBookSearchMenu(bool canLend=false) {
 				books = Book::searchBooksBySingleField(fieds[choose], keyWord);
 			}
             
+			// 判断查询结果集是否为空
+			if (books.empty()) {//没查到结果
+				cout << "图书馆内暂无该图书" << endl;
+				EnterToContinue();
+
+				continue;
+			}
+
             Book::printBookList(books);
 			int operaNum=-1;
 			while (operaNum<0 || operaNum > books.size()) {
@@ -450,11 +466,11 @@ int printAdminMenu(string userOpera = "0") {
 			printTree(3, "322.修改指定图书实例信息", deepIndex);
 		}
 
-       /* printTree(2, "32.下架图书", deepIndex);
-        if (userOpera[1] == '2') {
-            printTree(3, "321.修改指定ISBN图书", deepIndex);
-            printTree(3, "322.修改指定图书实例信息", deepIndex);
-        }*/
+        printTree(2, "33.下架图书", deepIndex);
+        if (userOpera[1] == '3') {
+            printTree(3, "331.下架指定ISBN的所有图书", deepIndex);
+			printTree(3, "332.下架指定条码号的图书", deepIndex);
+        }
 
         
     }
@@ -515,10 +531,9 @@ int printAdminMenu(string userOpera = "0") {
 				EnterToContinue();
                 break;
 
-            
-
             case 32: 
                 printAdminMenu(to_string(operaNum));
+				break;
             case 321: 
                 changeAssignBookInfo();// 修改图书种类信息
                 break;
@@ -526,14 +541,15 @@ int printAdminMenu(string userOpera = "0") {
                 changeAssignBookInstanceInfo(); // 修改单个图书实例信息
                 break;
 
-			//case 32: //下架图书
-			//    printAdminMenu(to_string(operaNum));
-			//case 321:
-			//    Book::importBooksService();//下架指定ISBN的图书
-			//    break;
-			//case 322:
-			//    Book::addOneBookService();//下架指定图书实例
-			//    break;
+			case 33: //下架图书
+			    printAdminMenu(to_string(operaNum));
+				break;
+			case 331:
+				deleteAssignIsbnBook();//下架指定ISBN的图书
+			    break;
+			case 332:
+				deleteAssignBookInstance();//下架指定图书实例
+			    break;
 
             case 400: // 处理用户操作
                 if (Library::login(true) != NULL) {
@@ -550,8 +566,6 @@ int printAdminMenu(string userOpera = "0") {
                 break;
         }
     }
-
-
     return 0;
 }
 
