@@ -42,37 +42,58 @@ void printUserSearchMenu() {
     while (1) {
         system("cls");
         cout << "------------用户搜索--------------" << endl
-             << "1.所有" << endl
+             << "1.综合" << endl
              << "2.工号" << endl
              << "3.姓名" << endl
-             << "4.类型" << endl
              << "0.返回上一级" << endl
              << "---------------------------------" << endl
              << "请输入您的选择:";
         int choose;
+		if (choose == 0) {
+			return;
+		}
         char input[50];
         cin.clear();
         cin >> input;
         // todo: input长度超出来了怎么办
         choose = Verify::convertDigtal(input);
         cout << "您的选择是:" << choose << endl;
+        string fieds[] = {"", "all", "jobNum", "name"};
+        int options[] = {1, 2, 3, 0};
 
-
-        string fieds[] = {"", "all", "jobNum", "name", "type"};
-        int options[] = {1, 2, 3, 4, 0};
-        // todo: 这里判断choose是否合法
         if (Verify::optionExist(choose, 6)) {
             cout << "请输入您的搜索词:";
             string keyWord;
             cin >> keyWord;
-            vector<User> users = User::searchUsersBySingleField(fieds[choose], keyWord);
+			vector<User> users;
+			if (choose == 1) {// 全部搜索
+				for (int i = 2; i <= 3; i++) {// 按姓名,作者,isbn分别搜索并合并结果
+					vector<User> tempUsers = User::searchUsersBySingleField(fieds[i], keyWord);
+					users.insert(users.end(), tempUsers.begin(), tempUsers.end());
+				}
+				// 根据id进行排序
+				sort(users.begin(), users.end(), [](const User& user1, const User& user2) {
+					return user1.getJobNum() > user2.getJobNum();
+					});
+				// 去重
+				for (int i = users.size() - 1; i > 0; i--) {
+					if (users[i].getJobNum() == users[i - 1].getJobNum()) {
+						users.erase(users.begin() + i);
+					}
+				}
+			}
+
+			else {
+				users = User::searchUsersBySingleField(fieds[choose], keyWord);
+			}
             User::printUserList(users);
             cout << "请选择要操作的用户编号(输入0返回):";
+
 			int operaNum = -1;
 			while (operaNum<0 || operaNum > users.size()) {
 				cin >> operaNum;
 				if (operaNum == 0) {
-					break;
+					break ;
 				}
 				else if (operaNum<0 || operaNum > users.size()) {
 					continue;
@@ -90,11 +111,10 @@ void printBookSearchMenu(bool canLend=false) {
     while (1) {
         system("cls");
         cout << "------------图书搜索--------------" << endl
-             << "1.所有" << endl
+             << "1.综合" << endl
              << "2.书名" << endl
              << "3.作者" << endl
              << "4.ISBN" << endl
-             << "5.类型" << endl
              << "0.返回上一级" << endl
              << "---------------------------------" << endl
              << "请输入您的选择:";
@@ -110,14 +130,33 @@ void printBookSearchMenu(bool canLend=false) {
         cout << "您的选择是:" << choose << endl;
 
 
-        string fieds[] = {"", "all", "name", "author", "isbn", "type"};
-        int options[] = {1, 2, 3, 4, 5, 0};
-        // todo: 这里判断choose是否合法
-        if (Verify::optionExist(choose, 6)) {
+        string fieds[] = {"", "all", "name", "author", "isbn"};
+        int options[] = {1, 2, 3, 4, 0};
+        if (Verify::optionExist(choose, 5)) {
             cout << "请输入您的搜索词:";
             string keyWord;
             cin >> keyWord;
-            vector<Book> books = Book::searchBooksBySingleField(fieds[choose], keyWord);
+			vector<Book> books;
+			if (choose == 1) {// 全部搜索
+				for (int i = 2; i <= 4; i++) {// 按姓名,作者,isbn分别搜索并合并结果
+					vector<Book> tempbooks= Book::searchBooksBySingleField(fieds[i], keyWord);
+					books.insert(books.end(), tempbooks.begin(), tempbooks.end());
+				}
+				// 根据id进行排序
+				sort(books.begin(), books.end(), [](const Book& book1, const Book& book2){ 
+						return book1.getId()>book2.getId();
+					});
+				// 去重
+				for (int i = books.size()-1; i >0; i--) {
+					if (books[i].getId() == books[i - 1].getId()) {
+						books.erase(books.begin()+i);
+					}
+				}
+			}
+			else {
+				books = Book::searchBooksBySingleField(fieds[choose], keyWord);
+			}
+            
             Book::printBookList(books);
 			int operaNum=-1;
 			while (operaNum<0 || operaNum > books.size()) {
@@ -405,18 +444,19 @@ int printAdminMenu(string userOpera = "0") {
             printTree(3, "313.增加单本书籍", deepIndex);
         }
 
-        printTree(2, "32.下架图书(未完成)", deepIndex);
-        if (userOpera[1] == '2') {
-            printTree(3, "321.批量下架图书", deepIndex);
-            printTree(3, "322.下架单种书籍", deepIndex);
-            printTree(3, "323.下架单本书籍", deepIndex);
-        }
+		printTree(2, "32.修改图书信息", deepIndex);
+		if (userOpera[1] == '2') {
+			printTree(3, "321.修改指定ISBN图书信息", deepIndex);
+			printTree(3, "322.修改指定图书实例信息", deepIndex);
+		}
 
-        printTree(2, "33.修改图书", deepIndex);
-        if (userOpera[1] == '3') {
-            printTree(3, "331.修改指定种类图书信息", deepIndex);
-            printTree(3, "332.修改指定图书实例信息", deepIndex);
-        }
+       /* printTree(2, "32.下架图书", deepIndex);
+        if (userOpera[1] == '2') {
+            printTree(3, "321.修改指定ISBN图书", deepIndex);
+            printTree(3, "322.修改指定图书实例信息", deepIndex);
+        }*/
+
+        
     }
 
     printTree(1, "400.处理用户操作");
@@ -475,27 +515,25 @@ int printAdminMenu(string userOpera = "0") {
 				EnterToContinue();
                 break;
 
-            case 32:
-                printAdminMenu(to_string(operaNum));
-            case 321:
-                Book::importBooksService();//批量导入图书
-                break;
-            case 322:
-                Book::addOneBookService();//增加单种书籍
-                break;
-            case 323:
-                BookInstance::addOneBookInstancesService();//增加单本书籍
-                break;
+            
 
-            case 33: // 下架图书
+            case 32: 
                 printAdminMenu(to_string(operaNum));
-            case 331: // 批量下架图书
+            case 321: 
                 changeAssignBookInfo();// 修改图书种类信息
                 break;
-            case 332: // 下架单种图书
+            case 322: 
                 changeAssignBookInstanceInfo(); // 修改单个图书实例信息
                 break;
 
+			//case 32: //下架图书
+			//    printAdminMenu(to_string(operaNum));
+			//case 321:
+			//    Book::importBooksService();//下架指定ISBN的图书
+			//    break;
+			//case 322:
+			//    Book::addOneBookService();//下架指定图书实例
+			//    break;
 
             case 400: // 处理用户操作
                 if (Library::login(true) != NULL) {

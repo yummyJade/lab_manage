@@ -72,7 +72,7 @@ std::vector<BookInstance> BookInstance::getInstancesByFirstId(int firstId) {
 }
 
 bool BookInstance::addOneBookInstancesService() {
-    printf("请依次输入 isbn,位置,图书状态,有效数量,用空格隔开\n");
+    printf("请依次输入 isbn,位置,图书状态(数字),有效数量,用空格隔开\n");
     vector<string> fields;
     int index = 0;
     string temp_info;

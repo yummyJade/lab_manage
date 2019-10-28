@@ -27,4 +27,5 @@
 #include "service/UserService.h"
 #include "service/BookInstanceService.h"
 
+#include<algorithm>
 #endif //MYC1_LIBM_H

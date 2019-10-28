@@ -377,7 +377,7 @@ std::vector<Book> Book::stringsToBooks(std::vector<std::vector<std::string>> boo
 
 bool Book::addOneBookService() {
 	//预约测试用书1 谭坚铭 谭谭出版社 c 912-654-51-2 6021 南区宿舍 1
-    printf("请依次输入 书名,作者,出版社,类型,isbn,价格(单位:元),位置,有效数量,用空格隔开\n");
+    printf("请依次输入 书名,作者,出版社,类型(单个字符),isbn,价格(单位:元),位置,有效数量,用空格隔开\n");
     vector<string> fields;
     int index = 0;
     string temp_info;

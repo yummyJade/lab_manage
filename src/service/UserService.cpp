@@ -127,7 +127,7 @@ bool unfreezeAssignUser() {
 
 // 增加单个用户
 bool addSingleUserService() {
-    User *user;
+    User *user=new User();
     while (true) {
         printf("请依次输入 工号,姓名,用户类型(0管理员 1本科生 2研究生 3教师) 用空格隔开[工号输入0返回]\n");
         long long jobNum;

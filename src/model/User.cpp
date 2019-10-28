@@ -206,6 +206,7 @@ int User::borrowAssignBookInstance(int bookInstanceId) {
 
     // 判断是否首次借阅,是的话更新借阅链表头的字段
     if (this->getFirstOrderId() == -1) {
+		this->setFirstOrderId(orderId);
         User::updateUsersAssignField("jobNum", to_string(this->jobNum), "firstOrderId", to_string(orderId));
     }
 	cout << "借书成功" << endl;
@@ -398,7 +399,7 @@ status User::getType() const {
 }
 
 std::string User::getTypeStr() {
-	string strs[] = { "管理员","本科生","研究生","教师" };
+	string strs[] = { "管理员","教师","研究生","本科生" };
 	string result = "";
 	int type = this->getType();
 	if (type < 0) {

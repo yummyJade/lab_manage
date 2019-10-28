@@ -135,19 +135,6 @@ Include/fast:
 	$(MAKE) -f include\CMakeFiles\Include.dir\build.make include/CMakeFiles/Include.dir/build
 .PHONY : Include/fast
 
-#=============================================================================
-# Target rules for targets named Catch_tests_run
-
-# Build rule for target.
-Catch_tests_run: cmake_check_build_system
-	$(MAKE) -f CMakeFiles\Makefile2 Catch_tests_run
-.PHONY : Catch_tests_run
-
-# fast build rule for target.
-Catch_tests_run/fast:
-	$(MAKE) -f test\CMakeFiles\Catch_tests_run.dir\build.make test/CMakeFiles/Catch_tests_run.dir/build
-.PHONY : Catch_tests_run/fast
-
 # target to build an object file
 dev-test/beautifulMenu.obj:
 	$(MAKE) -f CMakeFiles\libManage.dir\build.make CMakeFiles/libManage.dir/dev-test/beautifulMenu.obj
@@ -173,7 +160,6 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... Include
-	@echo ... Catch_tests_run
 	@echo ... dev-test/beautifulMenu.obj
 	@echo ... dev-test/beautifulMenu.i
 	@echo ... dev-test/beautifulMenu.s
