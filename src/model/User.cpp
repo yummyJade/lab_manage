@@ -537,6 +537,9 @@ int User::returnAssignOrder(Order order) {
 		if (oldState != 3) { // 状态为3 表示已经下架,还书后不修改状态
 			instance->setStatus(1);
 			BookInstance::updateStateAndReturnTimeById(*instance);
+
+		}else{
+            cout<<"该书已被标志为下架,由管理员回收,不流回图书馆"<<endl;
 		}
         
         cout << "还书成功!" << endl;
