@@ -3,6 +3,7 @@
 #include <string>
 #include <model/User.h>
 #include "util/TableRenderer.h"
+#include "../../src/core/Input.cpp"
 
 bool printBookDetailInfo(std::string isbn, vector<BookInstance>* saveInstances=NULL) {
 	system("cls");
@@ -28,12 +29,14 @@ bool printBookDetailInfo(std::string isbn, vector<BookInstance>* saveInstances=N
 
 bool changeAssignBookInfo() {
     string isbn;
+    Book tempBook;
     while (true) {
-        printf("请输入要修改的书籍的ISBN:");
-        cin >> isbn;
+
+        printf("请输入要修改的书籍的ISBN(输入0返回):");
+        isbn=tempBook.readAndSetIsbn();
+		if (isbn == "0") return false;
         if (Book::checkAssignISBNExist(isbn) == -1) { // 图书不存在
-            printf("isbn为%s的图书不存在!", isbn.c_str());
-            return false;
+            printf("isbn为%s的图书不存在!\n", isbn.c_str());
         } else {
             break;
         }
@@ -44,18 +47,13 @@ bool changeAssignBookInfo() {
     Book::printBookList(books);
 
     Book book = books[0];
-//    book.printBookInfo();
-    printf("请输入修改后的书名、出版社、作者、类型、价格, 以空格隔开,");
-    string name, press, author;
-    char type;
-    double price;
-    cin >> name >> press >> author >> type >> price;
-    // todo:判断输入的信息是否合法
-    book.setName(name);
-    book.setPress(press);
-    book.setAuthor(author);
-    book.setType(type);
-    book.setPrice((int) (price * 100) / 1);
+    printf("请输入修改后的信息\n");
+
+    book.readAndSetName();
+    book.readAndSetPress();
+    book.readAndSetAuthor();
+    book.readAndSetType();
+    book.readAndSetPrice();
 
     book.updateBookModifiableInfo();
     return true;
@@ -64,12 +62,13 @@ bool changeAssignBookInfo() {
 
 bool changeAssignBookInstanceInfo() {
     int id;
+
     while (true) {
-        printf("请输入要修改的书籍的条码号:");
-        cin >> id;
+        printf("请输入要修改的书籍的条码号(输入0返回):");
+        id=Input::getInt();
+		if (id == 0) return false;
         if (!BookInstance::checkAssignBookInstanceIdExist(id)) { // 图书不存在
-            printf("条码号为%d的图书不存在!", id);
-            return false;
+            printf("条码号为%d的图书不存在!\n", id);
         } else {
             break;
         }
@@ -79,13 +78,11 @@ bool changeAssignBookInstanceInfo() {
     printf("检索到如下信息\n");
     book->printLine();
 
-    printf("请输入修改后的isbn,馆藏位置,状态, 以空格隔开,");
-    string isbn, positon;
-    char state;
-    cin >> isbn >> positon >> state;
-    book->setIsbn(isbn);
-    book->setPosition(positon);
-    book->setStatus(state);
+    printf("请输入修改后的信息\n");
+
+    book->readAndSetIsbn();
+    book->readAndSetPosition();
+    book->readAndSetStatus();
     book->updateBookInstanceModifiableInfo();
     return true;
 }
@@ -96,11 +93,10 @@ bool deleteAssignIsbnBook(std::string isbn="") {
 	if (isbn == "") {// 没有传isbn参数进来
 		while (true) {
 			printf("请输入要修改的书籍的ISBN(输入0返回):");
-			cin >> isbn;
+			isbn=Input::getAssignMaxLengthStr(20);
 			if (isbn == "0") return false;
 			if (Book::checkAssignISBNExist(isbn) == -1) { // 图书不存在
-				printf("isbn为%s的图书不存在!", isbn.c_str());
-				return false;
+				printf("isbn为%s的图书不存在!\n", isbn.c_str());
 			}
 			else {
 				break;
@@ -118,7 +114,7 @@ bool deleteAssignIsbnBook(std::string isbn="") {
 	//由用户选择是否要全部下架
 	cout << "输入Y下架ISBN为" << isbn << "的所有图书,输入N取消:";
 	char operate;
-	cin >> operate;
+	operate=Input::getChar();
 	if (operate == 'Y' || operate == 'y') {// 下架所有图书
 		// 修改Book馆藏量为0
 		Book::updateBooks("isbn",isbn,"count","0");

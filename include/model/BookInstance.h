@@ -34,6 +34,13 @@ public:
 
     const Date &getPlanReturnDate() const;
 
+    int readAndSetStatus();
+
+    std::string readAndSetPosition();
+
+    std::string readAndSetIsbn();
+
+
     void setIsbn(const std::string &isbn);
 
     void setStatus(int status);

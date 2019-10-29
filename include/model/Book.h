@@ -59,6 +59,19 @@ public:
 
     const std::string &getPress() const;
 
+    char readAndSetType();
+
+    int readAndSetCount();
+
+    int readAndSetPrice();
+
+    std::string readAndSetName();
+
+    std::string readAndSetAuthor();
+
+    std::string readAndSetIsbn();
+
+    std::string readAndSetPress();
 
     int getFirstInstanceId() const;
 
@@ -112,8 +125,11 @@ public:
     // 静态函数, 删除书籍
     static bool deleteBooksByBookIds(std::vector<std::string> bookIds);
 
-    // 静态函数, 根据指定字段的值搜索内容,返回Book对象数组
+    // 静态函数, 根据指定字段的值搜索内容,这里的字段不能是id,返回Book对象数组
     static std::vector<Book> searchBooksBySingleField(std::string field, std::string value);
+
+    // 静态函数, 根据id,返回Book对象
+    static Book searchBooksById(int id);
 
     // 静态函数, 修改
     static bool

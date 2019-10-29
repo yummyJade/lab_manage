@@ -26,25 +26,10 @@ std::vector<std::string> Order::serialize() {
     info.push_back(this->borrowTime.serialize());
     info.push_back(this->returnTime.serialize());
 
-    //todo: 枚举的序列化和反序列化
-//    info.push_back(this->statu);
     return info;
 }
 
-bool Order::deSerialize(std::vector<std::string> info) {
-    //todo: 这里要加上异常处理
 
-//    int IsRenew=stoi(info[0]);
-//    int bookId=stoi(info[1]);
-//    int borrowTime=stoi(info[2]);
-//    int returnTime=stoi(info[3]);
-//    status type;
-//    type=Teacher;// todo:这个枚举要怎么操作
-//    string password=info[4];
-//
-//    Order(id,jobNum,borrowNum,type,password);
-    return true;
-}
 
 std::string Order::statuEnumToString(Status statu) {
     std::string strs[] = {"BORROWING", "RETURNED"};
@@ -255,19 +240,24 @@ void Order::printOrderList(std::vector<Order> orders) {
 
 std::vector<std::string> Order::getPrintLineStr() {
     vector<string> info;
+    Book book;
     BookInstance *bookInstance = BookInstance::getInstanceById(this->getBookId());
-//    cout<<"isbn:"<<bookInstance->getIsbn()<<"|||";
-    Book book = Book::searchBooksBySingleField("isbn", bookInstance->getIsbn())[0];
-    info.push_back(book.getName());
-    info.push_back(to_string(bookInstance->getId()));
+    if(this->getStatu()==3){// 如果是预约的话
+        book = Book::searchBooksById(this->getBookId());
+    }else{
 
+        book = Book::searchBooksBySingleField("isbn", bookInstance->getIsbn())[0];
+    }
+
+
+    info.push_back(book.getName());// 书名
+    info.push_back(to_string(bookInstance->getId()));
     SimpleTime date =  this->getBorrowTime();
     info.push_back(date.serialize());
-
     date = this->getReturnTime();
     info.push_back(date.date.serialize());
 	info.push_back(this->getStatuStr());
-    //info.push_back(to_string(this->getStatu()));//todo:状态改成对应中文
+
     return info;
 }
 

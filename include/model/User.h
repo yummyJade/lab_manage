@@ -50,7 +50,7 @@ public:
     bool canLendBook();
 
 
-    void setJobNum(int jobNum);
+    void setJobNum(long long jobNum);
 
     void setJobNum1(long long int jobNum);
 
@@ -59,6 +59,14 @@ public:
     void setName(const std::string &name);
 
     void setFirstOrderId(long long int firstOrderId);
+
+    long long readAndSetJobNum();
+
+    int readAndSetType();
+
+    std::string readAndSetName();
+
+    std::string readAndSetPassword();
 
     static const int *getLendDays();
 
@@ -251,7 +259,7 @@ public:
     bool getArrivedAppointment(Order order);
 
 
-    /** 待完成
+    /**
      * 用户登陆
      * @param name
      * @param password

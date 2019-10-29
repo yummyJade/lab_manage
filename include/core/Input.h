@@ -8,6 +8,15 @@
 
 
 class Input {
+public:
+    static int getInt();
+
+	static long long getLongLong();
+
+	static std::string getAssignMaxLengthStr(int maxLength) ;
+
+	static char getChar();
+
 
 };
 

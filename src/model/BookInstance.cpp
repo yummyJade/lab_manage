@@ -1,6 +1,7 @@
 #include "../../include/model/BookInstance.h"
 //#include "../../src/model/BookInstance.cpp"
 #include "../../linkDatebase/include/TableBookcopy.h"
+#include "../../src/core/Input.cpp"
 #include <iostream>
 #include <vector>
 #include <string>
@@ -279,6 +280,30 @@ bool BookInstance::updateStateAndReturnTimeById(BookInstance book) {
     vector<int> changeIndex = {2, 3};
     table->update(book.getId(), book.toBookCopy(), changeIndex);
     return false;
+}
+
+int BookInstance::readAndSetStatus() {
+    cout<<"ÇëÊäÈëÍ¼Êé×´Ì¬(1 ¿É½è 3 ÒÑÉ¾³ý(¶ªÊ§»òÏÂ¼Ü):";
+    int result=Input::getInt();
+    while(result!=1 && result!=3){
+        result=Input::getInt();
+    }
+    this->setStatus(result);
+    return result;
+}
+
+std::string BookInstance::readAndSetPosition() {
+    cout<<"ÇëÊäÈëÍ¼ÊéÎ»ÖÃ:";
+    string result=Input::getAssignMaxLengthStr(40);
+    this->setPosition(result);
+    return result;
+}
+
+std::string BookInstance::readAndSetIsbn() {
+    cout<<"ÇëÊäÈëISBN:";
+    string result=Input::getAssignMaxLengthStr(20);
+    this->setIsbn(result);
+    return result;
 }
 
 

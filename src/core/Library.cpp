@@ -1,10 +1,7 @@
-//
-// Created by Tjm on 2019/10/19.
-//
-
 #include "core/Library.h"
 #include <iostream>
 #include <string>
+#include "../../src/core/Input.cpp"
 
 using namespace std;
 
@@ -22,7 +19,7 @@ User *Library::login(bool needSimpleUser = false) {
 		printf("---------------ÓÃ»§µÇÂ½-----------------\n");
 		printf("=========================================\n");
         cout << "¹¤ºÅ(ÊäÈë0·µ»Ø):";
-        cin >> jobNum;
+        jobNum = Input::getLongLong();
         if (jobNum == 0) {
             return NULL;
         }
@@ -85,4 +82,17 @@ User *Library::getSimpleUserInstance() {
 	}
     
     return Library::simpleUser;
+}
+
+User* Library::getAdminUserInstance() {
+	if (Library::simpleUser == NULL) {
+		cout << "Î´µÇÂ½,Ê¹ÓÃ²âÊÔÕËºÅ" << endl;
+		vector<User> results = User::searchUsersBySingleField("jobNum", "10086");
+		if (results.size() > 0) {
+			User* user = new User(results[0]);
+			return user;
+		}
+	}
+
+	return Library::simpleUser;
 }

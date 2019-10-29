@@ -6,7 +6,7 @@
 #include <model/BookInstance.h>
 #include "../../include/util/DbAdapter.h"
 #include "../../include/util/TableRenderer.h"
-
+#include "../../src/core/Input.cpp"
 using namespace std;
 
 Book::Book() {
@@ -157,6 +157,12 @@ std::vector<Book> Book::searchBooksBySingleField(std::string field, std::string 
     return Book::stringsToBooks(queryData);
 }
 
+
+Book Book::searchBooksById(int id) {
+    DbAdapter dbAdapter("Book");
+    vector<vector<string> > queryData = dbAdapter.searchBettwenIdA2B(id, id);
+    return Book::stringsToBooks(queryData)[0];
+}
 
 void Book::printBookList(std::vector<Book> books) {
     vector<string> navs = {"编号", "书名", "作者", "出版社", "类型", "馆藏量", "ISBN"};
@@ -319,7 +325,7 @@ bool Book::importBooksService(string incomingPath="") {
 		cout << "执行了update" << endl;
 		Book::updateBooksCount(updateIsbns, addCounts);
 	}
-        
+
     return true;
 }
 
@@ -368,7 +374,7 @@ std::vector<Book> Book::stringsToBooks(std::vector<std::vector<std::string>> boo
     vector<Book> results;
 //    cout<<"book 的size是"<<books.size()<<endl;
     for (int i = 0; i < books.size(); ++i) {
-        Book book; // todo: 这里好像要用new
+        Book book;
         book.deSerialize(books[i]);
         results.push_back(book);
     }
@@ -421,6 +427,7 @@ bool Book::addOneBookService() {
         vector<string> isbns;
         isbns.push_back(isbn);
         Book::updateBooksCount(isbns, counts);
+		cout << "isbn为" << isbn << "的书籍已存在,成功增加了" << count << "本实例" << endl;
     }
     return true;
 }
@@ -558,6 +565,55 @@ Book::Book(char type, int count, int price, int firstInstanceId, const string &n
 
 int Book::getAppointmentNum() const {
     return appointmentNum;
+}
+
+char Book::readAndSetType() {
+    cout<<"请输入类型(单个字符):";
+    char result=Input::getChar();
+    this->setType(result);
+    return result;
+}
+
+int Book::readAndSetCount() {
+    cout<<"请输入馆藏量:";
+    int result=Input::getInt();
+    this->setCount(result);
+    return result;
+}
+
+int Book::readAndSetPrice() {
+    cout<<"请输入价格(单位:分):";
+    int result=Input::getInt();
+    this->setPrice(result);
+    return result;
+}
+
+std::string Book::readAndSetName() {
+    cout<<"请输入书名:";
+    string result=Input::getAssignMaxLengthStr(50);
+    this->setName(result);
+    return result;
+}
+
+std::string Book::readAndSetAuthor() {
+    cout<<"请输入作者:";
+    string result=Input::getAssignMaxLengthStr(20);
+    this->setAuthor(result);
+    return result;
+}
+
+std::string Book::readAndSetIsbn() {
+    cout<<"请输入ISBN:";
+    string result=Input::getAssignMaxLengthStr(20);
+    this->setIsbn(result);
+    return result;
+}
+
+std::string Book::readAndSetPress() {
+    cout<<"请输入出版社:";
+    string result=Input::getAssignMaxLengthStr(50);
+    this->setPress(result);
+    return result;
 }
 
 
