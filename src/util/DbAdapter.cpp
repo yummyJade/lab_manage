@@ -53,7 +53,7 @@ vector<vector<string>> DbAdapter::searchBySingleField(string field, string value
 
 bool DbAdapter::insert(vector<vector<string>> values, vector<long long> ids) {
     int result = this->db->insert(values, ids);
-    cout << "插入结果是" << result << endl;
+    //cout << "插入结果是" << result << endl;
     return true;
 }
 
@@ -79,7 +79,19 @@ vector<vector<string>> DbAdapter::searchAll() {
     for (int i = 0; i < results.size(); ++i) { // 把id装进最后一个位置
         results[i].push_back(to_string(id[i]));
     }
-    cout << "检索到的数量" << results.size() << endl;
+    //cout << "检索到的数量" << results.size() << endl;
+    return results;
+}
+
+vector<vector<string>> DbAdapter::searchBettwenIdA2B(long long startId, long long endId) {
+    vector<vector<string>> results;
+    vector<ll> id(0);
+    this->db->queryById(id, results,startId,endId);
+
+    for (int i = 0; i < results.size(); ++i) { // 把id装进最后一个位置
+        results[i].push_back(to_string(id[i]));
+    }
+    //cout << "检索到的数量" << results.size() << endl;
     return results;
 }
 

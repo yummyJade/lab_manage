@@ -7,6 +7,7 @@
 #include <sstream>
 #include <util/DbAdapter.h>
 #include <util/TableRenderer.h>
+#include <core/Input.h>
 
 using namespace std;
 
@@ -57,7 +58,7 @@ status User::stringEnumToStatu(std::string str) {
             return status(i);
         }
     }
-    return Undergraduate;//没找到默认返回的,//todo:或许不该这么写
+    return Undergraduate;//没找到默认返回的
 }
 
 User::User(long long jobNum, status type, const string &name, const string &password) : jobNum(jobNum), type(type),
@@ -80,7 +81,7 @@ bool User::changePwdService() {
     // 输入原来的密码
     do {
         cout << "请输入原密码(输入0取消修改):";
-        cin >> pwd;
+        pwd=Input::getAssignMaxLengthStr(20);
         if (pwd == "0") {
             return false;
         }
@@ -91,9 +92,8 @@ bool User::changePwdService() {
         }
     } while (true);
 
-    // 若正确，则输入新的密码  todo: 做一个密码长度限制
     cout << "请输入新密码:";
-    cin >> pwd;
+    pwd=Input::getAssignMaxLengthStr(20);
     this->setPassword(pwd);
 
     cout << "修改成功";
@@ -102,7 +102,7 @@ bool User::changePwdService() {
 }
 
 int User::login(long long jobNum, std::string password, User *user = NULL) {
-	
+
     if (checkUserExist(jobNum, user)) {
         if (user->isLegalPassword(password)) {// 判断用户名是否正确
             if (user->getType() < 0)// 判断用户状态,是否被禁止登陆
@@ -140,7 +140,7 @@ bool User::checkUserExist(long long jobNum, User *user = NULL) {
 		if (user != NULL) {
 			*user = User(User::stringsToUsers(results)[0]);
 		}
-		
+
 		//cout << "password is" << user->getPassword()<<endl;
         return true;
     }
@@ -233,7 +233,7 @@ bool User::importUsers(string incomingPath="") {
 		}
 	}
 
-    
+
 
     int index = 0;//要操作的行下标
     fin.clear();
@@ -428,7 +428,7 @@ bool User::updateUsersAssignField(std::string assignField, std::string assignVal
     return true;
 }
 
-void User::setJobNum1(long long int jobNum) {
+void User::setJobNum(long long jobNum) {
     User::jobNum = jobNum;
 }
 
@@ -461,7 +461,7 @@ vector<User> User::searchUsersBySingleField(std::string field, std::string value
 std::vector<User> User::stringsToUsers(std::vector<std::vector<std::string>> users) {
     vector<User> results;
     for (int i = 0; i < users.size(); ++i) {
-        User user; 
+        User user;
         user.deSerialize(users[i]);
         results.push_back(user);
     }
@@ -537,11 +537,8 @@ int User::returnAssignOrder(Order order) {
 		if (oldState != 3) { // 状态为3 表示已经下架,还书后不修改状态
 			instance->setStatus(1);
 			BookInstance::updateStateAndReturnTimeById(*instance);
-
-		}else{
-            cout<<"该书已被标志为下架,由管理员回收,不流回图书馆"<<endl;
 		}
-        
+
         cout << "还书成功!" << endl;
     }
     return 0;
@@ -620,6 +617,36 @@ int User::dealWithOverTimeOrder() {
 
 }
 
+long long User::readAndSetJobNum() {
+    cout<<"请输入工号:";
+    long long result=Input::getLongLong();
+    this->setJobNum(result);
+    return result;
+}
+
+int User::readAndSetType() {
+    cout<<"请输入用户类型(0:管理员 1:教师 2:研究生 3:本科生:";
+    int result=Input::getInt();
+    while(result<0||result>3){
+        result=Input::getInt();
+    }
+    this->setType(static_cast<status>(result));
+    return result;
+}
+
+std::string User::readAndSetName() {
+    cout<<"请输入姓名:";
+    string result=Input::getAssignMaxLengthStr(20);
+    this->setName(result);
+    return result;
+}
+
+std::string User::readAndSetPassword() {
+    cout<<"请输入密码:";
+    string result=Input::getAssignMaxLengthStr(20);
+    this->setPassword(result);
+    return result;
+}
 
 
 

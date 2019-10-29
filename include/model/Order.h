@@ -74,9 +74,6 @@ public:
     // 序列化函数
     std::vector<std::string> serialize();
 
-    // 反序列化函数
-    bool deSerialize(std::vector<std::string>);
-
     // 序列化为Record
     Record toRecordCopy();
 

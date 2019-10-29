@@ -10,15 +10,15 @@ User *choseOneUser() {
     long long jobNum;
     User *user=new User();
     while (true) {
-        printf("请输入要操作的用户工号(输入0返回):");
-        cin >> jobNum;
+        printf("工号输入0返回\n");
+        jobNum=user->readAndSetJobNum();
         if (jobNum == 0) {
+            delete user;
             return NULL;
         }
 
         if (User::checkUserExist(jobNum, user)) { // 用户不存在
             return user;
-
         }
         printf("工号为%lld的用户不存在!", jobNum);
     }
@@ -78,7 +78,7 @@ bool freezeAssignUser() {
 
 	char opera;
 	cout << "输入Y确认冻结,N取消操作";
-	cin >> opera;
+	opera=Input::getChar();
 	if (opera == 'Y' || opera == 'y') {
 		int newState = user->getType();
 		if (newState < 0) {
@@ -92,7 +92,7 @@ bool freezeAssignUser() {
 	else {
 		cout << "取消操作"<<endl;
 	}
-    
+
 }
 
 
@@ -107,8 +107,8 @@ bool unfreezeAssignUser() {
     }
     printAssignInfo(*user);
 	char opera;
-	cout << "输入Y确认冻结,N取消操作";
-	cin >> opera;
+	cout << "输入Y确认解冻,N取消操作";
+    opera=Input::getChar();
 	if (opera == 'Y' || opera == 'y') {
 		int newState = user->getType();
 		if (newState > 0) {
@@ -129,15 +129,17 @@ bool unfreezeAssignUser() {
 bool addSingleUserService() {
     User *user=new User();
     while (true) {
-        printf("请依次输入 工号,姓名,用户类型(0管理员 1本科生 2研究生 3教师) 用空格隔开[工号输入0返回]\n");
         long long jobNum;
         string name;
         int type;
-        cin >> jobNum >> name >> type;
-
+        printf("工号输入0返回\n");
+        jobNum=user->readAndSetJobNum();
         if (jobNum == 0) {
+            delete user;
             return true;
         }
+        name=user->readAndSetName();
+        type=user->readAndSetType();
 
         // 判断用户是否存在
         if (!User::checkUserExist(jobNum, user)) {
@@ -147,11 +149,9 @@ bool addSingleUserService() {
             vector<long long> ids;
             User::addUsers(users, ids);
 
+            delete user;
             return true;
         }
         printf("工号为%lld的用户已经存在,添加失败", jobNum);
     }
-
-
-    return true;
 }

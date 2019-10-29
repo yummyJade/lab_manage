@@ -30,11 +30,16 @@ public:
     // 根据单个字段搜索
     vector<vector<string>> searchBySingleField(string field, string value);
 
+    // 根据单个字段搜索
+    vector<vector<string>> searchBettwenIdA2B(long long startId, long long endId);
+
     // 修改某个属性值x为x_v的对象的某个属性y的值为y_v
     bool updateBySingleField(string assignField, string assignValue, string changeField, string changeValue);
 
     // 返回该表的所有内容哟
     vector<vector<string>> searchAll();
+
+
 
 
 };

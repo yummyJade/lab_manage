@@ -6,7 +6,7 @@ BookInstance *choseOneBookInstance() {
     int id;
     while (true) {
         printf("请输入要操作的书的条码号(输入0返回):");
-        cin >> id;
+        id=Input::getInt();
         if (id == 0) {
             return NULL;
         }
@@ -37,10 +37,10 @@ bool deleteAssignBookInstance(int id=-1) {
 	if (id == -1) {
 		while (true) {
 			printf("请输入要下架的书籍的条码号(输入0返回):");
-			cin >> id;
-			if (id == 0) 
+            id=Input::getInt();
+			if (id == 0)
 				return false;
-			if (BookInstance::checkAssignBookInstanceIdExist(id)) { 
+			if (BookInstance::checkAssignBookInstanceIdExist(id)) {
 				instance = BookInstance::getInstanceById(id);
 				if (instance->getStatus() != 3) {// 图书存在
 					break;
@@ -50,14 +50,14 @@ bool deleteAssignBookInstance(int id=-1) {
 		}
 	}
 
-	
+
 	printf("检索到如下信息\n");
 	instance->printLine();
 
 	//由用户选择是否要下架
 	cout << "输入Y下架条码号为" << id << "的图书,输入N取消:";
 	char operate;
-	cin >> operate;
+    operate=Input::getChar();
 	if (operate == 'Y' || operate == 'y') {// 下架图书
 		// 修改Book馆藏量减1
 		Book book=Book::searchBooksBySingleField("isbn", instance->getIsbn())[0];

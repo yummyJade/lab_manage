@@ -9,6 +9,15 @@
 
 class Input {
 
+    int getInt();
+
+    long long getLongLong();
+
+    std::string getAssignMaxLengthStr() ;
+
+    char getChar();
+
+
 };
 
 
