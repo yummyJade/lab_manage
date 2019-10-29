@@ -1,8 +1,8 @@
 #define CATCH_CONFIG_MAIN
-
+#include "../src/libcpp.h"
 #include "catch.hpp"
 #include "libm.h"
-#include "../src/libcpp.h"
+
 
 TEST_CASE("导入数据", "[Database]") {
 	// 清表

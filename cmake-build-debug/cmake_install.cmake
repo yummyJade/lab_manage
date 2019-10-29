@@ -35,6 +35,7 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/include/cmake_install.cmake")
+  include("E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/test/cmake_install.cmake")
 
 endif()
 

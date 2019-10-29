@@ -10,6 +10,8 @@
 using namespace std;
 
 Book::Book() {
+	this->appointmentNum = 0;
+
 }
 
 
@@ -241,6 +243,8 @@ bool Book::importBooksService(string incomingPath="") {
 		/* 读取一个有效路径,并打开其对应的文件*/
 		while (true) {
 			path = SimpleString::readPathFromCmd();// "E:\\Sources\\Cpp\\repos\\Lib_manage\\dev-Tan\\newBooks.csv"
+			if (path == "")
+				return false;
 			fin = ifstream(path);//打开文件流操作
 			if (fin.good()) {
 				cout << "已找到文件,正在读取" << endl;
@@ -352,7 +356,7 @@ bool Book::updateBooksCount(std::vector<std::string> isbns, std::vector<int> add
 //只有两种情况 +1 -1
 bool Book::updateBooksAppointmentNum(std::string isbn, int addAppointmentNum){
     if(abs(addAppointmentNum) == 1) {
-        int oldAppointmentNum = Book::searchBooksBySingleField("isbn",isbn.data())[0].appointmentNum;
+        int oldAppointmentNum = Book::searchBooksBySingleField("isbn",isbn.data())[0].getAppointmentNum();
         Book::updateBooks("isbn", isbn, "appointmentNum", to_string(oldAppointmentNum + addAppointmentNum));
     }
     return true;
@@ -383,24 +387,39 @@ std::vector<Book> Book::stringsToBooks(std::vector<std::vector<std::string>> boo
 
 bool Book::addOneBookService() {
 	//预约测试用书1 谭坚铭 谭谭出版社 c 912-654-51-2 6021 南区宿舍 1
-    printf("请依次输入 书名,作者,出版社,类型(单个字符),isbn,价格(单位:元),位置,有效数量,用空格隔开\n");
-    vector<string> fields;
-    int index = 0;
-    string temp_info;
-    while (index < 8) {
-        cin >> temp_info;
-        fields.push_back(temp_info);
-        index++;
-    }
+	system("cls");
+	cout<<"--------------------添加书籍--------------------------"<<endl;
+//    printf("请依次输入 书名,作者,出版社,类型(单个字符),isbn,价格(单位:元),位置,有效数量,用空格隔开\n");
+//    vector<string> fields;
+//    int index = 0;
+//    string temp_info;
+//    while (index < 8) {
+//        cin >> temp_info;
+//        fields.push_back(temp_info);
+//        index++;
+//    }
+    Book tempBook;
+    BookInstance tempInstance("","");
+	cout << "书名输入0取消添加" << endl;
+	string name = tempBook.readAndSetName();
+	if (name == "0")
+		return false;
+    tempBook.readAndSetAuthor();
+    tempBook.readAndSetPress();
+    tempBook.readAndSetType();
+    string isbn=tempBook.readAndSetIsbn();
+    tempBook.readAndSetPrice();
+    string position=tempInstance.readAndSetPosition();
+    int count=tempBook.readAndSetCount();
 
-    string name = fields[0];
-    string author = fields[1];
-    string press = fields[2];
-    char type = fields[3][0];
-    string isbn = fields[4];
-    int price = stof(fields[5]) * 100;
-    string position = fields[6];
-    int count = stoi(fields[7]);
+//    string name = fields[0];
+//    string author = fields[1];
+//    string press = fields[2];
+//    char type = fields[3][0];
+//    string isbn = fields[4];
+//    int price = stof(fields[5]) * 100;
+//    string position = fields[6];
+//    int count = stoi(fields[7]);
 
 
     vector<BookInstance> bookinstancesFirstAdd;
@@ -416,8 +435,10 @@ bool Book::addOneBookService() {
 
     if (firstId == -1) {// 如果该书不存在
         vector<vector<string>> books;
-        Book book(type, count, price, firstInstanceId, name, author, isbn, press);
-        books.push_back(book.serialize());
+        //Book book(type, count, price, firstInstanceId, name, author, isbn, press);
+		tempBook.setFirstInstanceId(firstInstanceId);
+		tempBook.setAppointmentNum(0);
+        books.push_back(tempBook.serialize());
         vector<long long int> ids;
         Book::addBooks(books, ids);
 		cout << "图书插入成功" << endl;

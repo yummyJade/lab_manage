@@ -113,7 +113,7 @@ int User::login(long long jobNum, std::string password, User *user = NULL) {
                 cout << "该用户有逾期借阅,需要处理后才能登陆" << endl;
                 cout << "输入Y处理逾期,N取消登录:";
                 char operate;
-                cin >> operate;
+                operate=Input::getChar();
                 if (operate == 'Y' || operate == 'y') {
                     // 处理逾期情况
                     if (user->dealWithOverTimeOrder() == 0) {
@@ -224,6 +224,8 @@ bool User::importUsers(string incomingPath="") {
 		/* 读取一个有效路径,并打开其对应的文件*/
 		while (true) {
 			path = SimpleString::readPathFromCmd();// "E:\\Sources\\Cpp\\repos\\Lib_manage\\dev-Tan\\newBooks.csv"
+			if (path == "")
+				return false;
 			fin = ifstream(path);//打开文件流操作
 			if (fin.good()) {
 				cout << "已找到文件,正在读取" << endl;
@@ -505,7 +507,6 @@ int User::returnAssignOrder(Order order) {
     if (book.getAppointmentNum() > 0) {//被预约了,特殊处理
         //处理预约操作,找到那个预约单子,给他改一下
         //找到所有满足bookid==isbn && status = 3的单子
-        //todo:注意一下这个string到int转换合不合法,不合法
         vector<Order> orders = Order::getAssignBookAppointingList(book.getId());
         int earliestIndex = 0;       //借阅时间最早的下标
         SimpleTime earliestDate = orders[0].getBorrowTime();         //记录时间最早那一天，这里的初值付给order里面第一个也行，
@@ -603,7 +604,7 @@ int User::dealWithOverTimeOrder() {
     printf("总共逾期%d本书,共计逾期时间%d天,应缴%.2f元罚款\n", OweOrders.size(), allOverDays, allOverDays * 0.03);
     printf("输入Y缴纳罚款并归还书籍,N取消操作");
     char operate;
-    cin >> operate;
+    operate=Input::getChar();
     if (operate == 'Y' || operate == 'y') {
         for (int i = 0; i < OweOrders.size(); ++i) {
             // 还书

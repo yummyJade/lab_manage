@@ -53,7 +53,7 @@ public:
     // 改变state 并持久化到数据库
     bool changeStateAndPersistence(int newState);
 
-    // 修改可被修改的实例信息
+    // 修改可被修改的实例信息(状态,位置)
     bool updateBookInstanceModifiableInfo();
 
     // 序列化为Record

@@ -85,7 +85,7 @@ User *Library::getSimpleUserInstance() {
 }
 
 User* Library::getAdminUserInstance() {
-	if (Library::simpleUser == NULL) {
+	if (Library::adminUser == NULL) {
 		cout << "Î´µÇÂ½,Ê¹ÓÃ²âÊÔÕËºÅ" << endl;
 		vector<User> results = User::searchUsersBySingleField("jobNum", "10086");
 		if (results.size() > 0) {
@@ -94,5 +94,5 @@ User* Library::getAdminUserInstance() {
 		}
 	}
 
-	return Library::simpleUser;
+	return Library::adminUser;
 }

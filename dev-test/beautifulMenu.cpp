@@ -52,7 +52,7 @@ void printUserSearchMenu() {
              << "---------------------------------" << endl
              << "请输入您的选择:";
 
-        choose=Input::getChar();
+        choose=Input::getInt();
 		if (choose == 0) {
 			return;
 		}
@@ -95,19 +95,20 @@ void printUserSearchMenu() {
 			}
 
             User::printUserList(users);
-            cout << "请选择要操作的用户编号(输入0返回):";
+			EnterToContinue();
+   //         cout << "请选择要操作的用户编号(输入0返回):";
 
-			int operaNum = -1;
-			while (operaNum<0 || operaNum > users.size()) {
-                operaNum=Input::getInt();
-				if (operaNum == 0) {
-					break;
-				}
-				else if (operaNum<0 || operaNum > users.size()) {
-					continue;
-				}
-				// todo: 打印这个用户的相关信息(借阅情况)
-			}
+			//int operaNum = -1;
+			//while (operaNum<0 || operaNum > users.size()) {
+   //             operaNum=Input::getInt();
+			//	if (operaNum == 0) {
+			//		break;
+			//	}
+			//	else if (operaNum<0 || operaNum > users.size()) {
+			//		continue;
+			//	}
+			//	// todo: 打印这个用户的相关信息(借阅情况)
+			//}
 
         }
     }
