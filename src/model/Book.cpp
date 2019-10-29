@@ -237,6 +237,7 @@ bool Book::importBooksService(string incomingPath="") {
 	string line;
 
 	if (incomingPath != "") {
+		path = SimpleString::fixPath(incomingPath);
 		fin = ifstream(path);//打开文件流操作
 	}
 	else {

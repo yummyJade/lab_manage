@@ -84,13 +84,9 @@ std::vector<Order> Order::getAssignUserBorrowedHistory(int firstOrderId) {
 	//cout << "firstID is" << firstOrderId << endl;
     vector<Record> copys = table->queryByPerson(firstOrderId);
     vector<Order> result;
-    //cout<<"copys size "<<copys.size()<<endl;
     for (int i = 0; i < copys.size(); ++i) {
-//        cout<<"开始转化"<<endl;
         result.push_back(Order::RecordCopyToOrder(copys[i]));
-//        cout<<"转化成功"<<endl;
     }
-//    cout<<"copys end "<<endl;
     return result;
 }
 
@@ -126,7 +122,6 @@ std::vector<Order> Order::getAssignUserBorrowingList(int firstOrderId) {
             }
         }
     }
-    //cout << "result size " << result.size() << endl;
     return result;
 }
 
@@ -144,7 +139,6 @@ std::vector<Order> Order::getAssignUserAppointmentList(int firstOrderId){
             }
         }
     }
-    //cout << "result size " << result.size() << endl;
     return result;
 }
 
@@ -157,7 +151,6 @@ std::vector<Order> Order::getAssignUserArrivedAppointmentList(int firstOrderId) 
     for(int i = 0; i < orders.size(); ++i) {
         if(orders[i].statu == appointmentIndex) {
             result.push_back(orders[i]);
-            break;
         }
 
     }

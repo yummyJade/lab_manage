@@ -29,4 +29,7 @@ bool freezeAssignUser();
 // 解冻指定用户
 bool unfreezeAssignUser();
 
+// 处理用户逾期情况
+bool dealWithOverTimeOrder(User* user);
+
 #endif //MYC1_USERSERVICE_H

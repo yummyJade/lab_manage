@@ -21,6 +21,9 @@ public:
     // 断开连接
     bool disconnect();
 
+	// 清空表
+	bool clearTable();
+
     // 插入数据,这个是强制插入,不帮忙判重
     bool insert(vector<vector<string>> values, vector<long long> ids);
 

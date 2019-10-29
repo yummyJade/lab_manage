@@ -95,3 +95,9 @@ vector<vector<string>> DbAdapter::searchBettwenIdA2B(long long startId, long lon
     return results;
 }
 
+bool DbAdapter::clearTable() {
+	this->db->clearTable(this->dbName);
+	return true;
+
+}
+

@@ -120,7 +120,6 @@ bool BookInstance::addOneBookInstancesService() {
 	isbns.push_back(isbn);
 	Book::updateBooksCount(isbns, counts);
     return true;
-
 }
 
 bool BookInstance::deleteInstancesByAssignInstanceId(int id) {
@@ -143,18 +142,21 @@ bool BookInstance::checkAssignBookCanAppointmentInstanceExist(std::string isbn) 
     vector<BookInstance> instances = BookInstance::getInstancesByFirstId(book.getFirstInstanceId());
     int canlendInstanceIndex = 1;        //这代表可借的instance，都能借了，您老人家为什么要预约呢
     int canAppointInstanceIndex[] = {2,5};        //这代表可预约的instance，也就是非下架以及已经被预约的书，总之意思就是，书还是有的，不过不在你手里
+    // 判断是否有可借的书,有则禁止预约
     for(int i = 0; i < instances.size(); ++i) {
         if(instances[i].getStatus() == canlendInstanceIndex) {
-            cout << "有可借本!" << endl;
-            return false;
+//            cout << "馆内当前有可借图书,预约失败!" << endl;
+//            return false;
         }
-        for(int j = 0; j < sizeof(canAppointInstanceIndex) / sizeof(int); ++j) {
-            if(instances[i].getStatus() == canAppointInstanceIndex[j]) {
-                cout << "有你借的" << endl;
-                return true;
-            }
-        }
+        // 下面这个是在干啥?
+//        for(int j = 0; j < sizeof(canAppointInstanceIndex) / sizeof(int); ++j) {
+//            if(instances[i].getStatus() == canAppointInstanceIndex[j]) {
+//                cout << "有你借的" << endl;
+//                return true;
+//            }
+//        }
     }
+
     return true;
 
 }

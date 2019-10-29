@@ -207,10 +207,22 @@ Include_SOURCE_DIR:STATIC=E:/Sources/Cpp/repos/Lib_manage/include
 LIBRARY_OUTPUT_PATH:PATH=
 
 //Value Computed by CMake
+Test_BINARY_DIR:STATIC=E:/Sources/Cpp/repos/Lib_manage/out/build/x64-Debug/test
+
+//Value Computed by CMake
+Test_SOURCE_DIR:STATIC=E:/Sources/Cpp/repos/Lib_manage/test
+
+//Value Computed by CMake
 myc1_BINARY_DIR:STATIC=E:/Sources/Cpp/repos/Lib_manage/out/build/x64-Debug
 
 //Value Computed by CMake
 myc1_SOURCE_DIR:STATIC=E:/Sources/Cpp/repos/Lib_manage
+
+//Value Computed by CMake
+test_BINARY_DIR:STATIC=E:/Sources/Cpp/repos/Lib_manage/out/build/x64-Debug/test
+
+//Value Computed by CMake
+test_SOURCE_DIR:STATIC=E:/Sources/Cpp/repos/Lib_manage/test
 
 
 ########################

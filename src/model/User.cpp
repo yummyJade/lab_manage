@@ -8,7 +8,6 @@
 #include <util/DbAdapter.h>
 #include <util/TableRenderer.h>
 #include <core/Input.h>
-
 using namespace std;
 
 const int User::lendDays[] = {0, 90, 60, 30, 0};
@@ -110,16 +109,16 @@ int User::login(long long jobNum, std::string password, User *user = NULL) {
 
             // 判断用户所有订单的状态,是否有超时订单
             if (!Order::getAssignUserOweOrder(user->getFirstOrderId()).empty()) {
-                cout << "该用户有逾期借阅,需要处理后才能登陆" << endl;
-                cout << "输入Y处理逾期,N取消登录:";
-                char operate;
-                operate=Input::getChar();
-                if (operate == 'Y' || operate == 'y') {
-                    // 处理逾期情况
-                    if (user->dealWithOverTimeOrder() == 0) {
-                        return 0;// 登陆成功
-                    }
-                }
+                cout << "该用户有逾期借阅,需要管理员处理后才能登陆" << endl;
+//                cout << "输入Y处理逾期,N取消登录:";
+//                char operate;
+//                operate=Input::getChar();
+//                if (operate == 'Y' || operate == 'y') {
+//                    // 处理逾期情况
+//                    if (user->dealWithOverTimeOrder() == 0) {
+//                        return 0; // 登陆成功
+//                    }
+//                }
                 return 4;// 返回4,有逾期借阅,禁止登陆
             }
             return 0; // 返回0,登陆成功
@@ -207,7 +206,7 @@ int User::borrowAssignBookInstance(int bookInstanceId) {
     // 判断是否首次借阅,是的话更新借阅链表头的字段
     if (this->getFirstOrderId() == -1) {
 		this->setFirstOrderId(orderId);
-        User::updateUsersAssignField("jobNum", to_string(this->jobNum), "firstOrderId", to_string(orderId));
+        User::updateUsersAssignField("jobNum", to_string(this->getJobNum()), "firstOrderId", to_string(orderId));
     }
 	cout << "借书成功" << endl;
     return 0;
@@ -218,6 +217,7 @@ bool User::importUsers(string incomingPath="") {
 	ifstream fin;
 	string line;
 	if (incomingPath != "") {
+		path = SimpleString::fixPath(incomingPath);
 		fin = ifstream(path);//打开文件流操作
 	}
 	else {
@@ -248,9 +248,9 @@ bool User::importUsers(string incomingPath="") {
     while (getline(fin, line)) //整行读取，换行符“\n”区分，遇到文件尾标志eof终止读取
     {
         istringstream sin(line);
-
         vector<string> fields;
         string field;
+
         while (getline(sin, field, ',')) {
             fields.push_back(field);
         }
@@ -269,10 +269,12 @@ bool User::importUsers(string incomingPath="") {
     }
     vector<long long> ids;
     User::addUsers(users, ids);
-    cout << "插入成功,以下工号的用户已经存在" << endl;
-    for (int i = 0; i < existUsers.size(); ++i) {
-        cout << existUsers[i] << endl;
-    }
+	if (!existUsers.empty()) {
+		cout << "插入成功,以下工号的用户已经存在" << endl;
+		for (int i = 0; i < existUsers.size(); ++i) {
+			cout << existUsers[i] << endl;
+		}
+	}
     return true;
 }
 
@@ -324,10 +326,27 @@ bool User::appointmentAssignBook(int bookId, std::string isbn) {
         return 2;
     }
     // todo:判断该用户是否已经借阅了或者预约了这本书
+    vector<Order> AppointmentList= Order::getAssignUserAppointmentList(this->getFirstOrderId());
+    for (int i = 0; i <AppointmentList.size() ; ++i) {
+        if(AppointmentList[i].getBookId()==bookId){
+            cout<<"预约失败,该用户当前正预约该书,不可重复预约"<<endl;
+            return false;
+        }
+    }
+
+    vector<Order> BorrowingList= Order::getAssignUserBorrowingList(this->getFirstOrderId());
+    for (int j = 0; j < BorrowingList.size(); ++j) {
+        BookInstance* tempInstance=BookInstance::getInstanceById(BorrowingList[j].getBookId());
+        if(tempInstance->getIsbn()==isbn){
+            cout<<"预约失败,该用户当前正在借阅该书,不可再预约"<<endl;
+            return false;
+        }
+    }
+
 
     // 判断该书是否可被预约(是否没有状态为可借的且没有下架) 用bookid查bookinstance
     if(!BookInstance::checkAssignBookCanAppointmentInstanceExist(isbn)){
-        cout << "不可逾越" << endl;
+        cout << "馆内当前有可借图书,预约失败!" << endl;
         return 3;
     }
     // 创建预约Order（用户号，书本唯一标识isbn(xbookId)，当前预约时间，状态为借阅）
@@ -335,13 +354,12 @@ bool User::appointmentAssignBook(int bookId, std::string isbn) {
     //持久化
 
     int orderId = Order::addSingleOrder(this->getFirstOrderId(), order);
-    cout << "在这里" << endl;
+//    cout << "在这里" << endl;
     // 更新Book表中预约数量，为增加，其实这个函数很没用，不过我不知道怎么样把book持久化到数据库，update么
 
     Book::updateBooksAppointmentNum(isbn,1);
-    cout << "在这里" << endl;
+//    cout << "在这里" << endl;
     cout << "预约成功，请等待到书通知" << endl;
-
     return true;
 }
 
@@ -540,7 +558,7 @@ int User::returnAssignOrder(Order order) {
 			BookInstance::updateStateAndReturnTimeById(*instance);
 		}
 
-        cout << "还书成功!" << endl;
+        cout << "成功归还条码号为"<<instance->getId()<<"的书籍!" << endl;
     }
     return 0;
 }

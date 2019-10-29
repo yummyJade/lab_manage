@@ -1,7 +1,3 @@
-//
-// Created by Tjm on 2019/9/22.
-//
-#include "../include/libm.h"
 #include "../src/libcpp.h"
 #include "../linkDatebase/datacpp.h"
 #include <fstream>

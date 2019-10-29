@@ -452,6 +452,8 @@ int printAdminMenu(string userOpera = "0") {
 
         printTree(2, "23.初始化用户密码", deepIndex);
 
+        printTree(2, "24.处理用户逾期借阅", deepIndex);
+
     }
 
     printTree(1, "3.图书管理");
@@ -520,7 +522,14 @@ int printAdminMenu(string userOpera = "0") {
 
             case 23:// 初始化用户密码
                 resetAssignUserPassword();
+                EnterToContinue();
                 break;
+
+            case 24:{//处理用户逾期记录
+                dealWithOverTimeOrder();
+                EnterToContinue();
+                break;
+            }
 
 
             case 31:
