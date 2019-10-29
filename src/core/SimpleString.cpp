@@ -4,6 +4,7 @@
 #include <sstream>
 #include <vector>
 #include <regex>
+#include "../../src/core/Input.cpp"
 
 using namespace std;
 
@@ -38,8 +39,12 @@ std::string SimpleString::readPathFromCmd() {
     string path;
 
     while (true) {
-        printf("请输入文件路径:");
-        cin >> path;
+        printf("请输入文件路径(输入0返回):");
+        path=Input::getAssignMaxLengthStr(200);
+        if(path=="0")
+            return "";
+        // cin >> path;
+
         if (path != SimpleString::fixPath(path)) {
             cout << "文件路径修复为:" << SimpleString::fixPath(path) << endl;
             path = SimpleString::fixPath(path);

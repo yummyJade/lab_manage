@@ -32,7 +32,7 @@ bool changeAssignBookInfo() {
     Book tempBook;
     while (true) {
 
-        printf("请输入要修改的书籍的ISBN(输入0返回):");
+        printf("ISBN输入0取消操作\n");
         isbn=tempBook.readAndSetIsbn();
 		if (isbn == "0") return false;
         if (Book::checkAssignISBNExist(isbn) == -1) { // 图书不存在
@@ -79,11 +79,10 @@ bool changeAssignBookInstanceInfo() {
     book->printLine();
 
     printf("请输入修改后的信息\n");
-
-    book->readAndSetIsbn();
     book->readAndSetPosition();
     book->readAndSetStatus();
     book->updateBookInstanceModifiableInfo();
+	printf("修改成功\n");
     return true;
 }
 

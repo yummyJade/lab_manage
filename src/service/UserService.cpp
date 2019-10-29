@@ -156,3 +156,23 @@ bool addSingleUserService() {
         printf("工号为%lld的用户已经存在,添加失败", jobNum);
     }
 }
+
+bool dealWithOverTimeOrder(User* user=NULL){
+    if(user==NULL){//登陆用户
+        while(1){
+            user=choseOneUser();
+            if (user == NULL) {
+                return false;
+            }else{
+                if (Order::getAssignUserOweOrder(user->getFirstOrderId()).empty()){ // 没有逾期记录
+                    cout<<"该用户当前没有逾期借阅,无需处理"<<endl;
+                }else{
+                    break;
+                }
+            }
+        }
+    }
+
+    user->dealWithOverTimeOrder();
+    return true;
+}

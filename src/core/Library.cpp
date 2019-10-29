@@ -38,6 +38,9 @@ User *Library::login(bool needSimpleUser = false) {
 			case 3:
 				cout << "该账号已被冻结,请联系管理员进行解冻操作" << endl;
 				break;
+            case 4:
+                cout << "该账号有逾期记录未处理,禁止登陆" << endl;
+                break;
             case 0:
                 if (needSimpleUser && user->getType() == 0) {
                     cout << "该账户是管理员账号,请登陆一个普通账户";
@@ -85,7 +88,7 @@ User *Library::getSimpleUserInstance() {
 }
 
 User* Library::getAdminUserInstance() {
-	if (Library::simpleUser == NULL) {
+	if (Library::adminUser == NULL) {
 		cout << "未登陆,使用测试账号" << endl;
 		vector<User> results = User::searchUsersBySingleField("jobNum", "10086");
 		if (results.size() > 0) {
@@ -94,5 +97,5 @@ User* Library::getAdminUserInstance() {
 		}
 	}
 
-	return Library::simpleUser;
+	return Library::adminUser;
 }

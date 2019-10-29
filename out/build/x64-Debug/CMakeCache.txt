@@ -207,10 +207,22 @@ Include_SOURCE_DIR:STATIC=E:/Sources/Cpp/repos/Lib_manage/include
 LIBRARY_OUTPUT_PATH:PATH=
 
 //Value Computed by CMake
+Test_BINARY_DIR:STATIC=E:/Sources/Cpp/repos/Lib_manage/out/build/x64-Debug/test
+
+//Value Computed by CMake
+Test_SOURCE_DIR:STATIC=E:/Sources/Cpp/repos/Lib_manage/test
+
+//Value Computed by CMake
 myc1_BINARY_DIR:STATIC=E:/Sources/Cpp/repos/Lib_manage/out/build/x64-Debug
 
 //Value Computed by CMake
 myc1_SOURCE_DIR:STATIC=E:/Sources/Cpp/repos/Lib_manage
+
+//Value Computed by CMake
+test_BINARY_DIR:STATIC=E:/Sources/Cpp/repos/Lib_manage/out/build/x64-Debug/test
+
+//Value Computed by CMake
+test_SOURCE_DIR:STATIC=E:/Sources/Cpp/repos/Lib_manage/test
 
 
 ########################
@@ -301,7 +313,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_MT
 CMAKE_MT-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=2
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=3
 //Platform information initialized
 CMAKE_PLATFORM_INFO_INITIALIZED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_RC_COMPILER

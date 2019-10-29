@@ -1,19 +1,97 @@
 #define CATCH_CONFIG_MAIN
-
 #include "catch.hpp"
-#include "../include/libm.h"
+#include <iostream>
+#include <iomanip>
+#include<string>
+#include<windows.h>
+#include <vector>
+#include "libm.h"
+#include "../src/libcpp.h"
+#include "../src/libcpp.h"
+#include "../linkDatebase/datacpp.h"
+#include "../yu/Verify.h"
+#include "../yu/Verify.cpp"
+#include "../src/core/Input.cpp"
+using namespace std;
 
-TEST_CASE("导入数据", "[AbsoluteUserTests]") {
-	// 导入用户
+
+TEST_CASE("增加一个逾期的借阅记录", "[lendBook]") {
+	// 增加一个逾期的
+	User* user = Library::getSimpleUserInstance();
+	BookInstance* instance=BookInstance::getInstanceById(1);
+	// 插入一条借阅记录Order,需要(用户工号,书实例id,借书时间,预计归还时间,订单状态)
+	Date lendDate = Date(2019, 7, 20);
+	SimpleTime lendTime = SimpleTime(0, 0, 0, lendDate);
+	Order order(user->getJobNum(), instance->getId(), lendTime,
+		lendTime.addDay(30),
+		static_cast<Status>(1));
+
+	int orderId = Order::addSingleOrder(user->getFirstOrderId(), order);
+
+	// 设置该Bookinstance不可借,并更新应还时间
+	instance->setStatus(2);
+	instance->setPlanReturnDate(lendDate.addDay(30));
+	BookInstance::updateStateAndReturnTimeById(*instance);
+
+	// 判断是否首次借阅,是的话更新借阅链表头的字段
+	if (user->getFirstOrderId() == -1) {
+		user->setFirstOrderId(orderId);
+		User::updateUsersAssignField("jobNum", to_string(user->getJobNum()), "firstOrderId", to_string(orderId));
+	}
 
 }
 
-TEST_CASE("IncorrectDate", "[AbsoluteDateTests]") {  // 12/0/2020 -> 0
-    Date *date = new Date(2019, 9, 26);
-//GregorianDate gregDate;
-//gregDate.SetMonth(12);
-//gregDate.SetDay(0);
-//gregDate.SetYear(2020);
-//REQUIRE(gregDate.getAbsoluteDate() == 0);
+
+TEST_CASE("增加3天内到期的借阅记录", "[lendBook]") {
+	for (int i = 0; i < 1; i++) {
+		// 增加一个逾期的
+		User* user = Library::getSimpleUserInstance();
+		BookInstance* instance = BookInstance::getInstanceById(1);
+		// 插入一条借阅记录Order,需要(用户工号,书实例id,借书时间,预计归还时间,订单状态)
+		Date lendDate = Date::today();
+		SimpleTime lendTime = SimpleTime(0, 0, 0, lendDate);
+			Order order(user->getJobNum(), instance->getId(), lendTime,
+				lendTime.addDay(1),
+				static_cast<Status>(1));
+
+		int orderId = Order::addSingleOrder(user->getFirstOrderId(), order);
+
+		// 设置该Bookinstance不可借,并更新应还时间
+		instance->setStatus(2);
+		instance->setPlanReturnDate(lendDate.addDay(30));
+		BookInstance::updateStateAndReturnTimeById(*instance);
+
+		// 判断是否首次借阅,是的话更新借阅链表头的字段
+		if (user->getFirstOrderId() == -1) {
+			user->setFirstOrderId(orderId);
+			User::updateUsersAssignField("jobNum", to_string(user->getJobNum()), "firstOrderId", to_string(orderId));
+		}
+	}
 }
 
+TEST_CASE("增加预约已到的书籍", "[lendBook]") {
+    for (int i = 0; i < 1; i++) {
+        // 增加一个逾期的
+        User* user = Library::getSimpleUserInstance();
+        BookInstance* instance = BookInstance::getInstanceById(1);
+        // 插入一条借阅记录Order,需要(用户工号,书实例id,借书时间,预计归还时间,订单状态)
+        Date lendDate = Date::today();
+        SimpleTime lendTime = SimpleTime(0, 0, 0, lendDate);
+        Order order(user->getJobNum(), instance->getId(), lendTime,
+                    lendTime.addDay(1),
+                    static_cast<Status>(5));
+
+        int orderId = Order::addSingleOrder(user->getFirstOrderId(), order);
+
+        // 设置该Bookinstance不可借,并更新应还时间
+        instance->setStatus(2);
+        instance->setPlanReturnDate(lendDate.addDay(30));
+        BookInstance::updateStateAndReturnTimeById(*instance);
+
+        // 判断是否首次借阅,是的话更新借阅链表头的字段
+        if (user->getFirstOrderId() == -1) {
+            user->setFirstOrderId(orderId);
+            User::updateUsersAssignField("jobNum", to_string(user->getJobNum()), "firstOrderId", to_string(orderId));
+        }
+    }
+}

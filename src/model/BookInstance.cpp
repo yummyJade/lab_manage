@@ -77,45 +77,49 @@ std::vector<BookInstance> BookInstance::getInstancesByFirstId(int firstId) {
 }
 
 bool BookInstance::addOneBookInstancesService() {
-    printf("请依次输入 isbn,位置,图书状态(数字),有效数量,用空格隔开\n");
-    vector<string> fields;
-    int index = 0;
-    string temp_info;
-    while (index < 4) {
-        cin >> temp_info;
-        fields.push_back(temp_info);
-        index++;
-    }
+    cout<<"--------------------添加书籍--------------------------"<<endl;
 
+    BookInstance tempInstance("","");
+	cout << "isbn输入0可取消添加" << endl;
+	string isbn;
+	int firstId = 0;
+	while (1) {
+		isbn = tempInstance.readAndSetIsbn();
+		if (isbn == "0") {
+			return false;
+		}
 
-    string isbn = fields[0];
-    string position = fields[1];
-    int state = stoi(fields[2]);
-    int count = stoi(fields[3]);
+		// 判断图书是否存在
+		firstId = Book::checkAssignISBNExist(isbn);
+		if (firstId == -1) {// 如果该书不存在
+			cout << "图书馆尚无ISBN为" << isbn << "的书籍,请先添加该书后再执行添加实例操作" << endl;
+		}
+		else {
+			break;
+		}
+	}
+	
 
+    string position = tempInstance.readAndSetPosition();
+	int state = 1;//  tempInstance.readAndSetStatus();  不要让用户选择状态
 
-    int firstId = Book::checkAssignISBNExist(isbn);// 判断图书是否存在
-    if (firstId == -1) {// 如果该书不存在
-        cout << "图书馆尚无ISBN为" << isbn << "的书籍,请先添加该书后再执行添加实例操作" << endl;
-        return false;
-    } else {
+	cout << "请输入要添加的数量:";
+    int count = Input::getInt();
 
-        vector<BookInstance> bookinstancesFirstAdd;
-        for (int i = 0; i < count; ++i) {
-            BookInstance bookInstance(isbn, state, position);
-            bookinstancesFirstAdd.push_back(bookInstance);
-        }
-        long long firstInstanceId = BookInstance::importBookInstances(bookinstancesFirstAdd,
-                                                                      firstId);//获取链表的第一个位置
+	vector<BookInstance> bookinstancesFirstAdd;
+	for (int i = 0; i < count; ++i) {
+		BookInstance bookInstance(isbn, state, position);
+		bookinstancesFirstAdd.push_back(bookInstance);
+	}
+	long long firstInstanceId = BookInstance::importBookInstances(bookinstancesFirstAdd,
+		firstId);//获取链表的第一个位置
 
-        vector<int> counts;
-        counts.push_back(count);
-        vector<string> isbns;
-        isbns.push_back(isbn);
-        Book::updateBooksCount(isbns, counts);
-    }
+	vector<int> counts;
+	counts.push_back(count);
+	vector<string> isbns;
+	isbns.push_back(isbn);
+	Book::updateBooksCount(isbns, counts);
     return true;
-
 }
 
 bool BookInstance::deleteInstancesByAssignInstanceId(int id) {
@@ -138,18 +142,21 @@ bool BookInstance::checkAssignBookCanAppointmentInstanceExist(std::string isbn) 
     vector<BookInstance> instances = BookInstance::getInstancesByFirstId(book.getFirstInstanceId());
     int canlendInstanceIndex = 1;        //这代表可借的instance，都能借了，您老人家为什么要预约呢
     int canAppointInstanceIndex[] = {2,5};        //这代表可预约的instance，也就是非下架以及已经被预约的书，总之意思就是，书还是有的，不过不在你手里
+    // 判断是否有可借的书,有则禁止预约
     for(int i = 0; i < instances.size(); ++i) {
         if(instances[i].getStatus() == canlendInstanceIndex) {
-            cout << "有可借本!" << endl;
-            return false;
+//            cout << "馆内当前有可借图书,预约失败!" << endl;
+//            return false;
         }
-        for(int j = 0; j < sizeof(canAppointInstanceIndex) / sizeof(int); ++j) {
-            if(instances[i].getStatus() == canAppointInstanceIndex[j]) {
-                cout << "有你借的" << endl;
-                return true;
-            }
-        }
+        // 下面这个是在干啥?
+//        for(int j = 0; j < sizeof(canAppointInstanceIndex) / sizeof(int); ++j) {
+//            if(instances[i].getStatus() == canAppointInstanceIndex[j]) {
+//                cout << "有你借的" << endl;
+//                return true;
+//            }
+//        }
     }
+
     return true;
 
 }
@@ -215,7 +222,11 @@ void BookInstance::setPlanReturnDate(const Date &planReturnDate) {
 
 bool BookInstance::updateBookInstanceModifiableInfo() {
 //    BookInstance::updateAssignFieldsById("");
-    return false;
+	TableBookcopy* table = TableBookcopy::getInstance();
+	vector<int> changeIndex = { 2, 6 };//修改 状态, 位置
+	table->update(this->getId(), this->toBookCopy(), changeIndex);
+
+    return true;
 }
 
 std::vector<std::string> BookInstance::getPrintLineStr() {

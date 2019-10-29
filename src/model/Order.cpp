@@ -84,13 +84,9 @@ std::vector<Order> Order::getAssignUserBorrowedHistory(int firstOrderId) {
 	//cout << "firstID is" << firstOrderId << endl;
     vector<Record> copys = table->queryByPerson(firstOrderId);
     vector<Order> result;
-    //cout<<"copys size "<<copys.size()<<endl;
     for (int i = 0; i < copys.size(); ++i) {
-//        cout<<"开始转化"<<endl;
         result.push_back(Order::RecordCopyToOrder(copys[i]));
-//        cout<<"转化成功"<<endl;
     }
-//    cout<<"copys end "<<endl;
     return result;
 }
 
@@ -126,7 +122,6 @@ std::vector<Order> Order::getAssignUserBorrowingList(int firstOrderId) {
             }
         }
     }
-    //cout << "result size " << result.size() << endl;
     return result;
 }
 
@@ -144,7 +139,6 @@ std::vector<Order> Order::getAssignUserAppointmentList(int firstOrderId){
             }
         }
     }
-    //cout << "result size " << result.size() << endl;
     return result;
 }
 
@@ -157,7 +151,6 @@ std::vector<Order> Order::getAssignUserArrivedAppointmentList(int firstOrderId) 
     for(int i = 0; i < orders.size(); ++i) {
         if(orders[i].statu == appointmentIndex) {
             result.push_back(orders[i]);
-            break;
         }
 
     }
@@ -242,16 +235,18 @@ std::vector<std::string> Order::getPrintLineStr() {
     vector<string> info;
     Book book;
     BookInstance *bookInstance = BookInstance::getInstanceById(this->getBookId());
+	string code;
     if(this->getStatu()==3){// 如果是预约的话
         book = Book::searchBooksById(this->getBookId());
+		code = "无";
     }else{
-
         book = Book::searchBooksBySingleField("isbn", bookInstance->getIsbn())[0];
+		code = to_string(bookInstance->getId());
     }
-
+	
 
     info.push_back(book.getName());// 书名
-    info.push_back(to_string(bookInstance->getId()));
+    info.push_back(code); //条码号
     SimpleTime date =  this->getBorrowTime();
     info.push_back(date.serialize());
     date = this->getReturnTime();

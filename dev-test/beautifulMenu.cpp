@@ -52,7 +52,7 @@ void printUserSearchMenu() {
              << "---------------------------------" << endl
              << "请输入您的选择:";
 
-        choose=Input::getChar();
+        choose=Input::getInt();
 		if (choose == 0) {
 			return;
 		}
@@ -95,19 +95,20 @@ void printUserSearchMenu() {
 			}
 
             User::printUserList(users);
-            cout << "请选择要操作的用户编号(输入0返回):";
+			EnterToContinue();
+   //         cout << "请选择要操作的用户编号(输入0返回):";
 
-			int operaNum = -1;
-			while (operaNum<0 || operaNum > users.size()) {
-                operaNum=Input::getInt();
-				if (operaNum == 0) {
-					break;
-				}
-				else if (operaNum<0 || operaNum > users.size()) {
-					continue;
-				}
-				// todo: 打印这个用户的相关信息(借阅情况)
-			}
+			//int operaNum = -1;
+			//while (operaNum<0 || operaNum > users.size()) {
+   //             operaNum=Input::getInt();
+			//	if (operaNum == 0) {
+			//		break;
+			//	}
+			//	else if (operaNum<0 || operaNum > users.size()) {
+			//		continue;
+			//	}
+			//	// todo: 打印这个用户的相关信息(借阅情况)
+			//}
 
         }
     }
@@ -451,6 +452,8 @@ int printAdminMenu(string userOpera = "0") {
 
         printTree(2, "23.初始化用户密码", deepIndex);
 
+        printTree(2, "24.处理用户逾期借阅", deepIndex);
+
     }
 
     printTree(1, "3.图书管理");
@@ -519,7 +522,14 @@ int printAdminMenu(string userOpera = "0") {
 
             case 23:// 初始化用户密码
                 resetAssignUserPassword();
+                EnterToContinue();
                 break;
+
+            case 24:{//处理用户逾期记录
+                dealWithOverTimeOrder();
+                EnterToContinue();
+                break;
+            }
 
 
             case 31:

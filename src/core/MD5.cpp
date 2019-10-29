@@ -8,6 +8,7 @@
 #include <math.h>
 #include <Windows.h>
 #include <stdio.h>
+typedef unsigned char byte;
 
 char md5(char tmp)
 {

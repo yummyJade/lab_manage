@@ -39,8 +39,10 @@
     <file url="file://$PROJECT_DIR$/src/service/BookService.cpp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/service/UserService.cpp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/util/DbAdapter.cpp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/test/CMakeLists.txt" charset="GBK" />
     <file url="file://$PROJECT_DIR$/test/DateTest.cpp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/test/Library.cpp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/test/UserTest.cpp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/yu/Verify.cpp" charset="GBK" />
   </component>
 </project>
