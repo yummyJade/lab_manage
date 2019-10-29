@@ -1,6 +1,7 @@
 #include "../../include/model/BookInstance.h"
 //#include "../../src/model/BookInstance.cpp"
 #include "../../linkDatebase/include/TableBookcopy.h"
+#include "../../src/core/Input.cpp"
 #include <iostream>
 #include <vector>
 #include <string>

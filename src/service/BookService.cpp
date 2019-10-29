@@ -3,6 +3,7 @@
 #include <string>
 #include <model/User.h>
 #include "util/TableRenderer.h"
+#include "../../src/core/Input.cpp"
 
 bool printBookDetailInfo(std::string isbn, vector<BookInstance>* saveInstances=NULL) {
 	system("cls");

@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <string>
 #include "../database/libDB.h"
+#include "core/Input.h"
 #include "core/Date.h"
 #include "core/SimpleTime.h"
 #include "core/SimpleString.h"

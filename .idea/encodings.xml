@@ -15,6 +15,7 @@
     <file url="file://$PROJECT_DIR$/dev-test/beautifulMenu.cpp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/dev-test/main.cpp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/dev-test/menuTest.cpp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/include/core/Input.h" charset="GBK" />
     <file url="file://$PROJECT_DIR$/include/core/MD5.h" charset="GBK" />
     <file url="file://$PROJECT_DIR$/include/model/Book.h" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/include/model/BookInstance.h" charset="GBK" />
@@ -25,6 +26,7 @@
     <file url="file://$PROJECT_DIR$/linkDatebase/src/TableBookcopy.cpp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/linkDatebase/src/TableRecord.cpp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/core/Date.cpp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/core/Input.cpp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/core/Library.cpp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/core/MD5.cpp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/core/SimpleString.cpp" charset="GBK" />

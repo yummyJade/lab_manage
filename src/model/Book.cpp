@@ -6,7 +6,7 @@
 #include <model/BookInstance.h>
 #include "../../include/util/DbAdapter.h"
 #include "../../include/util/TableRenderer.h"
-
+#include "../../src/core/Input.cpp"
 using namespace std;
 
 Book::Book() {

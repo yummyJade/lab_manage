@@ -1,6 +1,7 @@
 #include "core/Library.h"
 #include <iostream>
 #include <string>
+#include "../../src/core/Input.cpp"
 
 using namespace std;
 

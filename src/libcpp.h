@@ -6,6 +6,7 @@
 #include "core/SimpleString.cpp"
 #include "core/Library.cpp"
 #include "core/MD5.cpp"
+#include "core/Input.cpp"
 
 #include "model/Book.cpp"
 #include "model/BookInstance.cpp"

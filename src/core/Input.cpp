@@ -1,4 +1,7 @@
-#include "core/Input.h"
+#ifndef MYC1_INPUT_Cpp
+#define MYC1_INPUT_Cpp
+
+#include "../../include/core/Input.h"
 #include <iostream>
 #include <string>
 using namespace std;
@@ -56,3 +59,4 @@ char Input::getChar() {
     }
     return result;
 }
+#endif //MYC1_INPUT_Cpp

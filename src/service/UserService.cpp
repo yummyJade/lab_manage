@@ -4,6 +4,7 @@
 #include <string>
 #include <model/User.h>
 #include "util/TableRenderer.h"
+#include "../../src/core/Input.cpp"
 
 // 根据输入选择一个user, 取消返回NULL
 User *choseOneUser() {

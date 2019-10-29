@@ -241,10 +241,11 @@ void Order::printOrderList(std::vector<Order> orders) {
 std::vector<std::string> Order::getPrintLineStr() {
     vector<string> info;
     Book book;
+    BookInstance *bookInstance = BookInstance::getInstanceById(this->getBookId());
     if(this->getStatu()==3){// 如果是预约的话
         book = Book::searchBooksById(this->getBookId());
     }else{
-        BookInstance *bookInstance = BookInstance::getInstanceById(this->getBookId());
+
         book = Book::searchBooksBySingleField("isbn", bookInstance->getIsbn())[0];
     }
 

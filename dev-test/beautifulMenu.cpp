@@ -9,7 +9,7 @@
 #include "../linkDatebase/datacpp.h"
 #include "../yu/Verify.h"
 #include "../yu/Verify.cpp"
-
+#include "../src/core/Input.cpp"
 using namespace std;
 
 
