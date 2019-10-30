@@ -674,18 +674,18 @@ int main() {
 //    }
 
 	// 普通用户界面
-	//string operaNum = "";
-	//int resultCode= printAdminMenu(operaNum);
+	string operaNum = "";
+	int resultCode= printAdminMenu(operaNum);
 
- //   while (resultCode != 9) {//9 是注销操作
- //       /*cout << "请输入操作数" << endl;
- //       cin >> operaNum;
- //       system("cls");*/
-	//	resultCode= printUserMenu(to_string(resultCode));
- //   }
+    while (resultCode != 9) {//9 是注销操作
+        /*cout << "请输入操作数" << endl;
+        cin >> operaNum;
+        system("cls");*/
+		resultCode= printUserMenu(to_string(resultCode));
+    }
 
 
-    trueMain();
+//    trueMain();
 
 }
 

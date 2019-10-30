@@ -78,6 +78,11 @@ std::vector<Order> Order::getAssignBookAppointingList(int bookId) {
     return result;
 }
 
+std::vector<Order> Order::getAssignBookOweAppointing(int bookId) {
+    //先获取所有的在预约记录
+    vector<Order> orders = Order::getAssignBookAppointingList(bookId);
+}
+
 //1代表在借，2代表已还，3代表预约，4代表已续借的在借，5代表预约已到
 std::vector<Order> Order::getAssignUserBorrowedHistory(int firstOrderId) {
     TableRecord *table = TableRecord::getInstance();
@@ -131,6 +136,7 @@ std::vector<Order> Order::getAssignUserAppointmentList(int firstOrderId){
     vector<Order> orders = Order::getAssignUserBorrowedHistory(firstOrderId);
     vector<Order> result;
     int appointmentIndexs[] = {3, 5};      //表示的是在预约的状态，包括在预约以及预约已到未取
+
     for(int i = 0; i < orders.size(); ++i) {
         for(int j = 0; j < sizeof(appointmentIndexs) / sizeof(int); ++j) {
             if(orders[i].statu == appointmentIndexs[j]) {
@@ -147,10 +153,27 @@ std::vector<Order> Order::getAssignUserArrivedAppointmentList(int firstOrderId) 
     //先获取所有的在预约状态
     vector<Order> orders = Order::getAssignUserBorrowedHistory(firstOrderId);
     vector<Order> result;
+    //todo:判断预约是否过期，如果是，修改该订单为什么状态？
     int appointmentIndex = 5;      //表示的是预约已到未取
+    SimpleTime appointArrivedInValidTime;
     for(int i = 0; i < orders.size(); ++i) {
         if(orders[i].statu == appointmentIndex) {
-            result.push_back(orders[i]);
+//            result.push_back(orders[i]);
+            //判断该订单的到期时间与当前时间的关系，若到期时间大于等于当前时间，代表还未过期，返回结果
+            appointArrivedInValidTime = orders[i].getBorrowTime();       //预约失效时间
+            if(appointArrivedInValidTime.compare(SimpleTime::nowTime()) >= 0){
+                result.push_back(orders[i]);
+            }else{
+                //todo：这个地方的代码要移走
+                orders[i].setStatu(static_cast<Status>(6));     //将订单修改成预约超期的状态
+                orders[i].updateStateAndReturnTimeById(orders[i]);      //持久化
+                BookInstance *instance = BookInstance::getInstanceById(orders[i].getBookId());
+                //修改书籍实例的状态为可借
+                instance->setStatus(1);
+                //更新函数爱改不改
+                BookInstance::updateStateAndReturnTimeById(*instance);
+            }
+
         }
 
     }
@@ -315,9 +338,9 @@ bool Order::updateStateAndReturnTimeById(Order order) {
     return true;
 }
 
-bool Order::updateStateAndBookIdById(Order order){
+bool Order::updateStateAndBookIdAndBorrowTimeById(Order order){
     TableRecord *table = TableRecord::getInstance();
-    vector<int> changeIndex = {4,7};
+    vector<int> changeIndex = {2, 4, 7};
     table->update(order.getId(), order.toRecordCopy(), changeIndex);
     return true;
 }

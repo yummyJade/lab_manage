@@ -13,6 +13,7 @@ using namespace std;
 const int User::lendDays[] = {0, 90, 60, 30, 0};
 const int User::lendNums[] = {0, 90, 60, 30, 0};
 const int User::appointNums[] = {0, 9, 6, 3, 0};
+const int User::appointDays[] = {0, 60, 45, 30, 0};
 
 User::User()
 {
@@ -313,17 +314,17 @@ bool User::getUserMessage() {
     return true;
 }
 
-// todo:返回类型改一下
+
 bool User::appointmentAssignBook(int bookId, std::string isbn) {
     // 判断用户是否超过最大预约数
     if(Order::getAssignUserAppointmentList(this->firstOrderId).size() >= this->getCanAppointNums()){
         cout << "超过最大预约数" << endl;
-        return 1;
+        return false;
     }
     //判断是否超过可借书的数量（可借数量+已预约的数量）
     if((Order::getAssignUserBorrowingList(this->firstOrderId).size() + Order::getAssignUserAppointmentList(this->firstOrderId).size()) >= this->getCanLendNums()){
         cout << "超过最大可借数" << endl;
-        return 2;
+        return false;
     }
     // todo:判断该用户是否已经借阅了或者预约了这本书
     vector<Order> AppointmentList= Order::getAssignUserAppointmentList(this->getFirstOrderId());
@@ -346,8 +347,8 @@ bool User::appointmentAssignBook(int bookId, std::string isbn) {
 
     // 判断该书是否可被预约(是否没有状态为可借的且没有下架) 用bookid查bookinstance
     if(!BookInstance::checkAssignBookCanAppointmentInstanceExist(isbn)){
-        cout << "馆内当前有可借图书,预约失败!" << endl;
-        return 3;
+        cout << "预约失败,馆内当前有可借图书!" << endl;
+        return false;
     }
     // 创建预约Order（用户号，书本唯一标识isbn(xbookId)，当前预约时间，状态为借阅）
     Order order(this->getJobNum(), bookId, SimpleTime::nowTime(), SimpleTime::nowTime(), static_cast<Status>(3));
@@ -512,6 +513,9 @@ int User::getCanAppointNums() {
     return appointNums[this->getType()];
 }
 
+int User::getCanAppointDays() {
+    return appointDays[this->getType()];
+}
 int User::returnAssignOrder(Order order) {
     // 修改订单状态
     order.setStatu(static_cast<Status>(2));
@@ -529,17 +533,21 @@ int User::returnAssignOrder(Order order) {
         int earliestIndex = 0;       //借阅时间最早的下标
         SimpleTime earliestDate = orders[0].getBorrowTime();         //记录时间最早那一天，这里的初值付给order里面第一个也行，
         for (int i = 1; i < orders.size(); ++i) {
-            //接下来比较时间前后，找到最小？大的那个，
+            //接下来比较时间前后
             if(earliestDate.compare(orders[i].getBorrowTime()) > 0) {    //大于0说明当前时间比compare里的要大，也就是要靠后
                 earliestIndex = i;
                 earliestDate = orders[i].getBorrowTime();
             }
         }
-        //找到最大的以后更改对应订单的信息，将bookId修改为当前instanceId，将status改为5
+        //找到最大的以后更改对应订单的信息，将bookId修改为当前instanceId，将status改为5，将借阅时间保存为当前时间，用作判断预约过期
         orders[earliestIndex].setStatu(static_cast<Status>(5));
         //存的实例id就是这个么？
         orders[earliestIndex].setBookId(instance->getId());
-        Order::updateStateAndBookIdById(orders[earliestIndex]);
+        //新操作：对borrowTime字段进行更新，如果想保留预约时间的话，也可以用归还时间做个记录
+//        orders[earliestIndex].setReturnTime(SimpleTime::nowTime().addDay(this->getCanLendDays()));
+        User earliestUser = User::getUserByJobNum(orders[earliestIndex].getUserId());       //获取该记录的用户
+        orders[earliestIndex].setBorrowTime(SimpleTime::nowTime().addDay(earliestUser.getCanAppointDays()));
+        Order::updateStateAndBookIdAndBorrowTimeById(orders[earliestIndex]);
 
         //修改BookInstance的状态status为5,这里只修改了一项函数会不会报错
         instance->setStatus(5);
@@ -592,6 +600,8 @@ int User::renewAssignOrder(Order order) {
 
 bool User::getArrivedAppointment(Order order) {
     //现在这本书真正归这个人所有了，所以首先要修改订单信息
+    //todo:请判一下有没有过期
+    //新增：增加了预约的可允许的范围
     order.setStatu(static_cast<Status>(1));
     order.setBorrowTime(SimpleTime::nowTime());
     //其实设置这个时间，我个人认为没有意义

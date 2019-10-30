@@ -15,7 +15,7 @@ private:
     int bookId;     // 借的书的id
     SimpleTime borrowTime;        // 借书时间
     SimpleTime returnTime;        // 还书时间
-    Status statu;               // 订单状态 1代表在借，2代表已还，3代表预约，4代表已续借的在借，5代表预约已到
+    Status statu;               // 订单状态 1代表在借，2代表已还，3代表预约，4代表已续借的在借，5代表预约已到，6代表预约超期
 
     /**
      * 将枚举类型的statu转化成对应的字符串
@@ -138,10 +138,18 @@ public:
      //todo:这个预约超期判断谁来做，此时要判断么
      static std::vector<Order> getAssignUserArrivedAppointmentList(int firstOrderId);
 
+     /**
+    * 获取指定书籍的超预约逾期记录（并更新，未实现）
+    *
+    */
+    static std::vector<Order> getAssignBookOweAppointing(int firstOrderId);
+
     /**
      * 判断指定用户的在预约记录是否有该本书（未实现）
      */
     static bool judgeAssignUserAppointmentList(int firstOrderId, int isbn);
+
+
     /**
      * 获取指定用户正在逾期的借书记录
      * @param firstOrderId
@@ -179,8 +187,8 @@ public:
     // 修改指定id的instance的状态和应还时间,用于借还书
     static bool updateStateAndReturnTimeById(Order order);
 
-    //修改指定id的instance的状态和bookId,用于预约书
-    static bool updateStateAndBookIdById(Order order);
+    //修改指定id的instance的状态和bookId和预约到达时间（最后判断预约有没有过期）,用于预约书
+    static bool updateStateAndBookIdAndBorrowTimeById(Order order);
 
     //修改指定id的instance的状态和借书时间还书时间，用于领取书
     static bool updateStateAndReturnTimeAndLendTimeById(Order order);
