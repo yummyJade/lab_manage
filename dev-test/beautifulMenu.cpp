@@ -346,9 +346,10 @@ int printAdminDealUserMenu(string userOpera = "0") {
                 int operaNum;
                 cout << "请选择要领取的书籍（输入0返回）";
                 operaNum=Input::getInt();
-                if(operaNum > 0) {  //领取
+                if(operaNum > 0 && operaNum <= resultSet.size()) {  //领取
                     User* loginUser=Library::getSimpleUserInstance();
 					loginUser->getArrivedAppointment(resultSet[operaNum - 1]);
+                    EnterToContinue();
                 }
                 break;
             }
@@ -385,18 +386,21 @@ int printAdminDealUserMenu(string userOpera = "0") {
                 int operaNum;
                 cout << "选择要归还的书籍(输入0返回):";
                 operaNum=Input::getInt();
-                if (operaNum > 0) { //还书
+                if (operaNum > 0 && operaNum <= resultSet.size()) { //还书
                     Library::getSimpleUserInstance();
                     int resultCode=User::returnAssignOrder(resultSet[operaNum - 1]);
 					if (resultCode == 0) {
-						cout << "还书成功,按Enter返回";
+						cout << "还书成功,";
 					}
 					else {
-						cout << "还书失败,按Enter返回";
+						cout << "还书失败,";
 					}
-					cin.get();
-					cin.get();
+                    EnterToContinue();
+//					cin.get();
+//					cin.get();
+
                 }
+
                 break;
             }
 
@@ -408,10 +412,13 @@ int printAdminDealUserMenu(string userOpera = "0") {
                 int operaNum;
                 cout << "选择要续借的书籍(输入0返回):";
                 operaNum=Input::getInt();
-                if (operaNum > 0) { //续借
+                if (operaNum > 0 && operaNum <= resultSet.size()) { //续借
                     User *loginUser = Library::getSimpleUserInstance();
                     loginUser->renewAssignOrder(resultSet[operaNum - 1]);
+
+                    EnterToContinue();
                 }
+
                 break;
             }
 			default :
@@ -674,18 +681,18 @@ int main() {
 //    }
 
 	// 普通用户界面
-	string operaNum = "";
-	int resultCode= printAdminMenu(operaNum);
+//	string operaNum = "";
+//	int resultCode= printAdminMenu(operaNum);
+//
+//    while (resultCode != 9) {//9 是注销操作
+//        /*cout << "请输入操作数" << endl;
+//        cin >> operaNum;
+//        system("cls");*/
+//		resultCode= printUserMenu(to_string(resultCode));
+//    }
 
-    while (resultCode != 9) {//9 是注销操作
-        /*cout << "请输入操作数" << endl;
-        cin >> operaNum;
-        system("cls");*/
-		resultCode= printUserMenu(to_string(resultCode));
-    }
 
-
-//    trueMain();
+    trueMain();
 
 }
 
