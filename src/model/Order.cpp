@@ -86,9 +86,9 @@ std::vector<Order> Order::getAssignBookOweAppointing(int bookId) {
 //1代表在借，2代表已还，3代表预约，4代表已续借的在借，5代表预约已到
 std::vector<Order> Order::getAssignUserBorrowedHistory(int firstOrderId) {
     TableRecord *table = TableRecord::getInstance();
-	//cout << "firstID is" << firstOrderId << endl;
+	//cout << "firstID is" << firstOrderId << endcoul;
     vector<Record> copys = table->queryByPerson(firstOrderId);
-    vector<Order> result;
+    vector<Order> result ;
     for (int i = 0; i < copys.size(); ++i) {
         result.push_back(Order::RecordCopyToOrder(copys[i]));
     }
@@ -134,7 +134,8 @@ std::vector<Order> Order::getAssignUserBorrowingList(int firstOrderId) {
 std::vector<Order> Order::getAssignUserAppointmentList(int firstOrderId){
     //获取所有的在预约状态
     vector<Order> orders = Order::getAssignUserBorrowedHistory(firstOrderId);
-    vector<Order> result;
+    vector<Order> result ;
+//    cout << orders.size() << endl;
     int appointmentIndexs[] = {3, 5};      //表示的是在预约的状态，包括在预约以及预约已到未取
 
     for(int i = 0; i < orders.size(); ++i) {
@@ -145,6 +146,8 @@ std::vector<Order> Order::getAssignUserAppointmentList(int firstOrderId){
             }
         }
     }
+    //如果为空的处理？
+//    cout << result.size() << endl;
     return result;
 }
 
@@ -340,7 +343,7 @@ bool Order::updateStateAndReturnTimeById(Order order) {
 
 bool Order::updateStateAndBookIdAndBorrowTimeById(Order order){
     TableRecord *table = TableRecord::getInstance();
-    vector<int> changeIndex = {2, 4, 7};
+    vector<int> changeIndex = {2, 5, 7};
     table->update(order.getId(), order.toRecordCopy(), changeIndex);
     return true;
 }

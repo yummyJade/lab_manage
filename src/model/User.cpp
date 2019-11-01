@@ -351,15 +351,22 @@ bool User::appointmentAssignBook(int bookId, std::string isbn) {
         return false;
     }
     // 创建预约Order（用户号，书本唯一标识isbn(xbookId)，当前预约时间，状态为借阅）
+//    cout << "bookId" << bookId << endl;
     Order order(this->getJobNum(), bookId, SimpleTime::nowTime(), SimpleTime::nowTime(), static_cast<Status>(3));
     //持久化
 
     int orderId = Order::addSingleOrder(this->getFirstOrderId(), order);
-//    cout << "在这里" << endl;
+
     // 更新Book表中预约数量，为增加，其实这个函数很没用，不过我不知道怎么样把book持久化到数据库，update么
 
     Book::updateBooksAppointmentNum(isbn,1);
-//    cout << "在这里" << endl;
+
+    // 判断是否首次借阅,是的话更新借阅链表头的字段，这个显然和借书的问题都是一样的
+    if (this->getFirstOrderId() == -1) {
+        this->setFirstOrderId(orderId);
+        User::updateUsersAssignField("jobNum", to_string(this->getJobNum()), "firstOrderId", to_string(orderId));
+    }
+
     cout << "预约成功，请等待到书通知" << endl;
     return true;
 }
@@ -527,6 +534,7 @@ int User::returnAssignOrder(Order order) {
     // 判断图书是否被预约了
     Book book = Book::searchBooksBySingleField("isbn", instance->getIsbn())[0];
     if (book.getAppointmentNum() > 0) {//被预约了,特殊处理
+        //todo:扣下的单子id不对
         //处理预约操作,找到那个预约单子,给他改一下
         //找到所有满足bookid==isbn && status = 3的单子
         vector<Order> orders = Order::getAssignBookAppointingList(book.getId());
@@ -548,7 +556,7 @@ int User::returnAssignOrder(Order order) {
         User earliestUser = User::getUserByJobNum(orders[earliestIndex].getUserId());       //获取该记录的用户
         orders[earliestIndex].setBorrowTime(SimpleTime::nowTime().addDay(earliestUser.getCanAppointDays()));
         Order::updateStateAndBookIdAndBorrowTimeById(orders[earliestIndex]);
-
+//        cout << "order的bookInsId为" << instance->getId() << endl;
         //修改BookInstance的状态status为5,这里只修改了一项函数会不会报错
         instance->setStatus(5);
         //todo:记得新增一个修改单项status的函数
