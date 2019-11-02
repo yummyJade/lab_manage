@@ -183,7 +183,7 @@ void printBookSearchMenu(bool canLend=false) {
 					int bookIndex = operaNum - 1;
 					vector<BookInstance>* instances = new vector<BookInstance>;
 					printBookDetailInfo(books[bookIndex].getIsbn(), instances);
-
+					//todo：加逾期判断？参数为book的实例们
 					if (!canLend) {
 						EnterToContinue();
 					}

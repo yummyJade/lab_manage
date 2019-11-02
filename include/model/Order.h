@@ -139,7 +139,7 @@ public:
      static std::vector<Order> getAssignUserArrivedAppointmentList(int firstOrderId);
 
      /**
-    * 获取指定书籍的超预约逾期记录（并更新，未实现）
+    * 获取指定书籍的超预约逾期记录
     *
     */
     static std::vector<Order> getAssignBookOweAppointing(int firstOrderId);

@@ -81,8 +81,20 @@ std::vector<Order> Order::getAssignBookAppointingList(int bookId) {
 std::vector<Order> Order::getAssignBookOweAppointing(int bookId) {
     //先获取所有的在预约记录
     vector<Order> orders = Order::getAssignBookAppointingList(bookId);
-
-	return orders;
+    vector<Order> result;
+    int appointmentArrivedIndex = 5;       //表示所有的预约到了
+    SimpleTime appointArrivedInValidTime;
+    for (int i = 0; i < orders.size(); ++i) {
+        if(orders[i].statu == appointmentArrivedIndex) {
+            //接下来找出所有预约超期的书籍
+            //判断该订单的到期时间与当前时间的关系，若到期时间小于当前时间，代表逾期，返回结果
+            appointArrivedInValidTime = orders[i].getBorrowTime();       //预约失效时间
+            if(appointArrivedInValidTime.compare(SimpleTime::nowTime()) < 0) {
+                result.push_back(orders[i]);
+            }
+        }
+    }
+	return result;
 }
 
 //1代表在借，2代表已还，3代表预约，4代表已续借的在借，5代表预约已到
@@ -169,14 +181,14 @@ std::vector<Order> Order::getAssignUserArrivedAppointmentList(int firstOrderId) 
             if(appointArrivedInValidTime.compare(SimpleTime::nowTime()) >= 0){
                 result.push_back(orders[i]);
             }else{
-                //todo：这个地方的代码要移走
-                orders[i].setStatu(static_cast<Status>(6));     //将订单修改成预约超期的状态
-                orders[i].updateStateAndReturnTimeById(orders[i]);      //持久化
-                BookInstance *instance = BookInstance::getInstanceById(orders[i].getBookId());
-                //修改书籍实例的状态为可借
-                instance->setStatus(1);
-                //更新函数爱改不改
-                BookInstance::updateStateAndReturnTimeById(*instance);
+
+//                orders[i].setStatu(static_cast<Status>(6));     //将订单修改成预约超期的状态
+//                orders[i].updateStateAndReturnTimeById(orders[i]);      //持久化
+//                BookInstance *instance = BookInstance::getInstanceById(orders[i].getBookId());
+//                //修改书籍实例的状态为可借
+//                instance->setStatus(1);
+//                //更新函数爱改不改
+//                BookInstance::updateStateAndReturnTimeById(*instance);
             }
 
         }

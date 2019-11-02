@@ -554,7 +554,6 @@ int User::returnAssignOrder(Order order) {
     // 判断图书是否被预约了
     Book book = Book::searchBooksBySingleField("isbn", instance->getIsbn())[0];
     if (book.getAppointmentNum() > 0) {//被预约了,特殊处理
-        //todo:扣下的单子id不对
         //处理预约操作,找到那个预约单子,给他改一下
         //找到所有满足bookid==isbn && status = 3的单子
         vector<Order> orders = Order::getAssignBookAppointingList(book.getId());
@@ -673,6 +672,9 @@ int User::dealWithOverTimeOrder() {
 
 
 }
+
+
+
 
 long long User::readAndSetJobNum() {
     cout<<"请输入工号:";
