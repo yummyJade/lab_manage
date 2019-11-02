@@ -248,26 +248,34 @@ bool User::importUsers(string incomingPath="") {
 
     while (getline(fin, line)) //整行读取，换行符“\n”区分，遇到文件尾标志eof终止读取
     {
-        istringstream sin(line);
-        vector<string> fields;
-        string field;
+        try{
+            istringstream sin(line);
+            vector<string> fields;
+            string field;
 
-        while (getline(sin, field, ',')) {
-            fields.push_back(field);
-        }
-        long long jobNum = stoll(fields[0]);
-        string name = fields[1];
-        string pwd = fields[2];
-        int state = stoi(fields[3]);
+            while (getline(sin, field, ',')) {
+                fields.push_back(field);
+            }
+            long long jobNum = stoll(fields[0]);
+            string name = fields[1];
+            string pwd = fields[2];
+            int state = stoi(fields[3]);
 
-        if (User::checkUserExist(jobNum)) {
-            existUsers.push_back(jobNum);
-        } else {
-            pwd = User::encryPassword(pwd);
-            User user(jobNum, static_cast<status>(state), name, pwd);
-            users.push_back(user.serialize());
+            if (User::checkUserExist(jobNum)) {
+                existUsers.push_back(jobNum);
+            } else {
+                pwd = User::encryPassword(pwd);
+                User user(jobNum, static_cast<status>(state), name, pwd);
+                users.push_back(user.serialize());
+            }
+        }catch (...){
+            cout<<"第"<<index+1<<"行的数据有误,导入失败"<<endl;
         }
+        index++;
+
     }
+
+
     vector<long long> ids;
     User::addUsers(users, ids);
 	if (!existUsers.empty()) {
@@ -276,6 +284,7 @@ bool User::importUsers(string incomingPath="") {
 			cout << existUsers[i] << endl;
 		}
 	}
+
     return true;
 }
 

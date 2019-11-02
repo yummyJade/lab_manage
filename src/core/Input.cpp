@@ -15,6 +15,8 @@ int Input::getInt() {
         cout<<"请输入一个整数:";
         cin>>result;
     }
+	cin.clear();
+	cin.ignore(10000, '\n');
     return result;
 }
 
@@ -27,6 +29,8 @@ long long Input::getLongLong() {
         cout<<"请输入一个长整数:";
         cin>>result;
     }
+	cin.clear();
+	cin.ignore(10000, '\n');
     return result;
 }
 
@@ -43,8 +47,13 @@ std::string Input::getAssignMaxLengthStr(int maxLength=20) {
 
         if(result.length()<=maxLength){
             break;
-        }
+		}
+		else {
+			cout << "输入长度不能超过"<< maxLength <<",请重新输入:";
+		}
     }
+	cin.clear();
+	cin.ignore(10000, '\n');
     return result;
 }
 
@@ -57,6 +66,8 @@ char Input::getChar() {
         cout<<"请输入一个字符:";
         cin>>result;
     }
+	cin.clear();
+	cin.ignore(10000, '\n');
     return result;
 }
 #endif //MYC1_INPUT_Cpp

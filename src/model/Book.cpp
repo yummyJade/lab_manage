@@ -118,7 +118,8 @@ void Book::printBookInfo() {
 
 std::vector<std::string> Book::serialize() {
     vector<string> info;
-    info.push_back(to_string(this->type));
+	
+    info.push_back(string(1, this->type));
     info.push_back(to_string(this->count));
     info.push_back(to_string(this->price));
     info.push_back(to_string(this->appointmentNum));
@@ -259,13 +260,19 @@ bool Book::importBooksService(string incomingPath="") {
     vector<string> isbns;
     while (getline(fin, line)) //整行读取，换行符“\n”区分，遇到文件尾标志eof终止读取
     {
-        istringstream sin(line);
         vector<string> fields;
-        string field;
-        while (getline(sin, field, ',')) {
-            fields.push_back(field);
+        try {
+            istringstream sin(line);
+            string field;
+            while (getline(sin, field, ',')) {
+                fields.push_back(field);
+            }
+        }catch (...){
+            isbns.push_back("-1");
+            continue;
         }
         isbns.push_back(fields[4]);
+
     }
     vector<int> isExists = Book::checkISBNsExist(isbns);
 
@@ -281,42 +288,46 @@ bool Book::importBooksService(string incomingPath="") {
 
     while (getline(fin, line)) //整行读取，换行符“\n”区分，遇到文件尾标志eof终止读取
     {
-        istringstream sin(line);
+        try{
+            istringstream sin(line);
 
-        vector<string> fields;
-        string field;
-        while (getline(sin, field, ',')) {
-            fields.push_back(field);
-        }
+            vector<string> fields;
+            string field;
+            while (getline(sin, field, ',')) {
+                fields.push_back(field);
+            }
 
-        string name = fields[0];
-        string author = fields[1];
-        string press = fields[2];
-        char type = fields[3][0];
-        string isbn = fields[4];
-        int price = stof(fields[5]) * 100;
-        string position = fields[6];
-        int count = stoi(fields[7]);
+            string name = fields[0];
+            string author = fields[1];
+            string press = fields[2];
+            char type = fields[3][0];
+            string isbn = fields[4];
+            int price = stof(fields[5]) * 100;
+            string position = fields[6];
+            int count = stoi(fields[7]);
 
-        vector<BookInstance> bookinstancesFirstAdd;
+            vector<BookInstance> bookinstancesFirstAdd;
 
-        for (int i = 0; i < count; ++i) {
-            BookInstance bookInstance(isbn, position);
-            bookinstancesFirstAdd.push_back(bookInstance);
-        }
-        // 插入book实例到instance表
+            for (int i = 0; i < count; ++i) {
+                BookInstance bookInstance(isbn, position);
+                bookinstancesFirstAdd.push_back(bookInstance);
+            }
+            // 插入book实例到instance表
 //        cout<<"first Id is"<<isExists[index]<<endl;
-        long long firstInstanceId = BookInstance::importBookInstances(bookinstancesFirstAdd,
-                                                                      isExists[index]);//获取链表的第一个位置
+            long long firstInstanceId = BookInstance::importBookInstances(bookinstancesFirstAdd,
+                                                                          isExists[index]);//获取链表的第一个位置
 
-        if (isExists[index] == -1) {//若该种书是首次被添加的
-            Book book(type, count, price, firstInstanceId, name, author, isbn, press);
-            newBooks.push_back(book.serialize());
-        } else {//若该种书已有实例
-            // 添加到更新信息数组
+            if (isExists[index] == -1) {//若该种书是首次被添加的
+                Book book(type, count, price, firstInstanceId, name, author, isbn, press);
+                newBooks.push_back(book.serialize());
+            } else {//若该种书已有实例
+                // 添加到更新信息数组
 //            cout<<"index is "<<index<<" isExi[index] is "<< firstInstanceId<<endl;
-            updateIsbns.push_back(isbn);
-            addCounts.push_back(count);
+                updateIsbns.push_back(isbn);
+                addCounts.push_back(count);
+            }
+        }catch(...){
+            cout<<"第"<<index+1<<"行的数据有误,导入失败"<<endl;
         }
         index++;
     }

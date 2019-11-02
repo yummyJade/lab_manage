@@ -81,6 +81,8 @@ std::vector<Order> Order::getAssignBookAppointingList(int bookId) {
 std::vector<Order> Order::getAssignBookOweAppointing(int bookId) {
     //先获取所有的在预约记录
     vector<Order> orders = Order::getAssignBookAppointingList(bookId);
+
+	return orders;
 }
 
 //1代表在借，2代表已还，3代表预约，4代表已续借的在借，5代表预约已到

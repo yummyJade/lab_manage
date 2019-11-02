@@ -17,7 +17,6 @@ using namespace std;
 void EnterToContinue() {
 	cout << "°´Enter¼ü·µ»Ø";
 	cin.get();
-	cin.get();
 }
 
 bool printTree(int level, string str, int deepIndex = -1);
