@@ -1,6 +1,8 @@
 #include "core/Library.h"
 #include <iostream>
 #include <string>
+#include "util/DbAdapter.h"
+//#include "../../src/util/DbAdapter.cpp"
 #include "../../src/core/Input.cpp"
 
 using namespace std;
@@ -98,4 +100,8 @@ User* Library::getAdminUserInstance() {
 	}
 
 	return Library::adminUser;
+}
+
+bool Library::checkDBLegal() {
+    return DbAdapter::checkTableExist("User") && DbAdapter::checkTableExist("Book");
 }

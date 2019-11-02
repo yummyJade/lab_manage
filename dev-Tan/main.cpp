@@ -83,7 +83,10 @@ int regexTest() {
 
 
 int main() {
-
+    if(!Library::checkDBLegal()){
+        cout<<"数据库文件损坏,请重新下载软件"<<endl;
+        return 0;
+    }
 //     批量导入书籍
     Book::printBookList(Book::searchAll());
 ////    Book::updateBooks("isbn","978-5-664-71497-5","count","999");
@@ -106,8 +109,7 @@ int main() {
 //    BookInstance::addOneBookInstancesService();
 //    Book::printBookList(Book::searchAll());
 
-//======================================================================================================
-
+// ======================================================================================================
 //    // 批量导入用户
     User::printUserList(User::searchAll());
     User::importUsers();// 导入用户的函数

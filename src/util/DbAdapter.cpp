@@ -101,3 +101,8 @@ bool DbAdapter::clearTable() {
 
 }
 
+bool DbAdapter::checkTableExist(std::string tableName) {
+    DataBase *db = new DataBase();
+    return db->chooseTable(tableName) == 0;
+}
+

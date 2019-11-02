@@ -13,6 +13,9 @@ private:
     ~Library();
 
 public:
+    // 程序启动时候运行,判断数据库是否存在
+    static bool checkDBLegal();
+
     static User *login(bool needSimpleUser);
 
     // 登陆管理员账号

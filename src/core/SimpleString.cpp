@@ -29,7 +29,7 @@ bool SimpleString::isLegalPath(std::string str) {
         return false;
     }
     string suffix = str.substr(str.find_last_of("."), str.size()); // 获取后缀,
-    if (suffix==".txt"||suffix==".csv"){
+    if (suffix==".csv"){
         return true;
     }
     return false;
@@ -52,7 +52,7 @@ std::string SimpleString::readPathFromCmd() {
         if (SimpleString::isLegalPath(path)) {
             break;
         }
-        printf("文件路径不合法,必须输入一个txt或csv文件的路径\n");
+        printf("文件路径不合法,必须输入一个csv文件的路径\n");
     }
 
 

@@ -267,11 +267,17 @@ bool Book::importBooksService(string incomingPath="") {
             while (getline(sin, field, ',')) {
                 fields.push_back(field);
             }
+            if(fields.size()==8){
+                isbns.push_back(fields[4]);
+            }else{
+                isbns.push_back("-2");
+            }
+
         }catch (...){
-            isbns.push_back("-1");
+            isbns.push_back("-2");
             continue;
         }
-        isbns.push_back(fields[4]);
+        
 
     }
     vector<int> isExists = Book::checkISBNsExist(isbns);
@@ -289,6 +295,12 @@ bool Book::importBooksService(string incomingPath="") {
     while (getline(fin, line)) //整行读取，换行符“\n”区分，遇到文件尾标志eof终止读取
     {
         try{
+            if(isbns[index]=="-2"){ // 该行数据有误
+                cout<<"第"<<index+1<<"个图书数据有误,导入失败"<<endl;
+				index++;
+                continue;
+            }
+
             istringstream sin(line);
 
             vector<string> fields;
@@ -319,6 +331,11 @@ bool Book::importBooksService(string incomingPath="") {
 
             if (isExists[index] == -1) {//若该种书是首次被添加的
                 Book book(type, count, price, firstInstanceId, name, author, isbn, press);
+                if(!book.isLegalBookDate()){
+                    cout<<"第"<<index+1<<"个图书数据有误,导入失败"<<endl;
+                    index++;
+                    continue;
+                }
                 newBooks.push_back(book.serialize());
             } else {//若该种书已有实例
                 // 添加到更新信息数组
@@ -327,7 +344,7 @@ bool Book::importBooksService(string incomingPath="") {
                 addCounts.push_back(count);
             }
         }catch(...){
-            cout<<"第"<<index+1<<"行的数据有误,导入失败"<<endl;
+            cout<<"第"<<index+1<<"个图书数据有误,导入失败"<<endl;
         }
         index++;
     }
@@ -335,11 +352,12 @@ bool Book::importBooksService(string incomingPath="") {
 //    cout << "插入操作,插入数量" <<newBooks.size()<< endl;
     vector<ll> ids;
     Book::addBooks(newBooks, ids);
+    cout<<"成功导入了"<<newBooks.size()<<"个新的图书信息"<<endl;
     // 更新图书的馆藏量
 //    cout << "update操作,update数量"<<updateIsbns.size() << endl;
 	if (updateIsbns.size() > 0) {
-		cout << "执行了update" << endl;
 		Book::updateBooksCount(updateIsbns, addCounts);
+        cout<<""<<updateIsbns.size()<<"个的图书的ISBN已存在,已更新其数量"<<endl;
 	}
 
     return true;
@@ -601,10 +619,15 @@ int Book::getAppointmentNum() const {
 }
 
 char Book::readAndSetType() {
-    cout<<"请输入类型(单个字符):";
-    char result=Input::getChar();
-    this->setType(result);
-    return result;
+    char result;
+    while(true){
+        cout<<"请输入类型(单个a-z之间的字符):";
+        result=Input::getChar();
+        this->setType(result);
+        if ((result>='a' && result<='z')||(result>='A' && result<='Z')){
+            return result;
+        }
+    }
 }
 
 int Book::readAndSetCount() {
@@ -647,6 +670,13 @@ std::string Book::readAndSetPress() {
     string result=Input::getAssignMaxLengthStr(50);
     this->setPress(result);
     return result;
+}
+
+bool Book::isLegalBookDate() {
+    if(this->getName().length()>50 || this->getAuthor().length()>20 || this->getIsbn().length()>20||this->getPress().length()>50){
+        return false;
+    }
+    return true;
 }
 
 

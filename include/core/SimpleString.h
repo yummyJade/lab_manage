@@ -27,7 +27,7 @@ public:
     static std::string fixPath(std::string str);
 
     /**
-     * 判断路径的后缀是否合法(txt,csv)
+     * 判断路径的后缀是否合法(csv)
      * @param str
      * @return
      */

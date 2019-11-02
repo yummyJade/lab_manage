@@ -95,6 +95,8 @@ public:
 
     void setAppointmentNum(int appointmentNum);
 
+    // 判断当前图书的数据是否合法,若合法则可被存入数据库
+    bool isLegalBookDate();
 
     //打印书本基本信息
     void printBookInfo();

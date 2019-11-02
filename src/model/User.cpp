@@ -236,15 +236,12 @@ bool User::importUsers(string incomingPath="") {
 		}
 	}
 
-
-
     int index = 0;//要操作的行下标
     fin.clear();
     fin.seekg(0, ios::beg); // 重新跳转到文件头部
     getline(fin, line); // 吃掉首行
     vector<vector<string>> users; // 要insert到User表的数据
     vector<long long> existUsers; //已经存在的用户工号
-
 
     while (getline(fin, line)) //整行读取，换行符“\n”区分，遇到文件尾标志eof终止读取
     {
@@ -256,6 +253,12 @@ bool User::importUsers(string incomingPath="") {
             while (getline(sin, field, ',')) {
                 fields.push_back(field);
             }
+            if(fields.size()!=4){
+                cout<<"第"<<index+1<<"个用户数据有误,导入失败"<<endl;
+                index++;
+                continue;
+            }
+
             long long jobNum = stoll(fields[0]);
             string name = fields[1];
             string pwd = fields[2];
@@ -266,23 +269,31 @@ bool User::importUsers(string incomingPath="") {
             } else {
                 pwd = User::encryPassword(pwd);
                 User user(jobNum, static_cast<status>(state), name, pwd);
+                if(!user.isLegalUserDate()){
+                    cout<<"第"<<index+1<<"个用户数据有误,导入失败"<<endl;
+                    index++;
+                    continue;
+                }
                 users.push_back(user.serialize());
             }
         }catch (...){
-            cout<<"第"<<index+1<<"行的数据有误,导入失败"<<endl;
+            cout<<"第"<<index+1<<"个用户数据有误,导入失败"<<endl;
         }
         index++;
 
     }
 
-
     vector<long long> ids;
     User::addUsers(users, ids);
+    cout<<"---------------------------------------"<<endl;
+    cout<<"成功导入了"<<users.size()<<"个新用户"<<endl;
 	if (!existUsers.empty()) {
-		cout << "插入成功,以下工号的用户已经存在" << endl;
+		cout << "以下工号的用户已经存在" << endl;
+		cout<<"---------------------------------------"<<endl;
 		for (int i = 0; i < existUsers.size(); ++i) {
 			cout << existUsers[i] << endl;
 		}
+        cout<<"---------------------------------------"<<endl;
 	}
 
     return true;
@@ -692,6 +703,13 @@ std::string User::readAndSetPassword() {
     string result=Input::getAssignMaxLengthStr(20);
     this->setPassword(result);
     return result;
+}
+
+bool User::isLegalUserDate() {
+    if(this->getName().length()>20 ){
+        return false;
+    }
+    return true;
 }
 
 

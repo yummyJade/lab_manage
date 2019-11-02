@@ -646,6 +646,10 @@ void trueMain() {
 }
 
 int main() {
+    if(!Library::checkDBLegal()){
+        cout<<"数据库文件损坏,请重新下载软件"<<endl;
+        return 0;
+    }
 	//Book::printBookList(Book::searchAll());
 	//Book::importBooksService();//"E:\\Sources\\Cpp\\repos\\Lib_manage\\dev-Tan\\books.csv"
 	//Book::printBookList(Book::searchAll());
