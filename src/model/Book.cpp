@@ -314,7 +314,8 @@ bool Book::importBooksService(string incomingPath="") {
             string press = fields[2];
             char type = fields[3][0];
             string isbn = fields[4];
-            int price = stof(fields[5]) * 100;
+            int price = stoi(fields[5]);
+//            int price = stof(fields[5]) * 100;
             string position = fields[6];
             int count = stoi(fields[7]);
 

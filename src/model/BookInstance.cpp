@@ -145,8 +145,8 @@ bool BookInstance::checkAssignBookCanAppointmentInstanceExist(std::string isbn) 
     // 判断是否有可借的书,有则禁止预约
     for(int i = 0; i < instances.size(); ++i) {
         if(instances[i].getStatus() == canlendInstanceIndex) {
-//            cout << "馆内当前有可借图书,预约失败!" << endl;
-//            return false;
+            cout << "馆内当前有可借图书,预约失败!" << endl;
+            return false;
         }
         // 下面这个是在干啥?
 //        for(int j = 0; j < sizeof(canAppointInstanceIndex) / sizeof(int); ++j) {

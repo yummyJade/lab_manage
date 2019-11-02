@@ -21,7 +21,7 @@ User *choseOneUser() {
         if (User::checkUserExist(jobNum, user)) { // 用户不存在
             return user;
         }
-        printf("工号为%lld的用户不存在!", jobNum);
+        printf("工号为%lld的用户不存在!\n", jobNum);
     }
 
 }
@@ -30,6 +30,7 @@ bool printAssignInfo(User user) {
     vector<User> users;
     users.push_back(user);
     printf("检索到如下信息\n");
+
     User::printUserList(users);
 	return true;
 }
@@ -60,9 +61,18 @@ bool resetAssignUserPassword() {
 
     printAssignInfo(*user);
 
-    user->setPassword(to_string(user->getJobNum()));
-    printf("密码已重置为该用户的学号:%lld\n", user->getJobNum());
-    return true;
+    cout << "输入Y确认重置该用户的密码,输入N取消:";
+    char operate;
+    operate=Input::getChar();
+    if (operate == 'Y' || operate == 'y') {// 下架所有图书
+        user->setPassword(to_string(user->getJobNum()));
+        printf("密码已重置为该用户的学号:%lld\n", user->getJobNum());
+        return true;
+    }else{
+        cout<<"取消操作"<<endl;
+        return false;
+    }
+
 }
 
 

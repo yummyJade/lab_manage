@@ -370,6 +370,8 @@ bool User::appointmentAssignBook(int bookId, std::string isbn) {
         cout << "预约失败,馆内当前有可借图书!" << endl;
         return false;
     }
+
+
     // 创建预约Order（用户号，书本唯一标识isbn(xbookId)，当前预约时间，状态为借阅）
 //    cout << "bookId" << bookId << endl;
     Order order(this->getJobNum(), bookId, SimpleTime::nowTime(), SimpleTime::nowTime(), static_cast<Status>(3));
