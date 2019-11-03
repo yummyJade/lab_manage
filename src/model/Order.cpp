@@ -181,7 +181,6 @@ std::vector<Order> Order::getAssignUserArrivedAppointmentList(int firstOrderId) 
             if(appointArrivedInValidTime.compare(SimpleTime::nowTime()) >= 0){
                 result.push_back(orders[i]);
             }else{
-
 //                orders[i].setStatu(static_cast<Status>(6));     //将订单修改成预约超期的状态
 //                orders[i].updateStateAndReturnTimeById(orders[i]);      //持久化
 //                BookInstance *instance = BookInstance::getInstanceById(orders[i].getBookId());
