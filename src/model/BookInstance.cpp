@@ -145,7 +145,7 @@ bool BookInstance::checkAssignBookCanAppointmentInstanceExist(std::string isbn) 
     // 判断是否有可借的书,有则禁止预约
     for(int i = 0; i < instances.size(); ++i) {
         if(instances[i].getStatus() == canlendInstanceIndex) {
-            cout << "馆内当前有可借图书,预约失败!" << endl;
+//            cout << "馆内当前有可借图书,预约失败!" << endl;
             return false;
         }
         // 下面这个是在干啥?
@@ -170,7 +170,9 @@ void BookInstance::printBookInstanceList(std::vector<BookInstance> instances) {
         vector<string> line;
         if (instances[i].status == 1) {// 可借
             line = {to_string(index++), to_string(instances[i].getId()), instances[i].position, "可借"};
-        } else {
+        }else if(instances[i].status == 5) {
+            line = {to_string(index++), to_string(instances[i].getId()), instances[i].position, "被预约"};
+        }else {
             line = {to_string(index++), to_string(instances[i].getId()), instances[i].position,
                     instances[i].planReturnDate.serialize()};
         }

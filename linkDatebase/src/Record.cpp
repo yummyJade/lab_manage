@@ -15,7 +15,7 @@ void Record::setStId(long long stId) {
     this->stId = stId;
 }
 
-int Record::getStId() {
+long long Record::getStId() {
     return stId;
 }
 
