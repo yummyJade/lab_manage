@@ -349,10 +349,22 @@ bool User::appointmentAssignBook(int bookId, std::string isbn) {
     // todo:判断该用户是否已经借阅了或者预约了这本书
     vector<Order> AppointmentList= Order::getAssignUserAppointmentList(this->getFirstOrderId());
     for (int i = 0; i <AppointmentList.size() ; ++i) {
-        if(AppointmentList[i].getBookId()==bookId){
+        //如果该用户正在预约这本书
+        if(( AppointmentList[i].getBookId()==bookId)){
             cout<<"预约失败,该用户当前正预约该书,不可重复预约"<<endl;
             return false;
         }
+       //找到所有的图书实例 并确定有无预约已到且属于这个用户的书籍
+       //找到所有的预约已到，判断是否为属于该本书的实例
+       if( AppointmentList[i].getStatu() == 5) {
+           BookInstance* tempInstance=BookInstance::getInstanceById(AppointmentList[i].getBookId());
+           if(tempInstance->getIsbn() == isbn) {
+               cout << "预约失败，该用户当年有未领取的该本书，不可再预约" << endl;
+               return false;
+           }
+       }
+
+
     }
 
     vector<Order> BorrowingList= Order::getAssignUserBorrowingList(this->getFirstOrderId());

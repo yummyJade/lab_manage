@@ -179,6 +179,8 @@ void printBookSearchMenu(bool canLend = false) {
                     // 打印第operaNum本书的详细信息
                     int bookIndex = operaNum - 1;
                     vector<BookInstance> *instances = new vector<BookInstance>;
+                    //判断有无超期预约
+                    dealWithOverTimeAppoint(books[bookIndex].getIsbn(), instances);
                     printBookDetailInfo(books[bookIndex].getIsbn(), instances);
 
                     if (!canLend) {
@@ -706,27 +708,27 @@ int main() {
 
 
     // 管理员操作用户的界面
-    //   string operaNum = "";
-    //int resultCode= printAdminDealUserMenu(operaNum);
-    //
-    //   while (resultCode != 9) {//9 是注销操作
-    //       /*cout << "请输入操作数" << endl;
-    //       cin >> operaNum;
-    //       system("cls");*/
-    //	resultCode=printAdminDealUserMenu(to_string(resultCode));
-    //   }
+//       string operaNum = "";
+//    int resultCode= printAdminDealUserMenu(operaNum);
+//
+//       while (resultCode != 9) {//9 是注销操作
+//           /*cout << "请输入操作数" << endl;
+//           cin >> operaNum;
+//           system("cls");*/
+//    	resultCode=printAdminDealUserMenu(to_string(resultCode));
+//       }
 
 
     // 管理员界面
-//	string operaNum = "";
-//	int resultCode= printAdminMenu(operaNum);
-//
-//    while (resultCode != 9) {//9 是注销操作
-//        /*cout << "请输入操作数" << endl;
-//        cin >> operaNum;
-//        system("cls");*/
-//		resultCode= printAdminMenu(to_string(resultCode));
-//    }
+	string operaNum = "";
+	int resultCode= printAdminMenu(operaNum);
+
+    while (resultCode != 9) {//9 是注销操作
+        /*cout << "请输入操作数" << endl;
+        cin >> operaNum;
+        system("cls");*/
+		resultCode= printAdminMenu(to_string(resultCode));
+    }
 
     // 普通用户界面
 //	string operaNum = "";
@@ -740,7 +742,7 @@ int main() {
 //    }
 
 
-    trueMain();
+//    trueMain();
 
 }
 

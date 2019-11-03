@@ -29,6 +29,6 @@ bool changeAssignBookInstanceState(long long id);
 bool deleteAssignIsbnBook(std::string isbn);
 
 //处理预期的预约订单
-bool dealWithOverTimeAppoint(std::vector<BookInstance> instances);
+bool dealWithOverTimeAppoint(std::string isbn, vector<BookInstance>* saveInstances);
 
 #endif //MYC1_BOOKSERVICE_H

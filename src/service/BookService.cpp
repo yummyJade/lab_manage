@@ -5,11 +5,24 @@
 #include "util/TableRenderer.h"
 #include "../../src/core/Input.cpp"
 
-bool dealWithOverTimeAppoint(std::vector<BookInstance> instances){
+bool dealWithOverTimeAppoint(std::string isbn, vector<BookInstance>* saveInstances=NULL){
+
+    vector<Book> books = Book::searchBooksBySingleField("isbn", isbn);
+    if (books.size() <= 0) {
+        cout << "该图书不存在" << endl;
+        return false;
+    }
+    Book book = books[0];
+    vector<BookInstance> instances = BookInstance::getInstancesByFirstId(book.getFirstInstanceId());
+    if (saveInstances != NULL) {
+        *saveInstances = instances;
+    }
+
+
     //先查一遍状态，如果有状态为5即该实例被预约了，再继续查下去，否则不管
     int appointmentIndex = 5;      //表示的是预约已到未取
     for(int i = 0; i < instances.size(); i++) {
-        if(instances[i].status == 5) {
+        if(instances[i].getStatus() == appointmentIndex) {
             //代表这个实例已经被预约，必须确认该预约有无过期
             //查询方法为查看该实例对应的order，会不会查到bookid相同的情况，如何区分
             //bookid的时候证明此时是用户预约了，状态为3，而已到的为5而且应该是唯一的一本，因为是一一对应的，所以不会出现问题，是的
@@ -28,7 +41,7 @@ bool dealWithOverTimeAppoint(std::vector<BookInstance> instances){
 
         }
     }
-
+    return true;
 
 }
 
