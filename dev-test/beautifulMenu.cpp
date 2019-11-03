@@ -205,7 +205,9 @@ void printBookSearchMenu(bool canLend = false) {
                             }else{
                                 continue;
                             }
+                            operaNum=0;
                             EnterToContinue();
+
                         }
                     }
                 }
