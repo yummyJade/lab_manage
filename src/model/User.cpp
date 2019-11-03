@@ -370,6 +370,8 @@ bool User::appointmentAssignBook(int bookId, std::string isbn) {
         cout << "预约失败,馆内当前有可借图书!" << endl;
         return false;
     }
+
+
     // 创建预约Order（用户号，书本唯一标识isbn(xbookId)，当前预约时间，状态为借阅）
 //    cout << "bookId" << bookId << endl;
     Order order(this->getJobNum(), bookId, SimpleTime::nowTime(), SimpleTime::nowTime(), static_cast<Status>(3));
@@ -580,10 +582,9 @@ int User::returnAssignOrder(Order order) {
         instance->setStatus(5);
         //todo:记得新增一个修改单项status的函数
         BookInstance::updateStateAndReturnTimeById(*instance);
-
         //修改Book预约人数减一
         Book::updateBooksAppointmentNum(instance->getIsbn(),-1);
-
+        cout << "还书成功,该书已被预约,请归还到总台,不流入图书馆!" << endl;
 
     } else {// 没被预约,归还图书馆
         // 修改书的实例的状态(设为可借)

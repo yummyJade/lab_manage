@@ -9,7 +9,7 @@ public:
 
     void setStId(long long stId);
 
-    int getStId();
+    long long getStId();
 
     void setBoTime(long long boTime);
 

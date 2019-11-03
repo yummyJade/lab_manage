@@ -276,21 +276,28 @@ std::vector<std::string> Order::getPrintLineStr() {
     Book book;
     BookInstance *bookInstance = BookInstance::getInstanceById(this->getBookId());
 	string code;
+	string planReturnTime;
+    SimpleTime date;
     if(this->getStatu()==3){// 如果是预约的话
         book = Book::searchBooksById(this->getBookId());
 		code = "无";
+        planReturnTime="该图书预约尚未到";
     }else{
-        book = Book::searchBooksBySingleField("isbn", bookInstance->getIsbn())[0];
-		code = to_string(bookInstance->getId());
+            book = Book::searchBooksBySingleField("isbn", bookInstance->getIsbn())[0];
+            code = to_string(bookInstance->getId());
+            date = this->getReturnTime();
+            planReturnTime=date.date.serialize();
     }
-	
+
+    if (this->getStatu()==5) {
+        planReturnTime="预约待领取";
+    }
 
     info.push_back(book.getName());// 书名
     info.push_back(code); //条码号
-    SimpleTime date =  this->getBorrowTime();
+    date =  this->getBorrowTime();
     info.push_back(date.serialize());
-    date = this->getReturnTime();
-    info.push_back(date.date.serialize());
+    info.push_back(planReturnTime);
 	info.push_back(this->getStatuStr());
 
     return info;
