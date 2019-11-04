@@ -342,7 +342,7 @@ int DataBase::query(string key, string value, vector<ll> & id, vector< vector<st
 	FILE * fp = fopen( (settings::dataFolder+name).data(), "rb");
 	
 	//具有索引的查询
-	ll idx = sta->fieldToidxMap["key"];
+	ll idx = sta->fieldToidxMap[table_id]["key"];
 	if(isFuzzy == true){
 		return traverseQuery(key, value, id, ans, fp, isFuzzy);
 	}
@@ -453,8 +453,8 @@ int DataBase::update(string key, string value, string key2, string value2, strin
 }
 
 bool DataBase::getKeyLocation(string key, ll &idx, ll & selfLen, ll & preSeek, ll & lastSeek, ll & totalSeek){
-	if(sta->fieldToidxMap.count(key) > 0){
-		idx = sta->fieldToidxMap[key];
+	if(sta->fieldToidxMap[table_id].count(key) > 0){
+		idx = sta->fieldToidxMap[table_id][key];
 	}
 	else return false; //字段不存在
 	//计算前后数据长度 

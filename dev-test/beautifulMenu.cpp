@@ -68,7 +68,7 @@ void printUserSearchMenu() {
             vector<User> users;
             if (choose == 1) {// 全部搜索
                 for (int i = 2; i <= 3; i++) {// 按姓名,作者,isbn分别搜索并合并结果
-                    vector<User> tempUsers = User::searchUsersBySingleField(fieds[i], keyWord);
+                    vector<User> tempUsers = User::searchUsersBySingleField(fieds[i], keyWord, true);
                     users.insert(users.end(), tempUsers.begin(), tempUsers.end());
                 }
                 // 根据id进行排序
