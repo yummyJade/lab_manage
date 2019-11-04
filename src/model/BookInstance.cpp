@@ -31,13 +31,22 @@ int BookInstance::addBookInstance(BookInstance instance, int firstId) {
 
 int BookInstance::importBookInstances(std::vector<BookInstance> instances, int firstId = -1) {
     int index = 0;
+    int nums=instances.size();
     if (firstId == -1) {//如果是首次插入,先插一本
         firstId = addBookInstance(instances[index++], firstId);
+        nums--;
     }
 
-    while (index < instances.size()) {// 将尚未导入的实例全部导入
-        addBookInstance(instances[index++], firstId);
-    }
+    // todo:下面的改成批量
+
+
+    TableBookcopy *tableBookcopy = TableBookcopy::getInstance();
+    int result = tableBookcopy->insertData(firstId, instances[0].toBookCopy(), nums);
+
+
+//    while (index < instances.size()) {// 将尚未导入的实例全部导入
+//        addBookInstance(instances[index++], firstId);
+//    }
     return firstId;
 }
 

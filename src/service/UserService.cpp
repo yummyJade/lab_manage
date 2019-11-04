@@ -59,12 +59,17 @@ bool resetAssignUserPassword() {
         return false;
     }
 
+    if(user->getType()==0){
+        cout<<"不能重置管理员的密码!"<<endl;
+        return false;
+    }
+
     printAssignInfo(*user);
 
     cout << "输入Y确认重置该用户的密码,输入N取消:";
     char operate;
     operate=Input::getChar();
-    if (operate == 'Y' || operate == 'y') {// 下架所有图书
+    if (operate == 'Y' || operate == 'y') {
         user->setPassword(to_string(user->getJobNum()));
         printf("密码已重置为该用户的学号:%lld\n", user->getJobNum());
         return true;

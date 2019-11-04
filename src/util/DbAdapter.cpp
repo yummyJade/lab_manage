@@ -106,3 +106,14 @@ bool DbAdapter::checkTableExist(std::string tableName) {
     return db->chooseTable(tableName) == 0;
 }
 
+vector<vector<string>> DbAdapter::searchFuzzyBySingleField(string field, string value) {
+    vector<vector<string>> results;
+    vector<ll> id(0);
+    this->db->query(field, value, id, results,true);
+
+    for (int i = 0; i < results.size(); ++i) { // 把id装进最后一个位置
+        results[i].push_back(to_string(id[i]));
+    }
+    return results;
+}
+

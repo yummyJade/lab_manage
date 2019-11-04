@@ -233,7 +233,7 @@ public:
     static User getUserByJobNum(long long jobNum);
 
     // 静态函数, 根据指定字段的值搜索内容,返回User对象数组
-    static std::vector<User> searchUsersBySingleField(std::string field, std::string value);
+    static std::vector<User> searchUsersBySingleField(std::string field, std::string value,bool isFuzzy=false);
 
     // 静态函数, 显示该表所有内容
     static std::vector<User> searchAll();

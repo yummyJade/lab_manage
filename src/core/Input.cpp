@@ -6,15 +6,27 @@
 #include <string>
 using namespace std;
 
-int Input::getInt() {
+int Input::getInt(bool needPositive) {
     int result;
     cin>>result;
-    while(cin.fail()){
-        cin.clear();
-        cin.ignore(10000,'\n');
-        cout<<"请输入一个整数:";
-        cin>>result;
+
+    while (1){
+        while(cin.fail()){
+            cin.clear();
+            cin.ignore(10000,'\n');
+            cout<<"请输入一个整数:";
+            cin>>result;
+        }
+        if(needPositive && result<=0){
+            cin.clear();
+            cin.ignore(10000,'\n');
+            cout<<"请输入一个正整数:";
+            cin>>result;
+        }else{
+            break;
+        }
     }
+
 	cin.clear();
 	cin.ignore(10000, '\n');
     return result;
@@ -49,7 +61,10 @@ std::string Input::getAssignMaxLengthStr(int maxLength=20) {
             break;
 		}
 		else {
+            cin.clear();
+            cin.ignore(10000,'\n');
 			cout << "输入长度不能超过"<< maxLength <<",请重新输入:";
+            cin>>result;
 		}
     }
 	cin.clear();

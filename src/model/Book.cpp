@@ -153,9 +153,15 @@ bool Book::deSerialize(std::vector<std::string> info) {
 }
 
 
-std::vector<Book> Book::searchBooksBySingleField(std::string field, std::string value) {
+std::vector<Book> Book::searchBooksBySingleField(std::string field, std::string value,bool isFuzzy) {
     DbAdapter dbAdapter("Book");
-    vector<vector<string> > queryData = dbAdapter.searchBySingleField(field, value);
+    vector<vector<string> > queryData;
+    if(isFuzzy){
+        queryData = dbAdapter.searchFuzzyBySingleField(field, value);
+    }else{
+        queryData = dbAdapter.searchBySingleField(field, value);
+    }
+
 //    cout<<"执行到这里"<<endl;
     return Book::stringsToBooks(queryData);
 }
@@ -633,14 +639,14 @@ char Book::readAndSetType() {
 
 int Book::readAndSetCount() {
     cout<<"请输入馆藏量:";
-    int result=Input::getInt();
+    int result=Input::getInt(true);
     this->setCount(result);
     return result;
 }
 
 int Book::readAndSetPrice() {
-    cout<<"请输入价格(单位:分):";
-    int result=Input::getInt();
+    cout<<"请输入整数价格(单位:分):";
+    int result=Input::getInt(true);
     this->setPrice(result);
     return result;
 }
@@ -675,6 +681,9 @@ std::string Book::readAndSetPress() {
 
 bool Book::isLegalBookDate() {
     if(this->getName().length()>50 || this->getAuthor().length()>20 || this->getIsbn().length()>20||this->getPress().length()>50){
+        return false;
+    }
+    if(this->getCount()<=0 || this->getPrice()<=0){
         return false;
     }
     return true;
