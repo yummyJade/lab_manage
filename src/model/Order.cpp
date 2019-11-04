@@ -80,7 +80,7 @@ std::vector<Order> Order::getAssignBookAppointingList(int bookId) {
 
 std::vector<Order> Order::getAssignBookOweAppointing(int bookId) {
     //先获取所有的在预约记录
-    vector<Order> orders = Order::getAssignBookAppointingList(bookId);
+    vector<Order> orders = Order::getAssignBookBorrowedHistory(bookId);
     vector<Order> result;
     int appointmentArrivedIndex = 5;       //表示所有的预约到了
     SimpleTime appointArrivedInValidTime;
@@ -146,22 +146,44 @@ std::vector<Order> Order::getAssignUserBorrowingList(int firstOrderId) {
 
 
 std::vector<Order> Order::getAssignUserAppointmentList(int firstOrderId){
-    //获取所有的在预约状态
+//    //获取所有的在预约状态
+//    vector<Order> orders = Order::getAssignUserBorrowedHistory(firstOrderId);
+//    vector<Order> result ;
+////    cout << orders.size() << endl;
+//    int appointmentIndexs[] = {3, 5};      //表示的是在预约的状态，包括在预约以及预约已到未取
+//
+//    for(int i = 0; i < orders.size(); ++i) {
+//        for(int j = 0; j < sizeof(appointmentIndexs) / sizeof(int); ++j) {
+//            if(orders[i].statu == appointmentIndexs[j]) {
+//                result.push_back(orders[i]);
+//                break;
+//            }
+//        }
+//    }
+//    //如果为空的处理？
+////    cout << result.size() << endl;
+//    return result;
+
+
     vector<Order> orders = Order::getAssignUserBorrowedHistory(firstOrderId);
     vector<Order> result ;
 //    cout << orders.size() << endl;
     int appointmentIndexs[] = {3, 5};      //表示的是在预约的状态，包括在预约以及预约已到未取
-
+    int appointmentArrivedIndex = 5;
+    int appointmentIndex = 3;
+    SimpleTime appointArrivedInValidTime;
     for(int i = 0; i < orders.size(); ++i) {
-        for(int j = 0; j < sizeof(appointmentIndexs) / sizeof(int); ++j) {
-            if(orders[i].statu == appointmentIndexs[j]) {
+        if(orders[i].statu == appointmentIndex) {
+            result.push_back(orders[i]);
+        } else if(orders[i].statu == appointmentArrivedIndex) {
+            //判断该订单的到期时间与当前时间的关系，若到期时间大于等于当前时间，代表还未过期，返回结果
+            appointArrivedInValidTime = orders[i].getBorrowTime();       //预约失效时间
+            if (appointArrivedInValidTime.compare(SimpleTime::nowTime()) >= 0) {
                 result.push_back(orders[i]);
-                break;
             }
         }
     }
-    //如果为空的处理？
-//    cout << result.size() << endl;
+
     return result;
 }
 

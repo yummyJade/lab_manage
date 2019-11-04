@@ -83,7 +83,7 @@ SimpleTime SimpleTime::nowTime() {
 }
 
 int SimpleTime::compare(SimpleTime another) {
-    int result = this->date.compare(another.date) != 0;
+    int result = this->date.compare(another.date);
     if (result == 0) {
         if (this->hour != another.hour) {
             return this->hour - another.hour;

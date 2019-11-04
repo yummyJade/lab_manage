@@ -24,7 +24,7 @@ bool printTree(int level, string str, int deepIndex = -1);
 
 int printAdminMenu(string userOpera);
 
-void printBookSearchMenu(bool canLend);
+void printBookSearchMenu(bool canLend, bool isAdmin);
 
 void printUserSearchMenu();
 
@@ -113,7 +113,7 @@ void printUserSearchMenu() {
 }
 
 // 图书搜索
-void printBookSearchMenu(bool canLend = false) {
+void printBookSearchMenu(bool canLend = false, bool isAdmin=false) {
     system("cls");
     while (1) {
         system("cls");
@@ -158,6 +158,16 @@ void printBookSearchMenu(bool canLend = false) {
             } else {
                 books = Book::searchBooksBySingleField(fieds[choose], keyWord);
             }
+
+            // 将查询集中馆藏量为0 的内容去除
+            if(!isAdmin){
+                for (int j = books.size()-1; j >=0 ; j--) {
+                    if (books[j].getCount() == 0) {
+                        books.erase(books.begin() + j);
+                    }
+                }
+            }
+
 
             // 判断查询结果集是否为空
             if (books.empty()) {//没查到结果
@@ -548,7 +558,7 @@ int printAdminMenu(string userOpera = "0") {
 
         switch (operaNum) {
             case 11:
-                printBookSearchMenu();
+                printBookSearchMenu(false,true);
                 break;
             case 12:
                 printUserSearchMenu();
@@ -697,6 +707,7 @@ int main() {
         cout << "数据库文件损坏,请重新下载软件" << endl;
         return 0;
     }
+
     //Book::printBookList(Book::searchAll());
     //Book::importBooksService();//"E:\\Sources\\Cpp\\repos\\Lib_manage\\dev-Tan\\books.csv"
     //Book::printBookList(Book::searchAll());
@@ -720,15 +731,15 @@ int main() {
 
 
     // 管理员界面
-	string operaNum = "";
-	int resultCode= printAdminMenu(operaNum);
-
-    while (resultCode != 9) {//9 是注销操作
-        /*cout << "请输入操作数" << endl;
-        cin >> operaNum;
-        system("cls");*/
-		resultCode= printAdminMenu(to_string(resultCode));
-    }
+//	string operaNum = "";
+//	int resultCode= printAdminMenu(operaNum);
+//
+//    while (resultCode != 9) {//9 是注销操作
+//        /*cout << "请输入操作数" << endl;
+//        cin >> operaNum;
+//        system("cls");*/
+//		resultCode= printAdminMenu(to_string(resultCode));
+//    }
 
     // 普通用户界面
 //	string operaNum = "";
@@ -742,7 +753,7 @@ int main() {
 //    }
 
 
-//    trueMain();
+    trueMain();
 
 }
 
