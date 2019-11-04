@@ -33,8 +33,9 @@ bool TableRenderer::renderNav(vector<string> lines) {
         cout << "|" << setw(1) << setw(this->maxNavLength[i]) << lines[i].data() << setw(1) << "|";
         length = length + 2 + this->maxNavLength[i];
     }
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
     cout << endl;
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+
 
     cout << setw(this->offset - 1) << "";
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE);

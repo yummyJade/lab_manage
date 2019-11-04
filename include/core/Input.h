@@ -3,7 +3,7 @@
 
 class Input {
 public:
-    static int getInt();
+    static int getInt(bool needPositive=false);
 
 	static long long getLongLong();
 

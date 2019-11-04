@@ -309,10 +309,15 @@ User::User(long long int jobNum, status type, const string &name, const string &
 
 
 bool User::getUserMessage() {
-    printf("--------------------------------------------------------\n");
+    bool hasMessage=false;
+
     // 检测是否有预约已到的书籍
     vector<Order> AppointingOrders = Order::getAssignUserArrivedAppointmentList(this->getFirstOrderId());
     if(!AppointingOrders.empty()){//有预约已到内容
+        if(!hasMessage){
+            printf("--------------------------------------------------------\n");
+            hasMessage= true;
+        }
         cout<<"您有"<<AppointingOrders.size()<<"本预约的书籍已到,请及时到图书馆领取"<<endl;
         Order::printOrderList(AppointingOrders);
     }
@@ -330,7 +335,9 @@ bool User::getUserMessage() {
         cout<<"您有"<<soonTimeOutOrders.size()<<"本借阅的书籍将于3天内到期,请注意及时归还"<<endl;
         Order::printOrderList(soonTimeOutOrders);
     }
-    printf("--------------------------------------------------------\n");
+    if(hasMessage){
+        printf("--------------------------------------------------------\n");
+    }
     return true;
 }
 
@@ -359,7 +366,7 @@ bool User::appointmentAssignBook(int bookId, std::string isbn) {
        if( AppointmentList[i].getStatu() == 5) {
            BookInstance* tempInstance=BookInstance::getInstanceById(AppointmentList[i].getBookId());
            if(tempInstance->getIsbn() == isbn) {
-               cout << "预约失败，该用户当年有未领取的该本书，不可再预约" << endl;
+               cout << "预约失败，该用户当前有未领取的该本书，不可再预约" << endl;
                return false;
            }
        }
@@ -511,9 +518,14 @@ User::User(long long int jobNum, status type, const string &name) : jobNum(jobNu
     this->setPassword(to_string(this->jobNum));
 }
 
-vector<User> User::searchUsersBySingleField(std::string field, std::string value) {
+vector<User> User::searchUsersBySingleField(std::string field, std::string value,bool isFuzzy) {
     DbAdapter dbAdapter("User");
-    vector<vector<string> > queryData = dbAdapter.searchBySingleField(field, value);
+    vector<vector<string> > queryData;
+    if(isFuzzy){
+        queryData = dbAdapter.searchFuzzyBySingleField(field, value);
+    }else{
+        queryData = dbAdapter.searchBySingleField(field, value);
+    }
     cout << "检索到" << queryData.size() << endl;
     return User::stringsToUsers(queryData);
 }

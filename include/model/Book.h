@@ -128,7 +128,7 @@ public:
     static bool deleteBooksByBookIds(std::vector<std::string> bookIds);
 
     // 静态函数, 根据指定字段的值搜索内容,这里的字段不能是id,返回Book对象数组
-    static std::vector<Book> searchBooksBySingleField(std::string field, std::string value);
+    static std::vector<Book> searchBooksBySingleField(std::string field, std::string value,bool isFuzzy=false);
 
     // 静态函数, 根据id,返回Book对象
     static Book searchBooksById(int id);

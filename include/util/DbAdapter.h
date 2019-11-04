@@ -33,6 +33,9 @@ public:
     // 根据单个字段搜索
     vector<vector<string>> searchBySingleField(string field, string value);
 
+    // 根据单个字段模糊搜索
+    vector<vector<string>> searchFuzzyBySingleField(string field, string value);
+
     // 根据单个字段搜索
     vector<vector<string>> searchBettwenIdA2B(long long startId, long long endId);
 

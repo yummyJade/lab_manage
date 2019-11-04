@@ -45,7 +45,7 @@ void printUserSearchMenu() {
     while (1) {
         system("cls");
         cout << "------------用户搜索--------------" << endl
-             << "1.综合" << endl
+             << "1.综合(模糊搜索)" << endl
              << "2.工号" << endl
              << "3.姓名" << endl
              << "0.返回上一级" << endl
@@ -118,7 +118,7 @@ void printBookSearchMenu(bool canLend = false, bool isAdmin=false) {
     while (1) {
         system("cls");
         cout << "------------图书搜索--------------" << endl
-             << "1.综合" << endl
+             << "1.综合(模糊搜索)" << endl
              << "2.书名" << endl
              << "3.作者" << endl
              << "4.ISBN" << endl
@@ -140,9 +140,9 @@ void printBookSearchMenu(bool canLend = false, bool isAdmin=false) {
             string keyWord;
             keyWord = Input::getAssignMaxLengthStr(50);
             vector<Book> books;
-            if (choose == 1) {// 全部搜索
+            if (choose == 1) {// 全部搜索(模糊搜索)
                 for (int i = 2; i <= 4; i++) {// 按姓名,作者,isbn分别搜索并合并结果
-                    vector<Book> tempbooks = Book::searchBooksBySingleField(fieds[i], keyWord);
+                    vector<Book> tempbooks = Book::searchBooksBySingleField(fieds[i], keyWord, true);
                     books.insert(books.end(), tempbooks.begin(), tempbooks.end());
                 }
                 // 根据id进行排序
@@ -231,7 +231,7 @@ void printBookSearchMenu(bool canLend = false, bool isAdmin=false) {
 // 普通用户首页
 int printUserMenu(string userOpera = "0") {
     system("cls");
-    printf("--------------------------------------------------------\n");
+    cout<<"-----------------系统时间:"+ Date::today().serialize()+"---------------------"<<endl;
     printf("----------------------用户界面-------------------------\n");
     printf("--------------------------------------------------------\n");
     User *user = Library::getSimpleUserInstance();
@@ -329,7 +329,7 @@ int printUserMenu(string userOpera = "0") {
 // 管理员操作用户的页面
 int printAdminDealUserMenu(string userOpera = "0") {
     system("cls");
-    printf("--------------------------------------------------------\n");
+    cout<<"-----------------系统时间:"+ Date::today().serialize()+"---------------------"<<endl;
     printf("------------------管理员操作用户界面--------------------\n");
     printf("--------------------------------------------------------\n");
     printLoginUserInfo();
@@ -488,7 +488,8 @@ int printAdminDealUserMenu(string userOpera = "0") {
 // 管理员首页
 int printAdminMenu(string userOpera = "0") {
     system("cls");
-    printf("--------------------------------------------------------\n");
+
+    cout<<"-----------------系统时间:"+ Date::today().serialize()+"---------------------"<<endl;
     printf("--------------------管理员界面--------------------------\n");
     printf("--------------------------------------------------------\n");
     int deepIndex = userOpera.length() + 1;
@@ -569,9 +570,11 @@ int printAdminMenu(string userOpera = "0") {
 
             case 211:// 批量导入用户
                 User::importUsers();
+                EnterToContinue();
                 break;
             case 212:// 增加单个用户
                 addSingleUserService();
+                EnterToContinue();
                 break;
 
             case 221:// 冻结指定用户
