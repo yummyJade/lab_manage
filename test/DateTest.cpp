@@ -28,6 +28,10 @@ TEST_CASE("增加一个逾期未娶的预约记录", "[lendBook]") {
 
 	int orderId = Order::addSingleOrder(user->getFirstOrderId(), order);
 
+	// 设置该Bookinstance已被预约,并更新应还时间
+	instance->setStatus(5);
+	instance->setPlanReturnDate(lendDate.addDay(30));
+	BookInstance::updateStateAndReturnTimeById(*instance);
 
 	// 判断是否首次借阅,是的话更新借阅链表头的字段
 	if (user->getFirstOrderId() == -1) {
