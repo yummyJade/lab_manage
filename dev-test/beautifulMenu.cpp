@@ -540,13 +540,17 @@ int printAdminMenu(string userOpera = "0") {
             printTree(3, "331.下架指定ISBN的所有图书", deepIndex);
             printTree(3, "332.下架指定条码号的图书", deepIndex);
         }
-
-
     }
 
     printTree(1, "4.账号相关");
     if (userOpera[0] == '4') {
         printTree(2, "41.修改密码", deepIndex);
+    }
+
+    printTree(1, "5.图书馆信息");
+    if (userOpera[0] == '5') {
+        printTree(2, "51.查看借阅逾期未还情况", deepIndex);
+        printTree(2, "52.查看预约逾期未取情况", deepIndex);
     }
 
     printTree(1, "800.处理用户操作");
@@ -645,6 +649,13 @@ int printAdminMenu(string userOpera = "0") {
                 break;
             }
 
+            case 51: {// 打印逾期借阅未还
+                break;
+            }
+
+            case 52: {// 打印逾期预约未取
+                break;
+            }
 
             case 800: // 处理用户操作
                 if (Library::login(true) != NULL) {

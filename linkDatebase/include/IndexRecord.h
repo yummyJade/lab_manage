@@ -2,25 +2,20 @@
 #define INDEXRECORD_H
 #include <vector>
 using namespace std;
+class IndexRecord
+{
+    public:
+        static IndexRecord* indexRecord;
+        static IndexRecord* getInstance();
+        virtual ~IndexRecord();
+        int addIndex(int id);
+        vector<int> queryIndex(int id);
+        int init();
 
-class IndexRecord {
-public:
-    static IndexRecord *indexRecord;
+    protected:
 
-    static IndexRecord *getInstance();
-
-    virtual ~IndexRecord();
-
-    int addIndex(int id);
-
-    vector<int> queryIndex(int id);
-
-    int init();
-
-protected:
-
-private:
-    IndexRecord();
+    private:
+        IndexRecord();
 };
 
 #endif // INDEXRECORD_H

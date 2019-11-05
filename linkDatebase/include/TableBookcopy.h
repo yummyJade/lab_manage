@@ -7,13 +7,14 @@
 #include "Bookcopy.h"
 using namespace std;
 
-class TableBookcopy {
+class TableBookcopy
+{
 public:
     virtual ~TableBookcopy();
 
-    static TableBookcopy *tableBookcopy;
+    static TableBookcopy* tableBookcopy;
 
-    static TableBookcopy *getInstance();
+    static TableBookcopy* getInstance();
 
     int insertData(int id, Bookcopy bookcopy, int num);
 
@@ -30,7 +31,7 @@ public:
 protected:
 
 private:
-    char *table_name;
+    char* table_name;
     int head_size;
     int data_size;
     int data_number;
