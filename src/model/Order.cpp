@@ -248,7 +248,6 @@ std::vector<Order> Order::getAssignUserArrivedAppointmentList(int firstOrderId) 
     //先获取所有的在预约状态
     vector<Order> orders = Order::getAssignUserBorrowedHistory(firstOrderId);
     vector<Order> result;
-    //todo:判断预约是否过期，如果是，修改该订单为什么状态？
     int appointmentIndex = 5;      //表示的是预约已到未取
     SimpleTime appointArrivedInValidTime;
     for(int i = 0; i < orders.size(); ++i) {

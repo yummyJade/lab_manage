@@ -189,8 +189,6 @@ void printBookSearchMenu(bool canLend = false, bool isAdmin=false) {
                     // 打印第operaNum本书的详细信息
                     int bookIndex = operaNum - 1;
                     vector<BookInstance> *instances = new vector<BookInstance>;
-                    //判断有无超期预约
-                    dealWithOverTimeAppoint(books[bookIndex].getIsbn(), instances);
                     printBookDetailInfo(books[bookIndex].getIsbn(), instances);
 
                     if (!canLend) {
@@ -683,7 +681,7 @@ int printAdminMenu(string userOpera = "0") {
                     while (operaNum < -1 || operaNum > resultSet.size()) {
                         cout << "-----------------操作--------------" << endl
                              << "处理单本图书(输入编号)" << endl
-                             //                             << "预约该书(输入-1)" << endl
+                             //<< "预约该书(输入-1)" << endl
                              << "返回(输入0)" << endl
                              << "输入:";
                         operaNum = Input::getInt();
@@ -691,11 +689,7 @@ int printAdminMenu(string userOpera = "0") {
                             EnterToContinue();
                             break;
                         } else if (operaNum > 0 && operaNum <= resultSet.size()) {
-//                            User *loginUser = Library::getSimpleUserInstance();
-//                            int resultCode = loginUser->borrowAssignBookInstance(
-//                                    (*instances)[operaNum - 1].getId());
-                            User *loginUser = Library::getSimpleUserInstance();
-                            loginUser->dealWithOverTimeAppointment(resultSet[operaNum - 1]);
+                            User::dealWithOverTimeAppointment(resultSet[operaNum - 1]);
                         } else {
                             continue;
                         }
@@ -704,9 +698,6 @@ int printAdminMenu(string userOpera = "0") {
                         break;
                     }
 //                    EnterToContinue();
-
-
-
                 }
                 break;
             }
