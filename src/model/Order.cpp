@@ -54,6 +54,60 @@ Order::Order(long long userId, int bookId, const SimpleTime &borrowTime, const S
         userId), bookId(bookId), borrowTime(borrowTime), returnTime(returnTime), statu(statu) {}
 
 
+
+
+std::vector<Order> Order::getAllBorrowedHistory() {
+    TableRecord *table = TableRecord::getInstance();
+    int borrowIndex = 1;        //在借状态为3
+    vector<Record> copys = table->queryByStatus(borrowIndex);
+    vector<Order> result;
+    for(int i = 0; i < copys.size(); ++i) {
+        result.push_back(Order::RecordCopyToOrder(copys[i]));
+    }
+    return result;
+}
+
+std::vector<Order> Order::getAllAppointArrivedHistory() {
+    TableRecord *table = TableRecord::getInstance();
+    int appointArrivedIndex = 5;
+    vector<Record> copys = table->queryByStatus(appointArrivedIndex);
+    vector<Order> result;
+    for(int i = 0; i < copys.size(); ++i) {
+        result.push_back(Order::RecordCopyToOrder(copys[i]));
+    }
+	return result;
+}
+std::vector<Order>  Order::getAllBorrowedOweList() {
+    //先获取所有的借阅记录
+    vector<Order> orders = Order::getAllBorrowedHistory();
+    vector<Order> result;
+    //挑选出returnTime和今天相比小的
+    SimpleTime nowTime = SimpleTime::nowTime();
+    SimpleTime returnTime;
+    for(int i = 0; i < orders.size(); ++i) {
+        returnTime = orders[i].getReturnTime();
+        if(returnTime.compare(Date::today()) < 0) {
+            result.push_back(orders[i]);
+        }
+    }
+    return result;
+}
+
+std::vector<Order> Order::getAllAppointArrivedOweList() {
+    //先获取所有的预约已到记录
+    vector<Order> orders = Order::getAllAppointArrivedHistory();
+    vector<Order> result;
+    //挑选出lendTime比今天小的
+    SimpleTime getBookTime;
+    for(int i = 0; i < orders.size(); ++i) {
+        getBookTime = orders[i].getBorrowTime();
+        if(getBookTime.compare(Date::today()) < 0) {
+            result.push_back( orders[i]);
+        }
+    }
+    return result;
+}
+
 std::vector<Order> Order::getAssignBookBorrowedHistory(int bookId) {
     TableRecord *table = TableRecord::getInstance();
     vector<Record> copys = table->queryByBookId(bookId);
@@ -63,6 +117,7 @@ std::vector<Order> Order::getAssignBookBorrowedHistory(int bookId) {
     }
     return result;
 }
+
 
 std::vector<Order> Order::getAssignBookAppointingList(int bookId) {
     // 先获取所有的借阅记录

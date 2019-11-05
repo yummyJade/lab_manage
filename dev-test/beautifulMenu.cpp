@@ -299,7 +299,7 @@ int printUserMenu(string userOpera = "0") {
                 EnterToContinue();
                 break;
             }
-            case 23:{// todo:查看正在预约的借阅记录
+            case 23:{
                 vector<Order> resultSet =Order::getAssignUserAppointmentList(Library::getSimpleUserInstance()->getFirstOrderId());
                 if (resultSet.empty()) {
                     cout << "您当前暂无正在预约的图书" << endl;
@@ -650,10 +650,48 @@ int printAdminMenu(string userOpera = "0") {
             }
 
             case 51: {// 打印逾期借阅未还
+                vector<Order> resultSet = Order::getAllBorrowedOweList();
+                if(resultSet.empty()) {
+                    cout << "当前暂无逾期借阅订单" << endl;
+                } else {
+                    Order::printOrderList(resultSet);
+                }
+                EnterToContinue();
                 break;
             }
 
             case 52: {// 打印逾期预约未取
+                vector<Order> resultSet = Order::getAllAppointArrivedOweList();
+                if(resultSet.empty()) {
+                    cout << "当前暂无逾期借阅订单" << endl;
+                } else {
+                    Order::printOrderList(resultSet);
+
+//                    operaNum = -2;
+//                    while (operaNum < -1 || operaNum > instances->size()) {
+//                        cout << "-----------------操作--------------" << endl
+//                             << "借阅图书(输入编号)" << endl
+//                             << "预约该书(输入-1)" << endl
+//                             << "返回(输入0)" << endl
+//                             << "输入:";
+//                        operaNum = Input::getInt();
+//                        if (operaNum == 0) {
+//                            break;
+//                        } else if (operaNum == -1) { // 预约图书
+//                            User *loginUser = Library::getSimpleUserInstance();
+//                            loginUser->appointmentAssignBook(books[bookIndex].getId(), books[bookIndex].getIsbn());
+//                        } else if (operaNum > 0 && operaNum <= instances->size()) { // 借书
+//                            User *loginUser = Library::getSimpleUserInstance();
+//                            int resultCode = loginUser->borrowAssignBookInstance(
+//                                    (*instances)[operaNum - 1].getId());
+//                        }else{
+//                            continue;
+//                        }
+//                        operaNum=0;
+//                        EnterToContinue();
+                }
+                EnterToContinue();
+
                 break;
             }
 
@@ -747,15 +785,15 @@ int main() {
 
 
     // 管理员界面
-//	string operaNum = "";
-//	int resultCode= printAdminMenu(operaNum);
-//
-//    while (resultCode != 9) {//9 是注销操作
-//        /*cout << "请输入操作数" << endl;
-//        cin >> operaNum;
-//        system("cls");*/
-//		resultCode= printAdminMenu(to_string(resultCode));
-//    }
+	string operaNum = "";
+	int resultCode= printAdminMenu(operaNum);
+
+    while (resultCode != 9) {//9 是注销操作
+        /*cout << "请输入操作数" << endl;
+        cin >> operaNum;
+        system("cls");*/
+		resultCode= printAdminMenu(to_string(resultCode));
+    }
 
     // 普通用户界面
 //	string operaNum = "";
@@ -769,7 +807,7 @@ int main() {
 //    }
 
 
-    trueMain();
+//    trueMain();
 
 }
 

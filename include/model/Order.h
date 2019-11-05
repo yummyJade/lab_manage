@@ -90,6 +90,22 @@ public:
     //------------------------------------------------------
     //----下面这些是与数据库交互的接口,由 public 调用------------
     /**
+     * 获取全表的的借书记录
+     */
+     static std::vector<Order> getAllBorrowedHistory();
+     /**
+      * 获取全表的预约已到记录
+      */
+     static std::vector<Order> getAllAppointArrivedHistory();
+     /**
+      * 获取全表的过期借书
+      */
+    static std::vector<Order> getAllBorrowedOweList();
+    /**
+     * 获取全表的过期预约记录
+     */
+     static std::vector<Order> getAllAppointArrivedOweList();
+    /**
      * 获取指定书籍的历史借书记录
      * @param bookId
      * @return
