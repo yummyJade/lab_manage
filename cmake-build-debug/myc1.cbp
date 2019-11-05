@@ -251,7 +251,7 @@
 		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/src/util/TableRenderer.cpp">
 			<Option target="Include"/>
 		</Unit>
-		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/test/DateTest.cpp">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/test/Library.cpp">
 			<Option target="Catch_tests_run"/>
 		</Unit>
 		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/CMakeLists.txt">

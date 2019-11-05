@@ -58,3 +58,8 @@ std::string SimpleString::readPathFromCmd() {
 
     return path;
 }
+
+bool SimpleString::isLegalISBN(std::string str) {
+
+    return false;
+}

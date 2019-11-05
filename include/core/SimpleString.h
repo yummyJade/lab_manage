@@ -35,6 +35,14 @@ public:
 
 
     /**
+     * 判断传入的isbn是否正确
+     * @param str
+     * @return
+     */
+    static bool isLegalISBN(std::string str);
+
+
+    /**
      * 从控制台读取一个路径并以字符串形式返回,要求该路径必须以csv或txt结尾
      * @return
      */
