@@ -12,16 +12,18 @@ DbAdapter::DbAdapter() {
 
 DbAdapter::DbAdapter(const string &dbName) : dbName(dbName) {
     this->dbName = dbName;
-    if(dbName=="User"){
-        this->db=DbAdapter::UserDb;
-    }else if(dbName=="Book"){
-        this->db=DbAdapter::BookDb;
-    }else{
+    this->connect();
 
-        this->connect();
-//        cout<<"连接数据库失败"<<endl;
-
-    }
+//    if(dbName=="User"){
+//        this->db=DbAdapter::UserDb;
+//    }else if(dbName=="Book"){
+//        this->db=DbAdapter::BookDb;
+//    }else{
+//
+//        this->connect();
+////        cout<<"连接数据库失败"<<endl;
+//
+//    }
 
 //    this->UserDb->chooseTable(dbName);
 //    this->connect();
