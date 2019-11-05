@@ -103,5 +103,6 @@ User* Library::getAdminUserInstance() {
 }
 
 bool Library::checkDBLegal() {
+    DbAdapter::init();
     return DbAdapter::checkTableExist("User") && DbAdapter::checkTableExist("Book");
 }

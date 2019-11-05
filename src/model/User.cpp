@@ -213,6 +213,92 @@ int User::borrowAssignBookInstance(int bookInstanceId) {
     return 0;
 }
 
+//bool User::importUsers(string incomingPath="") {
+//    string path;
+//    ifstream fin;
+//    string line;
+//    if (incomingPath != "") {
+//        path = SimpleString::fixPath(incomingPath);
+//        fin = ifstream(path);//打开文件流操作
+//    }
+//    else {
+//        /* 读取一个有效路径,并打开其对应的文件*/
+//        while (true) {
+//            path = SimpleString::readPathFromCmd();// "E:\\Sources\\Cpp\\repos\\Lib_manage\\dev-Tan\\newBooks.csv"
+//            if (path == "")
+//                return false;
+//            fin = ifstream(path);//打开文件流操作
+//            if (fin.good()) {
+//                cout << "已找到文件,正在读取" << endl;
+//                break;
+//            }
+//            cout << "文件不存在,请检查路径后重新输入" << endl;
+//        }
+//    }
+//
+//    int index = 0;//要操作的行下标
+//    fin.clear();
+//    fin.seekg(0, ios::beg); // 重新跳转到文件头部
+//    getline(fin, line); // 吃掉首行
+//    vector<vector<string>> users; // 要insert到User表的数据
+//    vector<long long> existUsers; //已经存在的用户工号
+//
+//    while (getline(fin, line)) //整行读取，换行符“\n”区分，遇到文件尾标志eof终止读取
+//    {
+//        try{
+//            istringstream sin(line);
+//            vector<string> fields;
+//            string field;
+//
+//            while (getline(sin, field, ',')) {
+//                fields.push_back(field);
+//            }
+//            if(fields.size()!=4){
+//                cout<<"第"<<index+1<<"个用户数据有误,导入失败"<<endl;
+//                index++;
+//                continue;
+//            }
+//
+//            long long jobNum = stoll(fields[0]);
+//            string name = fields[1];
+//            string pwd = fields[2];
+//            int state = stoi(fields[3]);
+//
+//            if (User::checkUserExist(jobNum)) {
+//                existUsers.push_back(jobNum);
+//            } else {
+//                pwd = User::encryPassword(pwd);
+//                User user(jobNum, static_cast<status>(state), name, pwd);
+//                if(!user.isLegalUserDate()){
+//                    cout<<"第"<<index+1<<"个用户数据有误,导入失败"<<endl;
+//                    index++;
+//                    continue;
+//                }
+//                users.push_back(user.serialize());
+//            }
+//        }catch (...){
+//            cout<<"第"<<index+1<<"个用户数据有误,导入失败"<<endl;
+//        }
+//        index++;
+//
+//    }
+//
+//    vector<long long> ids;
+//    User::addUsers(users, ids);
+//    cout<<"---------------------------------------"<<endl;
+//    cout<<"成功导入了"<<users.size()<<"个新用户"<<endl;
+//    if (!existUsers.empty()) {
+//        cout << "以下工号的用户已经存在" << endl;
+//        cout<<"---------------------------------------"<<endl;
+//        for (int i = 0; i < existUsers.size(); ++i) {
+//            cout << existUsers[i] << endl;
+//        }
+//        cout<<"---------------------------------------"<<endl;
+//    }
+//
+//    return true;
+//}
+
 bool User::importUsers(string incomingPath="") {
 	string path;
 	ifstream fin;
@@ -237,56 +323,69 @@ bool User::importUsers(string incomingPath="") {
 	}
 
     int index = 0;//要操作的行下标
+    int allNum=0;
     fin.clear();
     fin.seekg(0, ios::beg); // 重新跳转到文件头部
     getline(fin, line); // 吃掉首行
-    vector<vector<string>> users; // 要insert到User表的数据
+
     vector<long long> existUsers; //已经存在的用户工号
 
-    while (getline(fin, line)) //整行读取，换行符“\n”区分，遇到文件尾标志eof终止读取
-    {
-        try{
-            istringstream sin(line);
-            vector<string> fields;
-            string field;
+    while(1){
+        vector<vector<string>> users; // 要insert到User表的数据
+        while (index<100 && getline(fin, line)) //整行读取，换行符“\n”区分，遇到文件尾标志eof终止读取
+        {
+            try{
+                istringstream sin(line);
+                vector<string> fields;
+                string field;
 
-            while (getline(sin, field, ',')) {
-                fields.push_back(field);
-            }
-            if(fields.size()!=4){
-                cout<<"第"<<index+1<<"个用户数据有误,导入失败"<<endl;
-                index++;
-                continue;
-            }
-
-            long long jobNum = stoll(fields[0]);
-            string name = fields[1];
-            string pwd = fields[2];
-            int state = stoi(fields[3]);
-
-            if (User::checkUserExist(jobNum)) {
-                existUsers.push_back(jobNum);
-            } else {
-                pwd = User::encryPassword(pwd);
-                User user(jobNum, static_cast<status>(state), name, pwd);
-                if(!user.isLegalUserDate()){
+                while (getline(sin, field, ',')) {
+                    fields.push_back(field);
+                }
+                if(fields.size()!=4){
                     cout<<"第"<<index+1<<"个用户数据有误,导入失败"<<endl;
                     index++;
                     continue;
                 }
-                users.push_back(user.serialize());
+
+                long long jobNum = stoll(fields[0]);
+                string name = fields[1];
+                string pwd = fields[2];
+                int state = stoi(fields[3]);
+
+                if (User::checkUserExist(jobNum)) {
+                    existUsers.push_back(jobNum);
+                } else {
+                    pwd = User::encryPassword(pwd);
+                    User user(jobNum, static_cast<status>(state), name, pwd);
+                    if(!user.isLegalUserDate()){
+                        cout<<"第"<<index+1<<"个用户数据有误,导入失败"<<endl;
+                        index++;
+                        continue;
+                    }
+                    users.push_back(user.serialize());
+                }
+            }catch (...){
+                cout<<"第"<<index+1<<"个用户数据有误,导入失败"<<endl;
             }
-        }catch (...){
-            cout<<"第"<<index+1<<"个用户数据有误,导入失败"<<endl;
+            index++;
+
         }
-        index++;
+
+        vector<long long> ids;
+        User::addUsers(users, ids);
+        allNum+=index;
+        cout<<"插入了"<<allNum<<"个"<<endl;
+        if(index==100){
+            index=0;
+        }else{
+            break;
+        }
 
     }
 
-    vector<long long> ids;
-    User::addUsers(users, ids);
     cout<<"---------------------------------------"<<endl;
-    cout<<"成功导入了"<<users.size()<<"个新用户"<<endl;
+    cout<<"成功导入了"<<allNum<<"个新用户"<<endl;
 	if (!existUsers.empty()) {
 		cout << "以下工号的用户已经存在" << endl;
 		cout<<"---------------------------------------"<<endl;
@@ -526,7 +625,7 @@ vector<User> User::searchUsersBySingleField(std::string field, std::string value
     }else{
         queryData = dbAdapter.searchBySingleField(field, value);
     }
-    cout << "检索到" << queryData.size() << endl;
+//    cout << "检索到" << queryData.size() << endl;
     return User::stringsToUsers(queryData);
 }
 

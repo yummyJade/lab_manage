@@ -61,7 +61,8 @@ public:
 	
 	//查询辅助数据
 	vector<ll> maxLen; //每个表最长数据长度
-	vector<map<string, ll> > fieldToidxMap; //字段对应位置
+	vector<map<string, ll> >fieldToidxMap; //字段对应位置
+
 
 	static Statu * getInstance();
 	
