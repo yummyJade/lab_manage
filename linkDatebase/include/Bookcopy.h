@@ -1,51 +1,45 @@
 #ifndef BOOKCOPY_H
 #define BOOKCOPY_H
 #include <string>
+//#include "../../linkDatebase/include/Bookcopy.h"
 using namespace std;
+class Bookcopy
+{
+    public:
+        Bookcopy();
+        virtual ~Bookcopy();
 
-class Bookcopy {
-public:
-    Bookcopy();
+        void setId(int id);
+        int getId();
 
-    virtual ~Bookcopy();
+        /*void setBookId(int bookId);
+        int getBookId();*/
 
-    void setId(int id);
+        void setState(int state);
+        int getState();
 
-    int getId();
+		void setReTime(int reTime);
+        int getReTime();
 
-    /*void setBookId(int bookId);
-    int getBookId();*/
+		void setPosition(string position);
+        string getPosition();
 
-    void setState(int state);
+        void setIsbn(string isbn);
+        string getIsbn();
 
-    int getState();
+        void setNextId(int nextId);
+        int getNextId();
 
-    void setReTime(int reTime);
+        void show();
 
-    int getReTime();
-
-    void setPosition(string position);
-
-    string getPosition();
-
-    void setIsbn(string isbn);
-
-    string getIsbn();
-
-    void setNextId(int nextId);
-
-    int getNextId();
-
-    void show();
-
-private:
-    int id;
-    //int bookId;
-    int state;
-    int reTime;
-    int nextId;
-    string isbn;
-    string position;
+    private:
+        int id;
+        //int bookId;
+        int state;
+        int reTime;
+        int nextId;
+        string isbn;
+        string position;
 };
 
 #endif // BOOKCOPY_H

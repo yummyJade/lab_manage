@@ -2,20 +2,21 @@
 #include <cstdio>
 #include <iostream>
 #include <cstring>
-
-Bookcopy::Bookcopy() {
-    //ctor
+Bookcopy::Bookcopy()
+{
+	//ctor
 }
 
-Bookcopy::~Bookcopy() {
-    //dtor
+Bookcopy::~Bookcopy()
+{
+	//dtor
 }
 
 void Bookcopy::setId(int id) {
-    this->id = id;
+	this->id = id;
 }
 int Bookcopy::getId() {
-    return id;
+	return id;
 }
 
 /*void Bookcopy::setBookId(int bookId) {
@@ -26,41 +27,41 @@ int Bookcopy::getBookId() {
 }*/
 
 void Bookcopy::setState(int state) {
-    this->state = state;
+	this->state = state;
 }
 int Bookcopy::getState() {
-    return state;
+	return state;
 }
 
 void Bookcopy::setReTime(int reTime) {
-    this->reTime = reTime;
+	this->reTime = reTime;
 }
 int Bookcopy::getReTime() {
-    return reTime;
+	return reTime;
 }
 
 void Bookcopy::setPosition(string position) {
     //printf("xiezheyong:%s\n", position);
-    this->position = position;
-    //printf("xiezheyong2:%s\n", this->position);
-    //printf("xiezhengyong3:%s\n", this->getPosition());
+	this->position = position;
+	//printf("xiezheyong2:%s\n", this->position);
+	//printf("xiezhengyong3:%s\n", this->getPosition());
 }
 string Bookcopy::getPosition() {
-    return position;
+	return position;
 }
 
 void Bookcopy::setIsbn(string isbn) {
-    this->isbn = isbn;
+	this->isbn = isbn;
 }
 string Bookcopy::getIsbn() {
-    return isbn;
+	return isbn;
 }
 
 void Bookcopy::setNextId(int nextId) {
-    this->nextId = nextId;
+	this->nextId = nextId;
 }
 int Bookcopy::getNextId() {
-    return nextId;
+	return nextId;
 }
 
 void Bookcopy::show() {

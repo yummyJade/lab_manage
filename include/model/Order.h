@@ -157,19 +157,6 @@ public:
      */
     static std::vector<Order> getAssignUserOweOrder(int firstOrderId);
 
-    /**
-     * 获得逾期未还的订单
-     * @return
-     */
-    static std::vector<Order> getTimeOutOrders();
-
-    /**
-     * 检索field字段的值为value的内容
-     * @param field
-     * @param value
-     * @return
-     */
-    static std::vector<Order> filter(std::string field, std::string value);
 
     /**
      * 往数据库增一条记录
@@ -192,5 +179,8 @@ public:
 
     //修改指定id的instance的状态和借书时间还书时间，用于领取书
     static bool updateStateAndReturnTimeAndLendTimeById(Order order);
+
+    // 获取所有借阅逾期的订单
+    static std::vector<Order> getOverTimeBorrowOrders();
 };
 

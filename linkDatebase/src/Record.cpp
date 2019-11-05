@@ -1,13 +1,13 @@
 #include "../../linkDatebase/include/Record.h"
 #include <iostream>
-
 using namespace std;
-
-Record::Record() {
+Record::Record()
+{
     //ctor
 }
 
-Record::~Record() {
+Record::~Record()
+{
     //dtor
 }
 
@@ -22,7 +22,6 @@ long long Record::getStId() {
 void Record::setBoTime(long long boTime) {
     this->boTime = boTime;
 }
-
 long long Record::getBoTime() {
     return boTime;
 }
@@ -30,7 +29,6 @@ long long Record::getBoTime() {
 void Record::setId(int id) {
     this->id = id;
 }
-
 int Record::getId() {
     return id;
 }
@@ -38,7 +36,6 @@ int Record::getId() {
 void Record::setBookId(int bookId) {
     this->bookId = bookId;
 }
-
 int Record::getBookId() {
     return bookId;
 }
@@ -46,7 +43,6 @@ int Record::getBookId() {
 void Record::setNextId(int nextId) {
     this->nextId = nextId;
 }
-
 int Record::getNextId() {
     return nextId;
 }
@@ -54,7 +50,6 @@ int Record::getNextId() {
 void Record::setReTime(int reTime) {
     this->reTime = reTime;
 }
-
 int Record::getReTime() {
     return reTime;
 }
@@ -62,7 +57,6 @@ int Record::getReTime() {
 void Record::setState(int state) {
     this->state = state;
 }
-
 int Record::getState() {
     return state;
 }

@@ -1,15 +1,13 @@
 #include "../../linkDatebase/include/IndexRecord.h"
 #include <cstdio>
 #include "../../linkDatebase/include/Record.h"
-
 using namespace std;
-
 Record readRecord3(int head_size, int data_size, int id) {
     /*参数说明：
     head_size：文件头长度
     data_size：每条记录的长度
     id：待读取的记录是文件中的第几条记录*/
-    FILE *fp = fopen("table_record", "rb");
+    FILE * fp = fopen("table_record", "rb");
     fseek(fp, head_size + (id - 1) * data_size, SEEK_SET);              //找到第id条记录的起始地址
     Record record;
     long long temp1[2];
@@ -27,18 +25,20 @@ Record readRecord3(int head_size, int data_size, int id) {
     return record;
 }
 
-IndexRecord *IndexRecord::getInstance() {
-    if (indexRecord == NULL) {
+IndexRecord* IndexRecord::getInstance() {
+    if(indexRecord == NULL) {
         indexRecord = new IndexRecord;
     }
     return indexRecord;
 }
 
-IndexRecord::IndexRecord() {
+IndexRecord::IndexRecord()
+{
     //ctor
 }
 
-IndexRecord::~IndexRecord() {
+IndexRecord::~IndexRecord()
+{
     //dtor
 }
 
@@ -52,16 +52,15 @@ vector<int> IndexRecord::queryIndex(int id) {
     fread(&data_size, sizeof(int), 1, fp);
     fread(&data_number, sizeof(int), 1, fp);
     vector<int> result;
-    for (int i = 1; i <= data_size; i++) {
-        Record temp = readRecord3(2 * sizeof(int), data_size, i);
-        if (temp.getBookId() == id) {
+    for(int i = 1; i <= data_size; i++) {
+        Record temp = readRecord3(2*sizeof(int), data_size, i);
+        if(temp.getBookId() == id) {
             result.push_back(temp.getId());
         }
     }
     fclose(fp);
     return result;
 }
-
 int IndexRecord::init() {
     return 0;
 }

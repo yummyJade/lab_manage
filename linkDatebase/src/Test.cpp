@@ -1,7 +1,6 @@
 #include <iostream>
-#include <Record.h>
-#include <Bookcopy.h>
-
+#include "../../linkDatebase/include/Record.h>
+#include "../../linkDatebase/include/Bookcopy.h>
 using namespace std;
 /*
 int main() {
