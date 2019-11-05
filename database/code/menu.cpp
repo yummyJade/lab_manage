@@ -37,6 +37,7 @@ int main(){
 11.更新数据\n\
 12.根据id范围选择数据\n\
 13.测试插入数据\n\
+14.测试query \n\
 ----------其他额外操作-------\n\
 *100.测试\n\
 *101.验证存在\n", chooseTableName.data());
@@ -323,6 +324,32 @@ int main(){
 			}
 			d->insert(data, id);
 			fclose(fp);
+		}else if(opt == 14){
+			if(!d->isChoose()){
+				printf("请选中一张表\n");
+				getchar();
+				getchar();
+				continue;
+			}
+			cout << "query次数" << endl;
+			cin >> num;
+			cout << "输入字段名" << endl;
+			cin >> name;
+			cout << "输入内容" << endl;
+			cin >> name2;
+			optStartTime = clock();
+			cout << "是否输出" << endl;
+			cin >> num2;
+
+			for(int i = 0; i < num; i++){
+				d->query(name, name2, id, queryData);
+				if(num2 == 1){
+					for(int j = 0; j < queryData[0].size(); j++){
+						cout << queryData[0][j] << " ";
+					}
+					cout << endl;
+				}
+			}
 		}
 		clock_t optEndTime = clock();
 		cout << endl << endl;

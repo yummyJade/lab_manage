@@ -1,4 +1,10 @@
 #include "util/DbAdapter.h"
+DataBase* DbAdapter::UserDb=new DataBase();
+
+
+//DbAdapter::UserDb.chooseTable("User");
+DataBase* DbAdapter::BookDb=new DataBase();
+//DbAdapter::BookDb->chooseTable("Book");
 
 DbAdapter::DbAdapter() {
 
@@ -6,7 +12,19 @@ DbAdapter::DbAdapter() {
 
 DbAdapter::DbAdapter(const string &dbName) : dbName(dbName) {
     this->dbName = dbName;
-    this->connect();
+    if(dbName=="User"){
+        this->db=DbAdapter::UserDb;
+    }else if(dbName=="Book"){
+        this->db=DbAdapter::BookDb;
+    }else{
+
+        this->connect();
+//        cout<<"连接数据库失败"<<endl;
+
+    }
+
+//    this->UserDb->chooseTable(dbName);
+//    this->connect();
 }
 
 
@@ -28,14 +46,14 @@ bool DbAdapter::connect() {
 }
 
 bool DbAdapter::disconnect() {
-    if (this->db == NULL) {
-//        printf("数据库尚未连接\n");
-        return false;
-    } else {
-        delete this->db;
-//        printf("数据库断开连接成功\n");
-        return true;
-    }
+    return false;
+
+//    if (this->db == NULL) {
+//        return false;
+//    } else {
+//        delete this->db;
+//        return true;
+//    }
 }
 
 
@@ -115,5 +133,16 @@ vector<vector<string>> DbAdapter::searchFuzzyBySingleField(string field, string 
         results[i].push_back(to_string(id[i]));
     }
     return results;
+}
+
+bool DbAdapter::init() {
+    if(DbAdapter::UserDb->chooseTable("User")!=0){
+        cout<<"初始化失败"<<endl;
+    }
+    if(DbAdapter::BookDb->chooseTable("Book")!=0){
+        cout<<"初始化失败"<<endl;
+    }
+    cout<<"初始化成功"<<endl;
+	return true;
 }
 

@@ -30,6 +30,9 @@ DataBase::DataBase(){
 			fp = fopen((settings::dataFolder + sta->table_name[i]).data(), "wb");
 			fclose(fp);
 		}
+		else{
+			fclose(fp);
+		}
 	}
 }
 
@@ -106,7 +109,7 @@ void DataBase::showTables(){
 			t[2].push_back(chart);
 		}
 		data.push_back(t[2]);
-		// CmdUI::drawTable(data);
+		//CmdUI::drawTable(data);
 	}
 }
 
@@ -342,16 +345,18 @@ int DataBase::query(string key, string value, vector<ll> & id, vector< vector<st
 	FILE * fp = fopen( (settings::dataFolder+name).data(), "rb");
 	
 	//具有索引的查询
-	ll idx = sta->fieldToidxMap[table_id]["key"];
+	ll idx = sta->fieldToidxMap[table_id][key];
+	int resultCode=0;
 	if(isFuzzy == true){
-		return traverseQuery(key, value, id, ans, fp, isFuzzy);
+        resultCode= traverseQuery(key, value, id, ans, fp, isFuzzy);
 	}
 	else if(sta->isHash[table_id][idx] == 'T'){
-		return indexQuery(key, value, id, ans, fp);
-	}else{ 
-		return traverseQuery(key, value, id, ans, fp, isFuzzy);
+        resultCode= indexQuery(key, value, id, ans, fp);
+	}else{
+        resultCode= traverseQuery(key, value, id, ans, fp, isFuzzy);
 	}
-	return 0;
+	fclose(fp);
+	return resultCode;
 }
 
 int DataBase::queryById(vector<ll> &id, vector< vector<string> > & ans, ll id1, ll id2, string name){

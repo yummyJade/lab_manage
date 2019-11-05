@@ -10,7 +10,7 @@ Statu::Statu(){
     //‘§º∆À„
 
     maxLen.resize(table_number);
-	fieldToidxMap.resize(table_number);
+    fieldToidxMap.resize(table_number);
     for(ll i = 0; i < table_number; i++){
         maxLen[i] = 0;
         for(ll j = 0; j < table_col_num[ i ]; j++){

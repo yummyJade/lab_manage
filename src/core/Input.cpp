@@ -73,16 +73,20 @@ std::string Input::getAssignMaxLengthStr(int maxLength=20) {
 }
 
 char Input::getChar() {
-    char result;
-    cin>>result;
-    while(cin.fail()){
-        cin.clear();
-        cin.ignore(10000,'\n');
-        cout<<"请输入一个字符:";
-        cin>>result;
-    }
-	cin.clear();
-	cin.ignore(10000, '\n');
-    return result;
+    string str=getAssignMaxLengthStr(1);
+    return str[0];
+
+//    char result;
+//    cin>>result;
+//    while(cin.fail()){
+//        cin.clear();
+//        cin.ignore(10000,'\n');
+//        cout<<"请输入一个字符:";
+//        cin>>result;
+//    }
+//	cin.clear();
+//	cin.ignore(10000, '\n');
+//    return result;
+
 }
 #endif //MYC1_INPUT_Cpp

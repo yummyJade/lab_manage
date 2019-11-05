@@ -255,7 +255,7 @@ bool Book::importBooksService(string incomingPath="") {
 				return false;
 			fin = ifstream(path);//打开文件流操作
 			if (fin.good()) {
-				cout << "已找到文件,正在读取" << endl;
+				cout << "已找到文件,正在读取..." << endl;
 				break;
 			}
 			cout << "文件不存在,请检查路径后重新输入" << endl;
@@ -264,10 +264,14 @@ bool Book::importBooksService(string incomingPath="") {
     /* 先判断一下这次要导入的书籍种类哪些是已经存在的*/
     getline(fin, line); // 吃掉首行
     vector<string> isbns;
-    while (getline(fin, line)) //整行读取，换行符“\n”区分，遇到文件尾标志eof终止读取
-    {
-        vector<string> fields;
-        try {
+    vector<int> isExists;
+    int allNum=0;
+    while(1){
+        int tempIndex=0;
+        vector<string> tempIsbns;
+        while (tempIndex<100 && getline(fin, line)) //整行读取，换行符“\n”区分，遇到文件尾标志eof终止读取
+        {
+            vector<string> fields;
             istringstream sin(line);
             string field;
             while (getline(sin, field, ',')) {
@@ -275,91 +279,108 @@ bool Book::importBooksService(string incomingPath="") {
             }
             if(fields.size()==8){
                 isbns.push_back(fields[4]);
+                tempIsbns.push_back(fields[4]);
             }else{
                 isbns.push_back("-2");
+                tempIsbns.push_back("-2");
             }
-
-        }catch (...){
-            isbns.push_back("-2");
-            continue;
+            tempIndex++;
         }
-        
-
+        vector<int> tempResults=Book::checkISBNsExist(tempIsbns);;
+        isExists.insert(isExists.end(),tempResults.begin(),tempResults.end());
+        allNum+=tempIndex;
+        cout<<"检索了"<<allNum<<"次"<<endl;
+        if(tempIndex==100){
+            tempIndex=0;
+        }else{
+            break;
+        }
     }
-    vector<int> isExists = Book::checkISBNsExist(isbns);
+
+
+//    isExists = Book::checkISBNsExist(isbns);
 
     /* 对不同情况的书籍执行不同操作*/
     int index = 0;//要操作的行下标
     fin.clear();
     fin.seekg(0, ios::beg); // 重新跳转到文件头部
     getline(fin, line); // 吃掉首行
-    vector<vector<string>> newBooks; // 要insert到Book表的数据
     vector<string> updateIsbns; // 已经存在的，只需要更新馆藏量的isbn号
     updateIsbns.empty();
     vector<int> addCounts; // 已经存在的，要添加的馆藏量
+    allNum=0;
 
-    while (getline(fin, line)) //整行读取，换行符“\n”区分，遇到文件尾标志eof终止读取
-    {
-        try{
-            if(isbns[index]=="-2"){ // 该行数据有误
-                cout<<"第"<<index+1<<"个图书数据有误,导入失败"<<endl;
-				index++;
-                continue;
-            }
-
-            istringstream sin(line);
-
-            vector<string> fields;
-            string field;
-            while (getline(sin, field, ',')) {
-                fields.push_back(field);
-            }
-
-            string name = fields[0];
-            string author = fields[1];
-            string press = fields[2];
-            char type = fields[3][0];
-            string isbn = fields[4];
-            int price = stoi(fields[5]);
-//            int price = stof(fields[5]) * 100;
-            string position = fields[6];
-            int count = stoi(fields[7]);
-
-            vector<BookInstance> bookinstancesFirstAdd;
-
-            for (int i = 0; i < count; ++i) {
-                BookInstance bookInstance(isbn, position);
-                bookinstancesFirstAdd.push_back(bookInstance);
-            }
-            // 插入book实例到instance表
-//        cout<<"first Id is"<<isExists[index]<<endl;
-            long long firstInstanceId = BookInstance::importBookInstances(bookinstancesFirstAdd,
-                                                                          isExists[index]);//获取链表的第一个位置
-
-            if (isExists[index] == -1) {//若该种书是首次被添加的
-                Book book(type, count, price, firstInstanceId, name, author, isbn, press);
-                if(!book.isLegalBookDate()){
+    while(1){
+        vector<vector<string>> newBooks; // 要insert到Book表的数据
+        while (index<100 && getline(fin, line)) //整行读取，换行符“\n”区分，遇到文件尾标志eof终止读取
+        {
+            try{
+                if(isbns[index]=="-2"){ // 该行数据有误
                     cout<<"第"<<index+1<<"个图书数据有误,导入失败"<<endl;
                     index++;
                     continue;
                 }
-                newBooks.push_back(book.serialize());
-            } else {//若该种书已有实例
-                // 添加到更新信息数组
+                istringstream sin(line);
+                vector<string> fields;
+                string field;
+                while (getline(sin, field, ',')) {
+                    fields.push_back(field);
+                }
+                string name = fields[0];
+                string author = fields[1];
+                string press = fields[2];
+                char type = fields[3][0];
+                string isbn = fields[4];
+                int price = stoi(fields[5]);
+//            int price = stof(fields[5]) * 100;
+                string position = fields[6];
+                int count = stoi(fields[7]);
+
+                vector<BookInstance> bookinstancesFirstAdd;
+
+                for (int i = 0; i < count; ++i) {
+                    BookInstance bookInstance(isbn, position);
+                    bookinstancesFirstAdd.push_back(bookInstance);
+                }
+                // 插入book实例到instance表
+//        cout<<"first Id is"<<isExists[index]<<endl;
+                long long firstInstanceId = BookInstance::importBookInstances(bookinstancesFirstAdd,
+                                                                              isExists[index]);//获取链表的第一个位置
+
+                if (isExists[index] == -1) {//若该种书是首次被添加的
+                    Book book(type, count, price, firstInstanceId, name, author, isbn, press);
+                    if(!book.isLegalBookDate()){
+                        cout<<"第"<<index+1<<"个图书数据有误,导入失败"<<endl;
+                        index++;
+                        continue;
+                    }
+                    newBooks.push_back(book.serialize());
+                } else {//若该种书已有实例
+                    // 添加到更新信息数组
 //            cout<<"index is "<<index<<" isExi[index] is "<< firstInstanceId<<endl;
-                updateIsbns.push_back(isbn);
-                addCounts.push_back(count);
+                    updateIsbns.push_back(isbn);
+                    addCounts.push_back(count);
+                }
+            }catch(...){
+                cout<<"第"<<index+1<<"个图书数据有误,导入失败"<<endl;
             }
-        }catch(...){
-            cout<<"第"<<index+1<<"个图书数据有误,导入失败"<<endl;
+            index++;
         }
-        index++;
+
+        vector<ll> ids;
+        Book::addBooks(newBooks, ids);
+        allNum+=index;
+        cout<<"插入了"<<allNum<<"个"<<endl;
+        if(index==100){
+            index=0;
+        }else{
+            break;
+        }
     }
+
     // 插入books
-//    cout << "插入操作,插入数量" <<newBooks.size()<< endl;
-    vector<ll> ids;
-    Book::addBooks(newBooks, ids);
-    cout<<"成功导入了"<<newBooks.size()<<"个新的图书信息"<<endl;
+
+    cout<<"成功导入了"<<allNum<<"个新的图书信息"<<endl;
     // 更新图书的馆藏量
 //    cout << "update操作,update数量"<<updateIsbns.size() << endl;
 	if (updateIsbns.size() > 0) {

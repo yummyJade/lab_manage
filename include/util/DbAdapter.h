@@ -8,8 +8,13 @@ class DbAdapter {
     string dbName;
 
 public:
+    static DataBase* UserDb;
+    static DataBase* BookDb;
+
+public:
     DbAdapter();
 
+    static bool init();
 
     virtual ~DbAdapter();
 
