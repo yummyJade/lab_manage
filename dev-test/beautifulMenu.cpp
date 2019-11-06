@@ -189,8 +189,6 @@ void printBookSearchMenu(bool canLend = false, bool isAdmin=false) {
                     // 打印第operaNum本书的详细信息
                     int bookIndex = operaNum - 1;
                     vector<BookInstance> *instances = new vector<BookInstance>;
-                    //判断有无超期预约
-                    dealWithOverTimeAppoint(books[bookIndex].getIsbn(), instances);
                     printBookDetailInfo(books[bookIndex].getIsbn(), instances);
 
                     if (!canLend) {
@@ -551,8 +549,6 @@ int printAdminMenu(string userOpera = "0") {
     if (userOpera[0] == '5') {
         printTree(2, "51.查看借阅逾期未还情况", deepIndex);
         printTree(2, "52.查看预约逾期未取情况", deepIndex);
-        printTree(2, "53.借阅排行榜(超慢玩具版)", deepIndex);
-        printTree(2, "54.查看两个用户的共同借阅(玩具版)", deepIndex);
     }
 
     printTree(1, "800.处理用户操作");
@@ -685,7 +681,7 @@ int printAdminMenu(string userOpera = "0") {
                     while (operaNum < -1 || operaNum > resultSet.size()) {
                         cout << "-----------------操作--------------" << endl
                              << "处理单本图书(输入编号)" << endl
-                             //                             << "预约该书(输入-1)" << endl
+                             << "批量处理(输入-1)" << endl
                              << "返回(输入0)" << endl
                              << "输入:";
                         operaNum = Input::getInt();
@@ -693,11 +689,12 @@ int printAdminMenu(string userOpera = "0") {
                             EnterToContinue();
                             break;
                         } else if (operaNum > 0 && operaNum <= resultSet.size()) {
-//                            User *loginUser = Library::getSimpleUserInstance();
-//                            int resultCode = loginUser->borrowAssignBookInstance(
-//                                    (*instances)[operaNum - 1].getId());
-                            User *loginUser = Library::getSimpleUserInstance();
-                            loginUser->dealWithOverTimeAppointment(resultSet[operaNum - 1]);
+                            User::dealWithOverTimeAppointment(resultSet[operaNum - 1]);
+                        } else if (operaNum == -1) {
+                            for(int i = 0; i < resultSet.size(); ++i) {
+                                cout << "正在处理第" << (i+1) << "本图书" << endl;
+                                User::dealWithOverTimeAppointment(resultSet[i]);
+                            }
                         } else {
                             continue;
                         }
@@ -728,6 +725,7 @@ int printAdminMenu(string userOpera = "0") {
             case 54:{// 共同借阅
                 printSameBorrowBooksBetweenTwoUser();
                 EnterToContinue();
+                }
                 break;
             }
 
@@ -821,15 +819,15 @@ int main() {
 
 
     // 管理员界面
-	string operaNum = "";
-	int resultCode= printAdminMenu(operaNum);
-
-    while (resultCode != 9) {//9 是注销操作
-        /*cout << "请输入操作数" << endl;
-        cin >> operaNum;
-        system("cls");*/
-		resultCode= printAdminMenu(to_string(resultCode));
-    }
+//	string operaNum = "";
+//	int resultCode= printAdminMenu(operaNum);
+//
+//    while (resultCode != 9) {//9 是注销操作
+//        /*cout << "请输入操作数" << endl;
+//        cin >> operaNum;
+//        system("cls");*/
+//		resultCode= printAdminMenu(to_string(resultCode));
+//    }
 
     // 普通用户界面
 //	string operaNum = "";
@@ -843,7 +841,7 @@ int main() {
 //    }
 
 
-//    trueMain();
+    trueMain();
 
 }
 

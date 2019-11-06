@@ -452,7 +452,6 @@ bool User::appointmentAssignBook(int bookId, std::string isbn) {
         cout << "超过最大可借数" << endl;
         return false;
     }
-    // todo:判断该用户是否已经借阅了或者预约了这本书
     vector<Order> AppointmentList= Order::getAssignUserAppointmentList(this->getFirstOrderId());
     for (int i = 0; i <AppointmentList.size() ; ++i) {
         //如果该用户正在预约这本书
@@ -510,11 +509,6 @@ bool User::appointmentAssignBook(int bookId, std::string isbn) {
     cout << "预约成功，请等待到书通知" << endl;
     return true;
 }
-
-//bool User::getArrivedAppointment(){
-//    //todo:用户领取预约已到的书籍
-//
-//}
 
 
 
@@ -706,7 +700,6 @@ int User::returnAssignOrder(Order order) {
 //        cout << "order的bookInsId为" << instance->getId() << endl;
         //修改BookInstance的状态status为5,这里只修改了一项函数会不会报错
         instance->setStatus(5);
-        //todo:记得新增一个修改单项status的函数
         BookInstance::updateStateAndReturnTimeById(*instance);
         //修改Book预约人数减一
         Book::updateBooksAppointmentNum(instance->getIsbn(),-1);
@@ -754,7 +747,6 @@ int User::renewAssignOrder(Order order) {
 
 bool User::getArrivedAppointment(Order order) {
     //现在这本书真正归这个人所有了，所以首先要修改订单信息
-    //todo:请判一下有没有过期
     //新增：增加了预约的可允许的范围
     order.setStatu(static_cast<Status>(1));
     order.setBorrowTime(SimpleTime::nowTime());
@@ -802,6 +794,7 @@ int User::dealWithOverTimeOrder() {
 
 
 bool User::dealWithOverTimeAppointment(Order order) {
+
     //查对应的bookId->isbn
     BookInstance *instance = BookInstance::getInstanceById(order.getBookId());
     Book book = Book::searchBooksBySingleField("isbn", instance->getIsbn())[0];
