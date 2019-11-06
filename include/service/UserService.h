@@ -32,4 +32,6 @@ bool unfreezeAssignUser();
 // 处理用户逾期情况
 bool dealWithOverTimeOrder(User* user);
 
+// 打印俩人的共同借阅书籍
+bool printSameBorrowBooksBetweenTwoUser();
 #endif //MYC1_USERSERVICE_H

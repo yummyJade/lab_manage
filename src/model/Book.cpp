@@ -1,4 +1,5 @@
 #include "../../include/model/Book.h"
+#include "../../include/model/Order.h"
 #include <iostream>
 #include <core/SimpleString.h>
 #include <fstream>
@@ -7,6 +8,7 @@
 #include "../../include/util/DbAdapter.h"
 #include "../../include/util/TableRenderer.h"
 #include "../../src/core/Input.cpp"
+#include <map>
 using namespace std;
 
 Book::Book() {
@@ -689,6 +691,53 @@ bool Book::isLegalBookDate() {
         return false;
     }
     return true;
+}
+
+std::vector<Book> Book::getMostPopularBook(int num) {
+    vector<Order> orders=Order::getAllBorrwedOrders();
+    map<int,int> instanceBorrowNum;
+    for (int i = 0; i <orders.size(); ++i) {
+        instanceBorrowNum[orders[i].getBookId()]=instanceBorrowNum[orders[i].getBookId()]+1;
+    }
+    map<string,int> bookBorrowNum;
+    map<int,int >::iterator instances;
+    for(instances = instanceBorrowNum.begin();instances!=instanceBorrowNum.end();instances++){
+        int key = instances->first;
+        string isbn=BookInstance::getInstanceById(key)->getIsbn();
+        bookBorrowNum[isbn]=bookBorrowNum[isbn]+instances->second;
+    }
+
+    vector<pair<string, int>> vtMap;
+    for (auto it = bookBorrowNum.begin(); it != bookBorrowNum.end(); it++)
+        vtMap.push_back(make_pair(it->first, it->second));
+
+    sort(vtMap.begin(), vtMap.end(),
+         [](const pair<string, int> &x, const pair<string, int> &y) -> int {
+             return x.second > y.second;
+         });
+
+    vector<Book> results;
+    Book book;
+    for (int j = 0; j <num && j<vtMap.size(); ++j) {
+        book=Book::searchBooksBySingleField("isbn",vtMap[j].first)[0];
+        results.push_back(book);
+    }
+
+    // 这里要打印个馆藏量,临时写了个渲染的内容
+    vector<string> navs = {"排名", "书名", "作者", "出版社", "类型", "馆藏量", "ISBN","借阅量"};
+    TableRenderer render(navs, 8);
+    for (int i = 0; i < results.size(); ++i) {
+        vector<string> line;
+        vector<string> temp = results[i].getPrintLineStr();
+        line.push_back(to_string(i + 1));
+        line.insert(line.end(), temp.begin(), temp.end());
+        line.push_back(to_string(vtMap[i].second));
+        render.addColume(line);
+    }
+    render.render();
+
+    //printBookList(results);
+    return results;
 }
 
 

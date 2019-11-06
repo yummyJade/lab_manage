@@ -200,5 +200,14 @@ public:
     static std::vector<Order> getOverTimeBorrowOrders();
 
     static void printOrderOweList(std::vector<Order> orders, int type);
+
+    // 获取所有借阅记录
+    static std::vector<Order> getAllOrders();
+
+    // 获取所有借阅成功的记录,包括(在借和已完成)
+    static std::vector<Order> getAllBorrwedOrders();
+
+
+
 };
 

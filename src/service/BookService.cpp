@@ -204,5 +204,3 @@ bool deleteAssignIsbnBook(std::string isbn="") {
 	return false;
 }
 
-
-

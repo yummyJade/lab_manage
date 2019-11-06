@@ -5,6 +5,8 @@
 #include <model/User.h>
 #include "util/TableRenderer.h"
 #include "../../src/core/Input.cpp"
+#include <map>
+#include<set>
 
 // 根据输入选择一个user, 取消返回NULL
 User *choseOneUser() {
@@ -189,5 +191,69 @@ bool dealWithOverTimeOrder(User* user=NULL){
     }
 
     user->dealWithOverTimeOrder();
+    return true;
+}
+
+
+bool printSameBorrowBooksBetweenTwoUser(){
+    cout<<"请输入第一个用户的工号:";
+    User* oneUser=choseOneUser();
+    if(oneUser==NULL){
+        return false;
+    }
+    cout<<"请输入第二个用户的工号:";
+    User* anotherUser=choseOneUser();
+    if(anotherUser==NULL){
+        return false;
+    }
+    if(oneUser->getJobNum()==anotherUser->getJobNum()){
+        cout<<"不能选择两个相同的用户"<<endl;
+        return false;
+    }
+    vector<Order>temp;
+
+    // 获取用户的借阅
+    vector<Order> orders1= Order::getAssignUserBorrowingList(oneUser->getFirstOrderId());
+    temp=Order::getAssignUserBorrowedHistory(oneUser->getFirstOrderId());
+    orders1.insert(orders1.end(),temp.begin(),temp.end());
+
+    vector<Order> orders2= Order::getAssignUserBorrowingList(anotherUser->getFirstOrderId());
+    temp=Order::getAssignUserBorrowedHistory(anotherUser->getFirstOrderId());
+    orders2.insert(orders2.end(),temp.begin(),temp.end());
+
+    // 把用户的借阅记录变成用户借过的书籍
+    set<int>instanceId1;
+    set<int>instanceId2;
+
+    for (int i = 0; i <orders1.size(); ++i) {
+        instanceId1.insert(orders1[i].getBookId());
+    }
+    for (int i = 0; i <orders2.size(); ++i) {
+        instanceId2.insert(orders2[i].getBookId());
+    }
+
+    set<string> isbns1;
+    set<string> isbns2;
+    for (set<int>::iterator it = instanceId1.begin(); it != instanceId1.end(); it++){
+        isbns1.insert(BookInstance::getInstanceById(*it)->getIsbn());
+    }
+
+    for (set<int>::iterator it = instanceId2.begin(); it != instanceId2.end(); it++){
+        isbns2.insert(BookInstance::getInstanceById(*it)->getIsbn());
+    }
+
+    vector<Book> Books;
+    for (set<string>::iterator it = isbns1.begin(); it != isbns1.end(); it++){
+        if(isbns2.count(*it)!=0){
+            Books.push_back(Book::searchBooksBySingleField("isbn",*it)[0]);
+        }
+    }
+
+    if(!Books.empty()){
+        cout<<"工号"<<oneUser->getJobNum()<<" 与工号"<<anotherUser->getJobNum()<<" 共同借阅如下表"<<endl;
+        Book::printBookList(Books);
+    }else{
+        cout<<"工号"<<oneUser->getJobNum()<<" 与工号"<<anotherUser->getJobNum()<<" 的用户没有共同借阅"<<endl;
+    }
     return true;
 }

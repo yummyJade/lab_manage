@@ -12,18 +12,17 @@ DbAdapter::DbAdapter() {
 
 DbAdapter::DbAdapter(const string &dbName) : dbName(dbName) {
     this->dbName = dbName;
-    this->connect();
+//    this->connect();
 
-//    if(dbName=="User"){
-//        this->db=DbAdapter::UserDb;
-//    }else if(dbName=="Book"){
-//        this->db=DbAdapter::BookDb;
-//    }else{
-//
-//        this->connect();
-////        cout<<"连接数据库失败"<<endl;
-//
-//    }
+    if(dbName=="User"){
+        this->db=DbAdapter::UserDb;
+    }else if(dbName=="Book"){
+        this->db=DbAdapter::BookDb;
+    }else{
+        this->connect();
+//        cout<<"连接数据库失败"<<endl;
+
+    }
 
 //    this->UserDb->chooseTable(dbName);
 //    this->connect();
@@ -144,7 +143,7 @@ bool DbAdapter::init() {
     if(DbAdapter::BookDb->chooseTable("Book")!=0){
         cout<<"初始化失败"<<endl;
     }
-    cout<<"初始化成功"<<endl;
+//    cout<<"初始化成功"<<endl;
 	return true;
 }
 

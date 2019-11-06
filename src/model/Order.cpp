@@ -488,3 +488,31 @@ bool Order::updateStateAndReturnTimeAndLendTimeById(Order order) {
     return true;
 }
 
+std::vector<Order> Order::getAllOrders() {
+    TableRecord *table = TableRecord::getInstance();
+    vector<Record> copys = table->queryAll();
+    vector<Order> result ;
+    for (int i = 0; i < copys.size(); ++i) {
+        result.push_back(Order::RecordCopyToOrder(copys[i]));
+    }
+    return result;
+}
+
+std::vector<Order> Order::getAllBorrwedOrders() {
+    TableRecord *table = TableRecord::getInstance();
+    vector<Order> result ;
+    vector<Record> copys = table->queryByStatus(1);//在借
+    for (int i = 0; i < copys.size(); ++i) {
+        result.push_back(Order::RecordCopyToOrder(copys[i]));
+    }
+    copys = table->queryByStatus(2);//已还
+    for (int i = 0; i < copys.size(); ++i) {
+        result.push_back(Order::RecordCopyToOrder(copys[i]));
+    }
+    copys = table->queryByStatus(4);//续借的在借
+    for (int i = 0; i < copys.size(); ++i) {
+        result.push_back(Order::RecordCopyToOrder(copys[i]));
+    }
+    return result;
+}
+

@@ -166,6 +166,9 @@ public:
 //静态函数，将对应isbn的书籍的对象的预约数量增加或减少 1.增加 -1.减少
     static bool updateBooksAppointmentNum(std::string isbn, int addAppointmentNum);
 
+    // 获取图书馆内借阅人数最多的书籍
+    static std::vector<Book> getMostPopularBook(int num=10);
+
 private:
     //------------------------------------------------------
     //----下面这些是与数据库交互的接口,由private调用------------
@@ -178,5 +181,7 @@ private:
 
     // 二维字符串数组转Book对象数组
     static std::vector<Book> stringsToBooks(std::vector<std::vector<std::string>>);
+
+
 };
 
