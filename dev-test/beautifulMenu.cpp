@@ -725,11 +725,11 @@ int printAdminMenu(string userOpera = "0") {
             case 54:{// 共同借阅
                 printSameBorrowBooksBetweenTwoUser();
                 EnterToContinue();
-                }
                 break;
             }
 
-            case 800: // 处理用户操作
+
+            case 800: {// 处理用户操作
                 if (Library::login(true) != NULL) {
                     int code = printAdminDealUserMenu();
                     while (code != 9) {
@@ -737,7 +737,7 @@ int printAdminMenu(string userOpera = "0") {
                     }
                 }
                 break;
-
+            }
             default:
                 return operaNum;
                 printAdminMenu(to_string(operaNum));
