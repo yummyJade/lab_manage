@@ -549,6 +549,8 @@ int printAdminMenu(string userOpera = "0") {
     if (userOpera[0] == '5') {
         printTree(2, "51.查看借阅逾期未还情况", deepIndex);
         printTree(2, "52.查看预约逾期未取情况", deepIndex);
+        printTree(2, "53.借阅排行榜(超慢实现玩具版)", deepIndex);
+        printTree(2, "54.查看两个用户的共同借阅(玩具版)", deepIndex);
     }
 
     printTree(1, "800.处理用户操作");

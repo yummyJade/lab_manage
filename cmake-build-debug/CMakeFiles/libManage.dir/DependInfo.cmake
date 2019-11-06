@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "D:/projects/CLionProjects/myc1/dev-test/beautifulMenu.cpp" "D:/projects/CLionProjects/myc1/cmake-build-debug/CMakeFiles/libManage.dir/dev-test/beautifulMenu.obj"
+  "E:/Sources/Cpp/repos/Lib_manage/dev-test/beautifulMenu.cpp" "E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/CMakeFiles/libManage.dir/dev-test/beautifulMenu.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

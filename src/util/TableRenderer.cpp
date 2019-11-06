@@ -3,7 +3,7 @@
 
 bool TableRenderer::updateMaxNavLength(vector<string> lines) {
     if (lines.size() != this->columeNum) {
-        cout << "æ›´æ–°è¡¨æ ¼é•¿åº¦å¤±è´¥,æ•°æ®é•¿åº¦ä¸å¯¹";
+        cout << "¸üĞÂ±í¸ñ³¤¶ÈÊ§°Ü,Êı¾İ³¤¶È²»¶Ô";
         return false;
     }
     if (this->maxNavLength.size() == 0) {
@@ -27,7 +27,7 @@ bool TableRenderer::updateMaxNavLength(vector<string> lines) {
 bool TableRenderer::renderNav(vector<string> lines) {
     int length = 0;
 
-    cout << setw(this->offset - 1) << ""; // è¿™é‡Œæ˜¯æ§åˆ¶ åç§»é‡,-1æ˜¯ä¸ºäº†æŠµæ¶ˆæ‰ä¸‹é¢çš„|çš„é•¿åº¦
+    cout << setw(this->offset - 1) << ""; // ÕâÀïÊÇ¿ØÖÆ Æ«ÒÆÁ¿,-1ÊÇÎªÁËµÖÏûµôÏÂÃæµÄ|µÄ³¤¶È
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE);
     for (int i = 0; i < lines.size(); i++) {
         cout << "|" << setw(1) << setw(this->maxNavLength[i]) << lines[i].data() << setw(1) << "|";
@@ -53,7 +53,7 @@ bool TableRenderer::renderLine(vector<string> lines) {
     int length = 0;
 
 
-    // æ›´æ”¹é¢œè‰²,å¾ªç¯æ¯æ¬¡æ‰“å°ä¸€è¡Œ
+    // ¸ü¸ÄÑÕÉ«,Ñ­»·Ã¿´Î´òÓ¡Ò»ĞĞ
     cout << setw(this->offset);
     for (int i = 0; i < lines.size(); i++) {
 
@@ -83,7 +83,7 @@ TableRenderer::TableRenderer(vector<string> navs, int offset) {
 
 bool TableRenderer::addColume(vector<string> line) {
     if (line.size() != this->columeNum) {
-        cout << "æ·»åŠ æ•°æ®å¤±è´¥,æ•°æ®é•¿åº¦ä¸å¯¹";
+        cout << "Ìí¼ÓÊı¾İÊ§°Ü,Êı¾İ³¤¶È²»¶Ô";
         return false;
     }
     this->rows.push_back(line);

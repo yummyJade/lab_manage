@@ -8,259 +8,259 @@
 		<Option virtualFolders="CMake Files\;CMake Files\include\;CMake Files\test\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="D:/projects/CLionProjects/myc1/cmake-build-debug"/>
+				<Option working_dir="E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="libManage">
-				<Option output="D:/projects/CLionProjects/myc1/cmake-build-debug/libManage.exe" prefix_auto="0" extension_auto="0"/>
+				<Option output="E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/libManage.exe" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir=""/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="D:/projects/CLionProjects/myc1/include"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++/mingw32"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++/backward"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../include"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include-fixed"/>
+					<Add directory="E:/Sources/Cpp/repos/Lib_manage/include"/>
+					<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++"/>
+					<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++/mingw32"/>
+					<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++/backward"/>
+					<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include"/>
+					<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../include"/>
+					<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include-fixed"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/Makefile&quot;  VERBOSE=1 libManage"/>
-					<CompileFile command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/Makefile&quot;  VERBOSE=1 libManage"/>
+					<CompileFile command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="libManage/fast">
-				<Option output="D:/projects/CLionProjects/myc1/cmake-build-debug/libManage.exe" prefix_auto="0" extension_auto="0"/>
+				<Option output="E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/libManage.exe" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir=""/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="D:/projects/CLionProjects/myc1/include"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++/mingw32"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++/backward"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../include"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include-fixed"/>
+					<Add directory="E:/Sources/Cpp/repos/Lib_manage/include"/>
+					<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++"/>
+					<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++/mingw32"/>
+					<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++/backward"/>
+					<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include"/>
+					<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../include"/>
+					<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include-fixed"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/Makefile&quot;  VERBOSE=1 libManage/fast"/>
-					<CompileFile command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/Makefile&quot;  VERBOSE=1 libManage/fast"/>
+					<CompileFile command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="D:/projects/CLionProjects/myc1/cmake-build-debug"/>
+				<Option working_dir="E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="D:/projects/CLionProjects/myc1/cmake-build-debug"/>
+				<Option working_dir="E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Include">
-				<Option output="D:/projects/CLionProjects/myc1/cmake-build-debug/include/libInclude.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="D:/projects/CLionProjects/myc1/cmake-build-debug/include"/>
+				<Option output="E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/include/libInclude.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/include"/>
 				<Option object_output="./"/>
 				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="D:/projects/CLionProjects/myc1/include"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++/mingw32"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++/backward"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../include"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include-fixed"/>
+					<Add directory="E:/Sources/Cpp/repos/Lib_manage/include"/>
+					<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++"/>
+					<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++/mingw32"/>
+					<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++/backward"/>
+					<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include"/>
+					<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../include"/>
+					<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include-fixed"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/include/Makefile&quot;  VERBOSE=1 Include"/>
-					<CompileFile command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/include/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/include/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/include/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/include/Makefile&quot;  VERBOSE=1 Include"/>
+					<CompileFile command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/include/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/include/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/include/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Include/fast">
-				<Option output="D:/projects/CLionProjects/myc1/cmake-build-debug/include/libInclude.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="D:/projects/CLionProjects/myc1/cmake-build-debug/include"/>
+				<Option output="E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/include/libInclude.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/include"/>
 				<Option object_output="./"/>
 				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="D:/projects/CLionProjects/myc1/include"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++/mingw32"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++/backward"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../include"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include-fixed"/>
+					<Add directory="E:/Sources/Cpp/repos/Lib_manage/include"/>
+					<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++"/>
+					<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++/mingw32"/>
+					<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++/backward"/>
+					<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include"/>
+					<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../include"/>
+					<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include-fixed"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/include/Makefile&quot;  VERBOSE=1 Include/fast"/>
-					<CompileFile command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/include/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/include/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/include/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/include/Makefile&quot;  VERBOSE=1 Include/fast"/>
+					<CompileFile command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/include/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/include/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/include/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Catch_tests_run">
-				<Option output="D:/projects/CLionProjects/myc1/cmake-build-debug/test/Catch_tests_run.exe" prefix_auto="0" extension_auto="0"/>
+				<Option output="E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/test/Catch_tests_run.exe" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir=""/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="D:/projects/CLionProjects/myc1/include"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++/mingw32"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++/backward"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../include"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include-fixed"/>
+					<Add directory="E:/Sources/Cpp/repos/Lib_manage/include"/>
+					<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++"/>
+					<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++/mingw32"/>
+					<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++/backward"/>
+					<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include"/>
+					<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../include"/>
+					<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include-fixed"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/test/Makefile&quot;  VERBOSE=1 Catch_tests_run"/>
-					<CompileFile command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/test/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/test/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/test/Makefile&quot;  VERBOSE=1 Catch_tests_run"/>
+					<CompileFile command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/test/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/test/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Catch_tests_run/fast">
-				<Option output="D:/projects/CLionProjects/myc1/cmake-build-debug/test/Catch_tests_run.exe" prefix_auto="0" extension_auto="0"/>
+				<Option output="E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/test/Catch_tests_run.exe" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir=""/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="D:/projects/CLionProjects/myc1/include"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++/mingw32"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++/backward"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../include"/>
-					<Add directory="D:/Install/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include-fixed"/>
+					<Add directory="E:/Sources/Cpp/repos/Lib_manage/include"/>
+					<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++"/>
+					<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++/mingw32"/>
+					<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include/c++/backward"/>
+					<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include"/>
+					<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/../../../../include"/>
+					<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/bin/../lib/gcc/mingw32/5.1.0/include-fixed"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/test/Makefile&quot;  VERBOSE=1 Catch_tests_run/fast"/>
-					<CompileFile command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/test/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="D:/Install/CodeBlocks/MinGW/bin/mingw32-make.exe -f &quot;D:/projects/CLionProjects/myc1/cmake-build-debug/test/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/test/Makefile&quot;  VERBOSE=1 Catch_tests_run/fast"/>
+					<CompileFile command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/test/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~2/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;E:/Sources/Cpp/repos/Lib_manage/cmake-build-debug/test/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="D:/projects/CLionProjects/myc1/dev-test/beautifulMenu.cpp">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/dev-test/beautifulMenu.cpp">
 			<Option target="libManage"/>
 		</Unit>
-		<Unit filename="D:/projects/CLionProjects/myc1/include/core/Date.h">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/core/Date.h">
 			<Option target="Include"/>
 		</Unit>
-		<Unit filename="D:/projects/CLionProjects/myc1/include/core/Library.h">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/core/Library.h">
 			<Option target="Include"/>
 		</Unit>
-		<Unit filename="D:/projects/CLionProjects/myc1/include/core/SimpleString.h">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/core/SimpleString.h">
 			<Option target="Include"/>
 		</Unit>
-		<Unit filename="D:/projects/CLionProjects/myc1/include/core/SimpleTime.h">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/core/SimpleTime.h">
 			<Option target="Include"/>
 		</Unit>
-		<Unit filename="D:/projects/CLionProjects/myc1/include/model/Book.h">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/model/Book.h">
 			<Option target="Include"/>
 		</Unit>
-		<Unit filename="D:/projects/CLionProjects/myc1/include/model/BookInstance.h">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/model/BookInstance.h">
 			<Option target="Include"/>
 		</Unit>
-		<Unit filename="D:/projects/CLionProjects/myc1/include/model/Order.h">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/model/Order.h">
 			<Option target="Include"/>
 		</Unit>
-		<Unit filename="D:/projects/CLionProjects/myc1/include/model/User.h">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/model/User.h">
 			<Option target="Include"/>
 		</Unit>
-		<Unit filename="D:/projects/CLionProjects/myc1/include/service/BookService.h">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/service/BookService.h">
 			<Option target="Include"/>
 		</Unit>
-		<Unit filename="D:/projects/CLionProjects/myc1/include/service/UserService.h">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/service/UserService.h">
 			<Option target="Include"/>
 		</Unit>
-		<Unit filename="D:/projects/CLionProjects/myc1/include/util/DbAdapter.h">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/util/DbAdapter.h">
 			<Option target="Include"/>
 		</Unit>
-		<Unit filename="D:/projects/CLionProjects/myc1/include/util/TableRenderer.h">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/util/TableRenderer.h">
 			<Option target="Include"/>
 		</Unit>
-		<Unit filename="D:/projects/CLionProjects/myc1/linkDatebase/include/Bookcopy.h">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/linkDatebase/include/Bookcopy.h">
 			<Option target="Include"/>
 		</Unit>
-		<Unit filename="D:/projects/CLionProjects/myc1/linkDatebase/include/Record.h">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/linkDatebase/include/Record.h">
 			<Option target="Include"/>
 		</Unit>
-		<Unit filename="D:/projects/CLionProjects/myc1/src/core/Date.cpp">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/src/core/Date.cpp">
 			<Option target="Include"/>
 		</Unit>
-		<Unit filename="D:/projects/CLionProjects/myc1/src/core/Library.cpp">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/src/core/Library.cpp">
 			<Option target="Include"/>
 		</Unit>
-		<Unit filename="D:/projects/CLionProjects/myc1/src/core/SimpleString.cpp">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/src/core/SimpleString.cpp">
 			<Option target="Include"/>
 		</Unit>
-		<Unit filename="D:/projects/CLionProjects/myc1/src/core/SimpleTime.cpp">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/src/core/SimpleTime.cpp">
 			<Option target="Include"/>
 		</Unit>
-		<Unit filename="D:/projects/CLionProjects/myc1/src/model/Book.cpp">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/src/model/Book.cpp">
 			<Option target="Include"/>
 		</Unit>
-		<Unit filename="D:/projects/CLionProjects/myc1/src/model/BookInstance.cpp">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/src/model/BookInstance.cpp">
 			<Option target="Include"/>
 		</Unit>
-		<Unit filename="D:/projects/CLionProjects/myc1/src/model/Order.cpp">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/src/model/Order.cpp">
 			<Option target="Include"/>
 		</Unit>
-		<Unit filename="D:/projects/CLionProjects/myc1/src/model/User.cpp">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/src/model/User.cpp">
 			<Option target="Include"/>
 		</Unit>
-		<Unit filename="D:/projects/CLionProjects/myc1/src/service/BookService.cpp">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/src/service/BookService.cpp">
 			<Option target="Include"/>
 		</Unit>
-		<Unit filename="D:/projects/CLionProjects/myc1/src/service/UserService.cpp">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/src/service/UserService.cpp">
 			<Option target="Include"/>
 		</Unit>
-		<Unit filename="D:/projects/CLionProjects/myc1/src/util/DbAdapter.cpp">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/src/util/DbAdapter.cpp">
 			<Option target="Include"/>
 		</Unit>
-		<Unit filename="D:/projects/CLionProjects/myc1/src/util/TableRenderer.cpp">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/src/util/TableRenderer.cpp">
 			<Option target="Include"/>
 		</Unit>
-		<Unit filename="D:/projects/CLionProjects/myc1/test/Library.cpp">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/test/Library.cpp">
 			<Option target="Catch_tests_run"/>
 		</Unit>
-		<Unit filename="D:/projects/CLionProjects/myc1/CMakeLists.txt">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
-		<Unit filename="D:/projects/CLionProjects/myc1/include/CMakeLists.txt">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/include/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\include\"/>
 		</Unit>
-		<Unit filename="D:/projects/CLionProjects/myc1/test/CMakeLists.txt">
+		<Unit filename="E:/Sources/Cpp/repos/Lib_manage/test/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\test\"/>
 		</Unit>
 	</Project>
