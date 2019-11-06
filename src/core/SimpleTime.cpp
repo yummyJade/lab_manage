@@ -21,13 +21,18 @@ void SimpleTime::print()
 std::string SimpleTime::serialize() {
     string info = this->date.serialize() + " ";
     info += to_string(hour) + ":";
+    if(minute<10){
+        info +="0";
+    }
     info += to_string(minute) + ":";
+    if(second<10){
+        info +="0";
+    }
     info += to_string(second);
     return info;
 }
 
 bool SimpleTime::deSerialize(std::string info) {
-    // todo:这里的下标可能有一点点小问题,我没测
     string dateInfo = info.substr(0, info.find(" "));
     this->date.deSerialize(dateInfo);
     info = info.substr(info.find(" ") + 1, info.size());
