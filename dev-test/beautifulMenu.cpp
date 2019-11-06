@@ -681,7 +681,7 @@ int printAdminMenu(string userOpera = "0") {
                     while (operaNum < -1 || operaNum > resultSet.size()) {
                         cout << "-----------------操作--------------" << endl
                              << "处理单本图书(输入编号)" << endl
-                             //<< "预约该书(输入-1)" << endl
+                             << "批量处理(输入-1)" << endl
                              << "返回(输入0)" << endl
                              << "输入:";
                         operaNum = Input::getInt();
@@ -690,6 +690,11 @@ int printAdminMenu(string userOpera = "0") {
                             break;
                         } else if (operaNum > 0 && operaNum <= resultSet.size()) {
                             User::dealWithOverTimeAppointment(resultSet[operaNum - 1]);
+                        } else if (operaNum == -1) {
+                            for(int i = 0; i < resultSet.size(); ++i) {
+                                cout << "正在处理第" << (i+1) << "本图书" << endl;
+                                User::dealWithOverTimeAppointment(resultSet[i]);
+                            }
                         } else {
                             continue;
                         }
@@ -792,15 +797,15 @@ int main() {
 
 
     // 管理员界面
-	string operaNum = "";
-	int resultCode= printAdminMenu(operaNum);
-
-    while (resultCode != 9) {//9 是注销操作
-        /*cout << "请输入操作数" << endl;
-        cin >> operaNum;
-        system("cls");*/
-		resultCode= printAdminMenu(to_string(resultCode));
-    }
+//	string operaNum = "";
+//	int resultCode= printAdminMenu(operaNum);
+//
+//    while (resultCode != 9) {//9 是注销操作
+//        /*cout << "请输入操作数" << endl;
+//        cin >> operaNum;
+//        system("cls");*/
+//		resultCode= printAdminMenu(to_string(resultCode));
+//    }
 
     // 普通用户界面
 //	string operaNum = "";
@@ -814,7 +819,7 @@ int main() {
 //    }
 
 
-//    trueMain();
+    trueMain();
 
 }
 
