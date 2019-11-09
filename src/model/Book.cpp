@@ -292,7 +292,7 @@ bool Book::importBooksService(string incomingPath="") {
         vector<int> tempResults=Book::checkISBNsExist(tempIsbns);;
         isExists.insert(isExists.end(),tempResults.begin(),tempResults.end());
         allNum+=tempIndex;
-        cout<<"检索了"<<allNum<<"次"<<endl;
+
         if(tempIndex==100){
             tempIndex=0;
         }else{
@@ -312,6 +312,7 @@ bool Book::importBooksService(string incomingPath="") {
     updateIsbns.empty();
     vector<int> addCounts; // 已经存在的，要添加的馆藏量
     allNum=0;
+    int existNum=0;
 
     while(1){
         vector<vector<string>> newBooks; // 要insert到Book表的数据
@@ -319,8 +320,13 @@ bool Book::importBooksService(string incomingPath="") {
         {
             try{
                 if(isbns[index]=="-2"){ // 该行数据有误
-                    cout<<"第"<<index+1<<"个图书数据有误,导入失败"<<endl;
+                    cout<<"第"<<allNum+index+1<<"个图书数据有误,导入失败"<<endl;
                     index++;
+                    continue;
+                }else if(isExists[index]!=-1){
+                    cout<<"第"<< allNum + index + 1 <<"个图书已经存在,禁止批量导入"<<endl;
+                    index++;
+                    existNum++;
                     continue;
                 }
                 istringstream sin(line);
@@ -386,10 +392,13 @@ bool Book::importBooksService(string incomingPath="") {
     cout<<"成功导入了"<<allNum<<"个新的图书信息"<<endl;
     // 更新图书的馆藏量
 //    cout << "update操作,update数量"<<updateIsbns.size() << endl;
-	if (updateIsbns.size() > 0) {
-		Book::updateBooksCount(updateIsbns, addCounts);
-        cout<<""<<updateIsbns.size()<<"个的图书的ISBN已存在,已更新其数量"<<endl;
-	}
+//	if (updateIsbns.size() > 0) {
+//		Book::updateBooksCount(updateIsbns, addCounts);
+//        cout<<""<<updateIsbns.size()<<"个的图书的ISBN已存在,已更新其数量"<<endl;
+//	}
+    if(existNum>0){
+        cout<<existNum<<"本的图书的ISBN已存在,禁止导入"<<endl;
+    }
 
     return true;
 }

@@ -53,8 +53,6 @@ public:
 
     // 判断表是否存在
     static bool checkTableExist(std::string tableName);
-
-
 };
 
 

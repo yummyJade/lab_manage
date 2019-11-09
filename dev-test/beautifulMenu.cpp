@@ -262,7 +262,7 @@ int printUserMenu(string userOpera = "0") {
 
         switch (operaNum) {
             case 11:
-                printBookSearchMenu(true);
+                printBookSearchMenu(false);
                 break;
             case 12: {
 

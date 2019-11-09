@@ -10,8 +10,6 @@ public:
 	static std::string getAssignMaxLengthStr(int maxLength) ;
 
 	static char getChar();
-
-
 };
 
 

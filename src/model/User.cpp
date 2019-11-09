@@ -177,20 +177,22 @@ int User::borrowAssignBookInstance(int bookInstanceId) {
     cout << "用户借阅量" << Order::getAssignUserBorrowingList(this->getFirstOrderId()).size() << endl;
     cout << "用户可借阅量" << this->getCanLendNums() << endl;*/
 
+    // 判断该书是否能被借阅,
+    BookInstance *instance = BookInstance::getInstanceById(bookInstanceId);
+    if (instance == NULL) {
+        cout << "借书失败,该图书不存在"<<endl;
+        return 5; // 返回5,图书不存在
+    } else if (instance->status != 1) {
+        cout << "借书失败,该图书当前不可被借" << endl;
+        return 2; // 返回2,该书不是可借
+    }
+
     if (Order::getAssignUserBorrowingList(this->firstOrderId).size() >= this->getCanLendNums()) {
 		cout << "借书失败,借书数量已达上限" << endl;
         return 1; // 返回1,借书数量已达上线
     }
 
-    // 判断该书是否能被借阅,
-    BookInstance *instance = BookInstance::getInstanceById(bookInstanceId);
-    if (instance == NULL) {
-		cout << "借书失败,该图书不存在"<<endl;
-        return 5; // 返回5,图书不存在
-    } else if (instance->status != 1) {
-		cout << "借书失败,该图书当前不可被借" << endl;
-        return 2; // 返回2,该书不是可借
-    }
+
 
     // 插入一条借阅记录Order,需要(用户工号,书实例id,借书时间,预计归还时间,订单状态)
     Order order(this->getJobNum(), bookInstanceId, SimpleTime::nowTime(),
@@ -673,6 +675,14 @@ int User::returnAssignOrder(Order order) {
 
     // 获取图书实例
     BookInstance *instance = BookInstance::getInstanceById(order.getBookId());
+
+    // 判断图书实例是否已被下架
+    if(instance->getStatus()==3){
+        cout<<"该图书已被标记为下架,请将书籍移交总台,不流入图书馆"<<endl;
+        cout << "成功归还条码号为"<<instance->getId()<<"的书籍!" << endl;
+        return 0;
+    }
+
     // 判断图书是否被预约了
     Book book = Book::searchBooksBySingleField("isbn", instance->getIsbn())[0];
     if (book.getAppointmentNum() > 0) {//被预约了,特殊处理
@@ -707,11 +717,16 @@ int User::returnAssignOrder(Order order) {
 
     } else {// 没被预约,归还图书馆
         // 修改书的实例的状态(设为可借)
-		int oldState = instance->getStatus();
-		if (oldState != 3) { // 状态为3 表示已经下架,还书后不修改状态
-			instance->setStatus(1);
-			BookInstance::updateStateAndReturnTimeById(*instance);
-		}
+        instance->setStatus(1);
+        BookInstance::updateStateAndReturnTimeById(*instance);
+
+//		int oldState = instance->getStatus();
+//		if (oldState != 3) { // 状态为3 表示已经下架,还书后不修改状态
+//			instance->setStatus(1);
+//			BookInstance::updateStateAndReturnTimeById(*instance);
+//		}else{
+//            cout<<"该图书已被标记为下架,请将书籍移交总台,不流入图书馆"<<endl;
+//		}
 
         cout << "成功归还条码号为"<<instance->getId()<<"的书籍!" << endl;
     }
@@ -727,15 +742,24 @@ int User::renewAssignOrder(Order order) {
 
     // 获取图书实例
     BookInstance *instance = BookInstance::getInstanceById(order.getBookId());
+    // 判断该图书是否被标记为下架
+    if(instance->getStatus()==3){
+        cout << "该书已经被被标记为下架,不允许续借,请及时归还图书" << endl;
+        return 4;
+    }
+
     // 判断图书是否被预约了
     Book book = Book::searchBooksBySingleField("isbn", instance->getIsbn())[0];
     if (book.getAppointmentNum() > 0) {//被预约了,不允许预约
         cout << "该书已经被预约,不允许续借" << endl;
         return 2;
     } else {// 没被预约,可以续借
+        SimpleTime old = (SimpleTime &&) order.getReturnTime();//获取旧的应还日期
+        // 修改图书状态
+        instance->setPlanReturnDate(old.addDay(this->getCanLendDays());
+        instance->updateStateAndReturnTimeById(*instance);
         // 修改订单状态
         order.setStatu(static_cast<Status>(4));// 修改状态为4
-        SimpleTime old = (SimpleTime &&) order.getReturnTime();//获取旧的应还日期
         order.setReturnTime(old.addDay(this->getCanLendDays()));
         Order::updateStateAndReturnTimeById(order);
         cout << "续借成功" << endl;
@@ -839,9 +863,10 @@ long long User::readAndSetJobNum() {
 }
 
 int User::readAndSetType() {
-    cout<<"请输入用户类型(0:管理员 1:教师 2:研究生 3:本科生:";
+    cout<<"请输入用户类型(0:管理员 1:教师 2:研究生 3:本科生):";
     int result=Input::getInt();
     while(result<0||result>3){
+        cout<<"请输入(0:管理员 1:教师 2:研究生 3:本科生):";
         result=Input::getInt();
     }
     this->setType(static_cast<status>(result));

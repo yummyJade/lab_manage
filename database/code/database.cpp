@@ -5,6 +5,7 @@
 #include <string>
 #include <windows.h>
 #include "cmdui.h"
+#include "HanString.cpp"
 using namespace std;
 
 DataBase::DataBase(){
@@ -189,21 +190,17 @@ int DataBase::insert(const vector< vector<string> > & s, vector<ll> & id, string
 
 			ll m = sta->table_col_num[table_id];
 			
-			for (ll j = 0; j < m; j++) {
+			for(ll j = 0;  j < m; j++){
 				ll len = s[i][j].length();
 				ll delta_len = csize[j] - len;
 				fwrite(s[i][j].data(), sizeof(char), len, fp);
 				char t = '\0';
 				string tt("");
-				for (ll k = 0; k < delta_len; k++) {
-					tt += t;
+				for(ll k = 0; k < delta_len; k++){
+					tt+=t;
 				}
 				fwrite(tt.data(), sizeof(char), delta_len, fp);
 			}
-
-			/*for(ll j = 0;  j < m; j++){
-				fwrite(s[i][j].data(), sizeof(char), csize[j], fp);
-			}*/
 		
 
 		} else{ //有空闲行
@@ -358,14 +355,14 @@ int DataBase::query(string key, string value, vector<ll> & id, vector< vector<st
 	
 	//具有索引的查询
 	ll idx = sta->fieldToidxMap[table_id][key];
-	int resultCode=0;
+	int resultCode = 0;
 	if(isFuzzy == true){
-        resultCode= traverseQuery(key, value, id, ans, fp, isFuzzy);
+		resultCode = traverseQueryFuzzy(key, value, id, ans, fp);
 	}
 	else if(sta->isHash[table_id][idx] == 'T'){
-        resultCode= indexQuery(key, value, id, ans, fp);
-	}else{
-        resultCode= traverseQuery(key, value, id, ans, fp, isFuzzy);
+		resultCode = indexQuery(key, value, id, ans, fp);
+	}else{ 
+		resultCode = traverseQuery(key, value, id, ans, fp);
 	}
 	fclose(fp);
 	return resultCode;
@@ -508,7 +505,7 @@ int DataBase::clearTable(string name){
 	return 0;
 }
 
-int DataBase::traverseQuery(const string & key, const string & value, vector<ll> & id, vector< vector<string> > & ans, FILE * fp, bool isFuzzy){
+int DataBase::traverseQuery(const string & key, const string & value, vector<ll> & id, vector< vector<string> > & ans, FILE * fp){
 	id.clear();
 	ans.clear();
 	//获取参数长度
@@ -543,7 +540,75 @@ int DataBase::traverseQuery(const string & key, const string & value, vector<ll>
 			fread(&s[0], sizeof(char), selfLen, fp);
 			str = &s[0];
 			// 数据正确
-			if( (!isFuzzy && str == value) || (isFuzzy &&  (str.find(value) != str.npos)) ){
+			if(str == value){
+				//找到向前跳跃 
+				fseek(fp, -(preSeek + selfLen*sizeof(char)), SEEK_CUR);
+				//读取整行数据
+				vector<string> line(sta->table_col_num[table_id]); //一行结果 
+				for(ll i = 0; i < sta->table_col_num[table_id]; i++){
+					fread(&s[0], sizeof(char), csize[i], fp);
+					line[i] = &s[0];
+				}
+				//vector的拷贝是深拷贝 
+				ans.push_back(line); 
+				id.push_back(lineNum);
+			}
+			else{
+				//跳过后面部分
+				fseek(fp, lastSeek, SEEK_CUR);
+			}
+		}
+		else{
+			fseek(fp, sizeof(ll), SEEK_CUR);
+			fseek(fp, totalSeek, SEEK_CUR);
+		}
+	}
+	return 0;
+}
+
+int DataBase::traverseQueryFuzzy(const string & key, const string & value, vector<ll> & id, vector< vector<string> > & ans, FILE * fp){
+	id.clear();
+	ans.clear();
+	//获取参数长度
+	ll idx, selfLen, preSeek, lastSeek, totalSeek;
+	if(!this->getKeyLocation(key, idx, selfLen, preSeek, lastSeek, totalSeek)){
+		//查无此字段
+		return -1;
+	}
+	//整行数据长度
+	ll lineSeek = totalSeek + sizeof(ll) + sizeof(char);
+	//初始化参数
+	ll lineNum = 0; //记录当前行号，用作id
+	const ll & maxLen = sta->maxLen[table_id];
+	//临时变量 
+	vector<char> s(maxLen+10);  
+	string str; 
+	char valid;
+	
+	vector <ll> & csize = sta->table_col_size[table_id];
+	
+	rewind(fp);
+	fseek(fp, sizeof(ll), SEEK_SET);
+
+
+	//创建HanString
+	HanString valueHan(value);
+	valueHan.getNext();
+	while((valid=fgetc(fp))!=EOF){
+		lineNum++;
+		//该行数据有效 
+		if(valid == 'T'){
+			//跳过链表位
+			fseek(fp, sizeof(ll), SEEK_CUR);
+			//跳过前面数据块
+			fseek(fp, preSeek, SEEK_CUR);
+			//读取数据并放入string
+			fread(&s[0], sizeof(char), selfLen, fp);
+			str = &s[0];
+			// 数据正确
+			//创建临时HanString
+			HanString strHan(str);
+			if(valueHan.in(strHan)){
 				//找到向前跳跃 
 				fseek(fp, -(preSeek + selfLen*sizeof(char)), SEEK_CUR);
 				//读取整行数据

@@ -1,7 +1,7 @@
 /*
  * @Date: 2019-10-06 19:21:17
  * @LastEditors: Phoenix
- * @LastEditTime: 2019-10-29 10:54:09
+ * @LastEditTime: 2019-11-05 09:41:16
  */
 
 #ifndef DATABASE_H
@@ -58,12 +58,14 @@ private:
   * @output: нч
   * @return: нч
   */
-	int traverseQuery(const string & key, const string & value, vector<ll> & id, vector< vector<string> > & ans, FILE * fp, bool isFoozy = false);
+	int traverseQuery(const string & key, const string & value, vector<ll> & id, vector< vector<string> > & ans, FILE * fp);
 	/**
   * @description: 
   * @param {type} 
   * @return: 
   */
+
+ 	int traverseQueryFuzzy(const string & key, const string & value, vector<ll> & id, vector< vector<string> > & ans, FILE * fp);
 	int indexQuery(const string & key, const string & value, vector<ll> & id, vector< vector<string> > & ans, FILE * fp);
 public:
 	/*************************************************
