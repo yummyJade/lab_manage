@@ -61,19 +61,19 @@ User *Library::login(bool needSimpleUser = false) {
     return user;
 }
 
-User *Library::loginAdminUser() {
-	if (Library::adminUser == NULL) {
-		cout << "Î´µÇÂ½,Ê¹ÓÃ²âÊÔÕËºÅ" << endl;
-		vector<User> results = User::searchUsersBySingleField("jobNum", "10086");
-		if (results.size() > 0) {
-			User* user = new User(results[0]);
-
-			return user;
-		}
-	}
-
-	return Library::adminUser;
-}
+//User *Library::loginAdminUser() {
+//	if (Library::adminUser == NULL) {
+//		cout << "Î´µÇÂ½,Ê¹ÓÃ²âÊÔÕËºÅ" << endl;
+//		vector<User> results = User::searchUsersBySingleField("jobNum", "10086");
+//		if (results.size() > 0) {
+//			User* user = new User(results[0]);
+//
+//			return user;
+//		}
+//	}
+//
+//	return Library::adminUser;
+//}
 
 User *Library::getSimpleUserInstance() {
 	if (Library::simpleUser == NULL) {

@@ -18,18 +18,14 @@ public:
 
     static User *login(bool needSimpleUser);
 
-    // 登陆管理员账号
-    static User *loginAdminUser();
-
-    // 登陆普通用户账号
-    static User *loginSimpleUser();
-
     // 单例,获取登陆的管理员账号
     static User *getAdminUserInstance();
 
     // 单例,获取登陆的普通用户账号
     static User *getSimpleUserInstance();
 
+    //    // 登陆管理员账号
+//    static User *loginAdminUser();
 };
 
 
