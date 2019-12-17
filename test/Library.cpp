@@ -34,7 +34,7 @@ TEST_CASE("导入数据", "[Database]") {
 	CHECK(db2.searchAll().empty()); //清空表后表的数据为空
 	// 导入用户
 	User::importUsers("E:\\Sources\\Cpp\\repos\\Lib_manage\\dev-Tan\\users.csv");
-	CHECK(db2.searchAll().size() == 11); //清空表后表的数据为空
+	CHECK(db2.searchAll().size() == 3); //清空表后表的数据为空
 
 
 

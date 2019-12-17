@@ -189,9 +189,21 @@ int DataBase::insert(const vector< vector<string> > & s, vector<ll> & id, string
 
 			ll m = sta->table_col_num[table_id];
 			
-			for(ll j = 0;  j < m; j++){
-				fwrite(s[i][j].data(), sizeof(char), csize[j], fp);
+			for (ll j = 0; j < m; j++) {
+				ll len = s[i][j].length();
+				ll delta_len = csize[j] - len;
+				fwrite(s[i][j].data(), sizeof(char), len, fp);
+				char t = '\0';
+				string tt("");
+				for (ll k = 0; k < delta_len; k++) {
+					tt += t;
+				}
+				fwrite(tt.data(), sizeof(char), delta_len, fp);
 			}
+
+			/*for(ll j = 0;  j < m; j++){
+				fwrite(s[i][j].data(), sizeof(char), csize[j], fp);
+			}*/
 		
 
 		} else{ //ÓÐ¿ÕÏÐÐÐ

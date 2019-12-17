@@ -9,6 +9,7 @@
 #include "../../include/util/TableRenderer.h"
 #include "../../src/core/Input.cpp"
 #include <map>
+#include<regex>
 using namespace std;
 
 Book::Book() {
@@ -670,10 +671,19 @@ std::string Book::readAndSetAuthor() {
 }
 
 std::string Book::readAndSetIsbn() {
-    cout<<"请输入ISBN:";
-    string result=Input::getAssignMaxLengthStr(20);
-    this->setIsbn(result);
-    return result;
+    while(1){
+        cout<<"请输入ISBN:";
+        string result=Input::getAssignMaxLengthStr(20);
+        regex re("^(?:ISBN(?:-1[03])?:? )?(?=[0-9X]{10}$|(?=(?:[0-9]+[- ]){3})[- 0-9X]{13}$|97[89][0-9]{10}$|(?=(?:[0-9]+[- ]){4})[- 0-9]{17}$)(?:97[89][- ]?)?[0-9]{1,5}[- ]?[0-9]+[- ]?[0-9]+[- ]?[0-9X]$");
+        smatch matchResult;
+        regex_match(result,matchResult,re);
+        if(matchResult.size()==1 && matchResult[0]==result){
+            this->setIsbn(result);
+            return result;
+        }else{
+            cout<<"输入的ISBN不符合标准"<<endl;
+        }
+    }
 }
 
 std::string Book::readAndSetPress() {
@@ -690,6 +700,13 @@ bool Book::isLegalBookDate() {
     if(this->getCount()<=0 || this->getPrice()<=0){
         return false;
     }
+    regex re("^(?:ISBN(?:-1[03])?:? )?(?=[0-9X]{10}$|(?=(?:[0-9]+[- ]){3})[- 0-9X]{13}$|97[89][0-9]{10}$|(?=(?:[0-9]+[- ]){4})[- 0-9]{17}$)(?:97[89][- ]?)?[0-9]{1,5}[- ]?[0-9]+[- ]?[0-9]+[- ]?[0-9X]$");
+    smatch matchResult;
+    regex_match(this->getIsbn(),matchResult,re);
+    if(!(matchResult.size()==1 && matchResult[0]==this->getIsbn())){
+        return false;
+    }
+
     return true;
 }
 

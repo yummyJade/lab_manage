@@ -41,7 +41,7 @@ User *Library::login(bool needSimpleUser = false) {
 				cout << "该账号已被冻结,请联系管理员进行解冻操作" << endl;
 				break;
             case 4:
-                cout << "该账号有逾期记录未处理,禁止登陆" << endl;
+                cout << "该账号有逾期记录未处理,禁止登陆,请先联系管理员进行处理" << endl;
                 break;
             case 0:
                 if (needSimpleUser && user->getType() == 0) {
