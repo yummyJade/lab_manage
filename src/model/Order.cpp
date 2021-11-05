@@ -349,7 +349,11 @@ void Order::printOrderList(std::vector<Order> orders) {
 }
 
 void Order::printOrderOweList(std::vector<Order> orders, int type) {
+
     vector<string> navs = {"编号", "用户工号", "用户姓名", "书名", "条码号", "借书时间", "还书/应还时间", "状态", "逾期天数"};
+	if (type == 3) {
+		navs = { "编号", "用户工号", "用户姓名", "书名", "条码号", "预约时间", "最晚预约应取时间", "状态", "逾期天数" };
+	}
 //    vector<string> navs = {"编号","书名", "条码号", "借书时间", "还书/应还时间", "状态"};
     TableRenderer render(navs, 8);
     for (int i = 0; i < orders.size(); ++i) {
@@ -385,7 +389,7 @@ std::vector<std::string> Order::getPrintLineStr(int type = 1) {
     if (this->getStatu()==5) {
         planReturnTime="预约待领取";
     }
-    if(type == 2) {
+    if(type == 2 || type==3) {
         userId = this->getUserId();
         user = User::getUserByJobNum(userId);
         info.push_back(to_string(userId));

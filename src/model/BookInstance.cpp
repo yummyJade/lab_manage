@@ -37,12 +37,10 @@ int BookInstance::importBookInstances(std::vector<BookInstance> instances, int f
         nums--;
     }
 
-    // todo:下面的改成批量
-
-
-    TableBookcopy *tableBookcopy = TableBookcopy::getInstance();
-    int result = tableBookcopy->insertData(firstId, instances[0].toBookCopy(), nums);
-
+    if(nums>0){
+        TableBookcopy *tableBookcopy = TableBookcopy::getInstance();
+        int result = tableBookcopy->insertData(firstId, instances[0].toBookCopy(), nums);
+    }
 
 //    while (index < instances.size()) {// 将尚未导入的实例全部导入
 //        addBookInstance(instances[index++], firstId);

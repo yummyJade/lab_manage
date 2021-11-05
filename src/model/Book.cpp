@@ -447,15 +447,6 @@ bool Book::addOneBookService() {
 	//预约测试用书1 谭坚铭 谭谭出版社 c 912-654-51-2 6021 南区宿舍 1
 	system("cls");
 	cout<<"--------------------添加书籍--------------------------"<<endl;
-//    printf("请依次输入 书名,作者,出版社,类型(单个字符),isbn,价格(单位:元),位置,有效数量,用空格隔开\n");
-//    vector<string> fields;
-//    int index = 0;
-//    string temp_info;
-//    while (index < 8) {
-//        cin >> temp_info;
-//        fields.push_back(temp_info);
-//        index++;
-//    }
     Book tempBook;
     BookInstance tempInstance("","");
 	cout << "书名输入0取消添加" << endl;
@@ -469,16 +460,6 @@ bool Book::addOneBookService() {
     tempBook.readAndSetPrice();
     string position=tempInstance.readAndSetPosition();
     int count=tempBook.readAndSetCount();
-
-//    string name = fields[0];
-//    string author = fields[1];
-//    string press = fields[2];
-//    char type = fields[3][0];
-//    string isbn = fields[4];
-//    int price = stof(fields[5]) * 100;
-//    string position = fields[6];
-//    int count = stoi(fields[7]);
-
 
     vector<BookInstance> bookinstancesFirstAdd;
     for (int i = 0; i < count; ++i) {
