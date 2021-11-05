@@ -23,11 +23,7 @@ bool dealWithOverTimeAppoint(std::string isbn, vector<BookInstance>* saveInstanc
     int appointmentIndex = 5;      //表示的是预约已到未取
     for(int i = 0; i < instances.size(); i++) {
         if(instances[i].getStatus() == appointmentIndex) {
-            //代表这个实例已经被预约，必须确认该预约有无过期
-            //查询方法为查看该实例对应的order，会不会查到bookid相同的情况，如何区分
-            //bookid的时候证明此时是用户预约了，状态为3，而已到的为5而且应该是唯一的一本，因为是一一对应的，所以不会出现问题，是的
             vector<Order> oweOrders = Order::getAssignBookOweAppointing(instances[i].getId());
-            //其实这个数组规模应该只有一个
             int i = 0;
             if(oweOrders.size() == 1){
                 oweOrders[i].setStatu(static_cast<Status>(6));     //将订单修改成预约超期的状态

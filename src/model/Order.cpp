@@ -7,6 +7,7 @@
 #include <util/TableRenderer.h>
 #include <model/BookInstance.h>
 #include <model/Book.h>
+#include <model/User.h>
 
 
 using namespace std;
@@ -339,7 +340,7 @@ void Order::printOrderList(std::vector<Order> orders) {
     TableRenderer render(navs, 8);
     for (int i = 0; i < orders.size(); ++i) {
 		vector<string> line;
-		vector<string> temp = orders[i].getPrintLineStr();
+		vector<string> temp = orders[i].getPrintLineStr(1);
 		line.push_back(to_string(i + 1));
 		line.insert(line.end(), temp.begin(), temp.end());
         render.addColume(line);
@@ -347,13 +348,29 @@ void Order::printOrderList(std::vector<Order> orders) {
     render.render();
 }
 
-std::vector<std::string> Order::getPrintLineStr() {
+void Order::printOrderOweList(std::vector<Order> orders, int type) {
+    vector<string> navs = {"编号", "用户工号", "用户姓名", "书名", "条码号", "借书时间", "还书/应还时间", "状态", "逾期天数"};
+//    vector<string> navs = {"编号","书名", "条码号", "借书时间", "还书/应还时间", "状态"};
+    TableRenderer render(navs, 8);
+    for (int i = 0; i < orders.size(); ++i) {
+        vector<string> line;
+        vector<string> temp = orders[i].getPrintLineStr(type);
+        line.push_back(to_string(i + 1));
+        line.insert(line.end(), temp.begin(), temp.end());
+        render.addColume(line);
+    }
+    render.render();
+}
+
+std::vector<std::string> Order::getPrintLineStr(int type = 1) {
     vector<string> info;
     Book book;
     BookInstance *bookInstance = BookInstance::getInstanceById(this->getBookId());
 	string code;
 	string planReturnTime;
     SimpleTime date;
+    long long userId;
+    User user;
     if(this->getStatu()==3){// 如果是预约的话
         book = Book::searchBooksById(this->getBookId());
 		code = "无";
@@ -368,16 +385,31 @@ std::vector<std::string> Order::getPrintLineStr() {
     if (this->getStatu()==5) {
         planReturnTime="预约待领取";
     }
-
+    if(type == 2) {
+        userId = this->getUserId();
+        user = User::getUserByJobNum(userId);
+        info.push_back(to_string(userId));
+        info.push_back(user.getName());
+    }
     info.push_back(book.getName());// 书名
     info.push_back(code); //条码号
     date =  this->getBorrowTime();
     info.push_back(date.serialize());
     info.push_back(planReturnTime);
 	info.push_back(this->getStatuStr());
+	if(type == 2) {
+        SimpleTime time = this->getReturnTime();
+        int dueDay = time.compare(SimpleTime::nowTime());
+        info.push_back(to_string(dueDay*(-1)));
+	}else if(type == 3) {
+        SimpleTime time = this->getBorrowTime();
+        int dueDay = time.compare(SimpleTime::nowTime());
+        info.push_back(to_string(dueDay*(-1)));
+	}
 
     return info;
 }
+
 
 std::string Order::getStatuStr() {
 	string strs[] = { "", "在借", "已还","预约中", "在借(已续借)","预约已到" };

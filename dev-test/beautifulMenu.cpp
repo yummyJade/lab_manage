@@ -651,10 +651,16 @@ int printAdminMenu(string userOpera = "0") {
 
             case 51: {// 打印逾期借阅未还
                 vector<Order> resultSet = Order::getAllBorrowedOweList();
+//                vector<>
                 if(resultSet.empty()) {
                     cout << "当前暂无逾期借阅订单" << endl;
                 } else {
-                    Order::printOrderList(resultSet);
+
+                    sort(resultSet.begin(), resultSet.end(), [](const Order &order1, const Order &order2) {
+                        SimpleTime returnTimeOne = order1.getReturnTime();
+                        return (returnTimeOne.compare(order2.getReturnTime()) < 0);
+                    });
+                    Order::printOrderOweList(resultSet,2);
                 }
                 EnterToContinue();
                 break;
@@ -662,36 +668,46 @@ int printAdminMenu(string userOpera = "0") {
 
             case 52: {// 打印逾期预约未取
                 vector<Order> resultSet = Order::getAllAppointArrivedOweList();
-                if(resultSet.empty()) {
-                    cout << "当前暂无逾期借阅订单" << endl;
+                if (resultSet.empty()) {
+                    cout << "当前暂无逾期预约订单" << endl;
+                    EnterToContinue();
+                    break;
                 } else {
-                    Order::printOrderList(resultSet);
-
-//                    operaNum = -2;
-//                    while (operaNum < -1 || operaNum > instances->size()) {
-//                        cout << "-----------------操作--------------" << endl
-//                             << "借阅图书(输入编号)" << endl
-//                             << "预约该书(输入-1)" << endl
-//                             << "返回(输入0)" << endl
-//                             << "输入:";
-//                        operaNum = Input::getInt();
-//                        if (operaNum == 0) {
-//                            break;
-//                        } else if (operaNum == -1) { // 预约图书
-//                            User *loginUser = Library::getSimpleUserInstance();
-//                            loginUser->appointmentAssignBook(books[bookIndex].getId(), books[bookIndex].getIsbn());
-//                        } else if (operaNum > 0 && operaNum <= instances->size()) { // 借书
+                    sort(resultSet.begin(), resultSet.end(), [](const Order &order1, const Order &order2) {
+                        SimpleTime borrowTimeOne = order1.getBorrowTime();
+                        return (borrowTimeOne.compare(order2.getBorrowTime()) < 0);
+                    });
+//                    Order::printOrderOweList(resultSet);
+                    Order::printOrderOweList(resultSet,3);
+                    int operaNum = -2;
+                    while (operaNum < -1 || operaNum > resultSet.size()) {
+                        cout << "-----------------操作--------------" << endl
+                             << "处理单本图书(输入编号)" << endl
+                             //                             << "预约该书(输入-1)" << endl
+                             << "返回(输入0)" << endl
+                             << "输入:";
+                        operaNum = Input::getInt();
+                        if (operaNum == 0) {
+                            EnterToContinue();
+                            break;
+                        } else if (operaNum > 0 && operaNum <= resultSet.size()) {
 //                            User *loginUser = Library::getSimpleUserInstance();
 //                            int resultCode = loginUser->borrowAssignBookInstance(
 //                                    (*instances)[operaNum - 1].getId());
-//                        }else{
-//                            continue;
-//                        }
-//                        operaNum=0;
-//                        EnterToContinue();
-                }
-                EnterToContinue();
+                            User *loginUser = Library::getSimpleUserInstance();
+                            loginUser->dealWithOverTimeAppointment(resultSet[operaNum - 1]);
+                        } else {
+                            continue;
+                        }
+                        operaNum = 0;
+                        EnterToContinue();
+                        break;
+                    }
+//                    EnterToContinue();
 
+
+
+                }
                 break;
             }
 

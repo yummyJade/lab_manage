@@ -282,6 +282,12 @@ public:
      */
     int dealWithOverTimeOrder();
 
+    /**
+     * 管理员处理用户的逾期预约
+     * @return
+     */
+     bool dealWithOverTimeAppointment(Order order);
+
 
 
 };

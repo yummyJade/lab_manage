@@ -185,7 +185,7 @@ public:
     static void printOrderList(std::vector<Order> orders);
 
     // 获取用于打印列表的信息
-    std::vector<std::string> getPrintLineStr();
+    std::vector<std::string> getPrintLineStr(int type);
 
     // 修改指定id的instance的状态和应还时间,用于借还书
     static bool updateStateAndReturnTimeById(Order order);
@@ -198,5 +198,7 @@ public:
 
     // 获取所有借阅逾期的订单
     static std::vector<Order> getOverTimeBorrowOrders();
+
+    static void printOrderOweList(std::vector<Order> orders, int type);
 };
 

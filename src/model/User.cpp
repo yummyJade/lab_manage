@@ -515,6 +515,9 @@ bool User::appointmentAssignBook(int bookId, std::string isbn) {
 //    //todo:用户领取预约已到的书籍
 //
 //}
+
+
+
 std::vector<std::string> User::getPrintLineStr() {
     vector<string> info;
     info.push_back(to_string(this->jobNum));
@@ -798,7 +801,42 @@ int User::dealWithOverTimeOrder() {
 }
 
 
-
+bool User::dealWithOverTimeAppointment(Order order) {
+    //查对应的bookId->isbn
+    BookInstance *instance = BookInstance::getInstanceById(order.getBookId());
+    Book book = Book::searchBooksBySingleField("isbn", instance->getIsbn())[0];
+    // 判断图书是否被预约了
+    if(book.getAppointmentNum() == 0) {
+        instance->setStatus(1);     //设置书本实例为可借
+        BookInstance::updateStateAndReturnTimeById(*instance);
+        order.setStatu(static_cast<Status>(6));
+        order.setReturnTime(SimpleTime::nowTime());
+        order.updateStateAndReturnTimeById(order);
+        cout << "预约逾期书籍处理成功,该书已放回书架上!" << endl;
+    } else if(book.getAppointmentNum() > 0){
+        //找到下一个等待的人，statu == 3
+        vector<Order> orders = Order::getAssignBookAppointingList(book.getId());
+        int earliestIndex = 0;       //借阅时间最早的下标
+        SimpleTime earliestDate = orders[0].getBorrowTime();         //记录时间最早那一天，这里的初值付给order里面第一个也行，
+        for (int i = 1; i < orders.size(); ++i) {
+            //接下来比较时间前后
+            if(earliestDate.compare(orders[i].getBorrowTime()) > 0) {    //大于0说明当前时间比compare里的要大，也就是要靠后
+                earliestIndex = i;
+                earliestDate = orders[i].getBorrowTime();
+            }
+        }
+        orders[earliestIndex].setStatu(static_cast<Status>(5));
+        orders[earliestIndex].setBookId(instance->getId());
+        User earliestUser = User::getUserByJobNum(orders[earliestIndex].getUserId());       //获取该记录的用户
+        orders[earliestIndex].setBorrowTime(SimpleTime::nowTime().addDay(earliestUser.getCanAppointDays()));
+        Order::updateStateAndBookIdAndBorrowTimeById(orders[earliestIndex]);
+        instance->setStatus(5);
+        BookInstance::updateStateAndReturnTimeById(*instance);
+        Book::updateBooksAppointmentNum(instance->getIsbn(),-1);
+        cout << "预约逾期书籍处理成功,该书已转交给下一位等待用户!" << endl;
+    }
+    return true;
+}
 
 long long User::readAndSetJobNum() {
     cout<<"请输入工号:";
